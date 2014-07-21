@@ -1,0 +1,55 @@
+.tip{
+	font-weight: bold;
+}
+
+.titulo {
+	font-weight:bold; 
+}
+
+.columns{
+	height: 370px;;
+	vertical-align: middle;
+}
+
+.topMarg{
+	margin-top:40px;
+}
+
+.justifyed{
+	text-align: justify;
+}
+
+.right{
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+}
+
+.left{
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+	text-align: justify;
+}
+
+#div_resposta {
+	display: none;
+	color: red;
+}
+
+#div_summary {
+	display: none;
+}
+
+#tabela{
+	width:700px;
+}
+
+.coluna {
+	width:200px;
+	float: left;
+}
+
+p{
+	clear: both;
+}

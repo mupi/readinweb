@@ -1,0 +1,25 @@
+#phrases, #box{
+	margin: 10px 0px 15px 20px;
+	width: 100%;
+}
+
+#box{
+	height: 100%;
+}
+
+.line{
+	width: 100%;
+	height: 30px;
+	display: block;
+}
+
+.row1, .row2, .row3, .row4{
+	float: left;
+	width: 20%;
+	margin-left: 5px;
+}
+
+.answer{
+	color: red;
+	display: none;
+}

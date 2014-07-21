@@ -1,0 +1,44 @@
+.tip{
+	font-weight: bold;
+}
+
+.titulo {
+	font-weight:bold; 
+}
+
+#columns{
+	height: 400px;;
+	vertical-align: middle;
+}
+
+#left{
+	width: 40%;
+	margin-top:40px;
+	float: left;
+	text-align: justify;
+	margin-left: 5%;
+}
+
+#right{
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+}
+
+#div_resposta {
+	display: none;
+	color: red;
+}
+
+#tabela{
+	width:700px;
+}
+
+.coluna {
+	width:200px;
+	float: left;
+}
+
+p{
+	clear: both;
+}

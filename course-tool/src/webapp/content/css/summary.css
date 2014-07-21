@@ -1,0 +1,68 @@
+.alert_justificativa {
+	background-color:#FEFEEE;
+	border:1px solid red;
+	color:black;
+	padding:5px;
+	width:760px;
+	margin:0 auto;
+}
+
+.table_module {
+	padding: 10px;
+	width: 870px; 
+	margin:0 auto;
+}
+
+.module {
+	padding-left   : 15px;
+	padding-top    : 5px;
+	padding-bottom : 5px;
+	color          : #000066;
+}
+
+.title_atividade {
+	padding: 5px; 
+}
+
+.lnkmodulo {
+	color: #000066;
+	padding: 5px;
+}
+
+a.lnkmodulo {
+	color: #000066;
+	text-decoration: none;
+}
+a.lnkmodulo:hover {
+	background-color:#CAD9E8;
+	color: #000066;
+	text-decoration: none;
+}
+
+.td_image {
+	padding:0 50px;
+}
+
+.border_outer{
+	color: #000066;
+}
+
+.atividade {
+	border:0px;
+	width:470px;
+	cursor:pointer;
+	text-align:left;
+	background-color:#ffffff;
+	display: inline-block;
+}
+
+.invisivel {
+	display: none;
+}
+.blue_background {
+	background-color: #CAD9E8;
+}
+.ul_atividade {
+	padding:10px;
+	background-color: #CAD9E8;
+}

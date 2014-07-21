@@ -1,0 +1,42 @@
+.clicavel {
+	cursor: pointer;
+}
+
+.texto {
+	font-family: Tahoma, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	cursor: default;
+	text-align: justify;
+	width: 780px;
+}
+
+.arrow {
+	opacity: 0.50;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity = 50);
+	left:-150px;
+	position:relative;
+	top:-65px;
+}
+
+.azul {
+	background: #87CEFA;
+	color: black;
+}
+
+.verde {
+	background: #9ACD32;
+	color: black;
+}
+#div_resposta { display: none; color: red;}
+
+.vermelho {
+	background: #FF6A6A;
+	color: black;
+}
+
+.amarelo {
+	background: #FFA500;
+	color: black;
+}

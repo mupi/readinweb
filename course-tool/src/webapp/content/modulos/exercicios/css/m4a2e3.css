@@ -1,0 +1,31 @@
+.blue{
+	color: blue;
+}
+
+.green{
+	color: green;
+}
+
+.red{
+	color: red;
+}
+
+.orange{
+	color: #F57914;
+}
+
+.paragraph{
+	text-align: justify;
+	margin:5px 0 0 5px;
+}
+
+.text_container{
+	width: 510px;
+}
+
+.titulo {
+	font-weight:bold;
+	margin-bottom: 20px;
+}
+
+#div_resposta { display: none; color: red;}

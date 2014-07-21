@@ -1,0 +1,31 @@
+.div_freq5 {
+  background-color: #0000ff;
+  width: 100%;
+  display:block;
+}
+.div_freq4 {
+  background-color: #4444ff;
+  width: 100%;
+  display:block;
+}
+.div_freq3 {
+  background-color: #7777ff;
+  width: 100%;
+  display:block;
+}
+.div_freq2 {
+  background-color: #aaaaff;
+  width: 100%;
+  display:block;
+}
+.div_freq1 {
+  background-color: #ddddff;
+  width: 100%;
+  display:block;
+}
+.div_freqOff {
+  background-color: none;
+  width: 100%;
+  display:block;
+  border:1px solid #dfdfdf;
+}

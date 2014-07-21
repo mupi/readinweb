@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Projeto Read in Web</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+    <!-- End Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <script type="text/javascript" src="../audio/swfobject.js"></script>
+</head>
+<body>
+    <!-- Wrap utilizado pro sticky footer -->
+    <div id="wrap">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Menu principal</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="../imagens/logo.png" alt="Curso Read in Web" />
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse">
+                    <ul id="lista_menu_principal" class="nav navbar-nav">
+                        <li>
+                            <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                        </li>
+                        <li>
+                            <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
+                                name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                        </li>
+                        <li>
+                            <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                                name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                        </li>
+                        <li>
+                            <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
+                                rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Lista de módulos <b class="caret"></b>
+                            </a>
+                            <ul id="lista_menu_modulos" class="dropdown-menu">
+                                <li rsf:id="li-rowsMod:">
+                                    <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                                    <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                                        <li rsf:id="p-rowsAct:">
+                                            <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link">
+                                                Atividade X
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active">
+                            <a href="#questoes" data-toggle="tab">
+                                <i class="fa fa-pencil"></i> Questões
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#dicionario" data-toggle="tab">
+                                <span class="glyphicon glyphicon-book"></span>
+                                Dicionário
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                                <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid --> 
+        </nav>
+        <div class="container">
+            <div class="row first-row">
+                <ol class="breadcrumb">
+                    <li>
+                        Voc&ecirc; est&aacute; no M&oacute;dulo
+                        <span rsf:id="current_mod">--</span>
+                    </li>
+                    <li>
+                        Atividade
+                        <span rsf:id="current_act">--</span>
+                    </li>
+                    <li class="active">
+                        <span rsf:id="current_title">--</span>
+                    </li>
+                    <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank"
+                        rsf:id="lnk_print">
+                        <div id="print_tag">
+                            <span class="glyphicon glyphicon-print"></span>
+                            IMPRIMIR
+                        </div>
+                    </a>
+                    <div id="audio">
+                        <div id="audio_player" style="display: none"></div>
+                        <div id="audio_icon">
+                            <span id="showAudio" class="glyphicon glyphicon-play" style="display: block"></span>
+                            <span id="hideAudio" class="glyphicon glyphicon-stop" style="display: none"
+                                onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
+                        </div>
+                        <div id="audio_tag">AUDIO</div>
+                    </div>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-8">
+                    <!-- this div is used to creates the audio -->
+                    <div id="sound_text" rsf:id="sound_text"></div>
+                    <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
+                    <div id="prelecture_text" rsf:id="prelecture_text" class="prelecture">We′re really pleased
+                        with these results”, says SeaWiFS project manager Mary Cleave. In this image, high
+                        concentrations of plant life are shown as yellow or green, while low densities are blue.</div>
+                    <div id="time_text" rsf:id="time_text"></div>
+                    <h1 id="title_text" rsf:id="title_text"></h1>
+                    <div id="picture_text" rsf:id="picture_text"></div>
+                    <div id="text_text" rsf:id="text_text">
+                        <h1>How green is my planet?</h1>
+                        <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
+                            Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
+                            photosynthesis.</p>
+                        <p>
+                            The main goal of the SeaWiFS mission,
+                            <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
+                                title='patrocinado'>sponsored</a>
+                            by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
+                            when the satellite began beaming back data last month, it
+                            <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
+                            that the sensor was powerful enough to see land plants as well.
+                        </p>
+                        <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
+                            Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
+                            while low densities are blue.</p>
+                        <p>
+                            The team hopes that the satellite
+                            <a href='#' title='data' trans='dados'>data</a>
+                            will help in predictions of climate change, for example that caused by El Ni&ntilde;o
+                            &#8212; the
+                            <a href='#' title='warming' trans='aquecimento'>warming</a>
+                            of Pacific waters that occurs every few years. Phytoplankton populations increase as the
+                            oceans heat up. The data
+                            <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
+                            also
+                            <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
+                            marine biologists to monitor the
+                            <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
+                            of toxic algal
+                            <a href='#' title='blooms' trans='florescimento'>blooms</a>
+                            , which can kill millions of fish
+                        </p>
+                        <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
+                            Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
+                            photosynthesis.</p>
+                        <p>
+                            The main goal of the SeaWiFS mission,
+                            <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
+                                title='patrocinado'>sponsored</a>
+                            by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
+                            when the satellite began beaming back data last month, it
+                            <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
+                            that the sensor was powerful enough to see land plants as well.
+                        </p>
+                        <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
+                            Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
+                            while low densities are blue.</p>
+                        <p>
+                            The team hopes that the satellite
+                            <a href='#' title='data' trans='dados'>data</a>
+                            will help in predictions of climate change, for example that caused by El Ni&ntilde;o
+                            &#8212; the
+                            <a href='#' title='warming' trans='aquecimento'>warming</a>
+                            of Pacific waters that occurs every few years. Phytoplankton populations increase as the
+                            oceans heat up. The data
+                            <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
+                            also
+                            <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
+                            marine biologists to monitor the
+                            <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
+                            of toxic algal
+                            <a href='#' title='blooms' trans='florescimento'>blooms</a>
+                            , which can kill millions of fish
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="tab-content" data-spy="affix" data-offset-top="68" id="sidebar-questoes">
+                        <div id="questoes" class="tab-pane fade in active affix-questoes">
+                            <form rsf:id="input_form_rsf">
+                                <div id="title_questions">QUEST&Otilde;ES</div>
+                                <div id="number_questions">
+                                    <ul class="nav nav-tabs">
+                                        <li rsf:id="li-rows:">
+                                            <a href="#" rsf:id="input_link_q_" id="">1</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="contentOn_questions">
+                                    <div id="enunciado_questions">
+                                        <div id="result_field">Este texto é um relato apresentado em tempo
+                                            passado. Por que no início do último parágrafo o autor recorre ao tempo
+                                            presente?</div>
+                                        <div rsf:id="question">Erro! Contate o administrador</div>
+                                    </div>
+                                    <input type="hidden" rsf:id="input_hidden_value_rsf" id="input_hidden_q1_rsf"
+                                        value="1" />
+                                    <div id="your_answer">
+                                        <div id="form_your_answer">
+                                            <textarea rsf:id="input_text_userAnswer" id="input_text_userAnswer"
+                                                name="sua_resposta" class="form-control" cols="34" rows="6"
+                                                placeholder="Escreva sua resposta aqui"></textarea>
+                                            <button id="submit_answer" class="btn btn-default btn-sm btn-block"
+                                                onclick="" name="submit_answer">
+                                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                                Salvar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="suggested_answer">
+                                        <button id="submit1" class="btn btn-link btn-block btn-resposta-sugerida"
+                                            type="button" onclick="show_answer('hidden_resposta_sugerida')">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            Resposta Sugerida
+                                        </button>
+                                        <p id="hidden_resposta_sugerida"></p>
+                                    </div>
+                                </div>
+                                <div id="contentOff_questions">Carregando...</div>
+                            </form>
+                        </div>
+                        <!-- Tabs Glossário e Palavras-função-->
+                        <div id="dicionario" class="tab-pane fade affix-questoes">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#glossario" data-toggle="tab">Glossário</a>
+                                </li>
+                                <li>
+                                    <a href="#palavras-funcao" data-toggle="tab">Palavras-função</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content glossario-dicionario">
+                                <div class="tab-pane fade in active" id="glossario">
+                                    <ul id="texto_dicionario" rsf:id="texto_dicionario">
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="palavras-funcao">
+                                    <ul id="texto_palavrasfuncao" rsf:id="texto_palavrasfuncao">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do #wrap -->
+    <div id="footer">
+        <div class="container">
+            <ul class="footer-menu">
+                <li>Sobre o curso</li>
+                <li>Suporte</li>
+                <li>Termos de uso</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
+    <script rsf:id="init_js" type="text/javascript">
+            // a real function call with real values which come from the
+            // "emitJavascriptCall" method will be placed here by RSF
+	</script>
+</body>
+</html>

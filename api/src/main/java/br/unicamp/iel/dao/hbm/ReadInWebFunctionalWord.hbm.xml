@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="br.unicamp.iel.model.FunctionalWord" table="readinweb_functionalwords">
+		<id name="id" type="java.lang.Long">
+			<generator class="increment" />
+		</id>
+
+		<many-to-one name="course" class="br.unicamp.iel.model.Course"
+			foreign-key="word_course_fk">
+			<column name="course_id" not-null="true" />
+		</many-to-one>
+
+		<property name="word" type="string" length="255" />
+		<property name="meaning" type="string" length="255" />
+	</class>
+</hibernate-mapping>

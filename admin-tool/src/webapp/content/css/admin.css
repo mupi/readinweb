@@ -1,0 +1,92 @@
+.tb_opcoes {
+    padding:10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.tb_opcoes li {
+    color:#000066;
+    padding:10px;
+}
+
+.txt_pequeno{
+    color: #000;
+    font-size: small;
+}
+.txt_left{
+    width:250px;
+}
+
+.span_esq {
+    width:300px;
+    display:block;	
+    float: left;
+}
+
+.input_form {
+    float: left;	
+}
+
+.tb_form {
+    width: 550px;
+    margin: 15px auto;
+}
+
+a.button{
+    background:url(../imagens/button.gif);
+    display:block;
+    color:#555555;
+    height:30px;
+    line-height:29px;
+    margin:0;
+    text-decoration:none;
+    width:250px;
+}
+a:hover.button{
+    color:#0066CC;
+}
+
+/* -------------------- */
+/* CLASSES				*/
+/* -------------------- */
+.nova_turma{
+    background:url(../imagens/add.gif) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.gera_lista{
+    background:url(../imagens/document_add.png) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.libera_acesso{
+    background:url(../imagens/unlock.png) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.registra_docente{
+    background:url(../imagens/user.gif) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.gera_csv{
+    background:url(../imagens/document_add.png) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.envia_csv{
+    background:url(../imagens/document_edit.png) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+
+.ler_justificativa{
+    background:url(../imagens/alert.gif) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}
+.monitorar_estado{
+    background:url(../imagens/traffic.png) no-repeat 10px 8px;
+    text-indent:30px;
+    display:block;
+}

@@ -1,0 +1,15 @@
+.img{
+	margin-bottom: -8px;
+}
+
+.tb {width: 500px}
+
+.col_esq {
+	float: left;
+	width: 150px;
+}
+
+.col_dir {
+	float: left;
+	width: 450px;
+}

@@ -1,0 +1,13 @@
+.strategy_list li{
+	margin: 1em 0;
+	line-height: 1.5em;
+}
+
+.leitura, .lingua{
+	font-size: 1.6em;
+	border-bottom: 1px solid #f5f5f5;
+	padding-bottom: 0.5em;
+}
+.leitura a:hover, .lingua a:hover{
+	text-decoration: none;
+}

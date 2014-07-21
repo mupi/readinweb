@@ -1,0 +1,59 @@
+.tip{
+	font-weight: bold;
+}
+
+.titulo {
+	font-weight:bold; 
+}
+
+#columns{
+	height: 580px;
+}
+
+#left{
+	width: 40%;
+	float: left;
+	text-align: justify;
+	margin-left: 5%;
+}
+
+#right{
+	width: 40%;
+	float: left;
+	text-align: justify;
+	margin-left: 5%;
+}
+
+.blue{
+	background:#9bb9fd;
+}
+
+.yellow1{
+	background:#fffec0;
+}
+
+.yellow2{
+	background:#fcff99;
+}
+
+.green{
+	background:#cbf4da;
+}
+
+#div_resposta {
+	display: none;
+	color: red;
+}
+
+#tabela{
+	width:700px;
+}
+
+.coluna {
+	width:200px;
+	float: left;
+}
+
+p{
+	clear: both;
+}
