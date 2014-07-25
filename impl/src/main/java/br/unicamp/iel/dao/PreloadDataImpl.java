@@ -54,7 +54,7 @@ public class PreloadDataImpl {
 			Reader in = new FileReader(f);
 			CSVFormat format = CSVFormat
 					.newFormat(';')
-					.withQuoteChar('"')
+					.withQuote('"')
 					.withHeader((String[])null);
 			Iterable<CSVRecord> records = format.parse(in);
 			log.info("Olha os modules galera fica loka");

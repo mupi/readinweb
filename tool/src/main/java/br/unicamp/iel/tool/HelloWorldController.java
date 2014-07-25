@@ -101,7 +101,7 @@ public class HelloWorldController implements Controller {
             in = new FileReader(new File(s));
             CSVFormat format = CSVFormat
                     .newFormat(';')
-                    .withQuoteChar('"')
+                    .withQuote('"')
                     .withEscape('\\')
                     .withHeader((String[])null);
 
