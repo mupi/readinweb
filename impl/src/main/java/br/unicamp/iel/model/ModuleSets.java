@@ -5,6 +5,8 @@ import java.util.Set;
 
 import lombok.Getter;
 
+import org.sakaiproject.genericdao.api.search.Order;
+import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
 import br.unicamp.iel.dao.ReadInWebDao;
@@ -19,6 +21,7 @@ public class ModuleSets {
 
     public Set<Activity> getActivities(ReadInWebDao dao) {
         Search search = new Search("module.id", module.getId());
+        search.addOrder(new Order("position"));
         return new HashSet<Activity>(dao.findBySearch(Activity.class, search));
     }
     

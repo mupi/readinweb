@@ -5,6 +5,7 @@ import java.util.Set;
 
 import lombok.Getter;
 
+import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Search;
 
 import br.unicamp.iel.dao.ReadInWebDao;
@@ -19,24 +20,28 @@ public class ActivitySets {
 
     public Set<Strategy> getStrategies(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
+        search.addOrder(new Order("position"));
         return new HashSet<Strategy>(
                 dao.findBySearch(Strategy.class, search));
     }
 
     public Set<Exercise> getExercises(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
+        search.addOrder(new Order("position"));
         return new HashSet<Exercise>(
                 dao.findBySearch(Exercise.class, search));
     }
 
     public Set<Question> getQuestions(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
+        search.addOrder(new Order("position"));
         return new HashSet<Question>(
                 dao.findBySearch(Question.class, search));
     }
 
     public Set<DictionaryWord> getDictionary(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
+        search.addOrder(new Order("word"));
         return new HashSet<DictionaryWord>(
                 dao.findBySearch(DictionaryWord.class, search));
     }
