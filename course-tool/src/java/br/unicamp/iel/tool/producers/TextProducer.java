@@ -28,12 +28,13 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.Answer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
-import br.unicamp.iel.tool.SessionBean;
+import br.unicamp.iel.tool.RegisterAccessAjaxBean;
 import br.unicamp.iel.tool.commons.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -42,9 +43,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
     private static Log logger = LogFactory.getLog(TextProducer.class);
     @Setter
     private ReadInWebCourseLogic logic;
-    @Setter
-    private SessionBean session;
-
+    
     // The VIEW_ID must match the html template (without the .html)
     public static final String VIEW_ID = "text";
 
@@ -168,17 +167,25 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
             UIForm ui_form = UIForm.make(ui_bc, "answer_form");
             ui_form.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
-            ui_form.parameters.add(new UIELBinding("question", "#{AnswerAjaxBean.question}", false));
             
-            // TODO: Put the answer, if exists
+            UIInput ui_question = UIInput.make(ui_form, "question_id", 
+                    "AnswerAjaxBean.question");
+            ui_question.updateFullID("question_to_" + q.getId());
+            ui_question.setValue(Long.toString(q.getId()));
+            
+            Answer a = logic.getAnswerByQuestionAndUser(q.getId());
             UIInput ui_answer = UIInput.make(ui_form, "answer", 
                     "AnswerAjaxBean.answer");
             ui_answer.updateFullID("answer_to_" + q.getId());
+            ui_answer.setValue(a != null ? a.getAnswer() : "");
             
-            UIInitBlock.make(tofill, "init_js:", "initMyAjaxStuff", 
-                    new Object[] {ui_answer, "AnswerAjaxBean.results"});
+            UICommand ui_send = UICommand.make(ui_form, "send_answer");
+            ui_send.updateFullID("send_to_" + q.getId());
             
-            UICommand.make(ui_form, "send_answer");            
+            UIInitBlock.make(tofill, "init_js:", "RIW.saveUserAnswer", 
+                    new Object[] {ui_answer, ui_question, ui_send, 
+                    "AnswerAjaxBean.results"});            
+                        
         }
                 
         logic.registerAccess("Acesso ao texto.", this.getViewID(), activity);
@@ -287,10 +294,12 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
         // try to get the module and the activity Id
         if ((activity == null)) {
-            if (session != null) {
-                int_numAct = session.getActivity();
-                int_numMod = session.getModule();
-            } else {
+            if (true)
+//            (session != null) {
+//                int_numAct = session.getActivity();
+//                int_numMod = session.getModule();
+//            } else 
+            {
                 int_numAct = 0;
                 int_numMod = 0;
             }

@@ -25,7 +25,6 @@ import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.Module;
-import br.unicamp.iel.tool.SessionBean;
 import br.unicamp.iel.tool.commons.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
@@ -33,8 +32,6 @@ public class ExerciciosProducer implements ViewComponentProducer,
     ViewParamsReporter {
 
     private static Log logger = LogFactory.getLog(ExerciciosProducer.class);
-    @Setter
-    private SessionBean session;
     @Setter
     private ReadInWebCourseLogic logic;
 

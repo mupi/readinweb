@@ -164,6 +164,35 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
      */
     
     @Override
+    public Answer getAnswer(Long answer) {
+        return dao.findById(Answer.class, answer);
+    }
+    
+    @Override
+    public boolean updateAnswer(Answer answer) {
+        try {
+            dao.save(answer);
+            return true;
+        } catch (IllegalArgumentException e){
+            return false;
+        }
+    }
+
+    @Override
+    public void saveAnswer(Answer a) {
+        dao.create(a);
+    }
+    
+    @Override
+    public Answer getAnswerByQuestionAndUser(Long question) {
+        Restriction[] r = new Restriction[]{
+                new Restriction("question.id", question),
+                new Restriction("user", this.getUserId())
+        };
+        return dao.findOneBySearch(Answer.class, new Search(r));
+    }
+    
+    @Override
     public int[][] makeAccessMatrix(List<Module> lst_modulos,
             List<Activity> lst_atividades, String userId, String currentSiteId) {
         // TODO Auto-generated method stub
@@ -287,12 +316,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public boolean controlText(User usuario, Activity curActivity) {
         // TODO Auto-generated method stub
         return false;
-    }
-
-    @Override
-    public void saveAnswer(Answer savingAnswer) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

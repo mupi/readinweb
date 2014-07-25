@@ -214,19 +214,20 @@
                                 <div class="tab-content">
                                     <div id="contentOn_questions" class="tab-pane" rsf:id="div_questions:">
                                         <div id="enunciado_questions">
-                                            <div id="result_field" class="alert ">div de info</div>
                                             <div rsf:id="question">Erro! Contate o administrador</div>
                                         </div>
                                         <div id="your_answer">
                                             <div id="form_your_answer">
                                                 <form rsf:id="answer_form" role="form">
+                                                    <input type="hidden" rsf:id="question_id" 
+                                                        name="question_id" id="question_id" />
                                                     <div class="form-group">
                                                         <textarea rsf:id="answer" name="answer"
                                                             id="answer"
                                                             class="form-control" rows="6"
                                                             placeholder="Escreva sua resposta aqui"></textarea>
                                                     </div>
-                                                    <button type="submit" rsf:id="send_answer"
+                                                    <button type="submit" rsf:id="send_answer" id="send_answer"
                                                         class="btn btn-default btn-sm btn-block" name="send_answer">
                                                         <span class="glyphicon glyphicon-floppy-disk"></span>
                                                         Salvar

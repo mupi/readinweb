@@ -4,11 +4,11 @@
 
 <beans>
 	<bean parent="requestAddressibleParent">
-		<property name="value" value="SessionBean, AnswerAjaxBean" />
+		<property name="value" value="RegisterAccessAjaxBean, AnswerAjaxBean" />
 	</bean>
 
 	<bean id="resultsScope" parent="beanScopeParent">
-		<property name="copyPreservingBeans" value="SessionBean, AnswerAjaxBean" />
+		<property name="copyPreservingBeans" value="RegisterAccessAjaxBean, AnswerAjaxBean" />
 		<property name="exclusive" value="true" />
 	</bean>
 
@@ -47,7 +47,7 @@
 	<bean parent="requestAddressibleParent">
 		<property name="value">
 			<value>
-				SessionBean, AnswerAjaxBean
+				RegisterAccessAjaxBean, AnswerAjaxBean
 			</value>
 		</property>
 	</bean>

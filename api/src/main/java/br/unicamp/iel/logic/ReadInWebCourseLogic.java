@@ -81,6 +81,18 @@ public interface ReadInWebCourseLogic {
      * Bellow specific course methods
      * 
      */
+    
+    public Answer getAnswer(Long answer);
+    
+    public boolean updateAnswer(Answer answer);
+    
+    public void saveAnswer(Answer anwser);
+    
+    public Answer getAnswerByQuestionAndUser(Long question);
+    
+    /**
+     * Old methods
+     */
 
     public int[][] makeAccessMatrix(List<Module> lst_modulos,
             List<Activity> lst_atividades, String userId, String currentSiteId);
@@ -129,8 +141,6 @@ public interface ReadInWebCourseLogic {
 
     public boolean controlText(User usuario, Activity curActivity);
 
-    public void saveAnswer(Answer savingAnswer);
-
     public boolean controlQuestion(User usuario, Activity curActivity);
 
     public boolean blockUser(long course);
@@ -142,4 +152,5 @@ public interface ReadInWebCourseLogic {
     public Long[] getModulesIds(long course);
 
     public Long getCourseId();
+
 }
