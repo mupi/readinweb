@@ -15,7 +15,6 @@ import br.unicamp.iel.model.Module;
 import br.unicamp.iel.tool.producers.EstrategiaProducer;
 import br.unicamp.iel.tool.producers.ExerciciosProducer;
 import br.unicamp.iel.tool.producers.GramaticaProducer;
-import br.unicamp.iel.tool.producers.PrinterTextProducer;
 import br.unicamp.iel.tool.producers.SummaryProducer;
 import br.unicamp.iel.tool.producers.TextProducer;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
@@ -66,9 +65,6 @@ public class CourseComponents {
 
         cvpLink.viewID = SummaryProducer.VIEW_ID;
         UIInternalLink.make(tofill, "linksumary", cvpLink);
-
-        cvpLink.viewID = PrinterTextProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "lnk_print", cvpLink);
     }
     
     /**
