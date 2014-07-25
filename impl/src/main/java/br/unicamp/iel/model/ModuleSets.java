@@ -1,12 +1,10 @@
 package br.unicamp.iel.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import lombok.Getter;
 
 import org.sakaiproject.genericdao.api.search.Order;
-import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
 import br.unicamp.iel.dao.ReadInWebDao;
@@ -19,10 +17,10 @@ public class ModuleSets {
         this.module = module;
     }
 
-    public Set<Activity> getActivities(ReadInWebDao dao) {
+    public List<Activity> getActivities(ReadInWebDao dao) {
         Search search = new Search("module.id", module.getId());
         search.addOrder(new Order("position"));
-        return new HashSet<Activity>(dao.findBySearch(Activity.class, search));
+        return dao.findBySearch(Activity.class, search);
     }
     
     

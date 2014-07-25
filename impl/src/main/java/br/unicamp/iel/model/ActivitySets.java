@@ -1,7 +1,6 @@
 package br.unicamp.iel.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import lombok.Getter;
 
@@ -18,31 +17,27 @@ public class ActivitySets {
         this.activity = activity;
     }
 
-    public Set<Strategy> getStrategies(ReadInWebDao dao) {
+    public List<Strategy> getStrategies(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
         search.addOrder(new Order("position"));
-        return new HashSet<Strategy>(
-                dao.findBySearch(Strategy.class, search));
+        return dao.findBySearch(Strategy.class, search);
     }
 
-    public Set<Exercise> getExercises(ReadInWebDao dao) {
+    public List<Exercise> getExercises(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
         search.addOrder(new Order("position"));
-        return new HashSet<Exercise>(
-                dao.findBySearch(Exercise.class, search));
+        return dao.findBySearch(Exercise.class, search);
     }
 
-    public Set<Question> getQuestions(ReadInWebDao dao) {
+    public List<Question> getQuestions(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
         search.addOrder(new Order("position"));
-        return new HashSet<Question>(
-                dao.findBySearch(Question.class, search));
+        return dao.findBySearch(Question.class, search);
     }
 
-    public Set<DictionaryWord> getDictionary(ReadInWebDao dao) {
+    public List<DictionaryWord> getDictionary(ReadInWebDao dao) {
         Search search = new Search("activity.id", activity.getId());
         search.addOrder(new Order("word"));
-        return new HashSet<DictionaryWord>(
-                dao.findBySearch(DictionaryWord.class, search));
+        return dao.findBySearch(DictionaryWord.class, search);
     }
 }

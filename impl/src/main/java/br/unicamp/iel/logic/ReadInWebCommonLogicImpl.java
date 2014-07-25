@@ -119,7 +119,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     @Override
     public List<Module> getModules(Course course) {
         CourseSets cs = new CourseSets(course);
-        return new ArrayList<Module>(cs.getModules(dao));
+        return cs.getModules(dao);
     }
     
     @Override

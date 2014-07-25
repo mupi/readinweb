@@ -1,7 +1,6 @@
 package br.unicamp.iel.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import lombok.Getter;
 
@@ -18,16 +17,15 @@ public class CourseSets {
         this.course = course;
     }
 
-    public Set<Module> getModules(ReadInWebDao dao) {
+    public List<Module> getModules(ReadInWebDao dao) {
         Search search = new Search("course.id", course.getId());
         search.addOrder(new Order("position"));
-        return new HashSet<Module>(dao.findBySearch(Module.class, search));
+        return dao.findBySearch(Module.class, search);
     }
 
-    public Set<FunctionalWord> getFunctionalWords(ReadInWebDao dao) {    
+    public List<FunctionalWord> getFunctionalWords(ReadInWebDao dao) {    
         Search search = new Search("course.id", course.getId());
         search.addOrder(new Order("word"));
-        return new HashSet<FunctionalWord>(
-                dao.findBySearch(FunctionalWord.class, search));
+        return dao.findBySearch(FunctionalWord.class, search);
     }
 }
