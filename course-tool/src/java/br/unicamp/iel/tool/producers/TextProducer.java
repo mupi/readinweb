@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.UIBranchContainer;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
@@ -18,6 +19,7 @@ import uk.org.ponder.rsf.components.UIInitBlock;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.UIParameter;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -33,6 +35,7 @@ import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.tool.SessionBean;
 import br.unicamp.iel.tool.commons.CourseComponents;
+import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
@@ -55,10 +58,11 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
             ComponentChecker checker) {
 
         CourseViewParameters parameters = (CourseViewParameters) viewparams;
-        File audio;
+        Course course = logic.getCourse(parameters.course);
         Activity activity;
         Module module;
-
+        File audio;
+        
         if(logic == null){
             System.out.println("Logic bean is null");
             return;
@@ -68,11 +72,8 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         }
         
         CourseComponents.loadMenu(parameters, tofill);
-        Course course = logic.getCourse(parameters.course);
         CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
-        
-        
-        
+                
         // Breadcrumb
         UIOutput.make(tofill, "current_mod",
                 Long.toString(module.getPosition()));
@@ -147,46 +148,39 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         }
         UIVerbatim.make(tofill, "texto_palavrasfuncao", functionalWords);
 
-        // Activity Questions
-        String[] array_linkIds;
-        UIForm form;
-        form = UIForm.make(tofill, "input_form_rsf");
-
-        form.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
-        form.parameters.add(new UIELBinding("#{SessionBean.course}", parameters.course));
-        form.parameters.add(new UIELBinding("#{SessionBean.module}", parameters.module));
-        //form.parameters.add(new UIELBinding("#{QuestionsAjaxBean.activity}", cvp.activity));
-
-        List<Question> l_q = new ArrayList<Question>(logic.getQuestions(activity));
-        array_linkIds = new String[l_q.size()];
+        // Question and Answers
+        List<Question> l_q = 
+                new ArrayList<Question>(logic.getQuestions(activity));
         for(Question q : l_q){
-            UIBranchContainer row = UIBranchContainer.make(form, "li-rows:", 
+            UIBranchContainer row = UIBranchContainer.make(tofill, "li-rows:",
                     Integer.toString(q.getPosition()));
-            String questionId = "input_link_q_" + q.getId();
-            UILink ui_l = UILink.make(row, "input_link_q_", 
-                    Integer.toString(q.getPosition()), "javascript:void(0)");
-            ui_l.updateFullID(questionId);
+            UILink ui_l = UILink.make(row, "input_link_q_",
+                    Integer.toString(q.getPosition()),
+                    "/#question_" + q.getId());
+            ui_l.updateFullID("input_link_q_" + q.getId());
 
-            array_linkIds[q.getPosition() - 1] = ui_l.getFullID();
+            UIBranchContainer ui_bc = UIBranchContainer.make(tofill, 
+                    "div_questions:");
+            ui_bc.updateFullID("question_" + q.getId());
+            
+            UIVerbatim.make(ui_bc, "question", q.getQuestion());
+            UIVerbatim.make(ui_bc, "suggested_answer", q.getSuggestedAnswer());
+
+            UIForm ui_form = UIForm.make(ui_bc, "answer_form");
+            ui_form.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
+            ui_form.parameters.add(new UIELBinding("question", "#{AnswerAjaxBean.question}", false));
+            
+            // TODO: Put the answer, if exists
+            UIInput ui_answer = UIInput.make(ui_form, "answer", 
+                    "AnswerAjaxBean.answer");
+            ui_answer.updateFullID("answer_to_" + q.getId());
+            
+            UIInitBlock.make(tofill, "init_js:", "initMyAjaxStuff", 
+                    new Object[] {ui_answer, "AnswerAjaxBean.results"});
+            
+            UICommand.make(ui_form, "send_answer");            
         }
-
-        UIInput ui_i_question = UIInput.make(form, 
-                "input_hidden_value_rsf", 
-                "QuestionsAjaxBean.question_id_request");
-        ui_i_question.setValue("0");
-
-        UIInput.make(form, "input_text_userAnswer", 
-                "QuestionsAjaxBean.question_user_answer");
-
-        UIInitBlock.make(tofill, "init_js", "initMyAjaxStuff", new Object[]{
-                ui_i_question, concatenaIDs(array_linkIds),
-                "enunciado_questions", "input_text_userAnswer", 
-                "hidden_resposta_sugerida", "submit_answer", 
-                "QuestionsAjaxBean.results", 
-        "QuestionsAjaxBean.resultPostAnswer"});
-        
-        
-        // Register access to the activity
+                
         logic.registerAccess("Acesso ao texto.", this.getViewID(), activity);
 
     }

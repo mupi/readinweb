@@ -12,14 +12,14 @@ import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
-import br.unicamp.iel.tool.producers.CourseViewParameters;
 import br.unicamp.iel.tool.producers.EstrategiaProducer;
 import br.unicamp.iel.tool.producers.ExerciciosProducer;
-import br.unicamp.iel.tool.producers.ExerciseViewParameters;
 import br.unicamp.iel.tool.producers.GramaticaProducer;
 import br.unicamp.iel.tool.producers.PrinterTextProducer;
 import br.unicamp.iel.tool.producers.SummaryProducer;
 import br.unicamp.iel.tool.producers.TextProducer;
+import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
+import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
 public class CourseComponents {
     

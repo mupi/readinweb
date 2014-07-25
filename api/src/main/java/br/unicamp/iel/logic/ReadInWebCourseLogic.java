@@ -59,6 +59,28 @@ public interface ReadInWebCourseLogic {
     public List<Exercise> getExercises(Activity activity);
 
     public String getCurrentSiteId();
+    
+    public void saveCourse(Course course);
+
+    public void saveModule(Module module);
+
+    public void saveActivity(Activity activity);
+
+    public void saveDictionaryWord(DictionaryWord dw);
+    
+    public void saveExercise(Exercise exercise);
+
+    public void saveQuestion(Question question);
+
+    public void saveFunctionalWord(FunctionalWord fw);
+
+    public void saveStrategy(Strategy strategy);
+    
+    /**
+     * 
+     * Bellow specific course methods
+     * 
+     */
 
     public int[][] makeAccessMatrix(List<Module> lst_modulos,
             List<Activity> lst_atividades, String userId, String currentSiteId);

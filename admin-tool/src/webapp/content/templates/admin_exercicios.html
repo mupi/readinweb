@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Projeto Read in Web - Exerc&iacute;cios</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+    <!-- End Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/exercicios.css" />
+</head>
+<body>
+    <div id="wrap">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul id="lista_menu_principal" class="nav navbar-nav">
+                    <li>
+                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                    </li>
+                    <li>
+                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
+                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                    </li>
+                    <li>
+                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                    </li>
+                    <li>
+                        <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
+                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Lista de módulos <b class="caret"></b>
+                        </a>
+                        <ul id="lista_menu_modulos" class="dropdown-menu">
+                            <li rsf:id="li-rowsMod:">
+                                <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                                <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                                    <li rsf:id="p-rowsAct:">
+                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+        <div class="container">
+            <div class="row first-row">
+                <ol class="breadcrumb">
+                    <li>
+                        Voc&ecirc; est&aacute; no M&oacute;dulo
+                        <span rsf:id="current_mod">--</span>
+                    </li>
+                    <li>
+                        Atividade
+                        <span rsf:id="current_act">--</span>
+                    </li>
+                    <li class="active">
+                        <span rsf:id="current_title">--</span>
+                    </li>
+                </ol>
+                <div id="function">
+                    <div id="exercicios">
+                        <h1 id="title_exercicios">EXERC&#205;CIOS</h1>
+                        <div id="indice_exercicios" class="col-sm-4">
+                            <h2 id="titulo_indice_exercicios">&#205;NDICE</h2>
+                            <div id="lista_indice_exercicios">
+                                <ul rsf:id="ul-exercicios:">
+                                    <li rsf:id="li-linkExer:">
+                                        <a rsf:id="input_link_e_" id="input_link_e_" class="submitModule"
+                                            onclick="javascript:update_exercicio(this, 'input_hidden_e')">
+                                            Exerc&iacute;cio 1 </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="conteudo_exercicios" class="col-sm-8">
+                            <div id="titulo_conteudo_exercicios">
+                                <!--  <a name="topo" id="topo">EXERC&#205;CIO X</a> -->
+                                <div id="titulo_exercicio_div" rsf:id="titulo_exercicio_div"></div>
+                            </div>
+                            <div id="conteudo_conteudo_exercicios">
+                                <div id="html_exercicio_div" rsf:id="html_exercicio_div"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <ul class="footer-menu">
+                <li>Sobre o curso</li>
+                <li>Suporte</li>
+                <li>Termos de uso</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
+</body>
+</html>

@@ -20,6 +20,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Module;
+import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 /**
  *

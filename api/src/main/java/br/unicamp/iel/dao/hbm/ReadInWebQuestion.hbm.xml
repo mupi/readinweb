@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="br.unicamp.iel.model.Question"	table="readinweb_questions">
-		<id name="id" type="long">
+		<id name="id" type="java.lang.Long">
 			<generator class="increment" />
 		</id>
 		<many-to-one name="activity" class="br.unicamp.iel.model.Activity"

@@ -1,5 +1,5 @@
 package br.unicamp.iel.model;
-// Generated Jul 21, 2014 10:14:51 AM by Hibernate Tools 3.2.2.GA
+// Generated Jul 24, 2014 7:05:35 PM by Hibernate Tools 3.2.2.GA
 
 
 
@@ -9,7 +9,7 @@ package br.unicamp.iel.model;
 public class Question  implements java.io.Serializable {
 
 
-     private long id;
+     private Long id;
      private Activity activity;
      private Integer position;
      private String question;
@@ -29,11 +29,11 @@ public class Question  implements java.io.Serializable {
        this.suggestedAnswer = suggestedAnswer;
     }
    
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public Activity getActivity() {

@@ -16,7 +16,7 @@ import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import br.unicamp.iel.logic.ReadInWebCourseLogic;
+import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -30,7 +30,7 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
     private static Log logger = LogFactory.getLog(AdminProducer.class);
     
     @Setter
-    private ReadInWebCourseLogic logic;
+    private ReadInWebAdminLogic logic;
     
 	public static final String VIEW_ID = "admin";
 
@@ -58,8 +58,10 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
             UIInternalLink.make(uiCourse, "course_send_content",
                     new SimpleViewParameters(AdminSendContentProducer.VIEW_ID));
 
-            UIInternalLink.make(uiCourse, "course_edit_content",
-                    new CourseViewParameters(AdminEditContentProducer.VIEW_ID));
+            CourseViewParameters cvp = 
+                    new CourseViewParameters(AdminTextProducer.VIEW_ID);
+            cvp.course = c.getId();
+            UIInternalLink.make(uiCourse, "course_edit_content", cvp);
         }
         
         UIInternalLink.make(tofill, "link_home",

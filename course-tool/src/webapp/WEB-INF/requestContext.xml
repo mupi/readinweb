@@ -8,8 +8,11 @@
     	init-method="init">
     </bean>
 	
+	<bean id="AnswerAjaxBean" class="br.unicamp.iel.tool.AnswerAjaxBean">
+		<property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
+	</bean>
+    
     <!-- Course producers -->
-
     <bean class="br.unicamp.iel.tool.producers.SummaryProducer">
         <property name="logic"
                   ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />

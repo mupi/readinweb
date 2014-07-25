@@ -19,6 +19,7 @@ import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.tool.commons.CourseComponents;
+import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 public class GramaticaProducer implements ViewComponentProducer, ViewParamsReporter {
 

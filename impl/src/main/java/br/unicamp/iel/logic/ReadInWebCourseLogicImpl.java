@@ -3,20 +3,16 @@ package br.unicamp.iel.logic;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import lombok.Setter;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
-import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.ActivitySets;
 import br.unicamp.iel.model.Answer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.CourseSets;
@@ -25,7 +21,6 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.Module;
-import br.unicamp.iel.model.ModuleSets;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.Strategy;
@@ -51,76 +46,123 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
+    public String getUserId() {
+        return common.getUserId();
+    }
+    
+    @Override
     public Course getCourse(Long course) {
-        return dao.findById(Course.class, course);        
+        return common.getCourse(course);        
     }
     
     @Override
     public Module getModule(Long module) {
-        return dao.findById(Module.class, module);
+        return common.getModule(module);
     }
     
     @Override
     public Activity getActivity(Long activity) {
-        return dao.findById(Activity.class, activity);
+        return common.getActivity(activity);
+    }
+   
+    @Override
+    public Question getQuestion(Long question) {
+        return common.getQuestion(question);
+    }
+    
+    @Override
+    public Answer getStudentAnswer(Long question) {
+        return common.getStudentAnswer(question);         
     }
     
     @Override
     public List<Course> getCourses() {
-        return dao.findAll(Course.class);
+        return common.getCourses();
     }
     
     @Override
     public List<Module> getModules(Course course) {
-        CourseSets cs = new CourseSets(course);
-        return new ArrayList<Module>(cs.getModules(dao));
-    }
-    
-    @Override
-    public Question getQuestion(Long question) {
-        return dao.findById(Question.class, question);
+        return common.getModules(course);
     }
     
     @Override
     public List<Activity> getActivities(Module module) {
-        ModuleSets ms = new ModuleSets(module);
-        return new ArrayList<Activity>(ms.getActivities(dao));
+        return common.getActivities(module);
     }
 
     @Override
     public List<FunctionalWord> getFunctionalWord (Course course) {
-        CourseSets cs = new CourseSets(course);
-        return new ArrayList<FunctionalWord>(cs.getFunctionalWords(dao));
+       return common.getFunctionalWord(course);
     }
 
     @Override
     public List<DictionaryWord> getDictionary(Activity activity) {
-        ActivitySets as = new ActivitySets(activity);
-        return new ArrayList<DictionaryWord>(as.getDictionary(dao));
+        return common.getDictionary(activity);
     }
 
     @Override
     public List<Strategy> getStrategies(Activity activity) {
-        ActivitySets as = new ActivitySets(activity);
-        return new ArrayList<Strategy>(as.getStrategies(dao));
+        return common.getStrategies(activity);
     }
 
-    @Override
-    public List<Exercise> getExercises(Activity activity) {
-        ActivitySets as = new ActivitySets(activity);
-        return new ArrayList<Exercise>(as.getExercises(dao));
+    public List<Question> getQuestions(Activity activity){
+        return common.getQuestions(activity);
     }
     
-    public List<Question> getQuestions(Activity activity){
-        ActivitySets as = new ActivitySets(activity);
-        return new ArrayList<Question>(as.getQuestions(dao));
+    @Override
+    public List<Exercise> getExercises(Activity activity) {
+        return common.getExercises(activity);
     }
-        
+            
     @Override
     public String getCurrentSiteId() {
-        return sakaiProxy.getCurrentSiteId();
+        return common.getCurrentSiteId();
     }
 
+    @Override
+    public void saveCourse(Course course) {
+        common.saveCourse(course);        
+    }
+
+    @Override
+    public void saveModule(Module module) {
+        common.saveModule(module); 
+    }
+
+    @Override
+    public void saveActivity(Activity activity) {
+        common.saveActivity(activity);
+    }
+
+    @Override
+    public void saveDictionaryWord(DictionaryWord dw) {
+        common.saveDictionaryWord(dw);
+    }
+
+    @Override
+    public void saveExercise(Exercise exercise) {
+        common.saveExercise(exercise);
+    }
+
+    @Override
+    public void saveQuestion(Question question) {
+        common.saveQuestion(question); 
+    }
+
+    @Override
+    public void saveFunctionalWord(FunctionalWord fw) {
+        common.saveFunctionalWord(fw);
+    }
+
+    @Override
+    public void saveStrategy(Strategy strategy) {
+        common.saveStrategy(strategy);        
+    }
+    
+    /** 
+     * End of common methods
+     */
+    
     @Override
     public int[][] makeAccessMatrix(List<Module> lst_modulos,
             List<Activity> lst_atividades, String userId, String currentSiteId) {
@@ -197,7 +239,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public boolean checkSiteAccess(String currentSiteId, Long activity) {
-        String user = sakaiProxy.getCurrentUserId();
         // TODO Verificar se o user id tem acesso a esse site.
         return true;
     }
@@ -246,20 +287,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public boolean controlText(User usuario, Activity curActivity) {
         // TODO Auto-generated method stub
         return false;
-    }
-
-    @Override
-    public Answer getStudentAnswer(Long question) {
-        Answer answer = dao.findOneBySearch(Answer.class, 
-                new Search(new Restriction[]{
-                        new Restriction("question.id", question),
-                        new Restriction("user", getUserId()),
-                }));
-
-        if(answer == null) 
-            return new Answer();
-        else 
-            return answer;         
     }
 
     @Override
@@ -349,10 +376,5 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public Long getCourseId() {
         return sakaiProxy.getCourseId();
     }
-
-    @Override
-    public String getUserId() {
-        return sakaiProxy.getCurrentUserId();
-    }
-    
+   
 }

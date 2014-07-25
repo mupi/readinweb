@@ -24,6 +24,7 @@ import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.model.StrategyType;
 import br.unicamp.iel.tool.commons.CourseComponents;
+import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 public class EstrategiaProducer implements ViewComponentProducer, ViewParamsReporter {
 
