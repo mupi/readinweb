@@ -33,9 +33,7 @@ public class AdminQuestionBean {
         if(suggestedAnswer != null){
             q.setSuggestedAnswer(suggestedAnswer);
         }
-        
-        logic.updateQuestion(q);
-        
+       
         return logic.updateQuestion(q);
     }
 }
