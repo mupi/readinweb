@@ -6,6 +6,10 @@
 
 package br.unicamp.iel.logic;
 
+import java.util.List;
+
+import org.sakaiproject.user.api.User;
+
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Answer;
 import br.unicamp.iel.model.Course;
@@ -18,12 +22,6 @@ import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.Strategy;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.sakaiproject.tool.api.Placement;
-import org.sakaiproject.user.api.User;
-
 /**
  *
  * @author vsantos
@@ -33,7 +31,7 @@ public interface ReadInWebCourseLogic {
     public String getUserId();
 
     public Course getCourse(Long course);
-    
+
     public Module getModule(Long module);
 
     public Activity getActivity(Long activity);
@@ -59,7 +57,7 @@ public interface ReadInWebCourseLogic {
     public List<Exercise> getExercises(Activity activity);
 
     public String getCurrentSiteId();
-    
+
     public void saveCourse(Course course);
 
     public void saveModule(Module module);
@@ -67,7 +65,7 @@ public interface ReadInWebCourseLogic {
     public void saveActivity(Activity activity);
 
     public void saveDictionaryWord(DictionaryWord dw);
-    
+
     public void saveExercise(Exercise exercise);
 
     public void saveQuestion(Question question);
@@ -75,21 +73,33 @@ public interface ReadInWebCourseLogic {
     public void saveFunctionalWord(FunctionalWord fw);
 
     public void saveStrategy(Strategy strategy);
-    
+
     /**
-     * 
+     *
      * Bellow specific course methods
-     * 
+     *
      */
-    
+
     public Answer getAnswer(Long answer);
-    
+
     public boolean updateAnswer(Answer answer);
-    
+
     public void saveAnswer(Answer anwser);
-    
+
     public Answer getAnswerByQuestionAndUser(Long question);
-    
+
+    public void registerTextRead(Long activity);
+
+    public boolean hasUserAnsweredQuestions(Long activity);
+
+    public void registerQuestionsDone(Long activity);
+
+    public void registerExercisesAccess(Long activity);
+
+    public Long[] getModulesIds(Long course);
+
+    public Long[] getQuestionsIds(Long course);
+
     /**
      * Old methods
      */
@@ -122,8 +132,7 @@ public interface ReadInWebCourseLogic {
 
     public boolean checkSiteAccess(String currentSiteId, Long activity);
 
-    public void registerAccess(String string, String viewID,
-            Activity currentActivity);
+    public void registerAccess(String action, String viewID, Activity activity);
 
     public int getControlNum(String userId, Long long_currentModule,
             Long long_currentActivity);
@@ -136,20 +145,11 @@ public interface ReadInWebCourseLogic {
 
     public User getCurrentUser();
 
-    public boolean controlExercise(User riw_currentUser,
-            Activity riw_currentActivity);
-
-    public boolean controlText(User usuario, Activity curActivity);
-
-    public boolean controlQuestion(User usuario, Activity curActivity);
-
     public boolean blockUser(long course);
 
     public List<ReadInWebControl> getUserJob(Long course);
 
     public Integer getActivityControlSum(long activity);
-
-    public Long[] getModulesIds(long course);
 
     public Long getCourseId();
 

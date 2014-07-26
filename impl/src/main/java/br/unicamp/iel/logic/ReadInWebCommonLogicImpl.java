@@ -36,7 +36,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Setter
     private ReadInWebDao dao;
-    
+
     @Setter
     private SakaiProxy sakaiProxy;
 
@@ -47,13 +47,12 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     @Override
     public void loadInitialCSVData() {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
     public Long[] getListIds(List<?> list){
         Long[] result = new Long[list.size()];
-        
+
         Iterator<?> it = list.iterator();
         int i = 0;
         int size = list.size();
@@ -65,63 +64,75 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
             } else if(o instanceof Module){
                 Module m = (Module) o;
                 result[i] = (m.getId());
+            } else if(o instanceof Question){
+                Question q = (Question) o;
+                result[i] = (q.getId());
             }
             i++;
         }
 
         return result;
     }
-    
+
     @Override
     public String getUserId() {
         return sakaiProxy.getCurrentUserId();
     }
-    
+
     @Override
     public Course getCourse(Long course) {
-        return dao.findById(Course.class, course);        
+        return dao.findById(Course.class, course);
     }
-    
+
     @Override
     public Module getModule(Long module) {
         return dao.findById(Module.class, module);
     }
-    
+
     @Override
     public Activity getActivity(Long activity) {
         return dao.findById(Activity.class, activity);
     }
-   
+
     @Override
     public Question getQuestion(Long question) {
         return dao.findById(Question.class, question);
     }
-    
+
     @Override
     public Answer getStudentAnswer(Long question) {
-        Answer answer = dao.findOneBySearch(Answer.class, 
+        Answer answer = dao.findOneBySearch(Answer.class,
                 new Search(new Restriction[]{
                         new Restriction("question.id", question),
                         new Restriction("user", getUserId()),
                 }));
 
-        if(answer == null) 
+        if(answer == null)
             return new Answer();
-        else 
-            return answer;         
+        else
+            return answer;
     }
-    
+
+    @Override
+    public Long countUserAnswers(String user, Long[] ids){
+        Restriction[] r = new Restriction[]{
+                new Restriction("question.id", ids),
+                new Restriction("user", user)
+        };
+        return dao.countBySearch(Answer.class, new Search(r));
+    }
+
     @Override
     public List<Course> getCourses() {
         return dao.findAll(Course.class);
     }
-    
+
     @Override
     public List<Module> getModules(Course course) {
         CourseSets cs = new CourseSets(course);
         return cs.getModules(dao);
     }
-    
+
     @Override
     public List<Activity> getActivities(Module module) {
         ModuleSets ms = new ModuleSets(module);
@@ -150,26 +161,26 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
         ActivitySets as = new ActivitySets(activity);
         return new ArrayList<Question>(as.getQuestions(dao));
     }
-    
+
     @Override
     public List<Exercise> getExercises(Activity activity) {
         ActivitySets as = new ActivitySets(activity);
         return new ArrayList<Exercise>(as.getExercises(dao));
     }
-            
+
     @Override
     public String getCurrentSiteId() {
         return sakaiProxy.getCurrentSiteId();
     }
-    
+
     @Override
     public void saveCourse(Course c) {
-        dao.create(c);        
+        dao.create(c);
     }
 
     @Override
     public void saveModule(Module m) {
-        dao.create(m);        
+        dao.create(m);
     }
 
     @Override
@@ -189,7 +200,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public void saveQuestion(Question q) {
-        dao.create(q);        
+        dao.create(q);
     }
 
     @Override
@@ -199,7 +210,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public void saveStrategy(Strategy strategy) {
-        dao.create(strategy);        
+        dao.create(strategy);
     }
 
 }

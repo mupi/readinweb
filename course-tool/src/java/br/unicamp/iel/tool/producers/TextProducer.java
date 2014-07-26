@@ -13,13 +13,11 @@ import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
-import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInitBlock;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
-import uk.org.ponder.rsf.components.UIParameter;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -34,7 +32,6 @@ import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
-import br.unicamp.iel.tool.RegisterAccessAjaxBean;
 import br.unicamp.iel.tool.commons.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -43,14 +40,13 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
     private static Log logger = LogFactory.getLog(TextProducer.class);
     @Setter
     private ReadInWebCourseLogic logic;
-    
-    // The VIEW_ID must match the html template (without the .html)
+
     public static final String VIEW_ID = "text";
 
     @Override
     public String getViewID() {
         return VIEW_ID;
-    } 
+    }
 
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
@@ -61,25 +57,20 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         Activity activity;
         Module module;
         File audio;
-        
-        if(logic == null){
-            System.out.println("Logic bean is null");
+
+        if(course == null){
+            System.out.println("Course is null");
             return;
         } else {
             activity = logic.getActivity(parameters.activity);
             module = logic.getModule(parameters.module);
         }
-        
+
         CourseComponents.loadMenu(parameters, tofill);
-        CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
-                
-        // Breadcrumb
-        UIOutput.make(tofill, "current_mod",
-                Long.toString(module.getPosition()));
-        UIOutput.make(tofill, "current_act",
-                Long.toString(activity.getPosition()));
-        UIOutput.make(tofill, "current_title", activity.getTitle());
-        
+        CourseComponents.createModulesMenu(tofill, course, this.getViewID(),
+                logic);
+        CourseComponents.createBreadCrumb(tofill, module, activity);
+
         // Text Title
         UIOutput.make(tofill, "title_text", activity.getTitle());
 
@@ -87,18 +78,28 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         if ((activity.getPrereading() != null)
                 && (activity.getPrereading().compareToIgnoreCase("") != 0)) {
             UIVerbatim.make(tofill, "preLecture_title", "Pr\u00e9-leitura");
-            UIVerbatim.make(tofill, "prelecture_text", 
+            UIVerbatim.make(tofill, "prelecture_text",
                     activity.getPrereading());
         }
 
         // Estimated time to read the text
-        if ((activity.getEtaRead() != null)
-                && (activity.getEtaRead() > 0)) {
-            UIOutput.make(tofill, "time_text",
-                    Integer.toString((activity.getEtaRead())));
+        UIForm time_form = UIForm.make(tofill, "time_form");
+        time_form.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+        UIInput time_time = UIInput.make(time_form, "time_text", null);
+        if ((activity.getEtaRead() != null) && (activity.getEtaRead() > 0)) {
+            time_time.setValue(Integer.toString(activity.getEtaRead() * 1000));
         } else {
-            UIOutput.make(tofill, "time_text", "500");
+            time_time.setValue("500");
         }
+
+        UIInput activity_time = UIInput.make(time_form, "activity",
+                "RegisterAccessAjaxBean.activity");
+        activity_time.setValue(Long.toString(activity.getId()));
+
+        UIInitBlock.make(tofill, "text_counter", "RIW.saveTextRead",
+                new Object[] {activity_time, time_time,
+                "RegisterAccessAjaxBean.results"});
 
         // Audio; fill it only if file exists
         // FIXME Fix up audio retrieve method
@@ -114,7 +115,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         // Activity image
         if ((activity.getImage() != null)
                 && (activity.getImage().compareToIgnoreCase("") != 0)) {
-            // FIXME Fix up image retrieve 
+            // FIXME Fix up image retrieve
             UIOutput.make(tofill, "picture_text",
                     this.makeImageURL(activity));
         }
@@ -123,14 +124,14 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         UIVerbatim.make(tofill, "text_text", activity.getText());
 
         // Activity dictionary
-        List<DictionaryWord> l_dw = 
+        List<DictionaryWord> l_dw =
                 new ArrayList<DictionaryWord>(logic.getDictionary(activity));
         String dictionary = "";
         for(DictionaryWord dw : l_dw){
             dictionary += ""
                     + "<li>"
-                    + "<strong>" + dw.getWord() + ":</strong> " 
-                    + dw.getMeaning() 
+                    + "<strong>" + dw.getWord() + ":</strong> "
+                    + dw.getMeaning()
                     + "</li>";
         }
         UIVerbatim.make(tofill, "texto_dicionario", dictionary);
@@ -141,14 +142,14 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         for (FunctionalWord fw : l_fw) {
             functionalWords += ""
                     + "<li>"
-                    + "<strong>" + fw.getWord() + ":</strong> " 
-                    + fw.getMeaning() 
+                    + "<strong>" + fw.getWord() + ":</strong> "
+                    + fw.getMeaning()
                     + "</li>";
         }
         UIVerbatim.make(tofill, "texto_palavrasfuncao", functionalWords);
 
         // Question and Answers
-        List<Question> l_q = 
+        List<Question> l_q =
                 new ArrayList<Question>(logic.getQuestions(activity));
         for(Question q : l_q){
             UIBranchContainer row = UIBranchContainer.make(tofill, "li-rows:",
@@ -158,38 +159,37 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
                     "/#question_" + q.getId());
             ui_l.updateFullID("input_link_q_" + q.getId());
 
-            UIBranchContainer ui_bc = UIBranchContainer.make(tofill, 
+            UIBranchContainer ui_bc = UIBranchContainer.make(tofill,
                     "div_questions:");
             ui_bc.updateFullID("question_" + q.getId());
-            
+
             UIVerbatim.make(ui_bc, "question", q.getQuestion());
             UIVerbatim.make(ui_bc, "suggested_answer", q.getSuggestedAnswer());
 
-            UIForm ui_form = UIForm.make(ui_bc, "answer_form");
-            ui_form.viewparams = new SimpleViewParameters(UVBProducer.VIEW_ID);
-            
-            UIInput ui_question = UIInput.make(ui_form, "question_id", 
+            UIForm answer_form = UIForm.make(ui_bc, "answer_form");
+            answer_form.viewparams =
+                    new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+            UIInput ui_question = UIInput.make(answer_form, "question_id",
                     "AnswerAjaxBean.question");
             ui_question.updateFullID("question_to_" + q.getId());
             ui_question.setValue(Long.toString(q.getId()));
-            
+
             Answer a = logic.getAnswerByQuestionAndUser(q.getId());
-            UIInput ui_answer = UIInput.make(ui_form, "answer", 
+            UIInput ui_answer = UIInput.make(answer_form, "answer",
                     "AnswerAjaxBean.answer");
             ui_answer.updateFullID("answer_to_" + q.getId());
             ui_answer.setValue(a != null ? a.getAnswer() : "");
-            
-            UICommand ui_send = UICommand.make(ui_form, "send_answer");
-            ui_send.updateFullID("send_to_" + q.getId());
-            
-            UIInitBlock.make(tofill, "init_js:", "RIW.saveUserAnswer", 
-                    new Object[] {ui_answer, ui_question, ui_send, 
-                    "AnswerAjaxBean.results"});            
-                        
-        }
-                
-        logic.registerAccess("Acesso ao texto.", this.getViewID(), activity);
 
+            UICommand ui_send = UICommand.make(answer_form, "send_answer");
+            ui_send.updateFullID("send_to_" + q.getId());
+
+            UIInitBlock.make(tofill, "init_js:", "RIW.saveUserAnswer",
+                    new Object[] {ui_answer, ui_question, ui_send,
+                    "AnswerAjaxBean.results"});
+        }
+
+        logic.registerAccess("Acesso ao texto.", this.getViewID(), activity);
     }
 
     @Override
@@ -208,10 +208,10 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
         str_imagem = activity.getImage();
         int_numAct = activity.getId();
-        
-        str_retorno = "<img src='/readinweb-tool/content/modulos/modulo" 
-                + "/atividades/atividade" 
-                + makeTwoCharNumber(int_numAct) 
+
+        str_retorno = "<img src='/readinweb-tool/content/modulos/modulo"
+                + "/atividades/atividade"
+                + makeTwoCharNumber(int_numAct)
                 + "/texto/imagens/" + str_imagem + "' id='textactimage' />"
                 + "<div align=\"center\"><div class=\"switch\" id=\"buton_image\" "
                 + "align=\"center\">IMAGEM</div></div>";
@@ -220,8 +220,8 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
     }
 
     /**
-     * Method very 'porreta' which puts a 'zero' before the numbers that dont have 2 chars 
-     * @param int_numberArg 
+     * Method very 'porreta' which puts a 'zero' before the numbers that dont have 2 chars
+     * @param int_numberArg
      * @return
      */
     public static String makeTwoCharNumber(Long int_numberArg){
@@ -284,7 +284,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
     /**
      * The audio file name has a standard format this method, given the
      * activity, returns the correct name of file
-     * 
+     *
      * @param activity
      * @return
      */
@@ -298,7 +298,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 //            (session != null) {
 //                int_numAct = session.getActivity();
 //                int_numMod = session.getModule();
-//            } else 
+//            } else
             {
                 int_numAct = 0;
                 int_numMod = 0;
@@ -311,27 +311,4 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         str_retorno = "m" + int_numMod + "a" + int_numAct + ".mp3";
         return (str_retorno);
     }
-
-    /**
-     * Um metodo que, dado um array de Strings, retorna um único String com
-     * todas os Strings do array separados por ponto-e-virgula
-     *
-     * @param str_array Array que sera concatenada
-     * @return String contendo todas as palavras separadas por ';'
-     */
-    private static String concatenaIDs(String[] str_array) {
-        String str_retorno;
-        int int_count;
-
-        str_retorno = "";
-        if (str_array.length > 0) {
-            for (int_count = 0; int_count < (str_array.length - 1); int_count++) {
-                str_retorno = (str_retorno + str_array[int_count] + ";");
-            }
-            str_retorno = str_retorno + str_array[str_array.length - 1];
-        }
-
-        return (str_retorno);
-    }
-
 }

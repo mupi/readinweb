@@ -24,11 +24,11 @@ public class AnswerAjaxBean {
         try {
             Answer uAnswer;
             uAnswer = logic.getAnswerByQuestionAndUser(question);
-            
-            if(uAnswer == null) { // id will be created at update 
+
+            if(uAnswer == null) { // id will be created at update
                 uAnswer = new Answer();
-                uAnswer.setQuestion(logic.getQuestion(question)); 
-                uAnswer.setUser(logic.getUserId()); 
+                uAnswer.setQuestion(logic.getQuestion(question));
+                uAnswer.setUser(logic.getUserId());
             }
             if(answer != null){
                 uAnswer.setAnswer(answer);
@@ -36,12 +36,15 @@ public class AnswerAjaxBean {
 
             if(uAnswer.getId() != null){ // has id
                 logic.updateAnswer(uAnswer);
-            } else { 
+            } else {
                 logic.saveAnswer(uAnswer);
             }
-            // TODO: Verifies if the user has finished questions!
-            // logic.verifyUserAnswers(question);
-            
+
+            Long activity = logic.getQuestion(question).getActivity().getId();
+            if(logic.hasUserAnsweredQuestions(activity)){
+                logic.registerQuestionsDone(activity);
+            }
+
             results = new String[] {"success"};
         } catch (Exception e){
             e.printStackTrace();

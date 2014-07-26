@@ -27,16 +27,18 @@ public interface ReadInWebCommonLogic {
     public void loadInitialCSVData();
 
     public Long[] getListIds(List<?> list);
-    
+
     public String getUserId();
 
     public Course getCourse(Long course);
-    
+
     public Module getModule(Long module);
 
     public Activity getActivity(Long activity);
 
     public Question getQuestion(Long question);
+
+    public Long countUserAnswers(String user, Long[] ids);
 
     public Answer getStudentAnswer(Long question);
 
@@ -57,7 +59,7 @@ public interface ReadInWebCommonLogic {
     public List<Exercise> getExercises(Activity activity);
 
     public String getCurrentSiteId();
-    
+
     public void saveCourse(Course c);
 
     public void saveModule(Module m);
@@ -65,7 +67,7 @@ public interface ReadInWebCommonLogic {
     public void saveActivity(Activity a);
 
     public void saveDictionaryWord(DictionaryWord dw);
-    
+
     public void saveExercise(Exercise e);
 
     public void saveQuestion(Question q);
@@ -73,6 +75,6 @@ public interface ReadInWebCommonLogic {
     public void saveFunctionalWord(FunctionalWord fw);
 
     public void saveStrategy(Strategy strategy);
-    
-    
+
+
 }

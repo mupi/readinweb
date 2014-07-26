@@ -6,11 +6,10 @@
             <generator class="increment"/>
         </id>
         <many-to-one name="activity" class="br.unicamp.iel.model.Activity"
-			foreign-key="control_activity_fk" lazy="proxy" fetch="select">
-			<column name="activity_id" not-null="true" />
-		</many-to-one>
-               
-        <property name="user" column="user_id" type="string" length="255"/>        
+            foreign-key="control_activity_fk" lazy="proxy" fetch="select">
+            <column name="activity_id" not-null="true" />
+        </many-to-one>
+        <property name="user" column="user_id" type="string" length="255"/>
         <property name="control" column="control_sum" not-null="true" type="integer"/>
     </class>
 </hibernate-mapping>

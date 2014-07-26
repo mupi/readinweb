@@ -9,10 +9,10 @@
         <property name="time" not-null="true" type="timestamp"/>
         <property name="action" length="255" type="string"/>
         <property name="place" length="255" not-null="true" type="string"/>
-        
+
         <many-to-one name="activity" class="br.unicamp.iel.model.Activity"
-			foreign-key="access_activity_fk" lazy="proxy" fetch="select">
-			<column name="activity_id" not-null="true" />
-		</many-to-one>
+            foreign-key="access_activity_fk" lazy="proxy" fetch="select">
+            <column name="activity_id" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

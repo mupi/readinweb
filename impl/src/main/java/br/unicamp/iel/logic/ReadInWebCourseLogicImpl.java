@@ -13,6 +13,7 @@ import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.ActivitySets;
 import br.unicamp.iel.model.Answer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.CourseSets;
@@ -22,7 +23,9 @@ import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebControl;
+import br.unicamp.iel.model.ControlTypes;
 import br.unicamp.iel.model.Strategy;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
@@ -49,42 +52,42 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public String getUserId() {
         return common.getUserId();
     }
-    
+
     @Override
     public Course getCourse(Long course) {
-        return common.getCourse(course);        
+        return common.getCourse(course);
     }
-    
+
     @Override
     public Module getModule(Long module) {
         return common.getModule(module);
     }
-    
+
     @Override
     public Activity getActivity(Long activity) {
         return common.getActivity(activity);
     }
-   
+
     @Override
     public Question getQuestion(Long question) {
         return common.getQuestion(question);
     }
-    
+
     @Override
     public Answer getStudentAnswer(Long question) {
-        return common.getStudentAnswer(question);         
+        return common.getStudentAnswer(question);
     }
-    
+
     @Override
     public List<Course> getCourses() {
         return common.getCourses();
     }
-    
+
     @Override
     public List<Module> getModules(Course course) {
         return common.getModules(course);
     }
-    
+
     @Override
     public List<Activity> getActivities(Module module) {
         return common.getActivities(module);
@@ -108,12 +111,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public List<Question> getQuestions(Activity activity){
         return common.getQuestions(activity);
     }
-    
+
     @Override
     public List<Exercise> getExercises(Activity activity) {
         return common.getExercises(activity);
     }
-            
+
     @Override
     public String getCurrentSiteId() {
         return common.getCurrentSiteId();
@@ -121,12 +124,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public void saveCourse(Course course) {
-        common.saveCourse(course);        
+        common.saveCourse(course);
     }
 
     @Override
     public void saveModule(Module module) {
-        common.saveModule(module); 
+        common.saveModule(module);
     }
 
     @Override
@@ -146,7 +149,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public void saveQuestion(Question question) {
-        common.saveQuestion(question); 
+        common.saveQuestion(question);
     }
 
     @Override
@@ -156,18 +159,18 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public void saveStrategy(Strategy strategy) {
-        common.saveStrategy(strategy);        
+        common.saveStrategy(strategy);
     }
-    
-    /** 
+
+    /**
      * End of common methods
      */
-    
+
     @Override
     public Answer getAnswer(Long answer) {
         return dao.findById(Answer.class, answer);
     }
-    
+
     @Override
     public boolean updateAnswer(Answer answer) {
         try {
@@ -182,7 +185,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public void saveAnswer(Answer a) {
         dao.create(a);
     }
-    
+
     @Override
     public Answer getAnswerByQuestionAndUser(Long question) {
         Restriction[] r = new Restriction[]{
@@ -191,7 +194,104 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         };
         return dao.findOneBySearch(Answer.class, new Search(r));
     }
-    
+
+    @Override
+    public void registerTextRead(Long activity) {
+        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
+                activity));
+        ReadInWebControl riwc = as.getControl(dao, this.getUserId());
+        if(riwc == null){
+            riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
+                    ControlTypes.TEXT.getValue());
+            dao.save(riwc);
+        } else if(!ControlTypes.hasDone(ControlTypes.TEXT, riwc.getControl())){
+            riwc.setControl(riwc.getControl()
+                    + ControlTypes.TEXT.getValue());
+            dao.save(riwc);
+        }
+    }
+
+    @Override
+    public boolean hasUserAnsweredQuestions(Long activity) {
+        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
+                activity));
+        return as.countQuestions(dao) == common.countUserAnswers(this.getUserId(),
+                getQuestionsIds(activity));
+    }
+
+    @Override
+    public void registerQuestionsDone(Long activity) {
+        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
+                activity));
+        ReadInWebControl riwc = as.getControl(dao, this.getUserId());
+        if(riwc == null){
+            riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
+                    ControlTypes.QUESTIONS.getValue());
+            dao.save(riwc);
+        } else if(!ControlTypes.hasDone(ControlTypes.QUESTIONS,
+                riwc.getControl())){
+            riwc.setControl(riwc.getControl()
+                    + ControlTypes.QUESTIONS.getValue());
+            dao.save(riwc);
+        }
+    }
+
+    @Override
+    public void registerExercisesAccess(Long activity) {
+        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
+                activity));
+        ReadInWebControl riwc = as.getControl(dao, this.getUserId());
+        if(riwc == null){
+            riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
+                    ControlTypes.EXERCISE.getValue());
+            dao.save(riwc);
+        } else if(!ControlTypes.hasDone(ControlTypes.EXERCISE,
+                riwc.getControl())){
+            riwc.setControl(riwc.getControl()
+                    + ControlTypes.EXERCISE.getValue());
+            dao.save(riwc);
+        }
+    }
+
+    @Override
+    public void registerAccess(String action, String viewID,
+            Activity activity) {
+        ReadInWebAccess riwa = new ReadInWebAccess(this.getUserId(), new Date(),
+                action, viewID, activity);
+        dao.create(riwa);
+    }
+
+    @Override
+    public Long[] getModulesIds(Long course) {
+        List<Module> modules;
+        CourseSets cs = new CourseSets(dao.findById(Course.class, course));
+        if(cs.getCourse() != null){
+            modules = new ArrayList<Module>(cs.getModules(dao));
+        } else {
+            modules = new ArrayList<Module>();
+        }
+
+        return common.getListIds(modules);
+    }
+
+    @Override
+    public Long[] getQuestionsIds(Long activity) {
+        List<Question> questions;
+        ActivitySets as =
+                new ActivitySets(dao.findById(Activity.class, activity));
+        if(as.getActivity() != null){
+            questions = new ArrayList<Question>(as.getQuestions(dao));
+        } else {
+            questions = new ArrayList<Question>();
+        }
+
+        return common.getListIds(questions);
+    }
+
+    /**
+     * Old methods
+     */
+
     @Override
     public int[][] makeAccessMatrix(List<Module> lst_modulos,
             List<Activity> lst_atividades, String userId, String currentSiteId) {
@@ -273,13 +373,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public void registerAccess(String string, String viewID,
-            Activity currentActivity) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public int getControlNum(String userId, Long long_currentModule,
             Long long_currentActivity) {
         // TODO Auto-generated method stub
@@ -305,51 +398,18 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         return null;
     }
 
-    @Override
-    public boolean controlExercise(User riw_currentUser,
-            Activity riw_currentActivity) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean controlText(User usuario, Activity curActivity) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean controlQuestion(User usuario, Activity curActivity) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public Long[] getModulesIds(long course) {
-        List<Module> modules;
-        
-        Course c = dao.findById(Course.class, course);
-        CourseSets cs = new CourseSets(c); 
-        if(c != null){
-            modules = new ArrayList<Module>(cs.getModules(dao));
-        } else {
-            modules = new ArrayList<Module>();
-        }
-
-        return common.getListIds(modules);
-    }
 
     @Override
     public boolean blockUser(long course) {
-        System.out.println("Foram encontrados " 
-                + getModulesIds(course).length 
+        System.out.println("Foram encontrados "
+                + getModulesIds(course).length
                 + "Modulos");
-        Search s_a = new Search(new Restriction("module.id", 
+        Search s_a = new Search(new Restriction("module.id",
                 getModulesIds(course)));
 
         List<Activity> activities = dao.findBySearch(Activity.class, s_a);
-        System.out.println("Foram encontradas " 
-                + activities.size() 
+        System.out.println("Foram encontradas "
+                + activities.size()
                 + "Atividades");
 
         Long[] ids = common.getListIds(activities);
@@ -367,8 +427,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public List<ReadInWebControl> getUserJob(Long course) {
         Long[] activities = common.getListIds(
-                dao.findBySearch(Activity.class, 
-                        new Search("module", 
+                dao.findBySearch(Activity.class,
+                        new Search("module",
                                 getModulesIds(course))));
 
         Restriction[] rs = {
@@ -391,7 +451,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         ReadInWebControl riwc = dao.findOneBySearch(ReadInWebControl.class, s);
         if(riwc == null)
             return 0;
-        else 
+        else
             return riwc.getControl();
     }
 
@@ -399,5 +459,5 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public Long getCourseId() {
         return sakaiProxy.getCourseId();
     }
-   
+
 }
