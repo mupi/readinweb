@@ -15,6 +15,7 @@ import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
+import br.unicamp.iel.model.AccessTypes;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
@@ -39,35 +40,30 @@ public class GramaticaProducer implements ViewComponentProducer, ViewParamsRepor
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         CourseViewParameters parameters = (CourseViewParameters) viewparams;
-        Course course;
+        Course course = logic.getCourse(parameters.course);
         Activity activity;
         Module module;
 
-        if(logic == null){
-            System.out.println("Logic bean is null");
+        if(course == null){
+            System.out.println("Course is null");
             return;
         } else {
             activity = logic.getActivity(parameters.activity);
             module = logic.getModule(parameters.module);
-            course = logic.getCourse(parameters.course);
         }
 
         CourseComponents.loadMenu(parameters, tofill);
-        CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
+        CourseComponents.createModulesMenu(tofill, course, getViewID(), logic);
+        CourseComponents.createBreadCrumb(tofill, module, activity);
 
-        // Fills the forms
-        UIForm.make(tofill, "input_form_tst_m");
-
-        UIOutput.make(tofill, "current_mod", Long.toString(module.getPosition()));
-        UIOutput.make(tofill, "current_act", Long.toString(activity.getPosition()));
-        UIVerbatim.make(tofill, "current_title", activity.getTitle());
-
-        logic.registerAccess("Acesso a gramatica.", this.getViewID(), activity);
+        logic.registerAccess(AccessTypes.GRAMMAR.getTitle(),
+                this.getViewID(), activity);
 
         String header = "<div id='title_gramatica'>GRAM&Aacute;TICA</div>";
-        UIVerbatim.make(tofill, "conteudo_gramatica_extendido", header + module.getGrammar());
+        UIVerbatim.make(tofill, "conteudo_gramatica_extendido",
+                header + module.getGrammar());
     }
-    
+
     @Override
     public ViewParameters getViewParameters() {
         return (new CourseViewParameters(this.getViewID()));
