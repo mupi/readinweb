@@ -195,20 +195,22 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         return dao.findOneBySearch(Answer.class, new Search(r));
     }
 
-    @Override
-    public void registerTextRead(Long activity) {
+    private void registerControl(Long activity, ControlTypes control){
         ActivitySets as = new ActivitySets(dao.findById(Activity.class,
                 activity));
         ReadInWebControl riwc = as.getControl(dao, this.getUserId());
         if(riwc == null){
             riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
-                    ControlTypes.TEXT.getValue());
-            dao.save(riwc);
-        } else if(!ControlTypes.hasDone(ControlTypes.TEXT, riwc.getControl())){
-            riwc.setControl(riwc.getControl()
-                    + ControlTypes.TEXT.getValue());
-            dao.save(riwc);
+                    control.getValue());
+        } else if(!ControlTypes.hasDone(control, riwc.getControl())){
+            riwc.setControl(riwc.getControl() + control.getValue());
         }
+        dao.save(riwc);
+    }
+
+    @Override
+    public void registerTextRead(Long activity) {
+        registerControl(activity, ControlTypes.TEXT);
     }
 
     @Override
@@ -221,36 +223,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public void registerQuestionsDone(Long activity) {
-        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
-                activity));
-        ReadInWebControl riwc = as.getControl(dao, this.getUserId());
-        if(riwc == null){
-            riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
-                    ControlTypes.QUESTIONS.getValue());
-            dao.save(riwc);
-        } else if(!ControlTypes.hasDone(ControlTypes.QUESTIONS,
-                riwc.getControl())){
-            riwc.setControl(riwc.getControl()
-                    + ControlTypes.QUESTIONS.getValue());
-            dao.save(riwc);
-        }
+        registerControl(activity, ControlTypes.QUESTIONS);
     }
 
     @Override
     public void registerExercisesAccess(Long activity) {
-        ActivitySets as = new ActivitySets(dao.findById(Activity.class,
-                activity));
-        ReadInWebControl riwc = as.getControl(dao, this.getUserId());
-        if(riwc == null){
-            riwc = new ReadInWebControl(as.getActivity(), this.getUserId(),
-                    ControlTypes.EXERCISE.getValue());
-            dao.save(riwc);
-        } else if(!ControlTypes.hasDone(ControlTypes.EXERCISE,
-                riwc.getControl())){
-            riwc.setControl(riwc.getControl()
-                    + ControlTypes.EXERCISE.getValue());
-            dao.save(riwc);
-        }
+        registerControl(activity, ControlTypes.EXERCISE);
     }
 
     @Override

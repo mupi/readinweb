@@ -18,14 +18,11 @@ public enum ControlTypes {
 
         switch (type) {
         case TEXT:
-            if(sum == 1 || sum == 3 || sum == 5)
-                return true;
+            return sum == 1 || sum == 3 || sum == 5;
         case EXERCISE:
-            if(sum == 2 || sum == 3 || sum == 6)
-                return true;
+            return sum == 2 || sum == 3 || sum == 6;
         case QUESTIONS:
-            if(sum == 4 || sum == 5 || sum == 6)
-                return true;
+            return sum == 4 || sum == 5 || sum == 6;
         default:
             return false;
         }
