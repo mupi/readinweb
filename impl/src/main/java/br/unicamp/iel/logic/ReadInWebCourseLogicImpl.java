@@ -266,6 +266,18 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         return common.getListIds(questions);
     }
 
+    @Override
+    public List<Activity> getPusblishedActivities(Module module) {
+        return common.getPublishedActivities(sakaiProxy.getCurrentSiteId(),
+                module);
+    }
+
+    @Override
+    public List<Module> getPusblishedModules(Course course) {
+        return common.getPublishedModules(sakaiProxy.getCurrentSiteId(),
+                course);
+    }
+
     /**
      * Old methods
      */

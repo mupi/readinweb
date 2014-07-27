@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
+import com.eclipsesource.json.JsonObject;
+
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ActivitySets;
@@ -21,8 +23,10 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.ModuleSets;
+import br.unicamp.iel.model.Property;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.util.CourseProperties;
 
 /**
  * Implementation of {@link ReadInWebCommonLogic}
@@ -211,6 +215,58 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     @Override
     public void saveStrategy(Strategy strategy) {
         dao.create(strategy);
+    }
+
+    @Override
+    public String getDefaultCoursePropertyString(Course course) {
+        JsonObject jo = new JsonObject();
+        jo.add("course", course.getId());
+        jo.add("modules", new JsonObject());
+
+        List<Module> modules = getModules(course);
+        for(Module m : modules){
+            JsonObject j_m = new JsonObject();
+            j_m.add("status", false);
+            j_m.add("activities", new JsonObject());
+            jo.get("modules").asObject().add(m.getId().toString(), j_m);
+
+            List<Activity> activities = getActivities(m);
+            for(Activity a : activities){
+                JsonObject j_a = new JsonObject();
+                j_a.add("status", false);
+                j_m.get("activities").asObject()
+                    .add(a.getId().toString(), j_a);
+            }
+        }
+        return jo.toString();
+    }
+
+    @Override
+    public String getCoursePropertyString(String siteId) {
+        return sakaiProxy.getJsonStringProperty(siteId,
+                Property.COURSEDATA.getName());
+    }
+
+    @Override
+    public List<Activity> getPublishedActivities(String siteId, Module module) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(siteId)));
+        ModuleSets ms = new ModuleSets(module);
+
+        return new ArrayList<Activity>(ms.getPublishedActivies(dao,
+                courseProperties.getPublishedActivitiesIds(module.getId())));
+    }
+
+    @Override
+    public List<Module> getPublishedModules(String siteId, Course course) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(siteId)));
+        CourseSets cs = new CourseSets(course);
+
+        return new ArrayList<Module>(cs.getPublishedModules(dao,
+                courseProperties.getPublishedActivitiesIds(course.getId())));
     }
 
 }

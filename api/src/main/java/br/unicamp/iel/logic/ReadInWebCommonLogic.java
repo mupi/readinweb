@@ -20,7 +20,7 @@ import br.unicamp.iel.model.Strategy;
 
 /**
  *
- * @author vsantos
+ * @author Virgilio Santos
  */
 public interface ReadInWebCommonLogic {
 
@@ -76,5 +76,12 @@ public interface ReadInWebCommonLogic {
 
     public void saveStrategy(Strategy strategy);
 
+    public String getDefaultCoursePropertyString(Course course);
+
+    public String getCoursePropertyString(String siteId);
+
+    public List<Activity> getPublishedActivities(String siteId, Module module);
+
+    public List<Module> getPublishedModules(String siteId, Course course);
 
 }
