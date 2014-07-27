@@ -57,7 +57,7 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
     @Override
     public String getViewID() {
         return VIEW_ID;
-    } 
+    }
 
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
@@ -65,7 +65,7 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
         Activity activity;
         Module module;
         Course course;
-                
+
         CourseViewParameters parameters = (CourseViewParameters) viewparams;
 
         if(parameters.question != null){ // Question sent
@@ -74,30 +74,34 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
         } else if(activityBean.dataSent()){ // Activity sent
             activityBean.updateActivity(parameters.activity);
             destroyer.destroy();
-        }      
-        
+        }
+
         if(parameters.module == null) parameters.module = 1L;
         if(parameters.activity == null) parameters.activity = 1L;
 
         course = logic.getCourse(parameters.course);
         activity = logic.getActivity(parameters.activity);
         module = logic.getModule(parameters.module);
-        
-        if(!module.getId().equals(activity.getModule().getId()) // activity belongs to module? 
+
+        if(!module.getId().equals(activity.getModule().getId()) // activity belongs to module?
                 || !course.getId().equals(module.getCourse().getId())){ // module belongs to course?
             // FIXME Return a valid expression
             System.out.println("ou ou ou ou");
         }
-                
+
         CourseComponents.loadMenu(parameters, tofill);
         CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
-        CourseComponents.createBreadCrumb(tofill, activity, module, this.getViewID());        
-        
+        CourseComponents.createBreadCrumb(tofill, activity, module, this.getViewID());
+
         UIForm activity_form = UIForm.make(tofill, "activity_form");
-        
+
         UICommand.make(activity_form, "send_activity");
 
-        UIInput.make(activity_form, "title_text", "#{AdminActivityBean.title}", activity.getTitle());
+        UIInput.make(activity_form, "title_text", "#{AdminActivityBean.title}",
+                activity.getTitle());
+
+        UIInput.make(activity_form, "eta_read", "#{AdminActivityBean.etaRead}",
+                Integer.toString(activity.getEtaRead()));
 
         // Pre reading exercise
         UIInput.make(activity_form, "prelecture_text", "#{AdminActivityBean.preReading}",
@@ -114,28 +118,28 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
                     "/#question_" + q.getId());
             ui_l.updateFullID("input_link_q_" + q.getId());
 
-            UIBranchContainer ui_bc = UIBranchContainer.make(tofill, 
+            UIBranchContainer ui_bc = UIBranchContainer.make(tofill,
                     "div_questions:");
             ui_bc.updateFullID("question_" + q.getId());
 
             UIForm ui_form = UIForm.make(ui_bc, "question_form");
-            ui_form.parameters.add(new UIParameter("question", 
+            ui_form.parameters.add(new UIParameter("question",
                     Long.toString(q.getId())));
 
-            UIInput.make(ui_form, "question_position", 
-                    "#{AdminQuestionBean.position}", 
+            UIInput.make(ui_form, "question_position",
+                    "#{AdminQuestionBean.position}",
                     Long.toString(q.getPosition()));
 
-            UIInput.make(ui_form, "question", "#{AdminQuestionBean.question}", 
-                    q.getQuestion()); 
+            UIInput.make(ui_form, "question", "#{AdminQuestionBean.question}",
+                    q.getQuestion());
 
-            UIInput.make(ui_form, "suggested_answer", 
-                    "AdminQuestionBean.suggestedAnswer", 
+            UIInput.make(ui_form, "suggested_answer",
+                    "AdminQuestionBean.suggestedAnswer",
                     q.getSuggestedAnswer());
 
             //UICommand.make(ui_form, "send_question", "#{AdminQuestionBean.sendQuestion}");
             UICommand.make(ui_form, "send_question");
-        }                
+        }
     }
 
     @Override

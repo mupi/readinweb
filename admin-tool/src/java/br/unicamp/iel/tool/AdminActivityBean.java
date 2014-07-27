@@ -13,13 +13,13 @@ public class AdminActivityBean {
     private String text;
     private String preReading;
     private Integer etaRead;
-        
+
     @Setter
     private ReadInWebAdminLogic logic;
-       
+
     public boolean updateActivity(Long id){
         Activity activity = logic.getActivity(id);
-        
+
         if(position != null){
             activity.setPosition(position);
         }
@@ -35,12 +35,12 @@ public class AdminActivityBean {
         if(etaRead != null){
             activity.setEtaRead(etaRead);
         }
-        
+
         return logic.updateActivity(activity);
     }
 
     public boolean dataSent() {
-        return position != null || image != null || title != null 
+        return position != null || image != null || title != null
                 || text != null || preReading != null || etaRead != null;
     }
 }
