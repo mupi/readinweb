@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Projeto Read in Web - Estrat&eacute;gias</title>
+
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul id="lista_menu_principal" class="nav navbar-nav">
+                    <li>
+                        <a href="#" title="Voltar ao sumário">Sumário</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="#" title="Ver histórico de justificativas">Justificativas</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<div class="alert alert-danger" role="alert">
+		<p class="container">
+		Olá <span rsf:id="user">fulano</span>, o seu acesso está bloqueado pois você não completou as últimas duas atividades no tempo correto. Para liberar o curso novamente você precisa enviar uma justificativa pelo atraso que será avaliada pela equipe docente.
+		</p>
+	</div>
+    <div class="container">
+        <div class="page-header">
+            <h1>Justificativa por atraso das atividades</h1>
+        </div>
+        <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for aceita o acesso ao curso será liberado, caso contrátio a resposta da equipe docente será exibida nesta página.</p>
+        <textarea class="form-control" rows="3"></textarea>
+        <p class="submit-justificativa">
+            <button type="submit" class="btn btn-success">Enviar justificativa</button>
+        </p>
+        <h2>Histórico de justificativas e respostas</h2>
+        <ul class="historico-justificativas">
+            <li class="resp-aluno">
+                Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.
+                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
+            </li>
+            <li class="resp-prof text-danger">
+                Se for negativa colocar a classe text-danger.
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
+                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
+            </li>
+            <li class="resp-aluno">
+                Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.
+                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
+            </li>
+            <li class="resp-prof text-success">
+                Se for negativa colocar a classe text-success.
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
+                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
+            </li>
+        </ul>
+    </div>
+
+
+
+</body>
+</html>
