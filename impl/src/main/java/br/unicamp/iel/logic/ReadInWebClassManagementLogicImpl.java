@@ -4,20 +4,31 @@ import java.util.List;
 
 import lombok.Setter;
 
+import org.apache.log4j.Logger;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
+import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
 
 public class ReadInWebClassManagementLogicImpl implements
         ReadInWebClassManagementLogic {
 
+    private static final Logger log = Logger.getLogger(ReadInWebCourseLogic.class);
+
     @Setter
-    ReadInWebCommonLogic logic;
+    private ReadInWebDao dao;
 
     @Setter
     SakaiProxy sakaiProxy;
+
+    @Setter
+    ReadInWebCommonLogic common;
+
+    public void init() {
+        log.info(ReadInWebClassManagementLogic.class + " init");
+    }
 
     @Override
     public boolean createClass(Course course, String siteId) {
@@ -25,7 +36,7 @@ public class ReadInWebClassManagementLogicImpl implements
         siteId = site.getId();
         sakaiProxy.setCourseId(siteId, course.getId());
         sakaiProxy.setJsonStringProperty(siteId, Property.COURSEDATA.getName(),
-                logic.getDefaultCoursePropertyString(course));
+                common.getDefaultCoursePropertyString(course));
 
         return true;
     }

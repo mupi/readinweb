@@ -38,12 +38,10 @@ public class PreloadDataImpl {
     private final List<String> prefixes = Arrays.asList("riw_");
 
     @Setter
-    private ReadInWebCommonLogic commonLogic;
+    private ReadInWebCommonLogic common;
 
+    @Setter
     private ReadInWebDao dao;
-    public void setDao(ReadInWebDao dao) {
-        this.dao = dao;
-    }
 
     public void init() {
         log.info("Preloading Read in Web Data");
@@ -111,7 +109,7 @@ public class PreloadDataImpl {
             c.setIdiom("english");
             c.setDescription("Curso de Ingles auto-monitorado Read in Web");
 
-            commonLogic.saveCourse(c);
+            common.saveCourse(c);
 
             URI s = getClass().getResource("/riw_modulos.csv").toURI();
             in = new FileReader(new File(s));
@@ -130,7 +128,7 @@ public class PreloadDataImpl {
                 m.setPosition(Integer.parseInt(record.get(0)));
                 m.setGrammar(record.get(1));
 
-                commonLogic.saveModule(m);
+                common.saveModule(m);
                 modules.put(m.getPosition(), m);
             }
             in.close();
@@ -142,7 +140,7 @@ public class PreloadDataImpl {
             for(CSVRecord record : records){
                 FunctionalWord fw = new FunctionalWord(c, record.get(0),
                         record.get(1));
-                commonLogic.saveFunctionalWord(fw);
+                common.saveFunctionalWord(fw);
             }
             in.close();
 
@@ -164,7 +162,7 @@ public class PreloadDataImpl {
                 a.setImage(record.get(5));
                 a.setEtaRead(Integer.parseInt(record.get(6)));
 
-                commonLogic.saveActivity(a);
+                common.saveActivity(a);
                 ImmutablePair<Integer, Integer> p;
                 p = new ImmutablePair<Integer, Integer>(m.getPosition(),
                         a.getPosition());
@@ -204,7 +202,7 @@ public class PreloadDataImpl {
                 q.setQuestion(record.get(3));
                 q.setSuggestedAnswer(record.get(4));
 
-                commonLogic.saveQuestion(q);
+                common.saveQuestion(q);
 
             }
             in.close();
@@ -227,7 +225,7 @@ public class PreloadDataImpl {
                 e.setPosition(Integer.parseInt(record.get(2)));
                 e.setTitle(record.get(3));
 
-                commonLogic.saveExercise(e);
+                common.saveExercise(e);
 
             }
             in.close();
@@ -250,7 +248,7 @@ public class PreloadDataImpl {
                 dw.setWord(record.get(2));
                 dw.setMeaning(record.get(3));
 
-                commonLogic.saveDictionaryWord(dw);
+                common.saveDictionaryWord(dw);
 
             }
             in.close();
@@ -274,7 +272,7 @@ public class PreloadDataImpl {
                 strategy.setPosition(Integer.parseInt(record.get(3)));
                 strategy.setBody(record.get(4));
 
-                commonLogic.saveStrategy(strategy);
+                common.saveStrategy(strategy);
 
             }
             in.close();

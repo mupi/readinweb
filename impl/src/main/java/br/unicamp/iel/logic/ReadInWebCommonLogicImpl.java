@@ -45,7 +45,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     private SakaiProxy sakaiProxy;
 
     public void init() {
-        log.info("init");
+        log.info(ReadInWebCommonLogic.class + " init");
     }
 
     @Override

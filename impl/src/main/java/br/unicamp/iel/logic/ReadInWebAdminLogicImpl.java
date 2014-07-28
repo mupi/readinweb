@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.unicamp.iel.logic;
 
@@ -24,62 +24,62 @@ import br.unicamp.iel.model.Strategy;
  *
  */
 public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
-    
+
     private static final Logger log = Logger.getLogger(ReadInWebCourseLogic.class);
 
-	@Setter
-	private ReadInWebDao dao;
-	
-	@Setter
-	private SakaiProxy sakaiProxy;
-	
-	@Setter
+    @Setter
+    private ReadInWebDao dao;
+
+    @Setter
+    private SakaiProxy sakaiProxy;
+
+    @Setter
     private ReadInWebCommonLogic common;
-	
-	public void init() {
-        log.info("init");
+
+    public void init() {
+        log.info(ReadInWebAdminLogic.class + " init");
     }
-		
-	@Override
+
+    @Override
     public String getUserId() {
         return common.getUserId();
     }
-    
+
     @Override
     public Course getCourse(Long course) {
-        return common.getCourse(course);        
+        return common.getCourse(course);
     }
-    
+
     @Override
     public Module getModule(Long module) {
         return common.getModule(module);
     }
-    
+
     @Override
     public Activity getActivity(Long activity) {
         return common.getActivity(activity);
     }
-   
+
     @Override
     public Question getQuestion(Long question) {
         return common.getQuestion(question);
     }
-    
+
     @Override
     public Answer getStudentAnswer(Long question) {
-        return common.getStudentAnswer(question);         
+        return common.getStudentAnswer(question);
     }
-    
+
     @Override
     public List<Course> getCourses() {
         return common.getCourses();
     }
-    
+
     @Override
     public List<Module> getModules(Course course) {
         return common.getModules(course);
     }
-    
+
     @Override
     public List<Activity> getActivities(Module module) {
         return common.getActivities(module);
@@ -103,12 +103,12 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     public List<Question> getQuestions(Activity activity){
         return common.getQuestions(activity);
     }
-    
+
     @Override
     public List<Exercise> getExercises(Activity activity) {
         return common.getExercises(activity);
     }
-            
+
     @Override
     public String getCurrentSiteId() {
         return common.getCurrentSiteId();
@@ -116,12 +116,12 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
 
     @Override
     public void saveCourse(Course course) {
-        common.saveCourse(course);        
+        common.saveCourse(course);
     }
 
     @Override
     public void saveModule(Module module) {
-        common.saveModule(module); 
+        common.saveModule(module);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
 
     @Override
     public void saveQuestion(Question question) {
-        common.saveQuestion(question); 
+        common.saveQuestion(question);
     }
 
     @Override
@@ -151,13 +151,13 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
 
     @Override
     public void saveStrategy(Strategy strategy) {
-        common.saveStrategy(strategy);        
+        common.saveStrategy(strategy);
     }
-    
-    /** 
+
+    /**
      * End of common methods
      */
-    
+
     @Override
     public boolean updateQuestion(Question question) {
         try {

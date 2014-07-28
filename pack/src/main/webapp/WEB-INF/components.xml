@@ -38,10 +38,12 @@
     class="br.unicamp.iel.logic.ReadInWebClassManagementLogicImpl"
     init-method="init">
     <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
+    <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
     <property name="sakaiProxy" ref="br.unicamp.iel.logic.SakaiProxy" />
   </bean>
 
-  <bean id="br.unicamp.iel.logic.ReadInWebAdminLogic" class="br.unicamp.iel.logic.ReadInWebAdminLogicImpl">
+  <bean id="br.unicamp.iel.logic.ReadInWebAdminLogic" class="br.unicamp.iel.logic.ReadInWebAdminLogicImpl"
+    init-method="init">
     <property name="sakaiProxy" ref="br.unicamp.iel.logic.SakaiProxy" />
     <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
     <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
@@ -122,8 +124,7 @@
   <bean id="br.unicamp.iel.dao.PreloadData" class="br.unicamp.iel.dao.PreloadDataImpl"
     init-method="init">
     <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
-    <property name="logic"
-      ref="br.unicamp.iel.ReadInWeb.logic.ReadInWebCommonLogic" />
+    <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
   </bean>
 
 </beans>
