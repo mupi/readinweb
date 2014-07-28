@@ -11,7 +11,6 @@ import java.util.List;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Answer;
 import br.unicamp.iel.model.Course;
-import br.unicamp.iel.model.CourseData;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
@@ -24,7 +23,7 @@ import br.unicamp.iel.model.Strategy;
  * @author Virgilio N Santos
  */
 public interface ReadInWebAdminLogic {
-    
+
     public String getUserId();
 
     public Course getCourse(Long course);
