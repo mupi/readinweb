@@ -157,7 +157,27 @@ public class SakaiProxyImpl implements SakaiProxy {
         try {
             Site site = siteService.getSite(
                     toolManager.getCurrentPlacement().getContext());
-            return site.getProperties().getLongProperty(Property.COURSE.getName());
+            return site.getProperties()
+                    .getLongProperty(Property.COURSE.getName());
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+            return 0L;
+        } catch (EntityPropertyNotDefinedException e) {
+            e.printStackTrace();
+            return 0L;
+        } catch (EntityPropertyTypeException e) {
+            e.printStackTrace();
+            return 0L;
+        }
+    }
+
+    @Override
+    public Long getManagerCourseId() {
+        try {
+            Site site = siteService.getSite(
+                    toolManager.getCurrentPlacement().getContext());
+            return site.getProperties()
+                    .getLongProperty(Property.COURSEMANAGED.getName());
         } catch (IdUnusedException e) {
             e.printStackTrace();
             return 0L;

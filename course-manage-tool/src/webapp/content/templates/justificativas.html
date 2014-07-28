@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Justificativas</title>
+
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+    <div class="portletBody">
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Curso Read in Web</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" rsf:id="link_turmas">Turmas</a>
+                    </li>
+                    <li>
+                        <a href="#" rsf:id="link_justificativas">Justificativas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+        <div class="container" rsf:id="riw-classes:">
+            <h2>Justificativas da turma <span rsf:id="class-name">Graduação A</span></h2>
+            <ul id="justificativas">
+                <li rsf:id="justificativa:">
+                    <p rsf:id="j-user"></p>
+                    <p rsf:id="j-class"></p>
+                    <p rsf:id="j-body"></p>
+                    <div rsf:id="j-messages">
+                        <p rsf:id="j-message:"></p>
+                    </div>
+                    <div>
+                        <form rsf:id="reply">
+                            <input type="hidden" rsf:id="justification" name="justification_id" id="justification_id"></input>
+                            <textarea type="hidden" rsf:id="message" name="message" id="message"></input>
+                            <button type="submit" rsf:id="send_message"></button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/css">
+            jQuery(document).ready(function(){console.log("alive");)})
+        </script>
+</body>
+</html>

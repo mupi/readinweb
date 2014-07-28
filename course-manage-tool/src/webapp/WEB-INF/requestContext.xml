@@ -7,7 +7,7 @@
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
   </bean>
 
-  <bean class="br.unicamp.iel.tool.producers.ManagerProducer" id="ManagerProducer">
+  <bean class="br.unicamp.iel.tool.producers.TurmasProducer" id="TurmasProducer">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
   </bean>
 

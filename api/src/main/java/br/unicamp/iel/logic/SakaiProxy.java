@@ -77,6 +77,8 @@ public interface SakaiProxy {
 
     public Long getCourseId();
 
+    public Long getManagerCourseId();
+
     public void setCourseId(String siteId, Long id);
 
     public Site createSite(String siteId);

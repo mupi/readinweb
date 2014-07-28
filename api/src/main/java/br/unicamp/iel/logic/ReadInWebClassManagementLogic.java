@@ -23,4 +23,6 @@ public interface ReadInWebClassManagementLogic {
 
     public List<Site> getReadInWebClasses(Long course);
 
+    public Long getManagerCourseId();
+
 }

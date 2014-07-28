@@ -13,7 +13,7 @@ import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
 
 public class ReadInWebClassManagementLogicImpl implements
-        ReadInWebClassManagementLogic {
+    ReadInWebClassManagementLogic {
 
     private static final Logger log = Logger.getLogger(ReadInWebCourseLogic.class);
 
@@ -55,6 +55,11 @@ public class ReadInWebClassManagementLogicImpl implements
     @Override
     public List<Site> getReadInWebClasses(Long course) {
         return sakaiProxy.getReadInWebClasses(course);
+    }
+
+    @Override
+    public Long getManagerCourseId() {
+        return sakaiProxy.getManagerCourseId();
     }
 
 }
