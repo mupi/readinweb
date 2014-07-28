@@ -104,10 +104,10 @@
     <property name="transactionAttributes">
       <props>
         <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
-                <prop key="can*">PROPAGATION_REQUIRED,readOnly</prop>
-                <prop key="check*">PROPAGATION_REQUIRED,readOnly</prop>
-                <prop key="count*">PROPAGATION_REQUIRED,readOnly</prop>
-                <prop key="*">PROPAGATION_REQUIRED</prop>
+        <prop key="can*">PROPAGATION_REQUIRED,readOnly</prop>
+        <prop key="check*">PROPAGATION_REQUIRED,readOnly</prop>
+        <prop key="count*">PROPAGATION_REQUIRED,readOnly</prop>
+        <prop key="*">PROPAGATION_REQUIRED</prop>
       </props>
     </property>
   </bean>
@@ -115,8 +115,8 @@
   <bean id="br.unicamp.iel.dao.PreloadData" class="br.unicamp.iel.dao.PreloadDataImpl"
     init-method="init">
     <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
-    <!--<property name="logic" ref="br.unicamp.iel.ReadInWeb.logic.ReadInWebLogic"
-      /> -->
+    <property name="logic"
+      ref="br.unicamp.iel.ReadInWeb.logic.ReadInWebCommonLogic" />
   </bean>
 
 </beans>
