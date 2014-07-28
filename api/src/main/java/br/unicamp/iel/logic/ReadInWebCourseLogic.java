@@ -146,15 +146,12 @@ public interface ReadInWebCourseLogic {
 
     public boolean checkActCompletenessByControlSum(int i);
 
-
     public User getCurrentUser();
 
-    public boolean blockUser(long course);
-
-    public List<ReadInWebControl> getUserJob(Long course);
-
-    public Integer getActivityControlSum(long activity);
+    public boolean blockUser(Long course);
 
     public Long getCourseId();
+
+    public Integer getActivityControlSum(Long id);
 
 }

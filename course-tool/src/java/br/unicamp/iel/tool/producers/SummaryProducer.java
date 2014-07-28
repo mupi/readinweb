@@ -11,12 +11,18 @@ import org.apache.commons.logging.LogFactory;
 import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIInitBlock;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIVerbatim;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
+import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ControlTypes;
@@ -29,7 +35,8 @@ import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
  * @author Virgilio Santos
  *
  */
-public class SummaryProducer implements ViewComponentProducer, DefaultView {
+public class SummaryProducer implements ViewComponentProducer, DefaultView,
+    NavigationCaseReporter {
 
     public static final String VIEW_ID = "summary";
 
@@ -48,25 +55,43 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         Long course = logic.getCourseId();
+        if(logic.blockUser(course)){
+            UIBranchContainer li = UIBranchContainer.make(tofill,
+                    "user_blocked:");
+            UIInternalLink.make(li, "user_blocked_link", "Justificativas",
+                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
+        } else {
+            UIInternalLink.make(tofill, "link_home", viewparams);
+            UIInternalLink.make(tofill, "link_justification",
+                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
 
-        List<Module> modules =
-                logic.getPusblishedModules(logic.getCourse(course));
 
-        System.out.println("Number of modules: " +modules.size());
-        // Fill form with modules
-        for(Module m : modules){
-            // Get activities
-            ArrayList<Activity> activities =
-                    new ArrayList<Activity>(logic.getPusblishedActivities(m));
-            UIBranchContainer container = createModuleLink(tofill,
-                    viewparams, checker, m);
-            System.out.println("Number of activities: " + activities.size());
-            for(Activity a : activities){
-                // Create activity links
-                createActivityLinks(container, viewparams, checker, a, course,
-                        logic.getActivityControlSum(a.getId()));
+            List<Module> modules =
+                    logic.getPusblishedModules(logic.getCourse(course));
+
+            // Fill form with modules
+            for(Module m : modules){
+                // Get activities
+                ArrayList<Activity> activities =
+                        new ArrayList<Activity>(
+                                logic.getPusblishedActivities(m));
+                UIBranchContainer container = createModuleLink(tofill,
+                        viewparams, checker, m);
+                for(Activity a : activities){
+                    // Create activity links
+                    createActivityLinks(container, viewparams, checker, a,
+                            course, logic.getActivityControlSum(a.getId()));
+                }
             }
         }
+    }
+
+    @Override
+    public List<NavigationCase> reportNavigationCases() {
+        List<NavigationCase> cases = new ArrayList<NavigationCase>();
+        cases.add(new NavigationCase("blocked",
+                new SimpleViewParameters(JustificationProducer.VIEW_ID)));
+        return cases;
     }
 
     private UIBranchContainer createModuleLink(UIContainer tofill,

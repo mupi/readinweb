@@ -49,6 +49,30 @@ public class CourseProperties {
         return Arrays.copyOf(ids.toArray(), ids.size(), Long[].class);
     }
 
+    public Long[] getAllPublishedActivities(){
+        JsonObject modules = courseProperties
+                .get("modules").asObject();
+        ArrayList<Long> ids = new ArrayList<Long>();
+
+        Iterator<Member> itM = modules.iterator();
+        while(itM.hasNext()){
+            Member m = itM.next();
+            JsonObject module = m.getValue().asObject();
+            if(module.get("status").asBoolean()){ // Verify activities
+                JsonObject activities = module.get("activities").asObject();
+                Iterator<Member> itA = activities.iterator();
+                while(itA.hasNext()){
+                    Member a = itA.next();
+                    JsonObject activity = a.getValue().asObject();
+                    if(activity.get("status").asBoolean()){
+                        ids.add(Long.parseLong(a.getName()));
+                    }
+                }
+            }
+        }
+        return Arrays.copyOf(ids.toArray(), ids.size(), Long[].class);
+    }
+
     public void publishModule(Long module){
         JsonObject j_module = courseProperties
                 .get("modules").asObject()

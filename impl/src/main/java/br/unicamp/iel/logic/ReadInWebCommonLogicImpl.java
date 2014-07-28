@@ -248,6 +248,15 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
+    public Long[] getAllPublishedActivities(String siteId) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(siteId)));
+        return courseProperties.getAllPublishedActivities();
+    }
+
+
+    @Override
     public List<Activity> getPublishedActivities(String siteId, Module module) {
         CourseProperties courseProperties =
                 new CourseProperties(JsonObject

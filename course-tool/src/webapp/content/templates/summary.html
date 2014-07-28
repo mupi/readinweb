@@ -4,48 +4,71 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <title>Projeto Read in Web</title>
-    
+
     <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
     <!-- End Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+<!--     <link rel="stylesheet" type="text/css" href="../css/main.css" /> -->
 
     <script type="text/javascript" src="../audio/swfobject.js"></script>
 </head>
 <body>
-    <div id="wrap">
-        <div id="middle" class="sumario">
-            <div id="function" class="sumario">
-                <div id="sumario" style="overflow: auto" class="clean">
-                    <div id="title_sumario">SUM&#193;RIO</div>
-                    <div class="border_outer">
-                        <p class="title">Escolha abaixo um m&oacute;dulo e uma atividade a ser estudado. A tabela indica
-                            o que est&aacute; incompleto e o que j&aacute; foi feito.</p>
-                        <ul id="ul_menuModulos" class="table_module">
-                            <li rsf:id="li_rowsMod:" class="module">
-                                <a rsf:id="lnk_modulo" id="lnk_modulo_" class="lnkmodulo">M&oacute;dulo X</a>
-                                <ul rsf:id="ul_atividades:" id="ul_atividades_" class="ul_atividade">
-                                    <li class="title_atividade">
-                                        <span style="padding-right: 410px; padding-left: 0px;">Atividade</span>
-                                        <span style="padding-right: 65px; padding-left: 30px;">Texto</span>
-                                        <span style="padding-right: 40px;">Quest&otilde;es</span>
-                                        <span style="padding-right: 0px;">Exerc&iacute;cios</span>
-                                    </li>
-                                    <li rsf:id="li_rowsAct:" id="li_rowsAct_">
-                                        <a rsf:id="but_linkA_" id="but_linkA_" class="atividade" href="#" />
-                                        <span rsf:id="txt_textRead_" id="" class="td_image"></span>
-                                        <span rsf:id="txt_questionMade_" id="" class="td_image"></span>
-                                        <span rsf:id="txt_exercMade_" id="" class="td_image"></span>
-                                        <br />
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+    <div class="portletBody">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Curso Read in Web</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" rsf:id="link_home">Sumário</a>
+                        </li>
+                        <li>
+                            <a href="#" rsf:id="link_justification">Justificativas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="container">
+            <div id="middle" class="sumario">
+                <div id="function" class="sumario">
+                    <div id="sumario" style="overflow: auto" class="clean">
+                        <div id="title_sumario">SUM&#193;RIO</div>
+                        <div class="border_outer">
+                            <p class="title">Escolha abaixo um m&oacute;dulo e uma atividade a ser estudado. A tabela indica
+                                o que est&aacute; incompleto e o que j&aacute; foi feito.</p>
+                            <ul id="ul_menuModulos" class="table_module">
+                                <li rsf:id="user_blocked:">
+                                    <span>Seu usuário está bloqueado, siga para página de </span>
+                                    <a href="#" rsf:id="user_blocked_link"></a>
+                                </li>
+                                <li rsf:id="li_rowsMod:" class="module">
+                                    <a rsf:id="lnk_modulo" id="lnk_modulo_" class="lnkmodulo">M&oacute;dulo X</a>
+                                    <ul rsf:id="ul_atividades:" id="ul_atividades_" class="ul_atividade">
+                                        <li class="title_atividade">
+                                            <span style="padding-right: 410px; padding-left: 0px;">Atividade</span>
+                                            <span style="padding-right: 65px; padding-left: 30px;">Texto</span>
+                                            <span style="padding-right: 40px;">Quest&otilde;es</span>
+                                            <span style="padding-right: 0px;">Exerc&iacute;cios</span>
+                                        </li>
+                                        <li rsf:id="li_rowsAct:" id="li_rowsAct_">
+                                            <a rsf:id="but_linkA_" id="but_linkA_" class="atividade" href="#" />
+                                            <span rsf:id="txt_textRead_" id="" class="td_image"></span>
+                                            <span rsf:id="txt_questionMade_" id="" class="td_image"></span>
+                                            <span rsf:id="txt_exercMade_" id="" class="td_image"></span>
+                                            <br />
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,8 +78,9 @@
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/rsf.js"></script>
-    <script rsf:id="init_js" type="text/javascript">
+    <script type="text/javascript" src="../js/readinweb-course.js"></script>
+    <script rsf:id="redirect" type="text/javascript">
 
-	</script>
+    </script>
 </body>
 </html>

@@ -84,4 +84,5 @@ public interface ReadInWebCommonLogic {
 
     public List<Module> getPublishedModules(String siteId, Course course);
 
+    public Long[] getAllPublishedActivities(String siteId);
 }

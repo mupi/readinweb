@@ -1,5 +1,6 @@
 package br.unicamp.iel.logic;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.ControlTypes;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.util.CourseProperties;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
@@ -95,7 +97,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public List<FunctionalWord> getFunctionalWord (Course course) {
-       return common.getFunctionalWord(course);
+        return common.getFunctionalWord(course);
     }
 
     @Override
@@ -278,6 +280,43 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
                 course);
     }
 
+    @Override
+    public boolean blockUser(Long course) {
+        Long[] ids = common.getAllPublishedActivities(getCurrentSiteId());
+        Long published = new Long(ids.length);
+        Search s = new Search(
+                new Restriction[] {
+                        new Restriction("user", this.getUserId()),
+                        new Restriction("activity.id", ids),
+                });
+        if((published - dao.countBySearch(ReadInWebControl.class, s)) > 5){
+            return true;
+        } else {
+            s.addRestriction(new Restriction("control", ControlTypes.getSum(),
+                    Restriction.LESS));
+            return dao.countBySearch(ReadInWebControl.class, s) > 5;
+        }
+    }
+
+    @Override
+    public Long getCourseId() {
+        return sakaiProxy.getCourseId();
+    }
+
+    @Override
+    public Integer getActivityControlSum(Long id) {
+        Search s = new Search(new Restriction[]{
+                new Restriction("activity.id", id),
+                new Restriction("user", getUserId())
+        });
+        ReadInWebControl riwc = dao.findOneBySearch(ReadInWebControl.class, s);
+        if(riwc != null){
+            return riwc.getControl();
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * Old methods
      */
@@ -386,68 +425,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public User getCurrentUser() {
         // TODO Auto-generated method stub
         return null;
-    }
-
-
-    @Override
-    public boolean blockUser(long course) {
-        System.out.println("Foram encontrados "
-                + getModulesIds(course).length
-                + "Modulos");
-        Search s_a = new Search(new Restriction("module.id",
-                getModulesIds(course)));
-
-        List<Activity> activities = dao.findBySearch(Activity.class, s_a);
-        System.out.println("Foram encontradas "
-                + activities.size()
-                + "Atividades");
-
-        Long[] ids = common.getListIds(activities);
-
-        Search s = new Search(
-                new Restriction[] {
-                        new Restriction("user", this.getUserId()),
-                        new Restriction("activity.id", ids),
-                        new Restriction("control", 7, Restriction.LESS)
-                });
-
-        return dao.countBySearch(ReadInWebControl.class, s) > 5;
-    }
-
-    @Override
-    public List<ReadInWebControl> getUserJob(Long course) {
-        Long[] activities = common.getListIds(
-                dao.findBySearch(Activity.class,
-                        new Search("module",
-                                getModulesIds(course))));
-
-        Restriction[] rs = {
-                new Restriction("user", this.getUserId()),
-                new Restriction("activity.id", activities)
-        };
-
-        Search s = new Search(rs);
-
-        return dao.findBySearch(ReadInWebControl.class, s);
-    }
-
-    @Override
-    public Integer getActivityControlSum(long activity) {
-        Search s = new Search(
-                new Restriction[] {
-                        new Restriction("user", this.getUserId()),
-                        new Restriction("activity.id", activity),
-                });
-        ReadInWebControl riwc = dao.findOneBySearch(ReadInWebControl.class, s);
-        if(riwc == null)
-            return 0;
-        else
-            return riwc.getControl();
-    }
-
-    @Override
-    public Long getCourseId() {
-        return sakaiProxy.getCourseId();
     }
 
 }
