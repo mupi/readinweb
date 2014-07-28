@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Projeto Read in Web - Administra&ccedil;&atilde;</title>
+    
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+    <div class="portletBody">
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Curso Read in Web</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" rsf:id="link_home">Criar curso</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+        <div class="container" rsf:id="courses:">
+            <div class="jumbotron" rsf:id="course:">
+                <h2 rsf:id="course_title">Curso Read in Web</h2>
+                <h3 rsf:id="course_idiom">
+                    Idioma:
+                    <span>Inglês</span>
+                </h3>
+                <p rsf:id="course_description"></p>
+                <table class="table" rsf:id="course_data_table:">
+                    <tr>
+                        <td>Número de alunos atendidos</td>
+                        <td>Número de concluintes</td>
+                        <td>Graduação</td>
+                    </tr>
+                    <tr rsf:id="course_data_row:">
+                        <td rsf:id="course_data_attendance">5234</td>
+                        <td rsf:id="course_data_graduates">3023</td>
+                        <td rsf:id="course_data_undergrad">23</td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <a class="btn" href="#" rsf:id="course_edit_details"> Editar Detalhes </a>
+                    <a rsf:id="course_send_content" class="btn" href="#"> Enviar Conteúdo </a>
+                    <a rsf:id="course_edit_content" class="btn" href="#"> Editar Conteúdo </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/css">
+            jQuery(document).ready(function(){console.log("alive");)})
+        </script>
+</body>
+</html>

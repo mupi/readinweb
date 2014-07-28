@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+  "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="AdminActivityBean" class="br.unicamp.iel.tool.AdminActivityBean">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+  </bean>
+
+  <bean class="br.unicamp.iel.tool.producers.ManagerProducer" id="ManagerProducer">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+  </bean>
+
+</beans>
