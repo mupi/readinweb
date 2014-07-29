@@ -331,7 +331,7 @@ public class SakaiProxyImpl implements SakaiProxy {
     @Override
     public List<Site> getReadInWebClasses(Long course) {
         Map<String, String> m = new HashMap<String, String>();
-        m.put(Property.COURSE.name(), Long.toString(course));
+        m.put(Property.COURSE.getName(), Long.toString(course));
         return siteService.getSites(SelectionType.ANY, null, null, m,
                 SortType.CREATED_BY_DESC,
                 null);
