@@ -6,42 +6,75 @@
 
     <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
     <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
 </head>
 
 <body>
     <div class="portletBody">
-        <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Curso Read in Web</a>
+        <nav class="navbar navbar-default main-menu" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Menu principal</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="../img/logo.png" alt="Curso Read in Web" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" rsf:id="link_turmas">Turmas</a>
+                        </li>
+                        <li>
+                            <a href="#" rsf:id="link_justificativas">Justificativas</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                                <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" rsf:id="link_turmas">Turmas</a>
-                    </li>
-                    <li>
-                        <a href="#" rsf:id="link_justificativas">Justificativas</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         </nav>
         <div class="container" rsf:id="riw-classes:">
-            <h2>Justificativas da turma <span rsf:id="class-name">Graduação A</span></h2>
+            <h1>Justificativas pendentes da turma <span rsf:id="class-name">Graduação A</span></h1>
+
+            <button type="submit" class="btn btn-default" rsf:id="send_message">
+                <i class="fa fa-eye"></i> Ver apenas minhas turmas
+            </button>
+
             <ul id="justificativas">
-                <li rsf:id="justificativa:">
-                    <p rsf:id="j-user"></p>
-                    <p rsf:id="j-class"></p>
-                    <p rsf:id="j-body"></p>
-                    <div rsf:id="j-messages">
-                        <p rsf:id="j-message:"></p>
+                <li class="row" rsf:id="justificativa:">
+                    <div class="col-md-7">
+                        [<span rsf:id="j-class">Turma</span>]
+                        <span class="j-user" rsf:id="j-user">Aluno</span>
+                        <p class="j-body" rsf:id="j-body">Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor.</p>
+                        <div rsf:id="j-messages">
+                            <p rsf:id="j-message:"></p>
+                        </div>
+                        <a href="#">Ver histórico de justificativas do aluno</a>
                     </div>
-                    <div>
+                    <div class="col-md-5">
                         <form rsf:id="reply">
                             <input type="hidden" rsf:id="justification" name="justification_id" id="justification_id"></input>
-                            <textarea type="hidden" rsf:id="message" name="message" id="message"></input>
-                            <button type="submit" rsf:id="send_message"></button>
+                            <textarea type="hidden" class="form-control j-reply" rsf:id="message" name="message" id="message"></textarea>
+                            <button type="submit" class="btn btn-danger pull-left">
+                                <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
+                            </button>
+                            <button type="submit" class="btn btn-success pull-right" rsf:id="send_message">
+                                <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
+                            </button>
                         </form>
                     </div>
                 </li>
@@ -52,7 +85,7 @@
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/css">
-            jQuery(document).ready(function(){console.log("alive");)})
-        </script>
+        jQuery(document).ready(function(){console.log("alive");)})
+    </script>
 </body>
 </html>
