@@ -357,6 +357,16 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
+    public Integer countUsers(String siteId){
+        try {
+            return siteService.getSite(siteId).getUsers().size();
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
     public User getUser() {
         return userDirectoryService.getCurrentUser();
     }

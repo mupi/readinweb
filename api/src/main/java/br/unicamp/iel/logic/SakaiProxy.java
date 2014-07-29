@@ -1,6 +1,5 @@
 package br.unicamp.iel.logic;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.sakaiproject.authz.api.Role;
@@ -100,4 +99,6 @@ public interface SakaiProxy {
     public List<User> getSiteUsers(String siteId);
 
     public User getUser();
+
+    public Integer countUsers(String siteId);
 }
