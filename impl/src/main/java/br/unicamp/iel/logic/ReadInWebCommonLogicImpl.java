@@ -275,7 +275,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
         CourseSets cs = new CourseSets(course);
 
         return new ArrayList<Module>(cs.getPublishedModules(dao,
-                courseProperties.getPublishedActivitiesIds(course.getId())));
+                courseProperties.getPublishedModulesIds()));
     }
 
 }
