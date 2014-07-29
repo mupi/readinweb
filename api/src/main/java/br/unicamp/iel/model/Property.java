@@ -5,7 +5,9 @@ import lombok.Setter;
 
 public enum Property {
     COURSE("readinwebcourse"),
-    COURSEDATA("readinwebcourse.data");
+    COURSEDATA("readinwebcourse.data"),
+    COURSEMANAGED("readinwebmanager"),
+    USERDATA("readinwebuser.data");
 
     @Setter
     @Getter

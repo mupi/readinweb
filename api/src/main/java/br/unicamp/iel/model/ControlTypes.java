@@ -27,4 +27,12 @@ public enum ControlTypes {
             return false;
         }
     }
+
+    public static Integer getSum() {
+        Integer sum = 0;
+        for(ControlTypes ct : ControlTypes.values()){
+            sum += ct.getValue();
+        }
+        return sum;
+    }
 }
