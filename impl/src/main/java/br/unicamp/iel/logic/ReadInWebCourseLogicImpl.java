@@ -281,21 +281,54 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public boolean blockUser(Long course) {
-        Long[] ids = common.getAllPublishedActivities(getCurrentSiteId());
+    public boolean blockUser() {
+        String userId = getUserId();
+        String siteId = getCurrentSiteId();
+        boolean expired = true;
+
+        if(common.isUserBLocked(siteId, userId)) {
+            return true; // A propriedade já existe
+        } else {
+            // Verificar se há data de desbloqueio, se não tiver, continua..
+            // Pegar tempo, em samanas (propriedade do site), de carencia
+            // Pegar data de hoje
+            // Se data de hoje - data de desbloqueio > carencia então o cara
+            //  pode ter estourado a carencia, levanta uma flag.
+            // expired = true;
+        }
+        Long[] ids = common.getAllPublishedActivities(siteId);
         Long published = new Long(ids.length);
         Search s = new Search(
                 new Restriction[] {
-                        new Restriction("user", this.getUserId()),
+                        new Restriction("user", userId),
                         new Restriction("activity.id", ids),
                 });
-        if((published - dao.countBySearch(ReadInWebControl.class, s)) > 5){
+
+        Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        if((published - started) > 5 && expired) {
+            common.blockUser(siteId, userId);
             return true;
-        } else {
-            s.addRestriction(new Restriction("control", ControlTypes.getSum(),
-                    Restriction.LESS));
-            return dao.countBySearch(ReadInWebControl.class, s) > 5;
         }
+
+        s.addRestriction(new Restriction("control", ControlTypes.getSum(),
+                Restriction.LESS));
+        Long finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        if((published - finished) > 5
+                && expired){
+            common.blockUser(siteId, userId);
+            return true;
+        }
+
+        if(expired){
+            common.cleanExpireDate(siteId, userId);
+        }
+
+        return false;
+    }
+
+    @Override
+    public void unblockUser(){
+        common.unblockUser(getCurrentSiteId(), getUserId());
     }
 
     @Override
@@ -317,6 +350,27 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         }
     }
 
+    @Override
+    public User getUser() {
+        return sakaiProxy.getUser();
+    }
+
+    @Override
+    public boolean hasSentExplanation() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public String getCurrentPlacement() {
+        return sakaiProxy.getCurrentPlacement().getId();
+    }
+
+    @Override
+    public boolean isUserAdmin() {
+        return sakaiProxy.isSuperUser();
+    }
+
     /**
      * Old methods
      */
@@ -326,11 +380,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
             List<Activity> lst_atividades, String userId, String currentSiteId) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return sakaiProxy.isSuperUser();
     }
 
     @Override
@@ -370,12 +419,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public String getCurrentPlacement() {
-        return sakaiProxy.getCurrentPlacement().getId();
-    }
-
 
     @Override
     public boolean checkTextByControlSum(int int_controlSum) {

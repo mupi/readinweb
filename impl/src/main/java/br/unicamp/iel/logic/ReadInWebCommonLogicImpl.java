@@ -10,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 
-import com.eclipsesource.json.JsonObject;
-
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ActivitySets;
@@ -27,6 +25,9 @@ import br.unicamp.iel.model.Property;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.util.CourseProperties;
+import br.unicamp.iel.util.UserProperties;
+
+import com.eclipsesource.json.JsonObject;
 
 /**
  * Implementation of {@link ReadInWebCommonLogic}
@@ -36,7 +37,8 @@ import br.unicamp.iel.util.CourseProperties;
  */
 public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
-    private static final Logger log = Logger.getLogger(ReadInWebCommonLogicImpl.class);
+    private static final Logger log =
+            Logger.getLogger(ReadInWebCommonLogicImpl.class);
 
     @Setter
     private ReadInWebDao dao;
@@ -242,9 +244,51 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
+    public String getDefaultUserPropertyString() {
+        JsonObject jo = new JsonObject();
+        jo.add("status", new JsonObject());
+
+        JsonObject status = jo.get("status").asObject();
+        status.add("blocked", false);
+        status.add("date", (String) null);
+        status.add("date_sent", (String) null);
+        status.add("blocks", 0);
+
+        return jo.toString();
+    }
+
+    @Override
+    public String userPropertySkelString(String siteId) {
+        JsonObject jo = new JsonObject();
+        jo.add("sites", new JsonObject());
+        JsonObject sites = jo.get("sites").asObject();
+        sites.add(siteId, JsonObject.readFrom(getDefaultUserPropertyString()));
+
+        return jo.toString();
+    }
+
+    @Override
     public String getCoursePropertyString(String siteId) {
         return sakaiProxy.getJsonStringProperty(siteId,
                 Property.COURSEDATA.getName());
+    }
+
+    @Override
+    public void setCoursePropertyString(String siteId, String value) {
+        sakaiProxy.setJsonStringProperty(siteId,
+                Property.COURSEDATA.getName(), value);
+    }
+
+    @Override
+    public String getUserPropertyString(String userId) {
+        return sakaiProxy.getJsonUserStringProperty(userId,
+                Property.USERDATA.getName());
+    }
+
+    @Override
+    public void setUserPropertyString(String userId, String value) {
+        sakaiProxy.setJsonUserStringProperty(userId,
+                Property.USERDATA.getName(), value);
     }
 
     @Override
@@ -278,4 +322,56 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
                 courseProperties.getPublishedModulesIds()));
     }
 
+    @Override
+    public boolean isUserBLocked(String siteId, String userId) {
+        String properties = getUserPropertyString(userId);
+        if(properties == null){
+            String value = userPropertySkelString(siteId);
+            setUserPropertyString(userId, value);
+            return false;
+        } else {
+            UserProperties userProperties =
+                    new UserProperties(JsonObject
+                            .readFrom(properties));
+            if(userProperties.hasUserData(siteId)){
+                return userProperties.isUserBlocked(siteId);
+            } else {
+                userProperties.addUserData(siteId,
+                        getDefaultUserPropertyString());
+                return false;
+            }
+        }
+    }
+
+    @Override
+    public void blockUser(String siteId, String userId) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(userId)));
+
+        userProperties.setUserBlocked(siteId, true);
+        setUserPropertyString(userId, userProperties.toString());
+    }
+
+    // FIXME Move this method to management only. The user will be never
+    // unblocked in a course scope, only management
+    @Override
+    public void unblockUser(String siteId, String userId) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(userId)));
+
+        userProperties.setUserBlocked(siteId, false);
+        setUserPropertyString(userId, userProperties.toString());
+    }
+
+    @Override
+    public void cleanExpireDate(String siteId, String userId) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(userId)));
+
+        userProperties.cleanExpireDate(siteId);
+        setUserPropertyString(userId, userProperties.toString());
+    }
 }

@@ -78,11 +78,30 @@ public interface ReadInWebCommonLogic {
 
     public String getDefaultCoursePropertyString(Course course);
 
+    public String getDefaultUserPropertyString();
+
+    public String userPropertySkelString(String siteId);
+
     public String getCoursePropertyString(String siteId);
+
+    public void setCoursePropertyString(String siteId, String value);
+
+    public String getUserPropertyString(String userId);
+
+    public void setUserPropertyString(String userId, String value);
 
     public List<Activity> getPublishedActivities(String siteId, Module module);
 
     public List<Module> getPublishedModules(String siteId, Course course);
 
     public Long[] getAllPublishedActivities(String siteId);
+
+    public boolean isUserBLocked(String siteId, String userId);
+
+    public void blockUser(String siteId, String userId);
+
+    public void cleanExpireDate(String siteId, String userId);
+
+    public void unblockUser(String siteId, String userId);
+
 }

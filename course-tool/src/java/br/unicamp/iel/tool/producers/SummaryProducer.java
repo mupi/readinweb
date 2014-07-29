@@ -13,14 +13,11 @@ import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIVerbatim;
-import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
-import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
-import br.unicamp.iel.logic.ReadInWebCommonLogic;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ControlTypes;
@@ -33,8 +30,7 @@ import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
  * @author Virgilio Santos
  *
  */
-public class SummaryProducer implements ViewComponentProducer, DefaultView,
-    NavigationCaseReporter {
+public class SummaryProducer implements ViewComponentProducer, DefaultView {
 
     public static final String VIEW_ID = "summary";
 
@@ -53,7 +49,7 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView,
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         Long course = logic.getCourseId();
-        if(logic.blockUser(course)){
+        if(logic.blockUser()){
             UIBranchContainer li = UIBranchContainer.make(tofill,
                     "user_blocked:");
             UIInternalLink.make(li, "user_blocked_link", "Justificativas",
@@ -66,7 +62,6 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView,
 
             List<Module> modules =
                     logic.getPusblishedModules(logic.getCourse(course));
-
             // Fill form with modules
             for(Module m : modules){
                 // Get activities
@@ -82,14 +77,6 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView,
                 }
             }
         }
-    }
-
-    @Override
-    public List<NavigationCase> reportNavigationCases() {
-        List<NavigationCase> cases = new ArrayList<NavigationCase>();
-        cases.add(new NavigationCase("blocked",
-                new SimpleViewParameters(JustificationProducer.VIEW_ID)));
-        return cases;
     }
 
     private UIBranchContainer createModuleLink(UIContainer tofill,

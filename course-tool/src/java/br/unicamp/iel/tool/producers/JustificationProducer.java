@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
@@ -38,11 +39,17 @@ public class JustificationProducer implements ViewComponentProducer {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
 
+        Long course = logic.getCourseId();
+
         UIInternalLink.make(tofill, "link_home",
                 new SimpleViewParameters(SummaryProducer.VIEW_ID));
         UIInternalLink.make(tofill, "link_justification", viewparams);
 
+        UIOutput.make(tofill, "user", logic.getUser().getFirstName());
 
+        if(logic.blockUser() && !logic.hasSentExplanation()){
+
+        }
 
     }
 }

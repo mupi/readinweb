@@ -31,8 +31,12 @@ import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.user.api.User;
+import org.sakaiproject.user.api.UserAlreadyDefinedException;
 import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.user.api.UserEdit;
+import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
+import org.sakaiproject.user.api.UserPermissionException;
 
 import br.unicamp.iel.model.Property;
 
@@ -276,14 +280,41 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
+    public String getJsonUserStringProperty(String userId, String property){
+        try {
+            User user = userDirectoryService.getUser(userId);
+            return user.getProperties().getProperty(property);
+        } catch (UserNotDefinedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void setJsonUserStringProperty(String userId, String name, String value){
+        try {
+            UserEdit ue = userDirectoryService.editUser(userId);
+            ue.getProperties().addProperty(name, value);
+            userDirectoryService.commitEdit(ue);
+        } catch (UserNotDefinedException e) {
+            e.printStackTrace();
+        } catch (UserPermissionException e) {
+            e.printStackTrace();
+        } catch (UserLockedException e) {
+            e.printStackTrace();
+        } catch (UserAlreadyDefinedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public String getJsonStringProperty(String siteId, String property){
-        String empty = "";
         try {
             Site site = siteService.getSite(siteId);
             return site.getProperties().getProperty(property);
         } catch (IdUnusedException e) {
             e.printStackTrace();
-            return empty;
+            return null;
         }
     }
 
@@ -323,5 +354,10 @@ public class SakaiProxyImpl implements SakaiProxy {
         }
 
         return users;
+    }
+
+    @Override
+    public User getUser() {
+        return userDirectoryService.getCurrentUser();
     }
 }

@@ -58,14 +58,18 @@
     </p>
   </div>
     <div class="container">
-        <div class="page-header">
-            <h1>Justificativa por atraso das atividades</h1>
+        <div rsf:id="justification_container:">
+            <div class="page-header">
+                <h1>Justificativa por atraso das atividades</h1>
+            </div>
+            <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for aceita o acesso ao curso será liberado, caso contrátio a resposta da equipe docente será exibida nesta página.</p>
+            <form rsf:id="justification_form">
+                <textarea rsf:id="explanation" class="form-control" rows="3"></textarea>
+                <p class="submit-justificativa">
+                    <button type="submit" rsf:id="send_justification" class="btn btn-success">Enviar justificativa</button>
+                </p>
+            </form>
         </div>
-        <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for aceita o acesso ao curso será liberado, caso contrátio a resposta da equipe docente será exibida nesta página.</p>
-        <textarea class="form-control" rows="3"></textarea>
-        <p class="submit-justificativa">
-            <button type="submit" class="btn btn-success">Enviar justificativa</button>
-        </p>
         <h2>Histórico de justificativas e respostas</h2>
         <ul class="historico-justificativas">
             <li class="resp-aluno">

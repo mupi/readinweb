@@ -104,6 +104,17 @@ public interface ReadInWebCourseLogic {
 
     public List<Activity> getPusblishedActivities(Module course);
 
+    public boolean blockUser();
+
+    public Long getCourseId();
+
+    public Integer getActivityControlSum(Long id);
+
+    public boolean hasSentExplanation();
+
+    public void unblockUser();
+
+
     /**
      * Old methods
      */
@@ -148,10 +159,7 @@ public interface ReadInWebCourseLogic {
 
     public User getCurrentUser();
 
-    public boolean blockUser(Long course);
 
-    public Long getCourseId();
-
-    public Integer getActivityControlSum(Long id);
+    public User getUser();
 
 }

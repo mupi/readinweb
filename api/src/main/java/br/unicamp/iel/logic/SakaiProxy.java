@@ -83,6 +83,10 @@ public interface SakaiProxy {
 
     public Site createSite(String siteId);
 
+    public String getJsonUserStringProperty(String userId, String property);
+
+    public void setJsonUserStringProperty(String userId, String name, String value);
+
     public String getJsonStringProperty(String siteId, String property);
 
     public void setJsonStringProperty(String siteId, String property, String value);
@@ -94,4 +98,6 @@ public interface SakaiProxy {
     public List<Site> getReadInWebClasses(Long course);
 
     public List<User> getSiteUsers(String siteId);
+
+    public User getUser();
 }
