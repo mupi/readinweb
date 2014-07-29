@@ -21,7 +21,7 @@ import br.unicamp.iel.logic.ReadInWebCourseLogic;
  */
 public class JustificationProducer implements ViewComponentProducer {
 
-    public static final String VIEW_ID = "justification";
+    public static final String VIEW_ID = "justificativa";
 
     private static Log logger = LogFactory.getLog(JustificationProducer.class);
 
@@ -38,10 +38,11 @@ public class JustificationProducer implements ViewComponentProducer {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
 
-        System.out.println("Justificativa");
         UIInternalLink.make(tofill, "link_home",
                 new SimpleViewParameters(SummaryProducer.VIEW_ID));
         UIInternalLink.make(tofill, "link_justification", viewparams);
+
+
 
     }
 }

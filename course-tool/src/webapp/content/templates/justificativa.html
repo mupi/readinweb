@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -35,11 +35,11 @@
             <div class="collapse navbar-collapse">
                 <ul id="lista_menu_principal" class="nav navbar-nav">
                     <li>
-                        <a href="#" title="Voltar ao sumário">Sumário</a>
+                        <a href="#" rsf:id="link_home" title="Voltar ao sumário">Sumário</a>
                     </li>
 
                     <li class="active">
-                        <a href="#" title="Ver histórico de justificativas">Justificativas</a>
+                        <a href="#" rsf:id="link_justification" title="Ver histórico de justificativas">Justificativas</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -52,11 +52,11 @@
             </div>
         </div>
     </nav>
-	<div class="alert alert-danger" role="alert">
-		<p class="container">
-		Olá <span rsf:id="user">fulano</span>, o seu acesso está bloqueado pois você não completou as últimas duas atividades no tempo correto. Para liberar o curso novamente você precisa enviar uma justificativa pelo atraso que será avaliada pela equipe docente.
-		</p>
-	</div>
+  <div class="alert alert-danger" role="alert">
+    <p class="container">
+    Olá <span rsf:id="user">fulano</span>, o seu acesso está bloqueado pois você não completou as últimas duas atividades no tempo correto. Para liberar o curso novamente você precisa enviar uma justificativa pelo atraso que será avaliada pela equipe docente.
+    </p>
+  </div>
     <div class="container">
         <div class="page-header">
             <h1>Justificativa por atraso das atividades</h1>
@@ -92,7 +92,10 @@
         </ul>
     </div>
 
-
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
 
 </body>
 </html>
