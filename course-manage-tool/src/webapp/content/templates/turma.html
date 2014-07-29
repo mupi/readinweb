@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Projeto Read in Web - Administra&ccedil;&atilde;</title>
+
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/turmas.css" />
+
+</head>
+
+<body>
+    <div class="portletBody">
+        <nav class="navbar navbar-default main-menu" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                        <span class="sr-only">Menu principal</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="../img/logo.png" alt="Curso Read in Web" />
+                    </a>
+                </div>
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" rsf:id="link_turmas">Turmas</a>
+                        </li>
+                        <li>
+                            <a href="#" rsf:id="link_justificativas">Justificativas</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                                <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <ol class="breadcrumb">
+              <li><a href="#">Curso Read in Web</a></li>
+              <li><a href="#">Turmas</a></li>
+              <li class="active"><span rsf:id="riw-class">Turma</span></li>
+            </ol>
+            <header class="page-header">
+                <h1>Read in Web - turma <span rsf:id="riw-class">sucesso</span></h1>
+            </header>
+            <section class="class-info">
+                <p>Início das atividades em <span sf:id="riw-startdate">21/08/2014</span></p>
+                <p>Quantidade de alunos: <span sf:id="riw-class">30</span></p>
+                <p>Atividades liberadas: <span sf:id="riw-class">10</span></p>
+                <p>Atividades a serem liberadas: <span sf:id="riw-class">2</span></p>
+            </section>
+            <p class="text-right">
+                <button type="submit" class="btn btn-default " rsf:id="send_message">
+                    <i class="fa fa-list-ul"></i> Liberar atividades
+                </button>
+                <button type="submit" class="btn btn-danger " rsf:id="send_message">
+                    <i class="fa fa-times-circle"></i> Desativar turma
+                </button>
+            </p>
+            <table class="table table-striped" rsf:id="riw-classes">
+                <tr>
+                    <th>Nome</th>
+                    <th>Ativo</th>
+                    <th>Quantidade de bloqueios</th>
+                </tr>
+                <tr rsf:id="riw-student" class="danger">
+                    <td><a href="#">Ana Rute Cavalcanti Vaz Mendes Tenório Ribeiro</a></td>
+                    <td><a href="#">Não. se desativado add class danger</a></td>
+                    <td><a href="#justificativas">4</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/css">
+            jQuery(document).ready(function(){console.log("alive");)})
+        </script>
+</body>
+</html>
