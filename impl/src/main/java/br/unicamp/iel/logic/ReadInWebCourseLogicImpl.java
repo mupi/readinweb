@@ -289,12 +289,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         if(common.isUserBLocked(siteId, userId)) {
             return true; // A propriedade já existe
         } else {
-            // Verificar se há data de desbloqueio, se não tiver, continua..
-            // Pegar tempo, em samanas (propriedade do site), de carencia
-            // Pegar data de hoje
-            // Se data de hoje - data de desbloqueio > carencia então o cara
-            //  pode ter estourado a carencia, levanta uma flag.
-            // expired = true;
+            Long blockedAt = common.getUserBlockingDate(siteId, userId);
+            Long remissionTime = common.getRemissionTime(siteId);
+            Long today = System.currentTimeMillis();
+            if(blockedAt != null && remissionTime != null){
+                expired = (today - blockedAt) > remissionTime;
+            }
         }
         Long[] ids = common.getAllPublishedActivities(siteId);
         Long published = new Long(ids.length);

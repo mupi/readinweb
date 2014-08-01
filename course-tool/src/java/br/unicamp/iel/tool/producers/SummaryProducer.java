@@ -49,17 +49,16 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         Long course = logic.getCourseId();
+        UIInternalLink.make(tofill, "link_home", viewparams);
+        UIInternalLink.make(tofill, "link_justification",
+                new SimpleViewParameters(JustificationProducer.VIEW_ID));
+
         if(logic.blockUser()){
             UIBranchContainer li = UIBranchContainer.make(tofill,
                     "user_blocked:");
             UIInternalLink.make(li, "user_blocked_link", "Justificativas",
                     new SimpleViewParameters(JustificationProducer.VIEW_ID));
         } else {
-            UIInternalLink.make(tofill, "link_home", viewparams);
-            UIInternalLink.make(tofill, "link_justification",
-                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
-
-
             List<Module> modules =
                     logic.getPusblishedModules(logic.getCourse(course));
             // Fill form with modules

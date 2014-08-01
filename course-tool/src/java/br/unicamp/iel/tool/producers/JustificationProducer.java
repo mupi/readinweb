@@ -48,7 +48,7 @@ public class JustificationProducer implements ViewComponentProducer {
         UIOutput.make(tofill, "user", logic.getUser().getFirstName());
 
         if(logic.blockUser() && !logic.hasSentExplanation()){
-
+            logic.unblockUser();
         }
 
     }
