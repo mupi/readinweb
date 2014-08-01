@@ -6,8 +6,10 @@ import lombok.Setter;
 public enum Property {
     COURSE("readinwebcourse"),
     COURSEDATA("readinwebcourse.data"),
+    COURSESTARTDATE("readinwebcourse.startdate"),
     COURSEMANAGED("readinwebmanager"),
-    USERDATA("readinwebuser.data");
+    USERDATA("readinwebuser.data"),
+    COURSEREMISSIONTIME("readinwebcourse.remissiontime");
 
     @Setter
     @Getter

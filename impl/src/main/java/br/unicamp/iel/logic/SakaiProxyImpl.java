@@ -12,6 +12,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import org.apache.log4j.Logger;
+import org.sakaiproject.authz.api.AuthzGroup;
+import org.sakaiproject.authz.api.AuthzGroupService;
+import org.sakaiproject.authz.api.AuthzPermissionException;
+import org.sakaiproject.authz.api.FunctionManager;
+import org.sakaiproject.authz.api.GroupNotDefinedException;
 import org.sakaiproject.authz.api.Role;
 import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.component.api.ServerConfigurationService;
@@ -72,12 +77,19 @@ public class SakaiProxyImpl implements SakaiProxy {
     @Getter @Setter
     private SiteService siteService;
 
+    @Getter @Setter
+    private FunctionManager functionManager;
+
+    @Getter @Setter
+    private AuthzGroupService authzGroupService;
+
 
     /**
      * init - perform any actions required here for when this bean starts up
      */
     public void init() {
         log.info(SakaiProxyImpl.class + " init");
+        functionManager.registerFunction(READINWEB_ACCESS);
     }
 
 
@@ -195,40 +207,61 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public void setCourseId(String siteId, Long id) {
+    public void setCourseId(Site site, Long id) {
         try {
-            Site site = siteService.getSite(siteId);
             site.getProperties().addProperty(Property.COURSE.getName(),
                     Long.toString(id));
+            siteService.save(site);
         } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public Site createSite(String siteId) {
-        Site site;
+        Site site = null;
         MessageDigest md;
+
+        byte[] digest;
+        StringBuffer sb;
+
+        try {
+            md = MessageDigest.getInstance("MD5");
+            md.update(siteId.getBytes());
+            digest = md.digest();
+            sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            siteId = sb.toString();
+            while(siteService.siteExists(siteId)){
+                md.reset();
+                String s = Long.toString(System.currentTimeMillis());
+                md.update((s + siteId).getBytes());
+                digest = md.digest();
+                sb = new StringBuffer();
+                for (byte b : digest) {
+                    sb.append(String.format("%02x", b & 0xff));
+                }
+                siteId = sb.toString();
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         if (this.siteService.allowAddSite(siteId)) {
             try {
-                md = MessageDigest.getInstance("MD5");
-                siteId = md.digest(siteId.getBytes()).toString();
-                while(siteService.siteExists(siteId)){
-                    md.reset();
-                    String s = new Date(System.currentTimeMillis()).toString();
-                    siteId = md.digest((siteId + s).getBytes()).toString();
-                }
                 site = siteService.addSite(siteId, "course");
-
                 // Calendar Tool
                 SitePage sitePage = site.addPage();
                 sitePage.addTool("sakai.schedule");
-                sitePage.setTitle("Calendario");
+                sitePage.setTitle("Calendário");
 
                 // Read In Web Tool
                 sitePage = site.addPage();
-                sitePage.addTool("sakai.readinweb");
+                sitePage.addTool("sakai.readinwebcourse");
                 sitePage.setTitle("Curso Read in Web");
 
                 // Announcements  Tool
@@ -236,34 +269,45 @@ public class SakaiProxyImpl implements SakaiProxy {
                 sitePage.addTool("sakai.announcements");
                 sitePage.setTitle("Avisos");
 
-                // defines Joiner as 'Student'
+                site.setMaintainRole("Instructor");
                 site.setJoinerRole("Student");
+                siteService.save(site);
 
-                // TODO Verify roles, realms and actions
 
-                site.setJoinable(false);
+                AuthzGroup ag = authzGroupService.getAuthzGroup(
+                        site.getReference());
 
-                return site;
+                if(authzGroupService.allowUpdate(ag.getId())){
+                    Role r = ag.getRole("Student");
+                    r.allowFunction(READINWEB_ACCESS);
+                    authzGroupService.save(ag);
+                }
+
             } catch (IdInvalidException e) {
                 e.printStackTrace();
             } catch (IdUsedException e) {
-                 e.printStackTrace();
+                e.printStackTrace();
             } catch (PermissionException e) {
-                 e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (IdUnusedException e) {
+                e.printStackTrace();
+            } catch (GroupNotDefinedException e) {
+                e.printStackTrace();
+            } catch (AuthzPermissionException e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        return site;
     }
 
     @Override
-    public void setJoinable(String siteId){
-        Site site;
+    public void setJoinable(Site site, Boolean joinable){
         try {
-            site = siteService.getSite(siteId);
-            site.setJoinable(true);
+            site.setJoinable(joinable);
+            siteService.save(site);
         } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
             e.printStackTrace();
         }
     }
@@ -274,7 +318,10 @@ public class SakaiProxyImpl implements SakaiProxy {
         try {
             site = siteService.getSite(siteId);
             site.setPublished(false);
+            siteService.save(site);
         } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
             e.printStackTrace();
         }
     }
@@ -291,7 +338,8 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public void setJsonUserStringProperty(String userId, String name, String value){
+    public void setJsonUserStringProperty(String userId, String name,
+            String value){
         try {
             UserEdit ue = userDirectoryService.editUser(userId);
             ue.getProperties().addProperty(name, value);
@@ -308,7 +356,7 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public String getJsonStringProperty(String siteId, String property){
+    public String getStringProperty(String siteId, String property){
         try {
             Site site = siteService.getSite(siteId);
             return site.getProperties().getProperty(property);
@@ -319,11 +367,14 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public void setJsonStringProperty(String siteId, String name, String value){
+    public void setStringProperty(Site site, String name, String value){
         try {
-            Site site = siteService.getSite(siteId);
             site.getProperties().addProperty(name, value);
+            System.out.println("Olha aí: " + name + ": " + value);
+            siteService.save(site);
         } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
             e.printStackTrace();
         }
     }
@@ -369,5 +420,39 @@ public class SakaiProxyImpl implements SakaiProxy {
     @Override
     public User getUser() {
         return userDirectoryService.getCurrentUser();
+    }
+
+    @Override
+    public List<User> getTeachers() {
+        List<User> allUsers = userDirectoryService.getUsers();
+        ArrayList<User> teachers = new ArrayList<User>();
+
+        for(User u : allUsers){
+            if(u.getType().equals("Professor")){
+                teachers.add(u);
+            }
+        }
+        return teachers;
+    }
+
+    @Override
+    public void saveSite(Site site) {
+        try {
+            siteService.save(site);
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Site getSite(String siteId) {
+        try {
+            return siteService.getSite(siteId);
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

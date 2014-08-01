@@ -13,7 +13,7 @@ import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
 
 public class ReadInWebClassManagementLogicImpl implements
-    ReadInWebClassManagementLogic {
+ReadInWebClassManagementLogic {
 
     private static final Logger log = Logger.getLogger(ReadInWebCourseLogic.class);
 
@@ -31,14 +31,13 @@ public class ReadInWebClassManagementLogicImpl implements
     }
 
     @Override
-    public boolean createClass(Course course, String siteId) {
+    public Site createClass(Course course, String siteId) {
         Site site = sakaiProxy.createSite(siteId);
         siteId = site.getId();
-        sakaiProxy.setCourseId(siteId, course.getId());
-        sakaiProxy.setJsonStringProperty(siteId, Property.COURSEDATA.getName(),
+        sakaiProxy.setCourseId(site, course.getId());
+        sakaiProxy.setStringProperty(site, Property.COURSEDATA.getName(),
                 common.getDefaultCoursePropertyString(course));
-
-        return true;
+        return site;
     }
 
     @Override
@@ -62,4 +61,23 @@ public class ReadInWebClassManagementLogicImpl implements
         return sakaiProxy.getManagerCourseId();
     }
 
+    @Override
+    public Course getCourse(Long managerCourseId) {
+        return common.getCourse(managerCourseId);
+    }
+
+    @Override
+    public List<User> getTeacherList() {
+        return sakaiProxy.getTeachers();
+    }
+
+    @Override
+    public void addProperty(Site site, String name, String value) {
+        sakaiProxy.setStringProperty(site, name, value);
+    }
+
+    @Override
+    public void saveSite(Site site) {
+        sakaiProxy.saveSite(site);
+    }
 }

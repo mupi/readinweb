@@ -15,7 +15,7 @@ import org.sakaiproject.user.api.User;
 
 public interface ReadInWebClassManagementLogic {
 
-    public boolean createClass(Course course, String siteId);
+    public Site createClass(Course course, String siteId);
 
     public boolean closeClass(String siteId);
 
@@ -24,5 +24,13 @@ public interface ReadInWebClassManagementLogic {
     public List<Site> getReadInWebClasses(Long course);
 
     public Long getManagerCourseId();
+
+    public Course getCourse(Long managerCourseId);
+
+    public List<User> getTeacherList();
+
+    public void addProperty(Site site, String name, String value);
+
+    public void saveSite(Site site);
 
 }

@@ -8,30 +8,26 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ViewRoot;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
-import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
+import br.unicamp.iel.tool.producers.ClassesProducer;
+import br.unicamp.iel.tool.producers.JustificationsProducer;
+import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
 
-public class CourseComponents {
+public class ManagerComponents {
 
     public static void loadMenu(ViewParameters viewparams, UIContainer tofill){
-        CourseViewParameters cvpLink;
-        Long exercise = 1L;
+        ClassesViewParameters cvp = new ClassesViewParameters();
+        cvp.viewID = ClassesProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "link_turmas", cvp);
 
-        // Checking view parameters
-        if(viewparams instanceof CourseViewParameters){
-            CourseViewParameters cvp =
-                    (CourseViewParameters) viewparams;
-
-            cvpLink = new CourseViewParameters(cvp.course,
-                    cvp.module, cvp.activity);
-        }
-        // Menu links
-//        cvpLink.viewID = AdminTextProducer.VIEW_ID;
-//        UIInternalLink.make(tofill, "linktext", cvpLink);
+        SimpleViewParameters svp = new SimpleViewParameters();
+        svp.viewID = JustificationsProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "link_justificativas", svp);
     }
 
     /**
@@ -65,9 +61,8 @@ public class CourseComponents {
             for(Activity a : activities){
                 UIBranchContainer row =
                         UIBranchContainer.make(ui_activities, "p-rowsAct:");
-                CourseViewParameters cvp =
-                        new CourseViewParameters(course.getId(), m.getId(),
-                                a.getId());
+                ClassesViewParameters cvp =
+                        new ClassesViewParameters();
                 cvp.viewID = viewID;
                 UIInternalLink.make(row, "input_link_a_",
                         a.getPosition() + " - " + a.getTitle(), cvp)

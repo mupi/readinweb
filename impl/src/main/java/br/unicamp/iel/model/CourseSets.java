@@ -1,5 +1,6 @@
 package br.unicamp.iel.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -32,9 +33,14 @@ public class CourseSets {
 
     public List<Module> getPublishedModules(ReadInWebDao dao,
             Long[] modules){
-        Search search = new Search("course.id", course.getId());
-        search.addRestriction(new Restriction("id", modules));
-        search.addOrder(new Order("position"));
-        return dao.findBySearch(Module.class, search);
+        if(modules.length <= 0){
+            return new ArrayList<Module>();
+        } else {
+            Search search = new Search("course.id", course.getId());
+            search.addRestriction(new Restriction("id", modules));
+            search.addOrder(new Order("position"));
+
+            return dao.findBySearch(Module.class, search);
+        }
     }
 }

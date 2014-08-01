@@ -4,11 +4,55 @@
 
 <beans>
   <bean id="AdminActivityBean" class="br.unicamp.iel.tool.AdminActivityBean">
-    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
   </bean>
 
-  <bean class="br.unicamp.iel.tool.producers.TurmasProducer" id="TurmasProducer">
-    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+  <bean id="CreateClassBean" class="br.unicamp.iel.tool.CreateClassBean">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
   </bean>
 
+  <bean class="br.unicamp.iel.tool.producers.ClassesProducer">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="userDirectoryService"
+      ref="org.sakaiproject.user.api.UserDirectoryService" />
+    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+    <property name="sessionManager" ref="org.sakaiproject.tool.api.SessionManager" />
+  </bean>
+
+  <bean class="br.unicamp.iel.tool.producers.ClassProducer">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="userDirectoryService"
+      ref="org.sakaiproject.user.api.UserDirectoryService" />
+    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+  </bean>
+
+  <bean class="br.unicamp.iel.tool.producers.CreateClassProducer">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="userDirectoryService"
+      ref="org.sakaiproject.user.api.UserDirectoryService" />
+    <property name="createClassBean" ref="CreateClassBean" />
+    <property name="destroyer" ref="resultsScope" />
+
+  </bean>
+
+  <bean class="br.unicamp.iel.tool.producers.JustificationsProducer">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="userDirectoryService"
+      ref="org.sakaiproject.user.api.UserDirectoryService" />
+    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+  </bean>
+
+  <bean class="br.unicamp.iel.tool.producers.JustificationProducer">
+    <property name="logic"
+      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+    <property name="userDirectoryService"
+      ref="org.sakaiproject.user.api.UserDirectoryService" />
+    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
+  </bean>
 </beans>

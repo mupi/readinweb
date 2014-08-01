@@ -15,6 +15,9 @@ import org.sakaiproject.user.api.User;
  */
 public interface SakaiProxy {
 
+    public final static String READINWEB_ACCESS = "readinweb.access";
+    public final static String READINWEB_MANAGE = "readinweb.manage";
+
     /**
      * Get current siteid
      * @return
@@ -78,7 +81,7 @@ public interface SakaiProxy {
 
     public Long getManagerCourseId();
 
-    public void setCourseId(String siteId, Long id);
+    public void setCourseId(Site site, Long id);
 
     public Site createSite(String siteId);
 
@@ -86,11 +89,11 @@ public interface SakaiProxy {
 
     public void setJsonUserStringProperty(String userId, String name, String value);
 
-    public String getJsonStringProperty(String siteId, String property);
+    public String getStringProperty(String siteId, String property);
 
-    public void setJsonStringProperty(String siteId, String property, String value);
+    public void setStringProperty(Site site, String property, String value);
 
-    public void setJoinable(String siteId);
+    public void setJoinable(Site site, Boolean joinable);
 
     public void archiveSite(String siteId);
 
@@ -101,4 +104,10 @@ public interface SakaiProxy {
     public User getUser();
 
     public Integer countUsers(String siteId);
+
+    public List<User> getTeachers();
+
+    public void saveSite(Site site);
+
+    public Site getSite(String siteId);
 }

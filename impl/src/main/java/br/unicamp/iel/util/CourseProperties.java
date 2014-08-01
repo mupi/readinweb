@@ -15,6 +15,8 @@ public class CourseProperties {
     }
 
     public Long[] getPublishedModulesIds(){
+        System.out.println("Published Modules: ");
+        System.out.println(courseProperties.toString());
         JsonObject modules = courseProperties.get("modules").asObject();
         ArrayList<Long> ids = new ArrayList<Long>();
 
@@ -23,6 +25,7 @@ public class CourseProperties {
             Member m = it.next();
             JsonObject module = m.getValue().asObject();
             if(module.get("status").asBoolean()){
+                System.out.println("Module published: " + module.get("status"));
                 ids.add(Long.parseLong(m.getName()));
             }
         }

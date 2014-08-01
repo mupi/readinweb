@@ -53,29 +53,32 @@
                 <h1>Turmas ativas do curso Read in Web</h1>
             </header>
             <p>
-                <button type="submit" class="btn btn-default" rsf:id="send_message">
+                <a class="btn btn-default" rsf:id="link_only_mine">
                     <i class="fa fa-eye"></i> Ver apenas minhas turmas
-                </button>
+                </a>
+                <a class="btn btn-danger" rsf:id="link_create_class">
+                    <i class="fa fa-folder-open"></i> Criar nova turma
+                </a>
             </p>
-            <table class="table table-striped" rsf:id="riw-classes">
+            <table class="table table-striped" rsf:id="riw_classes:">
                 <tr>
                     <th>Turma</th>
                     <th>Alunos matriculados</th>
                     <th>Justificativas pendentes</th>
                     <th>Professor responsável</th>
                 </tr>
-                <tr rsf:id="riw-class">
-                    <td><a href="#">LA122 A</a></td>
-                    <td><a href="#">31</a></td>
-                    <td><a href="#justificativas">4</a></td>
-                    <td>Lucia</td>
+                <tr rsf:id="riw_class:">
+                    <td><a rsf:id="riw_class_title" href="#">LA122 A</a></td>
+                    <td><a rsf:id="riw_class_students" href="#">31</a></td>
+                    <td><a rsf:id="riw_class_justifications" href="#justificativas">4</a></td>
+                    <td rsf:id="riw_class_teacher">Lucia</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/css">
             jQuery(document).ready(function(){console.log("alive");)})
         </script>

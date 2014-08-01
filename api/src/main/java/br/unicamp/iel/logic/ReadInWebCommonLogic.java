@@ -104,4 +104,8 @@ public interface ReadInWebCommonLogic {
 
     public void unblockUser(String siteId, String userId);
 
+    public Long getUserBlockingDate(String siteId, String userId);
+
+    public Long getRemissionTime(String siteId);
+
 }

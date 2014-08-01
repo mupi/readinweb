@@ -54,6 +54,14 @@ public class UserProperties {
         status.set("date", (String) null);
     }
 
+
+    public Long getBlockingDate(String siteId) {
+        JsonObject status = userProperties.get("sites").asObject()
+                .get(siteId).asObject()
+                .get("status").asObject();
+        return status.get("date").asLong();
+    }
+
     @Override
     public String toString() {
         return userProperties.toString();

@@ -4,6 +4,8 @@ import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.site.api.SiteService;
+import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -16,14 +18,20 @@ import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
  * @author Virgilio Santos
  *
  */
-public class JustificativasProducer implements ViewComponentProducer {
+public class JustificationProducer implements ViewComponentProducer {
 
-    private static Log logger = LogFactory.getLog(JustificativasProducer.class);
+    private static Log logger = LogFactory.getLog(JustificationProducer.class);
 
     @Setter
     private ReadInWebClassManagementLogic logic;
 
-    public static final String VIEW_ID = "turmas";
+    @Setter
+    private UserDirectoryService userDirectoryService;
+
+    @Setter
+    private SiteService siteService;
+
+    public static final String VIEW_ID = "justificativa";
 
     @Override
     public String getViewID() {

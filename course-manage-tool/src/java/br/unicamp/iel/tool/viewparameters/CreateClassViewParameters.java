@@ -4,21 +4,21 @@ import lombok.AllArgsConstructor;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
 @AllArgsConstructor
-public class CourseViewParameters extends SimpleViewParameters {
+public class CreateClassViewParameters extends SimpleViewParameters {
     public Long course;
     public Long module;
     public Long activity;
     public Long question;
     public Long exercise;
 
-    public CourseViewParameters(){}
+    public CreateClassViewParameters(){}
 
-    public CourseViewParameters(String viewID){
+    public CreateClassViewParameters(String viewID){
         super();
         this.viewID = viewID;
     }
 
-    public CourseViewParameters(Long course, Long module, Long activity) {
+    public CreateClassViewParameters(Long course, Long module, Long activity) {
         super();
         this.course = course;
         this.module = module;

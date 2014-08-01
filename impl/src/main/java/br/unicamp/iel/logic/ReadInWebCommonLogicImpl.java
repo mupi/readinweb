@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.apache.log4j.Logger;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
+import org.sakaiproject.site.api.Site;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
@@ -269,13 +270,14 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public String getCoursePropertyString(String siteId) {
-        return sakaiProxy.getJsonStringProperty(siteId,
+        return sakaiProxy.getStringProperty(siteId,
                 Property.COURSEDATA.getName());
     }
 
     @Override
     public void setCoursePropertyString(String siteId, String value) {
-        sakaiProxy.setJsonStringProperty(siteId,
+        Site site = sakaiProxy.getSite(siteId);
+        sakaiProxy.setStringProperty(site,
                 Property.COURSEDATA.getName(), value);
     }
 
@@ -318,8 +320,10 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
                         .readFrom(getCoursePropertyString(siteId)));
         CourseSets cs = new CourseSets(course);
 
-        return new ArrayList<Module>(cs.getPublishedModules(dao,
+        ArrayList<Module> modules = new ArrayList<Module>(cs.getPublishedModules(dao,
                 courseProperties.getPublishedModulesIds()));
+
+        return modules;
     }
 
     @Override
@@ -338,6 +342,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
             } else {
                 userProperties.addUserData(siteId,
                         getDefaultUserPropertyString());
+
+                setUserPropertyString(userId, userProperties.toString());
                 return false;
             }
         }
@@ -373,5 +379,22 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
         userProperties.cleanExpireDate(siteId);
         setUserPropertyString(userId, userProperties.toString());
+    }
+
+    @Override
+    public Long getUserBlockingDate(String siteId, String userId) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(userId)));
+
+        return userProperties.getBlockingDate(siteId);
+    }
+
+    @Override
+    public Long getRemissionTime(String siteId) {
+        Long weeks = Long.valueOf(sakaiProxy.getStringProperty(siteId,
+                Property.COURSEREMISSIONTIME.getName()));
+
+        return new Long(weeks*7*24*60*60*1000);
     }
 }
