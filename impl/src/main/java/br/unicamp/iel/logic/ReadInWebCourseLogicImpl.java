@@ -1,6 +1,5 @@
 package br.unicamp.iel.logic;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +27,6 @@ import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.ControlTypes;
 import br.unicamp.iel.model.Strategy;
-import br.unicamp.iel.util.CourseProperties;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
