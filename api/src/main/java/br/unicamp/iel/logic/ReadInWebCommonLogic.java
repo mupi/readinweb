@@ -8,6 +8,9 @@ package br.unicamp.iel.logic;
 
 import java.util.List;
 
+import org.sakaiproject.site.api.Site;
+import org.sakaiproject.user.api.User;
+
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
@@ -82,7 +85,7 @@ public interface ReadInWebCommonLogic {
 
     public String userPropertySkelString(String siteId);
 
-    public String getCoursePropertyString(String siteId);
+    public String getCoursePropertyString(Site site);
 
     public void setCoursePropertyString(String siteId, String value);
 
@@ -96,7 +99,7 @@ public interface ReadInWebCommonLogic {
 
     public Long[] getAllPublishedActivities(String siteId);
 
-    public boolean isUserBLocked(String siteId, String userId);
+    public boolean isUserBLocked(User user, Site site);
 
     public void blockUser(String siteId, String userId);
 
@@ -107,5 +110,11 @@ public interface ReadInWebCommonLogic {
     public Long getUserBlockingDate(String siteId, String userId);
 
     public Long getRemissionTime(String siteId);
+
+    public boolean isModulePublished(Site riwClass, Long module);
+
+    public boolean isActivityPublished(Site riwClass, Long module, Long activity);
+
+    public Integer getUserBlocks(User user, String siteId);
 
 }

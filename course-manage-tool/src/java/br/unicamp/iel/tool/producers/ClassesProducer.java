@@ -86,11 +86,11 @@ ViewParamsReporter, DefaultView {
         UIBranchContainer riw_classes = UIBranchContainer.make(tofill,
                 "riw_classes:");
 
-        ClassViewParameters riwClassParams =
-                new ClassViewParameters(ClassProducer.VIEW_ID);
+        ClassViewParameters riwClassParams = new ClassViewParameters();
 
         for(Site s : riwClasses) {
             riwClassParams.siteId = s.getId();
+            riwClassParams.viewID = ClassProducer.VIEW_ID;
             ArrayList<User> users =
                     new ArrayList<User>(logic.getUsers(s.getId()));
 

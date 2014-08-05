@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 import org.sakaiproject.site.api.Site;
+import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
@@ -269,8 +270,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public String getCoursePropertyString(String siteId) {
-        return sakaiProxy.getStringProperty(siteId,
+    public String getCoursePropertyString(Site site) {
+        return sakaiProxy.getStringProperty(site,
                 Property.COURSEDATA.getName());
     }
 
@@ -297,7 +298,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     public Long[] getAllPublishedActivities(String siteId) {
         CourseProperties courseProperties =
                 new CourseProperties(JsonObject
-                        .readFrom(getCoursePropertyString(siteId)));
+                        .readFrom(getCoursePropertyString(
+                                sakaiProxy.getSite(siteId))));
         return courseProperties.getAllPublishedActivities();
     }
 
@@ -306,7 +308,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     public List<Activity> getPublishedActivities(String siteId, Module module) {
         CourseProperties courseProperties =
                 new CourseProperties(JsonObject
-                        .readFrom(getCoursePropertyString(siteId)));
+                        .readFrom(getCoursePropertyString(
+                                sakaiProxy.getSite(siteId))));
         ModuleSets ms = new ModuleSets(module);
 
         return new ArrayList<Activity>(ms.getPublishedActivies(dao,
@@ -317,7 +320,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     public List<Module> getPublishedModules(String siteId, Course course) {
         CourseProperties courseProperties =
                 new CourseProperties(JsonObject
-                        .readFrom(getCoursePropertyString(siteId)));
+                        .readFrom(getCoursePropertyString(
+                                sakaiProxy.getSite(siteId))));
         CourseSets cs = new CourseSets(course);
 
         ArrayList<Module> modules = new ArrayList<Module>(cs.getPublishedModules(dao,
@@ -327,23 +331,24 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public boolean isUserBLocked(String siteId, String userId) {
-        String properties = getUserPropertyString(userId);
+    public boolean isUserBLocked(User user, Site site) {
+        // FIXME get site and user and not the ids
+        String properties = getUserPropertyString(user.getId());
         if(properties == null){
-            String value = userPropertySkelString(siteId);
-            setUserPropertyString(userId, value);
+            String value = userPropertySkelString(site.getId());
+            setUserPropertyString(user.getId(), value);
             return false;
         } else {
             UserProperties userProperties =
                     new UserProperties(JsonObject
                             .readFrom(properties));
-            if(userProperties.hasUserData(siteId)){
-                return userProperties.isUserBlocked(siteId);
+            if(userProperties.hasUserData(site.getId())){
+                return userProperties.isUserBlocked(site.getId());
             } else {
-                userProperties.addUserData(siteId,
+                userProperties.addUserData(site.getId(),
                         getDefaultUserPropertyString());
 
-                setUserPropertyString(userId, userProperties.toString());
+                setUserPropertyString(user.getId(), userProperties.toString());
                 return false;
             }
         }
@@ -392,9 +397,37 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public Long getRemissionTime(String siteId) {
-        Long weeks = Long.valueOf(sakaiProxy.getStringProperty(siteId,
+        Long weeks = Long.valueOf(sakaiProxy.getStringProperty(
+                sakaiProxy.getSite(siteId),
                 Property.COURSEREMISSIONTIME.getName()));
 
         return new Long(weeks*7*24*60*60*1000);
     }
+
+    @Override
+    public boolean isActivityPublished(Site riwClass, Long module, Long activity) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(riwClass)));
+        return courseProperties.isActivityPublished(module, activity);
+    }
+
+    @Override
+    public boolean isModulePublished(Site riwClass, Long module) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(riwClass)));
+        return courseProperties.isModulePublished(module);
+    }
+
+    @Override
+    public Integer getUserBlocks(User user, String siteId) {
+        // FIXME Pass user, not userId, any entity should be queried just once
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(user.getId())));
+
+        return userProperties.getNumBlocks(siteId);
+    }
+
 }

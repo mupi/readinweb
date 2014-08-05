@@ -67,4 +67,11 @@ public class UserProperties {
     public String toString() {
         return userProperties.toString();
     }
+
+    public Integer getNumBlocks(String siteId) {
+        JsonObject status = userProperties.get("sites").asObject()
+                .get(siteId).asObject()
+                .get("status").asObject();
+        return status.get("blocks").asInt();
+    }
 }

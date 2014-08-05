@@ -356,14 +356,8 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public String getStringProperty(String siteId, String property){
-        try {
-            Site site = siteService.getSite(siteId);
-            return site.getProperties().getProperty(property);
-        } catch (IdUnusedException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public String getStringProperty(Site site, String property){
+        return site.getProperties().getProperty(property);
     }
 
     @Override
@@ -466,6 +460,17 @@ public class SakaiProxyImpl implements SakaiProxy {
     public Site getSite(String siteId) {
         try {
             return siteService.getSite(siteId);
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Site getCurrentSite() {
+        try {
+            return siteService.getSite(
+                    toolManager.getCurrentPlacement().getContext());
         } catch (IdUnusedException e) {
             e.printStackTrace();
         }

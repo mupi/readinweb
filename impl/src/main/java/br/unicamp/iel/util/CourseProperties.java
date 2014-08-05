@@ -103,4 +103,24 @@ public class CourseProperties {
         //   Senão, morre (modulo vazio)
         // Se não tiver morre (acabou atividades)
     }
+
+    public boolean isActivityPublished(Long module, Long activity) {
+        JsonObject j_activity = courseProperties
+                .get("modules").asObject()
+                .get(Long.toString(module)).asObject()
+                .get("activities").asObject()
+                .get(Long.toString(activity)).asObject();
+
+        return j_activity.get("status").asBoolean();
+    }
+
+    public boolean isModulePublished(Long module) {
+        JsonObject j_module = courseProperties
+                .get("modules").asObject()
+                .get(Long.toString(module)).asObject();
+
+        return j_module.get("status").asBoolean();
+    }
+
+
 }

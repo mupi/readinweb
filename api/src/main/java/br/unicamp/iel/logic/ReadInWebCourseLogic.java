@@ -8,6 +8,7 @@ package br.unicamp.iel.logic;
 
 import java.util.List;
 
+import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.model.Activity;
@@ -113,6 +114,8 @@ public interface ReadInWebCourseLogic {
     public boolean hasSentExplanation();
 
     public void unblockUser();
+
+    public Site getCurrentSite();
 
 
     /**

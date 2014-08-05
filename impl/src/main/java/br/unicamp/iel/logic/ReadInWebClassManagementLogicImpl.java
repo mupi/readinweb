@@ -94,27 +94,32 @@ ReadInWebClassManagementLogic {
     }
 
     @Override
-    public List<Activity> getActivities(Long module) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Activity> getActivities(Module module) {
+        return common.getActivities(module);
     }
 
     @Override
-    public List<Module> getModules(Long course) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Module> getModules(Course course) {
+        return common.getModules(course);
     }
 
     @Override
     public boolean isModulePublished(Site riwClass, Long module) {
-        // TODO Auto-generated method stub
-        return false;
+        return common.isModulePublished(riwClass, module);
     }
 
     @Override
-    public boolean isPublished(Site riwClass, Long module, Long activity) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean isActivityPublished(Site riwClass, Long module, Long activity) {
+        return common.isActivityPublished(riwClass, module, activity);
     }
 
+    @Override
+    public Integer getUserBlocks(User user, String siteId) {
+        return common.getUserBlocks(user, siteId);
+    }
+
+    @Override
+    public boolean isUserBlocked(User user, Site riwClass) {
+        return common.isUserBLocked(user, riwClass);
+    }
 }

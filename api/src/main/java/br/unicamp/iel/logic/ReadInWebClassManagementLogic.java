@@ -40,12 +40,16 @@ public interface ReadInWebClassManagementLogic {
 
     public List<User> getStudents(Site riwClass);
 
-    public List<Module> getModules(Long course);
+    public List<Module> getModules(Course course);
 
     public boolean isModulePublished(Site riwClass, Long module);
 
-    public List<Activity> getActivities(Long module);
+    public List<Activity> getActivities(Module module);
 
-    public boolean isPublished(Site riwClass, Long module, Long activity);
+    public boolean isActivityPublished(Site riwClass, Long module, Long activity);
+
+    public Integer getUserBlocks(User user, String siteId);
+
+    public boolean isUserBlocked(User user, Site riwClass);
 
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.apache.log4j.Logger;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
+import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
@@ -280,31 +281,31 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public boolean blockUser() {
-        String userId = getUserId();
-        String siteId = getCurrentSiteId();
+        User user = getUser();
+        Site site = getCurrentSite();
         boolean expired = true;
 
-        if(common.isUserBLocked(siteId, userId)) {
+        if(common.isUserBLocked(user, site)) {
             return true; // A propriedade já existe
         } else {
-            Long blockedAt = common.getUserBlockingDate(siteId, userId);
-            Long remissionTime = common.getRemissionTime(siteId);
+            Long blockedAt = common.getUserBlockingDate(site.getId(), user.getId());
+            Long remissionTime = common.getRemissionTime(site.getId());
             Long today = System.currentTimeMillis();
             if(blockedAt != null && remissionTime != null){
                 expired = (today - blockedAt) > remissionTime;
             }
         }
-        Long[] ids = common.getAllPublishedActivities(siteId);
+        Long[] ids = common.getAllPublishedActivities(site.getId());
         Long published = new Long(ids.length);
         Search s = new Search(
                 new Restriction[] {
-                        new Restriction("user", userId),
+                        new Restriction("user", user.getId()),
                         new Restriction("activity.id", ids),
                 });
 
         Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
         if((published - started) > 5 && expired) {
-            common.blockUser(siteId, userId);
+            common.blockUser(site.getId(), user.getId());
             return true;
         }
 
@@ -313,15 +314,20 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         Long finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
         if((published - finished) > 5
                 && expired){
-            common.blockUser(siteId, userId);
+            common.blockUser(site.getId(), user.getId());
             return true;
         }
 
         if(expired){
-            common.cleanExpireDate(siteId, userId);
+            common.cleanExpireDate(site.getId(), user.getId());
         }
 
         return false;
+    }
+
+    @Override
+    public Site getCurrentSite() {
+        return sakaiProxy.getCurrentSite();
     }
 
     @Override

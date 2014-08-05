@@ -90,7 +90,7 @@ public interface SakaiProxy {
 
     public void setJsonUserStringProperty(String userId, String name, String value);
 
-    public String getStringProperty(String siteId, String property);
+    public String getStringProperty(Site site, String property);
 
     public void setStringProperty(Site site, String property, String value);
 
@@ -113,5 +113,7 @@ public interface SakaiProxy {
     public void saveSite(Site site);
 
     public Site getSite(String siteId);
+
+    public Site getCurrentSite();
 
  }
