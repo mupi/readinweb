@@ -50,6 +50,7 @@ public class PreloadDataImpl {
         } else {
             log.error("Preloading failed");
         }
+        loadCSVData();
     }
 
     /**
