@@ -1,6 +1,7 @@
 package br.unicamp.iel.util;
 
 import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 
 public class UserProperties {
     private JsonObject userProperties;
@@ -59,7 +60,7 @@ public class UserProperties {
         JsonObject status = userProperties.get("sites").asObject()
                 .get(siteId).asObject()
                 .get("status").asObject();
-        return status.get("date").asLong();
+        return status.get("date").isNull() ? null : status.get("date").asLong();
     }
 
     @Override

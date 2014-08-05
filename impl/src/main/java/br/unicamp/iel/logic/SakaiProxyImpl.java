@@ -408,6 +408,22 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
+    public List<User> getSiteStudents(Site site) {
+        List<User> users = new ArrayList<User>();
+        try {
+            List<String> usersIds =
+                    new ArrayList<String>(site.getUsersHasRole("Student"));
+            for(String user : usersIds){
+                users.add(userDirectoryService.getUser(user));
+            }
+        } catch (UserNotDefinedException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
+    @Override
     public Integer countUsers(String siteId){
         try {
             return siteService.getSite(siteId).getUsers().size();

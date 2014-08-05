@@ -91,7 +91,7 @@
         <value>br.unicamp.iel.model.Exercise</value>
         <value>br.unicamp.iel.model.Strategy</value>
         <value>br.unicamp.iel.model.Question</value>
-        <value>br.unicamp.iel.model.Answer</value>
+        <value>br.unicamp.iel.model.ReadInWebAnswer</value>
         <value>br.unicamp.iel.model.DictionaryWord</value>
         <value>br.unicamp.iel.model.Justification</value>
         <value>br.unicamp.iel.model.JustificationMessage</value>

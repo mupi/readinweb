@@ -14,7 +14,7 @@ import org.sakaiproject.site.api.Site;
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ActivitySets;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.CourseSets;
 import br.unicamp.iel.model.DictionaryWord;
@@ -107,15 +107,15 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public Answer getStudentAnswer(Long question) {
-        Answer answer = dao.findOneBySearch(Answer.class,
+    public ReadInWebAnswer getStudentAnswer(Long question) {
+        ReadInWebAnswer answer = dao.findOneBySearch(ReadInWebAnswer.class,
                 new Search(new Restriction[]{
                         new Restriction("question.id", question),
                         new Restriction("user", getUserId()),
                 }));
 
         if(answer == null)
-            return new Answer();
+            return new ReadInWebAnswer();
         else
             return answer;
     }
@@ -126,7 +126,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
                 new Restriction("question.id", ids),
                 new Restriction("user", user)
         };
-        return dao.countBySearch(Answer.class, new Search(r));
+        return dao.countBySearch(ReadInWebAnswer.class, new Search(r));
     }
 
     @Override

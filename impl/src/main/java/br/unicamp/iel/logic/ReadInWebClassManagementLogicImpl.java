@@ -9,7 +9,9 @@ import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
+import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Property;
 
 public class ReadInWebClassManagementLogicImpl implements
@@ -80,4 +82,39 @@ ReadInWebClassManagementLogic {
     public void saveSite(Site site) {
         sakaiProxy.saveSite(site);
     }
+
+    @Override
+    public Site getReadInWebClass(String siteId) {
+        return sakaiProxy.getSite(siteId);
+    }
+
+    @Override
+    public List<User> getStudents(Site riwClass) {
+        return sakaiProxy.getSiteStudents(riwClass);
+    }
+
+    @Override
+    public List<Activity> getActivities(Long module) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Module> getModules(Long course) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isModulePublished(Site riwClass, Long module) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean isPublished(Site riwClass, Long module, Long activity) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

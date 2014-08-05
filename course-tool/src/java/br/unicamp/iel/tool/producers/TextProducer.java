@@ -26,7 +26,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.FunctionalWord;
@@ -175,7 +175,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
             ui_question.updateFullID("question_to_" + q.getId());
             ui_question.setValue(Long.toString(q.getId()));
 
-            Answer a = logic.getAnswerByQuestionAndUser(q.getId());
+            ReadInWebAnswer a = logic.getAnswerByQuestionAndUser(q.getId());
             UIInput ui_answer = UIInput.make(answer_form, "answer",
                     "AnswerAjaxBean.answer");
             ui_answer.updateFullID("answer_to_" + q.getId());

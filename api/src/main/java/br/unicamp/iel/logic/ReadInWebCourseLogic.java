@@ -11,7 +11,7 @@ import java.util.List;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
@@ -38,7 +38,7 @@ public interface ReadInWebCourseLogic {
 
     public Question getQuestion(Long question);
 
-    public Answer getStudentAnswer(Long question);
+    public ReadInWebAnswer getStudentAnswer(Long question);
 
     public List<Course> getCourses();
 
@@ -80,13 +80,13 @@ public interface ReadInWebCourseLogic {
      *
      */
 
-    public Answer getAnswer(Long answer);
+    public ReadInWebAnswer getAnswer(Long answer);
 
-    public boolean updateAnswer(Answer answer);
+    public boolean updateAnswer(ReadInWebAnswer answer);
 
-    public void saveAnswer(Answer anwser);
+    public void saveAnswer(ReadInWebAnswer anwser);
 
-    public Answer getAnswerByQuestionAndUser(Long question);
+    public ReadInWebAnswer getAnswerByQuestionAndUser(Long question);
 
     public void registerTextRead(Long activity);
 

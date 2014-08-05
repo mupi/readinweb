@@ -1,8 +1,11 @@
 
 package br.unicamp.iel.logic;
 
+import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.Module;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sakaiproject.site.api.Site;
@@ -32,5 +35,17 @@ public interface ReadInWebClassManagementLogic {
     public void addProperty(Site site, String name, String value);
 
     public void saveSite(Site site);
+
+    public Site getReadInWebClass(String siteId);
+
+    public List<User> getStudents(Site riwClass);
+
+    public List<Module> getModules(Long course);
+
+    public boolean isModulePublished(Site riwClass, Long module);
+
+    public List<Activity> getActivities(Long module);
+
+    public boolean isPublished(Site riwClass, Long module, Long activity);
 
 }

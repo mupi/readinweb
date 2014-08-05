@@ -1,5 +1,6 @@
 package br.unicamp.iel.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sakaiproject.authz.api.Role;
@@ -101,6 +102,8 @@ public interface SakaiProxy {
 
     public List<User> getSiteUsers(String siteId);
 
+    public List<User> getSiteStudents(Site site);
+
     public User getUser();
 
     public Integer countUsers(String siteId);
@@ -110,4 +113,5 @@ public interface SakaiProxy {
     public void saveSite(Site site);
 
     public Site getSite(String siteId);
-}
+
+ }

@@ -3,6 +3,7 @@ package br.unicamp.iel.tool.producers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import org.sakaiproject.site.api.SiteService.SortType;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
+import org.sakaiproject.user.api.UserNotDefinedException;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -29,16 +31,18 @@ import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.tool.commons.ManagerComponents;
+import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
 import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
+import br.unicamp.iel.tool.viewparameters.JustificationViewParameters;
 
 /**
-  *
+ *
  * @author Virgilio Santos
  *
  */
 
 public class ClassesProducer implements ViewComponentProducer,
-    ViewParamsReporter, DefaultView {
+ViewParamsReporter, DefaultView {
 
     private static Log logger = LogFactory.getLog(ClassesProducer.class);
 
@@ -78,36 +82,47 @@ public class ClassesProducer implements ViewComponentProducer,
 
 
         ArrayList<Site> riwClasses = getReadInWebClasses(course);
-        System.out.println(riwClasses.size());
 
-        UIBranchContainer riw_classes = UIBranchContainer.make(tofill, "riw_classes:");
+        UIBranchContainer riw_classes = UIBranchContainer.make(tofill,
+                "riw_classes:");
+
+        ClassViewParameters riwClassParams =
+                new ClassViewParameters(ClassProducer.VIEW_ID);
+
         for(Site s : riwClasses) {
+            riwClassParams.siteId = s.getId();
             ArrayList<User> users =
                     new ArrayList<User>(logic.getUsers(s.getId()));
+
             UIBranchContainer riw_class =
                     UIBranchContainer.make(riw_classes, "riw_class:");
 
             UIInternalLink.make(riw_class, "riw_class_title", s.getTitle(),
-                    viewparams); // FIXME
+                    riwClassParams); // FIXME
             UIInternalLink.make(riw_class, "riw_class_students",
                     Integer.toString(users.size()),
-                    viewparams); // FIXME
+                    riwClassParams); // FIXME
+
+            riwClassParams.viewID = JustificationsProducer.VIEW_ID;
             UIInternalLink.make(riw_class, "riw_class_justifications",
                     "Show justification count for " + s.getId(),
-                    //logic.countJustifications(s.getId()), //FIXME
-                    viewparams); // FIXME
+                    // logic.countJustifications(s.getId()), //FIXME
+                    riwClassParams); // FIXME
 
-            UIInternalLink.make(riw_class, "riw_class_teacher",
-                    s.getCreatedBy().getDisplayName(),
-                    viewparams); // FIXME
-//            <tr rsf:id="riw_class:">
-//              <td><a rsf:id="riw_class_title" href="#">LA122 A</a></td>
-//              <td><a rsf:id="riw_class_students" href="#">31</a></td>
-//              <td><a rsf:id="riw_class_justifications" href="#justificativas">4</a></td>
-//              <td rsf:id="riw_class_teacher">Lucia</td>
-//            </tr>
+            try {
+                User teacher = getTeacher((new ArrayList<String>(
+                        s.getUsersHasRole("Instructor"))).get(0));
+
+                if(teacher != null){
+                    UIInternalLink.make(riw_class, "riw_class_teacher",
+                            teacher.getDisplayName(), viewparams);
+                }
+            } catch (IndexOutOfBoundsException e){
+                UIInternalLink.make(riw_class, "riw_class_teacher",
+                        "-", viewparams);
+
+            }
         }
-
     }
 
     @Override
@@ -115,13 +130,22 @@ public class ClassesProducer implements ViewComponentProducer,
         return new ClassesViewParameters();
     }
 
-    public ArrayList<Site> getReadInWebClasses(Long course){
+    public ArrayList<Site> getReadInWebClasses(Long course){ // ManagementLogic
         Map<String, String> m = new HashMap<String, String>();
         m.put(Property.COURSE.getName(), Long.toString(course));
-        System.out.println(Property.COURSE.getName() + " : " + course);
+
         return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
-                        null, "", m, SortType.CREATED_BY_ASC,
-                        new PagingPosition()));
+                null, null, m, SortType.CREATED_BY_ASC,
+                null));
+    }
+
+    public User getTeacher(String teacherId){ // CommonLogic
+        try {
+            return userDirectoryService.getUser(teacherId);
+        } catch (UserNotDefinedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public String getUserId(){

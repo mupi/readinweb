@@ -14,7 +14,7 @@ import org.sakaiproject.user.api.User;
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.ActivitySets;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.CourseSets;
 import br.unicamp.iel.model.DictionaryWord;
@@ -74,7 +74,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public Answer getStudentAnswer(Long question) {
+    public ReadInWebAnswer getStudentAnswer(Long question) {
         return common.getStudentAnswer(question);
     }
 
@@ -167,12 +167,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
      */
 
     @Override
-    public Answer getAnswer(Long answer) {
-        return dao.findById(Answer.class, answer);
+    public ReadInWebAnswer getAnswer(Long answer) {
+        return dao.findById(ReadInWebAnswer.class, answer);
     }
 
     @Override
-    public boolean updateAnswer(Answer answer) {
+    public boolean updateAnswer(ReadInWebAnswer answer) {
         try {
             dao.save(answer);
             return true;
@@ -182,17 +182,17 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public void saveAnswer(Answer a) {
+    public void saveAnswer(ReadInWebAnswer a) {
         dao.create(a);
     }
 
     @Override
-    public Answer getAnswerByQuestionAndUser(Long question) {
+    public ReadInWebAnswer getAnswerByQuestionAndUser(Long question) {
         Restriction[] r = new Restriction[]{
                 new Restriction("question.id", question),
                 new Restriction("user", this.getUserId())
         };
-        return dao.findOneBySearch(Answer.class, new Search(r));
+        return dao.findOneBySearch(ReadInWebAnswer.class, new Search(r));
     }
 
     private void registerControl(Long activity, ControlTypes control){

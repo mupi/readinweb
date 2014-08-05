@@ -65,11 +65,11 @@ public class ActivitySets {
         return dao.findOneBySearch(ReadInWebControl.class, new Search(r));
     }
 
-    public List<Answer> getUserAnswers(ReadInWebDao dao, String user){
+    public List<ReadInWebAnswer> getUserAnswers(ReadInWebDao dao, String user){
         Restriction[] r = new Restriction[]{
                 new Restriction("activity.id", activity.getId()),
                 new Restriction("user", user)
         };
-        return dao.findBySearch(Answer.class, new Search(r));
+        return dao.findBySearch(ReadInWebAnswer.class, new Search(r));
     }
 }

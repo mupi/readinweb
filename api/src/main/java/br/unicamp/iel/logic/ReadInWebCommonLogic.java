@@ -9,7 +9,7 @@ package br.unicamp.iel.logic;
 import java.util.List;
 
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
@@ -40,7 +40,7 @@ public interface ReadInWebCommonLogic {
 
     public Long countUserAnswers(String user, Long[] ids);
 
-    public Answer getStudentAnswer(Long question);
+    public ReadInWebAnswer getStudentAnswer(Long question);
 
     public List<Course> getCourses();
 

@@ -3,7 +3,7 @@ package br.unicamp.iel.tool;
 import lombok.Data;
 import uk.org.ponder.rsf.state.scope.BeanDestroyer;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 
 @Data
 public class AnswerAjaxBean {
@@ -22,11 +22,11 @@ public class AnswerAjaxBean {
 
     public void saveUserAnswer(){
         try {
-            Answer uAnswer;
+            ReadInWebAnswer uAnswer;
             uAnswer = logic.getAnswerByQuestionAndUser(question);
 
             if(uAnswer == null) { // id will be created at update
-                uAnswer = new Answer();
+                uAnswer = new ReadInWebAnswer();
                 uAnswer.setQuestion(logic.getQuestion(question));
                 uAnswer.setUser(logic.getUserId());
             }

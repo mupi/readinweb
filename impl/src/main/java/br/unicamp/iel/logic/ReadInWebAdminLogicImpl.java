@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import lombok.Setter;
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Answer;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
@@ -66,7 +66,7 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     }
 
     @Override
-    public Answer getStudentAnswer(Long question) {
+    public ReadInWebAnswer getStudentAnswer(Long question) {
         return common.getStudentAnswer(question);
     }
 
