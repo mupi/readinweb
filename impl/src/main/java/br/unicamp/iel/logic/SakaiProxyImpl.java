@@ -438,7 +438,7 @@ public class SakaiProxyImpl implements SakaiProxy {
         ArrayList<User> teachers = new ArrayList<User>();
 
         for(User u : allUsers){
-            if(u.getType().equals("Professor")){
+            if(u.getType() != null && u.getType().equals("Instructor")){
                 teachers.add(u);
             }
         }
