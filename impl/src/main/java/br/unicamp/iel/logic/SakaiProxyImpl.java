@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,8 @@ import org.sakaiproject.authz.api.SecurityService;
 import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
 import org.sakaiproject.entity.api.EntityPropertyTypeException;
+import org.sakaiproject.entity.api.ResourceProperties;
+import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.event.api.EventTrackingService;
 import org.sakaiproject.exception.IdInvalidException;
 import org.sakaiproject.exception.IdUnusedException;
@@ -30,11 +33,13 @@ import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.site.api.SiteService;
+import org.sakaiproject.site.api.ToolConfiguration;
 import org.sakaiproject.site.api.SiteService.SelectionType;
 import org.sakaiproject.site.api.SiteService.SortType;
 import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
+import org.sakaiproject.tool.api.ToolSession;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserAlreadyDefinedException;
 import org.sakaiproject.user.api.UserDirectoryService;
@@ -42,13 +47,16 @@ import org.sakaiproject.user.api.UserEdit;
 import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
+import org.sakaiproject.util.SakaiProperties;
+import org.sakaiproject.util.SiteEmailNotification;
 
+import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
 
 /**
  * Implementation of {@link SakaiProxy}
  *
- * @author Steve Swinsburg (steve.swinsburg@anu.edu.au)
+ * @author Virgilio N Santos
  *
  */
 public class SakaiProxyImpl implements SakaiProxy {
@@ -190,19 +198,60 @@ public class SakaiProxyImpl implements SakaiProxy {
     @Override
     public Long getManagerCourseId() {
         try {
-            Site site = siteService.getSite(
-                    toolManager.getCurrentPlacement().getContext());
-            return site.getProperties()
-                    .getLongProperty(Property.COURSEMANAGED.getName());
+            ToolSession ts = sessionManager.getCurrentToolSession();
+            if(ts != null){
+                ToolConfiguration tc =
+                        siteService.findTool(ts.getPlacementId());
+                if(tc != null){
+                    SitePage sp = tc.getContainingPage();
+                    ResourceProperties p = sp.getProperties();
+                    String course =
+                            p.getProperty(Property.COURSEMANAGED.getName());
+                    return Long.parseLong(course);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0L;
+        }
+        return 0L;
+    }
+
+    @Override
+    public void createManagerPage(Course course){
+        SitePage page = null;
+        try {
+            Site site = siteService.getSite("~admin");
+            List<SitePage> pages = site.getPages();
+            for(SitePage sp : pages){
+                List<ToolConfiguration> tools = sp.getTools();
+                for(ToolConfiguration tc : tools){
+                    Properties p = tc.getConfig();
+                    String courseManaged =
+                            (String)p.get(Property.COURSEMANAGED.getName());
+                    if(courseManaged != null &&
+                            Long.parseLong(courseManaged) == course.getId()){
+                        return;
+                    }
+                }
+            }
+            if(page == null){
+                page = site.addPage();
+                page.addTool(READINWEB_MANAGE_TOOL);
+                page.setTitleCustom(true);
+                page.setTitle("Admin " + course.getTitle());
+                siteService.save(site);
+
+                ResourcePropertiesEdit rpe = page.getPropertiesEdit();
+                rpe.addProperty(Property.COURSEMANAGED.getName(),
+                        Long.toString(course.getId()));
+
+                siteService.save(site);
+            }
         } catch (IdUnusedException e) {
             e.printStackTrace();
-            return 0L;
-        } catch (EntityPropertyNotDefinedException e) {
+        } catch (PermissionException e) {
             e.printStackTrace();
-            return 0L;
-        } catch (EntityPropertyTypeException e) {
-            e.printStackTrace();
-            return 0L;
         }
     }
 
@@ -374,12 +423,27 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public List<Site> getReadInWebClasses(Long course) {
+    public List<Site> getReadInWebSites(Long course) {
+
         Map<String, String> m = new HashMap<String, String>();
         m.put(Property.COURSE.getName(), Long.toString(course));
-        return siteService.getSites(SelectionType.ANY, null, null, m,
-                SortType.CREATED_BY_DESC,
-                null);
+        m.put(Property.COURSEFINISHED.getName(), Boolean.toString(false));
+
+        return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
+                null, null, m, SortType.CREATED_BY_ASC,
+                null));
+    }
+
+    @Override
+    public List<Site> getReadInWebArchivedSites(Long course) {
+
+        Map<String, String> m = new HashMap<String, String>();
+        m.put(Property.COURSE.getName(), Long.toString(course));
+        m.put(Property.COURSEFINISHED.getName(), Boolean.toString(true));
+
+        return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
+                null, null, m, SortType.CREATED_BY_ASC,
+                null));
     }
 
     @Override
@@ -432,6 +496,17 @@ public class SakaiProxyImpl implements SakaiProxy {
         return userDirectoryService.getCurrentUser();
     }
 
+
+    @Override
+    public User getUser(String teacherId) {
+        try {
+            return userDirectoryService.getUser(teacherId);
+        } catch (UserNotDefinedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public List<User> getTeachers() {
         List<User> allUsers = userDirectoryService.getUsers();
@@ -475,5 +550,52 @@ public class SakaiProxyImpl implements SakaiProxy {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void createReadInWebAdminPage() {
+        SitePage page = null;
+        try {
+            Site site = siteService.getSite("~admin");
+            List<SitePage> pages = site.getPages();
+            for(SitePage sp : pages){
+                List<ToolConfiguration> tools = sp.getTools();
+                for(ToolConfiguration tc : tools){
+                    if(READINWEB_ADMIN_TOOL.equals(tc.getToolId())){
+                        return;
+                    }
+                }
+
+            }
+            if(page == null){
+                log.info("No Read in Web Admin tool page, install one");
+                page = site.addPage();
+                page.addTool(READINWEB_ADMIN_TOOL);
+                siteService.save(site);
+            }
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public SitePage findCurrentPage() {
+        SitePage sp = null;
+        ToolSession ts = sessionManager.getCurrentToolSession();
+        if (ts != null) {
+            ToolConfiguration tool = siteService.findTool(ts.getPlacementId());
+            if (tool != null) {
+                String sitePageId = tool.getPageId();
+                try {
+                    Site s = siteService.getSite(toolManager.getCurrentPlacement().getContext());
+                    sp = s.getPage(sitePageId);
+                } catch (IdUnusedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return sp;
     }
 }

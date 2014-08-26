@@ -14,10 +14,9 @@ import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.ActivitySets;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
-import br.unicamp.iel.model.CourseSets;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
@@ -26,8 +25,10 @@ import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebControl;
-import br.unicamp.iel.model.ControlTypes;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.model.sets.ActivitySets;
+import br.unicamp.iel.model.sets.CourseSets;
+import br.unicamp.iel.model.types.ControlTypes;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
@@ -72,6 +73,11 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public Question getQuestion(Long question) {
         return common.getQuestion(question);
+    }
+
+    @Override
+    public Justification getJustification(Long justification) {
+        return common.getJustification(justification);
     }
 
     @Override
@@ -161,6 +167,39 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public void saveStrategy(Strategy strategy) {
         common.saveStrategy(strategy);
+    }
+
+    @Override
+    public void sendJustification(Justification justification) {
+        common.saveJustification(justification);
+        common.setJustificationSent(justification.getUser(),
+                justification.getSite(), justification.getSentDate());
+    }
+
+    @Override
+    public void sendJustificationMessage(JustificationMessage message) {
+        common.saveJustificationMessage(message);
+    }
+
+    @Override
+    public List<Justification> getUserJustifications() {
+        return common.getUserJustifications(getUserId(), getCurrentSiteId());
+    }
+
+    @Override
+    public List<JustificationMessage> getJustificationMessages(
+            Justification justification) {
+        return common.getJustificationMessages(justification);
+    }
+
+    @Override
+    public void unblockUser(){
+        common.unblockUser(getCurrentSiteId(), getUserId());
+    }
+
+    @Override
+    public void deleteEntity(Object o) {
+        common.deleteEntity(o);
     }
 
     /**
@@ -326,18 +365,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public Site getCurrentSite() {
-        return sakaiProxy.getCurrentSite();
-    }
-
-    @Override
-    public void unblockUser(){
-        common.unblockUser(getCurrentSiteId(), getUserId());
-    }
-
-    @Override
-    public Long getCourseId() {
-        return sakaiProxy.getCourseId();
+    public boolean hasSentExplanation() {
+        return common.hasSentJustification(getUser(), getCurrentSite());
     }
 
     @Override
@@ -354,15 +383,19 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         }
     }
 
+    /**
+     * Proxy methods
+     *
+     */
+
     @Override
-    public User getUser() {
-        return sakaiProxy.getUser();
+    public Long getCourseId() {
+        return sakaiProxy.getCourseId();
     }
 
     @Override
-    public boolean hasSentExplanation() {
-        // TODO Auto-generated method stub
-        return false;
+    public Site getCurrentSite() {
+        return sakaiProxy.getCurrentSite();
     }
 
     @Override
@@ -371,107 +404,13 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
+    public User getUser() {
+        return sakaiProxy.getUser();
+    }
+
+    @Override
     public boolean isUserAdmin() {
         return sakaiProxy.isSuperUser();
-    }
-
-    /**
-     * Old methods
-     */
-
-    @Override
-    public int[][] makeAccessMatrix(List<Module> lst_modulos,
-            List<Activity> lst_atividades, String userId, String currentSiteId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean isUserTeacher(String userId) {
-        // TODO Auto-generated method stub
-        // Verify how Sakai tests it
-        return false;
-    }
-
-    @Override
-    public boolean checkBlockStudent(int[][] mat_actsDone,
-            List<Module> lst_modulos, List<Activity> lst_atividades) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public Justification lastJustificationData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean sentJustification() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public long allowsLateUserToAccess(Date date_evaluated, byte state) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void sendJustification(String userId, String str_justification) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public boolean checkTextByControlSum(int int_controlSum) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean checkQuestionsByControlSum(int int_controlSum) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean checkExerciseByControlSum(int int_controlSum) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean checkSiteAccess(String currentSiteId, Long activity) {
-        // TODO Verificar se o user id tem acesso a esse site.
-        return true;
-    }
-
-    @Override
-    public int getControlNum(String userId, Long long_currentModule,
-            Long long_currentActivity) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getControlNum(String userId, int int_currentModule,
-            int int_currentActivity) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public boolean checkActCompletenessByControlSum(int i) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public User getCurrentUser() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

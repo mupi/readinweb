@@ -5,8 +5,7 @@
     <id name="id" type="java.lang.Long">
       <generator class="increment" />
     </id>
-    <property name="dateSent" column="date_sent" not-null="true"
-      type="date" />
+    <property name="dateSent" column="date_sent" not-null="true" type="timestamp" />
     <property name="message" type="string" />
     <property name="user" column="user_id" type="string" length="255" />
 

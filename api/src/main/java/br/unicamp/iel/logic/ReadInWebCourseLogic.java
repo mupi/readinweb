@@ -6,12 +6,14 @@
 
 package br.unicamp.iel.logic;
 
+import java.util.Date;
 import java.util.List;
 
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
@@ -75,6 +77,10 @@ public interface ReadInWebCourseLogic {
 
     public void saveStrategy(Strategy strategy);
 
+    public void sendJustificationMessage(JustificationMessage message);
+
+    public void deleteEntity(Object o);
+
     /**
      *
      * Bellow specific course methods
@@ -111,58 +117,27 @@ public interface ReadInWebCourseLogic {
 
     public Integer getActivityControlSum(Long id);
 
-    public boolean hasSentExplanation();
-
     public void unblockUser();
 
     public Site getCurrentSite();
 
-
-    /**
-     * Old methods
-     */
-
-    public int[][] makeAccessMatrix(List<Module> lst_modulos,
-            List<Activity> lst_atividades, String userId, String currentSiteId);
+    public void sendJustification(Justification justification);
 
     public boolean isUserAdmin();
 
-    public boolean isUserTeacher(String userId);
-
-    public boolean checkBlockStudent(int[][] mat_actsDone,
-            List<Module> lst_modulos, List<Activity> lst_atividades);
-
-    public Justification lastJustificationData();
-
-    public boolean sentJustification();
-
-    public long allowsLateUserToAccess(java.util.Date date_evaluated, byte state);
-
-    public void sendJustification(String userId, String str_justification);
-
     public String getCurrentPlacement();
-
-    public boolean checkTextByControlSum(int int_controlSum);
-
-    public boolean checkQuestionsByControlSum(int int_controlSum);
-
-    public boolean checkExerciseByControlSum(int int_controlSum);
-
-    public boolean checkSiteAccess(String currentSiteId, Long activity);
 
     public void registerAccess(String action, String viewID, Activity activity);
 
-    public int getControlNum(String userId, Long long_currentModule,
-            Long long_currentActivity);
-
-    public int getControlNum(String userId, int int_currentModule,
-            int int_currentActivity);
-
-    public boolean checkActCompletenessByControlSum(int i);
-
-    public User getCurrentUser();
-
-
     public User getUser();
+
+    public boolean hasSentExplanation();
+
+    public List<Justification> getUserJustifications();
+
+    public List<JustificationMessage> getJustificationMessages(
+            Justification justification);
+
+    public Justification getJustification(Long justification);
 
 }

@@ -71,7 +71,7 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
         if(parameters.question != null){ // Question sent
             questionBean.updateQuestion(parameters.question);
             destroyer.destroy();
-        } else if(activityBean.dataSent()){ // Activity sent
+        } else if(activityBean.activityDataSent()){ // Activity sent
             activityBean.updateActivity(parameters.activity);
             destroyer.destroy();
         }
@@ -83,12 +83,7 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
         activity = logic.getActivity(parameters.activity);
         module = logic.getModule(parameters.module);
 
-        if(!module.getId().equals(activity.getModule().getId()) // activity belongs to module?
-                || !course.getId().equals(module.getCourse().getId())){ // module belongs to course?
-            // FIXME Return a valid expression
-            System.out.println("ou ou ou ou");
-        }
-
+        CourseComponents.checkParameters(course, module, activity);
         CourseComponents.loadMenu(parameters, tofill);
         CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
         CourseComponents.createBreadCrumb(tofill, activity, module, this.getViewID());

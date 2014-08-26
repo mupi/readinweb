@@ -9,21 +9,21 @@ public class AdminQuestionBean {
     @Setter
     @Getter
     private Integer position;
-    
+
     @Setter
     @Getter
     private String question;
-    
+
     @Setter
     @Getter
     private String suggestedAnswer;
-        
+
     @Setter
     private ReadInWebAdminLogic logic;
-       
+
     public boolean updateQuestion(Long id){
         Question q = logic.getQuestion(id);
-        
+
         if(position != null){
             q.setPosition(position);
         }
@@ -33,7 +33,7 @@ public class AdminQuestionBean {
         if(suggestedAnswer != null){
             q.setSuggestedAnswer(suggestedAnswer);
         }
-       
+
         return logic.updateQuestion(q);
     }
 }

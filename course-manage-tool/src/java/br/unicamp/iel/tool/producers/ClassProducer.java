@@ -58,7 +58,8 @@ public class ClassProducer implements ViewComponentProducer, ViewParamsReporter 
             ComponentChecker checker) {
 
         Course course = logic.getCourse(logic.getManagerCourseId());
-        ClassViewParameters classViewParameters = (ClassViewParameters)viewparams;
+        ClassViewParameters classViewParameters =
+                (ClassViewParameters) viewparams;
 
         ManagerComponents.loadMenu(viewparams, tofill);
 
@@ -126,8 +127,6 @@ public class ClassProducer implements ViewComponentProducer, ViewParamsReporter 
                         logic.isActivityPublished(riwClass, m.getId(),
                                 a.getId()) ? "Sim" : "Não");
 
-                // TODO Criar formulário, com ajax que libera
-                //          ou não uma atividade
                 System.out.println(a.getTitle()
                         + ": "
                         + logic.isActivityPublished(riwClass, m.getId(),

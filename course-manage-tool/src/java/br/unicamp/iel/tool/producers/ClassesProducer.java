@@ -2,19 +2,33 @@ package br.unicamp.iel.tool.producers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
+
+import javax.security.auth.kerberos.KerberosKey;
 
 import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
+import org.sakaiproject.entity.api.EntityPropertyTypeException;
+import org.sakaiproject.exception.IdUnusedException;
+import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.javax.PagingPosition;
 import org.sakaiproject.site.api.Site;
+import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.site.api.SiteService.SelectionType;
 import org.sakaiproject.site.api.SiteService.SortType;
+import org.sakaiproject.site.api.ToolConfiguration;
+import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.tool.api.SessionManager;
+import org.sakaiproject.tool.api.ToolManager;
+import org.sakaiproject.tool.api.ToolSession;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
@@ -29,6 +43,7 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
+import br.unicamp.iel.logic.SakaiProxy;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.tool.commons.ManagerComponents;
 import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
@@ -56,6 +71,9 @@ ViewParamsReporter, DefaultView {
     private SiteService siteService;
 
     @Setter
+    private ToolManager toolManager;
+
+    @Setter
     private SessionManager sessionManager;
 
     public static final String VIEW_ID = "turmas";
@@ -68,7 +86,37 @@ ViewParamsReporter, DefaultView {
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
+        //Long course = logic.getManagerCourseId();
+        Site site;
         Long course = logic.getManagerCourseId();
+
+        try {
+            site = siteService.getSite(
+                    toolManager.getCurrentPlacement().getContext());
+
+            Properties p = toolManager.getCurrentPlacement().getPlacementConfig();
+
+            Iterator<Object> it = p.keySet().iterator();
+            while(it.hasNext()){
+                System.out.println("Oe oe: " + p.get(it.next()));
+            }
+
+            p = toolManager.getCurrentPlacement().getConfig();
+
+            it = p.keySet().iterator();
+            while(it.hasNext()){
+                System.out.println("Oe oe: " + p.get(it.next()));
+            }
+
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        }
+        //        catch (EntityPropertyNotDefinedException e) {
+        //            e.printStackTrace();
+        //        } catch (EntityPropertyTypeException e) {
+        //            e.printStackTrace();
+        //        }
+
         ClassesViewParameters classesViewParameters =
                 (ClassesViewParameters) viewparams;
 
@@ -77,11 +125,12 @@ ViewParamsReporter, DefaultView {
         createClass.viewID = CreateClassProducer.VIEW_ID;
         UIInternalLink.make(tofill, "link_create_class", createClass);
 
-        classesViewParameters.userId = getUserId(); // FIXME
+        classesViewParameters.userId = logic.getUserId(); // FIXME
         UIInternalLink.make(tofill, "link_only_mine", classesViewParameters);
 
 
-        ArrayList<Site> riwClasses = getReadInWebClasses(course);
+        ArrayList<Site> riwClasses =
+                new ArrayList<Site>(logic.getReadInWebClasses(course));
 
         UIBranchContainer riw_classes = UIBranchContainer.make(tofill,
                 "riw_classes:");
@@ -110,7 +159,7 @@ ViewParamsReporter, DefaultView {
                     riwClassParams); // FIXME
 
             try {
-                User teacher = getTeacher((new ArrayList<String>(
+                User teacher = logic.getTeacher((new ArrayList<String>(
                         s.getUsersHasRole("Instructor"))).get(0));
 
                 if(teacher != null){
@@ -128,28 +177,6 @@ ViewParamsReporter, DefaultView {
     @Override
     public ViewParameters getViewParameters() {
         return new ClassesViewParameters();
-    }
-
-    public ArrayList<Site> getReadInWebClasses(Long course){ // ManagementLogic
-        Map<String, String> m = new HashMap<String, String>();
-        m.put(Property.COURSE.getName(), Long.toString(course));
-
-        return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
-                null, null, m, SortType.CREATED_BY_ASC,
-                null));
-    }
-
-    public User getTeacher(String teacherId){ // CommonLogic
-        try {
-            return userDirectoryService.getUser(teacherId);
-        } catch (UserNotDefinedException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public String getUserId(){
-        return sessionManager.getCurrentSession().getUserId();
     }
 
 }

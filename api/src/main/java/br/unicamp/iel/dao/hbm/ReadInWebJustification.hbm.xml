@@ -5,12 +5,11 @@
     <id name="id" type="java.lang.Long">
       <generator class="increment" />
     </id>
-    <property name="sentDate" column="date_sent" not-null="true"
-      type="date" />
-    <property name="evaluatedDate" column="date_evaluated" type="date" />
+    <property name="sentDate" column="date_sent" not-null="true" type="timestamp" />
+    <property name="evaluatedDate" column="date_evaluated" type="timestamp" />
 
     <property name="explanation" type="string" />
-    <property name="state" type="byte" />
+    <property name="state" type="Byte" />
 
     <property name="user" column="user_id" type="string" length="255" />
     <property name="site" column="site_id" type="string" length="255" />

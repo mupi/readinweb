@@ -6,12 +6,15 @@
 
 package br.unicamp.iel.logic;
 
+import java.util.Date;
 import java.util.List;
 
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.Justification;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
@@ -41,6 +44,10 @@ public interface ReadInWebCommonLogic {
 
     public Question getQuestion(Long question);
 
+    public Strategy getStrategy(Long strategy);
+
+    public Exercise getExercise(Long exercise);
+
     public Long countUserAnswers(String user, Long[] ids);
 
     public ReadInWebAnswer getStudentAnswer(Long question);
@@ -61,6 +68,14 @@ public interface ReadInWebCommonLogic {
 
     public List<Exercise> getExercises(Activity activity);
 
+    public List<Justification> getUserJustifications(String user,
+            String siteId);
+
+    public List<JustificationMessage> getJustificationMessages(
+            Justification justification);
+
+    public List<Justification> getSiteJustifications(String siteId);
+
     public String getCurrentSiteId();
 
     public void saveCourse(Course c);
@@ -78,6 +93,10 @@ public interface ReadInWebCommonLogic {
     public void saveFunctionalWord(FunctionalWord fw);
 
     public void saveStrategy(Strategy strategy);
+
+    public void saveJustification(Justification j);
+
+    public void saveJustificationMessage(JustificationMessage jm);
 
     public String getDefaultCoursePropertyString(Course course);
 
@@ -99,6 +118,10 @@ public interface ReadInWebCommonLogic {
 
     public Long[] getAllPublishedActivities(String siteId);
 
+    public boolean hasSentJustification(User user, Site site);
+
+    public void setJustificationSent(String userId, String siteId, Date date);
+
     public boolean isUserBLocked(User user, Site site);
 
     public void blockUser(String siteId, String userId);
@@ -117,4 +140,18 @@ public interface ReadInWebCommonLogic {
 
     public Integer getUserBlocks(User user, String siteId);
 
+    public User getTeacher(String teacherId);
+
+    public boolean idiomCourseExists(String idiom);
+
+    public void addReadInWebAdmin();
+
+    public void addReadInWebManager(Course course);
+
+    public void deleteEntity(Object entity);
+
+    public Justification getJustification(Long justification);
+
 }
+
+

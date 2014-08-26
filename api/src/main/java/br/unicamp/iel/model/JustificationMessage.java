@@ -1,5 +1,5 @@
 package br.unicamp.iel.model;
-// Generated Aug 12, 2014 10:58:07 AM by Hibernate Tools 3.2.2.GA
+// Generated Aug 26, 2014 12:31:43 PM by Hibernate Tools 3.2.2.GA
 
 
 import java.util.Date;

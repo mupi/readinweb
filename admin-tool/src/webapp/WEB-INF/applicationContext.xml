@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
-	"http://www.springframework.org/dtd/spring-beans.dtd">
+  "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="AdminBean" class="br.unicamp.iel.tool.AdminBean" />
 
-	<bean parent="requestAddressibleParent">
-		<property name="value" value="AdminActivityBean, AdminQuestionBean" />
-	</bean>
+  <bean parent="requestAddressibleParent">
+    <property name="value" value="AdminBean, AdminActivityBean, AdminQuestionBean" />
+  </bean>
 
-	<bean id="resultsScope" parent="beanScopeParent">
-		<property name="copyPreservingBeans" value="AdminActivityBean, AdminQuestionBean" />
-		<property name="exclusive" value="true" />
-	</bean>
+  <bean id="resultsScope" parent="beanScopeParent">
+    <property name="copyPreservingBeans" value="AdminBean, AdminActivityBean, AdminQuestionBean" />
+    <property name="exclusive" value="true" />
+  </bean>
 
 
-	<!-- Override the default style of user messages -->
-	<bean id="messageTemplateContributor" parent="templateContributorParent">
-		<property name="baseDirectory" value="component-templates/" />
-		<property name="templateNames" value="Messages" />
-	</bean>
+  <!-- Override the default style of user messages -->
+  <bean id="messageTemplateContributor" parent="templateContributorParent">
+    <property name="baseDirectory" value="component-templates/" />
+    <property name="templateNames" value="Messages" />
+  </bean>
 
-	<!-- handles configuration of internationalization messages -->
-	<bean id="messageLocator" class="uk.org.ponder.springutil.SpringMessageLocator">
-		<property name="messageSource">
-			<bean
-				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-				<property name="basename">
-					<value>WEB-INF/bundle/messages</value>
-				</property>
-				<property name="cacheSeconds">
-					<value>10</value>
-				</property>
-			</bean>
-		</property>
-		<property name="localeGetter" ref="requestLocaleProxy" />
-	</bean>
+  <!-- handles configuration of internationalization messages -->
+  <bean id="messageLocator" class="uk.org.ponder.springutil.SpringMessageLocator">
+    <property name="messageSource">
+      <bean
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename">
+          <value>WEB-INF/bundle/messages</value>
+        </property>
+        <property name="cacheSeconds">
+          <value>10</value>
+        </property>
+      </bean>
+    </property>
+    <property name="localeGetter" ref="requestLocaleProxy" />
+  </bean>
 
-	<!-- Control the location of the html templates (default: content/templates/) -->
-	<bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">
-		<property name="baseDirectory" value="content/templates/" />
-	</bean>
+  <!-- Control the location of the html templates (default: content/templates/) -->
+  <bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">
+    <property name="baseDirectory" value="content/templates/" />
+  </bean>
 
-	<bean parent="requestAddressibleParent">
-		<property name="value">
-			<value>
-				AdminActivityBean, AdminQuestionBean
-			</value>
-		</property>
-	</bean>
+  <bean parent="requestAddressibleParent">
+    <property name="value">
+      <value>
+        AdminActivityBean, AdminQuestionBean
+      </value>
+    </property>
+  </bean>
 </beans>

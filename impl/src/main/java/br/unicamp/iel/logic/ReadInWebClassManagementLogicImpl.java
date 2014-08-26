@@ -1,23 +1,30 @@
 package br.unicamp.iel.logic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lombok.Setter;
 
 import org.apache.log4j.Logger;
 import org.sakaiproject.site.api.Site;
+import org.sakaiproject.site.api.SiteService.SelectionType;
+import org.sakaiproject.site.api.SiteService.SortType;
 import org.sakaiproject.user.api.User;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Property;
 
 public class ReadInWebClassManagementLogicImpl implements
 ReadInWebClassManagementLogic {
 
-    private static final Logger log = Logger.getLogger(ReadInWebCourseLogic.class);
+    private static final Logger log =
+            Logger.getLogger(ReadInWebCourseLogic.class);
 
     @Setter
     private ReadInWebDao dao;
@@ -39,6 +46,8 @@ ReadInWebClassManagementLogic {
         sakaiProxy.setCourseId(site, course.getId());
         sakaiProxy.setStringProperty(site, Property.COURSEDATA.getName(),
                 common.getDefaultCoursePropertyString(course));
+        sakaiProxy.setStringProperty(site, Property.COURSEFINISHED.getName(),
+                Boolean.toString(false));
         return site;
     }
 
@@ -55,7 +64,7 @@ ReadInWebClassManagementLogic {
 
     @Override
     public List<Site> getReadInWebClasses(Long course) {
-        return sakaiProxy.getReadInWebClasses(course);
+        return new ArrayList<Site>(sakaiProxy.getReadInWebSites(course));
     }
 
     @Override
@@ -109,7 +118,8 @@ ReadInWebClassManagementLogic {
     }
 
     @Override
-    public boolean isActivityPublished(Site riwClass, Long module, Long activity) {
+    public boolean isActivityPublished(Site riwClass, Long module,
+            Long activity) {
         return common.isActivityPublished(riwClass, module, activity);
     }
 
@@ -122,4 +132,31 @@ ReadInWebClassManagementLogic {
     public boolean isUserBlocked(User user, Site riwClass) {
         return common.isUserBLocked(user, riwClass);
     }
+
+    @Override
+    public User getTeacher(String teacherId) {
+        return common.getTeacher(teacherId);
+    }
+
+    @Override
+    public void unblockUser(String userId, String siteId) {
+        common.unblockUser(siteId, userId);
+    }
+
+    @Override
+    public String getUserId(){
+        return sakaiProxy.getCurrentUserId();
+    }
+
+    @Override
+    public void sendJustificationMessage(JustificationMessage message) {
+        common.saveJustificationMessage(message);
+    }
+
+    @Override
+    public void deleteJustificationMessage(JustificationMessage message) {
+        common.deleteEntity(message);
+    }
+
+
 }

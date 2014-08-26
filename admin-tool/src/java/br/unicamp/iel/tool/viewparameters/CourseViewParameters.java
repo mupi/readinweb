@@ -10,9 +10,10 @@ public class CourseViewParameters extends SimpleViewParameters {
     public Long activity;
     public Long question;
     public Long exercise;
-    
+    public String message;
+
     public CourseViewParameters(){}
-    
+
     public CourseViewParameters(String viewID){
         super();
         this.viewID = viewID;
@@ -24,5 +25,5 @@ public class CourseViewParameters extends SimpleViewParameters {
         this.module = module;
         this.activity = activity;
     }
-    
+
 }

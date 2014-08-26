@@ -6,6 +6,8 @@ package br.unicamp.iel.logic;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.sakaiproject.site.api.Site;
+import org.sakaiproject.user.api.User;
 
 import lombok.Setter;
 import br.unicamp.iel.dao.ReadInWebDao;
@@ -17,7 +19,9 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebCourseData;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.model.types.StrategyType;
 
 /**
  * @author Virgílio N Santos
@@ -66,6 +70,16 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     }
 
     @Override
+    public Strategy getStrategy(Long strategy) {
+        return common.getStrategy(strategy);
+    }
+
+    @Override
+    public Exercise getExercise(Long exercise) {
+        return common.getExercise(exercise);
+    }
+
+    @Override
     public ReadInWebAnswer getStudentAnswer(Long question) {
         return common.getStudentAnswer(question);
     }
@@ -86,7 +100,7 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     }
 
     @Override
-    public List<FunctionalWord> getFunctionalWord (Course course) {
+    public List<FunctionalWord> getFunctionalWords (Course course) {
        return common.getFunctionalWord(course);
     }
 
@@ -117,6 +131,7 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     @Override
     public void saveCourse(Course course) {
         common.saveCourse(course);
+        common.addReadInWebManager(course);
     }
 
     @Override
@@ -154,9 +169,24 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
         common.saveStrategy(strategy);
     }
 
+    @Override
+    public void deleteEntity(Object entity) {
+        common.deleteEntity(entity);
+    }
+
     /**
      * End of common methods
      */
+
+    @Override
+    public FunctionalWord getFunctionalWord(Long word) {
+        return dao.findById(FunctionalWord.class, word);
+    }
+
+    @Override
+    public DictionaryWord getDictionaryWord(Long word) {
+        return dao.findById(DictionaryWord.class, word);
+    }
 
     @Override
     public boolean updateQuestion(Question question) {
@@ -176,5 +206,25 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
         } catch (IllegalArgumentException e){
             return false;
         }
+    }
+
+    @Override
+    public ReadInWebCourseData getReadInWebData(Course c) {
+        ReadInWebCourseData riwData = new ReadInWebCourseData(
+                sakaiProxy.getReadInWebSites(c.getId()).size(), 0, 0, 0);
+
+        List<Site> sites = sakaiProxy.getReadInWebArchivedSites(c.getId());
+        riwData.setCountClassesFinished(sites.size());
+        for(Site s : sites){
+            List<User> users = sakaiProxy.getSiteStudents(s);
+            riwData.setCountUsers(riwData.getCountUsers() + users.size());
+            for(User u : users){
+                //FIXME Users that never entered the course could be considered
+                // graduated. By the policy, it would never happen as the user
+                // is weekly tested as blocked or not, but it is still soft
+                riwData.sumCountGraduates(common.isUserBLocked(u, s));
+            }
+        }
+        return riwData;
     }
 }

@@ -1,99 +1,98 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Projeto Read in Web</title>
+<title>Projeto Read in Web</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
-    <!-- End Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
 <body>
     <!-- Wrap utilizado pro sticky footer -->
     <div id="wrap">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Menu principal</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="../img/logo.png" alt="Curso Read in Web" />
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse">
-                    <ul id="lista_menu_principal" class="nav navbar-nav">
-                        <li>
-                            <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
-                        </li>
-                        <li>
-                            <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
-                                name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                        </li>
-                        <li>
-                            <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                                name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                        </li>
-                        <li>
-                            <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
-                                rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Lista de módulos <b class="caret"></b>
-                            </a>
-                            <ul id="lista_menu_modulos" class="dropdown-menu">
-                                <li rsf:id="li-rowsMod:">
-                                    <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                    <ul rsf:id="div_atividades:" class="lista_menu_atividades">
-                                        <li rsf:id="p-rowsAct:">
-                                            <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link">
-                                                Atividade X
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
-                            <a href="#questoes" data-toggle="tab">
-                                <i class="fa fa-pencil"></i> Questões
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#dicionario" data-toggle="tab">
-                                <span class="glyphicon glyphicon-book"></span>
-                                Dicionário
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                                <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+        <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-            <div class="row first-row">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../img/logo.png" alt="Curso Read in Web" />
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul id="lista_menu_principal" class="nav navbar-nav">
+                    <li>
+                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                    </li>
+                    <li>
+                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
+                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                    </li>
+                    <li>
+                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                    </li>
+                    <li>
+                        <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
+                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Lista de módulos <b class="caret"></b>
+                        </a>
+                        <ul id="lista_menu_modulos" class="dropdown-menu multi-level" role="menu"
+                            aria-labelledby="dropdownMenu">
+                            <li rsf:id="li-rowsMod:" class="dropdown-submenu">
+                                <span tabindex="-1" data-target="#" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                                <ul rsf:id="div_atividades:" class="dropdown-menu">
+                                    <li rsf:id="p-rowsAct:">
+                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="#questoes" data-toggle="tab">
+                            <i class="fa fa-pencil"></i> Questões
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dicionario" data-toggle="tab">
+                            <span class="glyphicon glyphicon-book"></span>
+                            Dicionário
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                            <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid --> </nav>
+        <div class="container">
+            <!--             <div class="row first-row"> -->
+            <div class="row">
                 <ol class="breadcrumb">
                     <li>
                         Voc&ecirc; est&aacute; no M&oacute;dulo
@@ -127,11 +126,9 @@
             <div class="row">
                 <div class="col-xs-6 col-md-8">
                     <form rsf:id="activity_form">
-                        <div class="btn-group">
-                            <button rsf:id="send_activity" type="submit" class="btn btn-success btn-sm">Salvar</button>
-                            <a class="btn btn-warning btn-sm">Nova Atividade</a>
-                            <a class="btn btn-danger btn-sm">Excluir</a>
-                        </div>
+                        <button rsf:id="send_activity" type="submit" class="btn btn-success btn-sm">Salvar</button>
+                        <a class="btn btn-warning btn-sm">Nova Atividade</a>
+                        <a class="btn btn-danger btn-sm">Excluir</a>
                         <input name="id" type="hidden" rsf:id="activity_id" />
                         <!-- this div is used to creates the audio -->
                         <div id="sound_text" rsf:id="sound_text"></div>
@@ -164,7 +161,7 @@
                             <div id="number_questions">
                                 <ul class="nav nav-tabs nav-justified" id="question-tabs">
                                     <li rsf:id="li-rows:">
-                                        <a href="#" rsf:id="input_link_q_"  role="tab" data-toggle="tab">1</a>
+                                        <a href="#" rsf:id="input_link_q_" role="tab" data-toggle="tab">1</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -214,50 +211,40 @@
             </div>
         </div>
     </div>
-    <!-- Fim do #wrap -->
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-                <li>Sobre o curso</li>
-                <li>Suporte</li>
-                <li>Termos de uso</li>
-            </ul>
-        </div>
-    </div>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/rsf.js"></script>
 
     <script type="text/javascript" language="JavaScript">
-          var sakai = sakai || {};
-          sakai.editor = sakai.editor || {};
-          sakai.locale = sakai.locale || {};
-          sakai.locale.userCountry = 'US';
-          sakai.locale.userLanguage = 'en';
-          sakai.locale.userLocale = 'en_US';
-          sakai.editor.collectionId = '/user/admin/';
-          sakai.editor.enableResourceSearch = false;
-        </script>
+                    var sakai = sakai || {};
+                    sakai.editor = sakai.editor || {};
+                    sakai.locale = sakai.locale || {};
+                    sakai.locale.userCountry = 'US';
+                    sakai.locale.userLanguage = 'en';
+                    sakai.locale.userLocale = 'en_US';
+                    sakai.editor.collectionId = '/user/admin/';
+                    sakai.editor.enableResourceSearch = false;
+                </script>
     <script type="text/javascript" language="JavaScript">
-          var CKEDITOR_BASEPATH = '/library/editor/ckeditor/';
-        </script>
+                    var CKEDITOR_BASEPATH = '/library/editor/ckeditor/';
+                </script>
     <script type="text/javascript" language="JavaScript" src="/library/editor/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" language="JavaScript" src="/library/editor/ckeditor.launch.js"></script>
     <script type="text/javascript" defer="1">
-      sakai.editor.launch('text_text');
-  </script>
+                    sakai.editor.launch('text_text');
+                </script>
 
     <script type="text/javascript">
-      /* FIXME Put it on a separeted file*/
-    jQuery(document).ready(function(){
-      jQuery("#question-tabs a:first").tab('show');
-    });
-    </script>
+                    /* FIXME Put it on a separeted file*/
+                    jQuery(document).ready(function() {
+                        jQuery("#question-tabs a:first").tab('show');
+                    });
+                </script>
 
     <script rsf:id="init_js" type="text/javascript">
-            // a real function call with real values which come from the
-            // "emitJavascriptCall" method will be placed here by RSF
-  </script>
+                    // a real function call with real values which come from the
+                    // "emitJavascriptCall" method will be placed here by RSF
+                </script>
 </body>
 </html>

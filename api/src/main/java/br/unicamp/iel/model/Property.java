@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 public enum Property {
+    COURSEMANAGED("readinwebmanager"),
+    USERDATA("readinwebuser.data"),
     COURSE("readinwebcourse"),
     COURSEDATA("readinwebcourse.data"),
     COURSESTARTDATE("readinwebcourse.startdate"),
-    COURSEMANAGED("readinwebmanager"),
-    USERDATA("readinwebuser.data"),
-    COURSEREMISSIONTIME("readinwebcourse.remissiontime");
+    COURSEREMISSIONTIME("readinwebcourse.remissiontime"),
+    COURSEFINISHED("readinwebcourse.finished");
 
     @Setter
     @Getter

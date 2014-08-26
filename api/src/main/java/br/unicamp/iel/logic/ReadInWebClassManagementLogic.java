@@ -3,9 +3,9 @@ package br.unicamp.iel.logic;
 
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.sakaiproject.site.api.Site;
@@ -52,4 +52,13 @@ public interface ReadInWebClassManagementLogic {
 
     public boolean isUserBlocked(User user, Site riwClass);
 
+    public User getTeacher(String string);
+
+    public String getUserId();
+
+    public void sendJustificationMessage(JustificationMessage message);
+
+    public void deleteJustificationMessage(JustificationMessage message);
+
+    public void unblockUser(String userId, String siteId);
 }

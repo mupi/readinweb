@@ -14,6 +14,10 @@
     <property name="destroyer" ref="resultsScope" />
   </bean>
 
+  <bean id="JustificationBean" class="br.unicamp.iel.tool.JustificationBean">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
+  </bean>
+
   <!-- Course producers -->
   <bean class="br.unicamp.iel.tool.producers.SummaryProducer">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />

@@ -71,6 +71,78 @@ body{
 .lista_menu_atividades input{
   text-transform: uppercase;
 }
+
+/** Menu boostrap 3 hack **/
+.dropdown-menu>li {
+  border-bottom: 1px solid #eee;
+  border-collapse: collapse;
+}
+
+.dropdown-menu>li>span {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.428571429;
+  color: #333;
+  white-space: nowrap;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  color: #555;
+  background-color: #f5f5f5;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu>span:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
+.dropdown-submenu:hover>span:after {
+  border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+}
+/** End of hack**/
+
+
 /* End Menu */
 
 /* Tooltip */
@@ -80,10 +152,10 @@ body{
 /* End tooltip */
 
 .first-row{
-	margin-top: 80px;
+  margin-top: 80px;
 }
 #hidden-text, #time_text {
-	display: none;
+  display: none;
 }
 .affix-questoes {
   padding: 20px;
@@ -152,4 +224,19 @@ body{
   padding: 10px;
 }
 
-/* End Footer
+/* End Footer */
+
+/* Codemirror */
+
+.CodeMirror, .CodeMirror-preview {
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  min-height: 700px !important;
+  width: 100%;
+}
+
+.gramatica_tab_content {
+  height: 700px;
+}
+
+/* End Codemirror */

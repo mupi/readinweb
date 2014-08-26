@@ -1,287 +1,256 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Projeto Read in Web - Estrat&eacute;gias</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Projeto Read in Web - Estrat&eacute;gias</title>
 
-        <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
-        <!-- End Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 
-        <link rel="stylesheet" type="text/css" href="../css/main.css" />
-        <link rel="stylesheet" type="text/css" href="../css/estrategias.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/estrategias.css" />
 
-    </head>
+</head>
 
-    <body>
-        <!-- Wrap utilizado pro sticky footer -->
-        <div id="wrap">
+<body>
+    <!-- Wrap utilizado pro sticky footer -->
+    <div id="wrap">
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../img/logo.png" alt="Curso Read in Web" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul id="lista_menu_principal" class="nav navbar-nav">
+                    <li>
+                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                    </li>
 
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Menu principal</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"><img src="../imagens/logo.png" alt="Curso Read in Web" /></a>
-                    </div>
-                    <div class="collapse navbar-collapse" >
-                        <ul id="lista_menu_principal" class="nav navbar-nav">
-                            <li>
-                                <a href="text.html"
-                                   title="Leia o texto da atividade"
-                                   name="TEXTO" rsf:id="linktext">TEXTO</a>
-                            </li>
+                    <li>
+                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
+                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                    </li>
 
-                            <li>
-                                <a href="estrategias.html"
-                                   title="Veja as estrat&#233;gias de leitura para essa atividade"
-                                   name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                            </li>
+                    <li>
+                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                    </li>
 
-                            <li>
-                                <a href="exercicios.html"
-                                   title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                                   name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                            </li>
+                    <li>
+                        <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
+                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                    </li>
 
-                            <li>
-                                <a href="gramatica.html"
-                                   title="Dicion&#225;rio gramatical"
-                                   name="GRAM&#193;TICA" rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                            </li>
-
-                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Lista de módulos <b class="caret"></b>
-                                </a>
-                                <ul id="lista_menu_modulos" class="dropdown-menu">
-                                    <li rsf:id="li-rowsMod:">
-                                        <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                        <ul rsf:id="div_atividades:" class="lista_menu_atividades">
-                                            <li rsf:id="p-rowsAct:">
-                                                <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link">
-                                                    Atividade X
-                                                </a>
-                                            </li>
-                                        </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Lista de módulos <b class="caret"></b>
+                        </a>
+                        <ul id="lista_menu_modulos" class="dropdown-menu multi-level" role="menu"
+                            aria-labelledby="dropdownMenu">
+                            <li rsf:id="li-rowsMod:" class="dropdown-submenu">
+                                <span tabindex="-1" data-target="#" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                                <ul rsf:id="div_atividades:" class="dropdown-menu">
+                                    <li rsf:id="p-rowsAct:">
+                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp"><img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" /></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                            <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </nav>
 
-            <div class="container">
-                <div class="row first-row">
-                    <ol class="breadcrumb">
-                        <li>Voc&ecirc; est&aacute; no M&oacute;dulo <span rsf:id="current_mod" >--</span></li>
-                        <li>Atividade <span rsf:id="current_act" >--</span></li>
-                        <li class="active"><span rsf:id="current_title">--</span></li>
-                    </ol>
+        <div class="container">
+            <!--                 <div class="row first-row"> -->
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li>
+                        Voc&ecirc; est&aacute; no M&oacute;dulo
+                        <span rsf:id="current_mod">--</span>
+                    </li>
+                    <li>
+                        Atividade
+                        <span rsf:id="current_act">--</span>
+                    </li>
+                    <li class="active">
+                        <span rsf:id="current_title">--</span>
+                    </li>
+                    <li>
+                        <span>Estratégias</span>
+                    </li>
+                    <li class="">
+                        <button class="btn btn-primary btn-small" data-toggle="modal" data-target="#addStrategyModal">
+                            Nova estratégia</button>
+                    </li>
+                </ol>
 
-                    <div id="function">
+                <div id="function">
+                    <!-- Button trigger modal -->
+                    <!-- Início da DIV Estratégias de Leitura. -->
+                    <div id="estrategia_leitura" class="col-md-6">
+                        <h2 id="title_estrategias" class="leitura">
+                            <a href="#"
+                                title="Como usar seu conhecimento pr&#233;vio (sobre o tema, sobre escrita) para compensar falta de conhecimento de ingl&#234;s e monitorar a compreens&#227;o do texto">
+                                <i class="fa fa-question-circle"></i>
+                            </a>
+                            ESTRAT&#201;GIAS DE LEITURA
+                        </h2>
 
-                        <!-- Início da DIV Estratégias de Leitura. -->
-                        <div id="estrategia_leitura" class="col-md-6">
-                            <h2 id="title_estrategias"  class="leitura">
-                                <a href="#" title="Como usar seu conhecimento pr&#233;vio (sobre o tema, sobre escrita) para compensar falta de conhecimento de ingl&#234;s e monitorar a compreens&#227;o do texto">
-                                    <i class="fa fa-question-circle"></i>
-                                </a>
-                                ESTRAT&#201;GIAS DE LEITURA
-                            </h2>
-
-                            <div id="list_text_estrategias">
-                                <div id="read_strategy">
-                                    <ol class="strategy_list">
-                                        <li rsf:id="li-rowsEstLe:">
-                                            <div rsf:id="divle"></div>
-                                            Na questão 1 você refletiu sobre as hipóteses que você levantou antes de começar
-                                            a ler o texto. Essas hipóteses foram de duas naturezas: gênero do texto e tema
-                                            do texto. E possível ter expectativas de conteúdo a partir do gênero. Você sabe
-                                            como uma biografia se estrutura tendo como base outras biografias que você já
-                                            leu, que têm um padrão parecido. As expectativas tanto de gênero quanto de tema
-                                            são importantes na leitura em língua estrangeira, pois elas podem ajudá-lo a
-                                            deduzir a informação veiculada pelo texto e, assim, superar as dificuldades
-                                            geradas pelo seu desconhecimento do vocabulário e da estrutura do inglês.
-                                        </li>
-                                        <li>A questão 4 foi elaborada para chamar sua atenção para o fato de que,
-                                            muitas vezes, a compreensão de um texto implica a recuperação de informação que
-                                            aparece apenas subentendida. Conforme explicitado na resposta desta questão, é
-                                            possível, pela estrutura da sentença (linhas 15-17), perceber que existe uma
-                                            relação entre 'financial means' e 'married Martha Bernay'. A razão dessa relação
-                                            não está dita no texto e você tem que recuperá-la de seu conhecimento prévio de
-                                            mundo. Uma possibilidade seria: no início do século cabia ao homem a
-                                            responsabilidade financeira pela família. A recuperação da informação
-                                            subentendida é essencial para a compreensão do texto em detalhes.</li>
-                                    </ol>
-                                </div>
+                        <div id="list_text_estrategias">
+                            <div id="read_strategy">
+                                <ol class="strategy_list">
+                                    <li rsf:id="li-rowsEstLe:">
+                                        <div>
+                                            <form rsf:id="reading_strategy_form">
+                                                <div class="form-group">
+                                                    <label>Posição</label>
+                                                    <input class="form-control" rsf:id="reading_strategy_position" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Tipo</label>
+                                                    <select class="form-control" rsf:id="reading_strategy_type">
+                                                        <option class="form-control" />
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea rsf:id="reading_strategy_data" class="form-control"
+                                                        rows="10">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button rsf:id="reading_strategy_save" type="submit"
+                                                        class="btn btn-success">Salvar</button>
+                                                    <button rsf:id="reading_strategy_delete" type="submit"
+                                                        class="btn btn-danger">Excluir</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ol>
                             </div>
-
                         </div>
-                        <!-- Fim da DIV Estratégias de Leitura -->
 
-                        <!-- Início da DIV Estratégias de Aquisição de Língua. -->
-                        <div id="estrategia_aquisicao_lingua" class="col-md-6">
-                            <h2 id="title_estrategias"  class="lingua">
+                    </div>
+                    <!-- Fim da DIV Estratégias de Leitura -->
+
+                    <!-- Início da DIV Estratégias de Aquisição de Língua. -->
+                    <div id="estrategia_aquisicao_lingua" class="col-md-6">
+                        <h2 id="title_estrategias" class="lingua">
                             <a href="#" width="400"
                                 title="Como prestar aten&#231;&#227;o na l&#237;ngua do texto para aprender vocabul&#225;rio e normas gramaticais (no n&#237;vel da senten&#231;a e do texto).">
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             ESTRAT&#201;GIAS DE AQUISI&Ccedil;&Atilde;O DE L&Iacute;NGUA
-                            </h2>
+                        </h2>
 
-                            <!--  <div class="div_invisivel2" align="center"></div> -->
+                        <!--  <div class="div_invisivel2" align="center"></div> -->
 
-                            <div id="list_text_estrategias">
-                                <div id="language_strategy">
-                                    <ol class="strategy_list">
-                                        <li rsf:id="li-rowsEstLi:">
-                                            <div rsf:id="divli"></div>
-                                            A questão 3 foi elaborada para chamar sua atenção para uma característica desse
-                                            texto como um todo que é especialmente relevante nesse parágrafo: o número
-                                            elevado de palavras de origem latina (cognatas), que facilitam a leitura por
-                                            serem transparentes para falantes de português. Essas palavras tendem a ser mais
-                                            freqüentes em textos acadêmicos. Exemplos de cognatos: symptoms, hysteria,
-                                            events, psychoanalysis, association, etc...
-                                        </li>
-                                        <li>Na pergunta 6 nosso objetivo foi chamar sua atenção para o fato de que a
-                                            tradução mais literal da preposição 'with' (com) não funciona neste contexto.
-                                            Note que nem sempre a preposição exigida pelos verbos em português são as mesmas
-                                            do inglês. Para determinar que preposição cabe no contexto, você precisa levar
-                                            em consideração também o sentido do texto. Só com base no sentido do texto você
-                                            é capaz de perceber que o sentido da sentença 'This substitution of free
-                                            association for hipnotism' é 'Essa associação livre ficou no lugar da hipnose' e
-                                            não vice versa.</li>
-                                    </ol>
-                                </div>
+                        <div id="list_text_estrategias">
+                            <div id="language_strategy">
+                                <ol class="strategy_list">
+                                    <li rsf:id="li-rowsEstLi:">
+                                        <div>
+                                            <form rsf:id="language_strategy_form">
+                                                <div class="form-group">
+                                                    <label>Posição</label>
+                                                    <input class="form-control" rsf:id="language_strategy_position" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Tipo</label>
+                                                    <select class="form-control" rsf:id="language_strategy_type">
+                                                        <option class="form-control" />
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea rsf:id="language_strategy_data" class="form-control"
+                                                        rows="10">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button rsf:id="language_strategy_save" type="submit"
+                                                        class="btn btn-success">Salvar</button>
+                                                    <button rsf:id="language_strategy_delete" type="submit"
+                                                        class="btn btn-danger">Excluir</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
-     <!--</div>  Fim do #wrap -->
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-              <li>Sobre o curso</li>
-              <li>Suporte</li>
-              <li>Termos de uso</li>
-            </ul>
-        </div>
+
     </div>
+    <div id="addStrategyModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fechar</span>
+                    </button>
+                    <h4 class="modal-title">Adicionar Estratégia</h4>
+                </div>
+                <div class="modal-body">
+                    <form rsf:id="strategy_form">
+                        <div class="form-group">
+                            <label>Posição</label>
+                            <input type="number" class="form-control" rsf:id="strategy_position" />
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select class="form-control" rsf:id="strategy_type">
+                                <option class="form-control" />
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rsf:id="strategy_data" class="form-control" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button rsf:id="strategy_save" type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/dropdown.js"></script>
-    <script type="text/javascript" src="../js/headscripts.js"></script>
-    <script type="text/javascript" src="../js/transparencia.js"></script>
-    <script type="text/javascript" src="../js/textsizer.js"></script>
-    <script type="text/javascript" src="../js/styleswitch.js"></script>
-    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="../js/readinweb.js"></script>
-
-    <script type="text/javascript">
-
-        /**
-         *
-         * submiter_obj - OBJETO do tipo 'input submit' que ira alterar o valor da coisa toda - deve ter o ID no formato ''
-         * hidden_module_id - ID do objeto 'hidden' que ira armazenar o valor do modulo de coisa toda
-         * hidden_activity_id - ID do objeto 'hidden' que ira armazenar o valor da atividade de coisa toda
-         * hidden_exercise_id - ID do objeto 'hidden' que ira armazenar o valor do exercicio como zero
-         */
-        function update_module( submiter_obj, hidden_module_id, hidden_activity_id, hidden_exercise_id ){
-            var submiter_id;
-            var submiter_splited;
-            var module_id, activity_id;
-            var hidden_mod_obj;
-            var hidden_act_obj;
-            var hidden_exe_obj;
-
-            submiter_id = submiter_obj.id;
-            submiter_splited = submiter_id.split('_');
-
-            activity_id = submiter_splited[submiter_splited.length - 2];
-            module_id = submiter_splited[submiter_splited.length - 1];
-
-            hidden_mod_obj = document.getElementById(hidden_module_id);
-            hidden_act_obj = document.getElementById(hidden_activity_id);
-            hidden_exe_obj = document.getElementById(hidden_exercise_id);
-
-            if (hidden_mod_obj != null){
-                hidden_mod_obj.value = module_id;
-                if (hidden_act_obj != null){
-                    hidden_act_obj.value = activity_id;
-                    if (hidden_exe_obj != null){
-                        hidden_exe_obj.value = 0;
-                    } else {
-                        alert('Problemas com H de exe.');
-                    }
-                } else {
-                    alert('Problemas com H de act.');
-                }
-            } else {
-                alert('Problemas com H de mod.');
-            }
-
-            return;
-        }
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var gmodule = 0;
-            var question = 1;
-            var menu_switch = 0;
-            $(".menu").click(function(){
-                if(menu_switch == 0){
-                    $(".bloco").fadeIn("fast");
-                    menu_switch = 1;
-                }
-                else{
-                    $(".bloco").fadeOut("fast");
-                    menu_switch = 0;
-                }
-            });
-
-            $(".modulo").click(function(){
-                var module = $(this).val();
-                if(module != gmodule){
-                    gmodule = module;
-                    $("div .atividades").hide(0);
-                    $("div ." + module).fadeIn("slow");
-                }
-                else {
-                    gmodule = 0;
-                    $("div ." + module).fadeOut("slow");
-                }
-            });
-
-            $(".leitura").mousemove(function(){
-                $(".div_invisivel1").show("slow");
-            }).mouseout(function(){$(".div_invisivel1").hide("slow");});
-
-            $(".lingua").mousemove(function(){
-                $(".div_invisivel2").show("slow");
-            }).mouseout(function(){$(".div_invisivel2").hide("slow");});
-
-
-        });
-    </script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
 
 </body>
 </html>

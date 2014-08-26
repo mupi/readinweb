@@ -16,6 +16,7 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebCourseData;
 import br.unicamp.iel.model.Strategy;
 
 /**
@@ -34,6 +35,10 @@ public interface ReadInWebAdminLogic {
 
     public Question getQuestion(Long question);
 
+    public Strategy getStrategy(Long strategy);
+
+    public Exercise getExercise(Long exercise);
+
     public ReadInWebAnswer getStudentAnswer(Long question);
 
     public List<Course> getCourses();
@@ -42,7 +47,7 @@ public interface ReadInWebAdminLogic {
 
     public List<Activity> getActivities(Module module);
 
-    public List<FunctionalWord> getFunctionalWord(Course course);
+    public List<FunctionalWord> getFunctionalWords(Course course);
 
     public List<DictionaryWord> getDictionary(Activity activity);
 
@@ -73,5 +78,13 @@ public interface ReadInWebAdminLogic {
     public boolean updateQuestion(Question question);
 
     public boolean updateActivity(Activity activity);
+
+    public ReadInWebCourseData getReadInWebData(Course c);
+
+    public void deleteEntity(Object entity);
+
+    public FunctionalWord getFunctionalWord(Long word);
+
+    public DictionaryWord getDictionaryWord(Long word);
 
 }

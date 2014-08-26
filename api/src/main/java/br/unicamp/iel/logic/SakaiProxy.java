@@ -1,12 +1,17 @@
 package br.unicamp.iel.logic;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.sakaiproject.authz.api.Role;
 import org.sakaiproject.site.api.Site;
+import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.user.api.User;
+
+import br.unicamp.iel.model.Course;
 
 /**
  * An interface to abstract all Sakai related API calls in a central method that can be injected into our app.
@@ -18,6 +23,8 @@ public interface SakaiProxy {
 
     public final static String READINWEB_ACCESS = "readinweb.access";
     public final static String READINWEB_MANAGE = "readinweb.manage";
+    public final static String READINWEB_MANAGE_TOOL = "sakai.readinwebmanage";
+    public final static String READINWEB_ADMIN_TOOL = "sakai.readinwebadmin";
 
     /**
      * Get current siteid
@@ -98,13 +105,13 @@ public interface SakaiProxy {
 
     public void archiveSite(String siteId);
 
-    public List<Site> getReadInWebClasses(Long course);
-
     public List<User> getSiteUsers(String siteId);
 
     public List<User> getSiteStudents(Site site);
 
     public User getUser();
+
+    public User getUser(String teacherId);
 
     public Integer countUsers(String siteId);
 
@@ -115,5 +122,15 @@ public interface SakaiProxy {
     public Site getSite(String siteId);
 
     public Site getCurrentSite();
+
+    public List<Site> getReadInWebSites(Long course);
+
+    public List<Site> getReadInWebArchivedSites(Long course);
+
+    public void createReadInWebAdminPage();
+
+    public void createManagerPage(Course course);
+
+    public SitePage findCurrentPage();
 
  }

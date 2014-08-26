@@ -19,6 +19,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.site.api.Site;
 
 import br.unicamp.iel.logic.ReadInWebCommonLogic;
 import br.unicamp.iel.model.Activity;
@@ -45,58 +46,10 @@ public class PreloadDataImpl {
 
     public void init() {
         log.info("Preloading Read in Web Data");
-        if(addReadInWebCourse("riw_")){
-            log.info("Preloading succeed");
-        } else {
-            log.error("Preloading failed");
-        }
-        loadCSVData();
-    }
+        if(common.idiomCourseExists("english")) return;
+        else loadCSVData();
 
-    /**
-     * This method is exclusive to Read in Web English Course.
-     * Another method, based on prefix list is avaiable
-     *
-     * @see addCourses
-     *
-     * @return
-     */
-    private boolean addReadInWebCourse(String prefix){
-        String ext = ".csv";
-        // Get data from CSV files
-        try {
-            URI s = getClass().getResource("/riw_atividades.csv").toURI();
-            File f = new File(s);
-            Reader in = new FileReader(f);
-            CSVFormat format = CSVFormat
-                    .newFormat(';')
-                    .withQuote('"')
-                    .withHeader((String[])null);
-            Iterable<CSVRecord> records = format.parse(in);
-            log.info("Olha os modules galera fica loka");
-            for(CSVRecord record : records){
-                log.info(record.get(0));
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        // Add Course to database
-        // For Course, add FunctionalWords
-        // 		add Modules
-        // 		For each module, set Grammar
-        // 			Add Activities
-        // 			For each Activity set strategies and text
-        // 				add Questions
-        // 				add DictionaryWords
-        // 				add Exercises
-        return false;
+        common.addReadInWebAdmin();
     }
 
     private void loadCSVData() {
@@ -105,6 +58,7 @@ public class PreloadDataImpl {
 
         try {
             log.info("Creating course");
+
             Course c = new Course();
             c.setTitle("Curso Read in Web");
             c.setIdiom("english");

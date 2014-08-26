@@ -1,7 +1,8 @@
 package br.unicamp.iel.util;
 
+import java.util.Date;
+
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
 
 public class UserProperties {
     private JsonObject userProperties;
@@ -28,14 +29,15 @@ public class UserProperties {
         } else {
             status.set("blocked", false);
             status.set("date", System.currentTimeMillis());
+            status.set("date_sent", (String) null);
         }
     }
 
-    public void setDateSend(String siteId){
+    public void setDateSent(String siteId, Date date){
         JsonObject status = userProperties.get("sites").asObject()
                 .get(siteId).asObject()
                 .get("status").asObject();
-        status.set("date_sent", System.currentTimeMillis());
+        status.set("date_sent", date.getTime());
     }
 
     public boolean hasUserData(String siteId) {
@@ -73,5 +75,12 @@ public class UserProperties {
                 .get(siteId).asObject()
                 .get("status").asObject();
         return status.get("blocks").asInt();
+    }
+
+    public boolean hasSentJustification(String siteId) {
+        JsonObject status = userProperties.get("sites").asObject()
+                .get(siteId).asObject()
+                .get("status").asObject();
+        return !status.get("date_sent").isNull();
     }
 }

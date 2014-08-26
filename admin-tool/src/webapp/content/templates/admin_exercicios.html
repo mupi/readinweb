@@ -1,24 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Projeto Read in Web - Exerc&iacute;cios</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Projeto Read in Web - Exerc&iacute;cios</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
-    <!-- End Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-
-    <link rel="stylesheet" type="text/css" href="../css/exercicios.css" />
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/exercicios.css" />
 </head>
 <body>
     <div id="wrap">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -29,7 +27,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
+                    <img src="../img/logo.png" alt="Curso Read in Web" />
                 </a>
             </div>
             <div class="collapse navbar-collapse">
@@ -53,10 +51,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Lista de módulos <b class="caret"></b>
                         </a>
-                        <ul id="lista_menu_modulos" class="dropdown-menu">
-                            <li rsf:id="li-rowsMod:">
-                                <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                        <ul id="lista_menu_modulos" class="dropdown-menu multi-level" role="menu"
+                            aria-labelledby="dropdownMenu">
+                            <li rsf:id="li-rowsMod:" class="dropdown-submenu">
+                                <span tabindex="-1" data-target="#" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                                <ul rsf:id="div_atividades:" class="dropdown-menu">
                                     <li rsf:id="p-rowsAct:">
                                         <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
                                     </li>
@@ -68,7 +67,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                            <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
                         </a>
                     </li>
                 </ul>
@@ -76,7 +75,7 @@
         </div>
         </nav>
         <div class="container">
-            <div class="row first-row">
+            <div class="row">
                 <ol class="breadcrumb">
                     <li>
                         Voc&ecirc; est&aacute; no M&oacute;dulo
@@ -89,18 +88,22 @@
                     <li class="active">
                         <span rsf:id="current_title">--</span>
                     </li>
+                    <li>
+                        <span>Exercícios</span>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary btn-small" data-toggle="modal" data-target="#addExerciseModal">
+                            Novo Exercício</button>
+                    </li>
                 </ol>
                 <div id="function">
                     <div id="exercicios">
-                        <h1 id="title_exercicios">EXERC&#205;CIOS</h1>
                         <div id="indice_exercicios" class="col-sm-4">
                             <h2 id="titulo_indice_exercicios">&#205;NDICE</h2>
                             <div id="lista_indice_exercicios">
-                                <ul rsf:id="ul-exercicios:">
-                                    <li rsf:id="li-linkExer:">
-                                        <a rsf:id="input_link_e_" id="input_link_e_" class="submitModule"
-                                            onclick="javascript:update_exercicio(this, 'input_hidden_e')">
-                                            Exerc&iacute;cio 1 </a>
+                                <ul>
+                                    <li rsf:id="exercise_link_container:">
+                                        <a rsf:id="exercise_link" class="submitModule"> Exerc&iacute;cio 1 </a>
                                     </li>
                                 </ul>
                             </div>
@@ -111,7 +114,34 @@
                                 <div id="titulo_exercicio_div" rsf:id="titulo_exercicio_div"></div>
                             </div>
                             <div id="conteudo_conteudo_exercicios">
-                                <div id="html_exercicio_div" rsf:id="html_exercicio_div"></div>
+                                <form rsf:id="exercise_form">
+                                    <div class="form-group">
+                                        <label>Posição</label>
+                                        <input class="form-control" type="number" name="position"
+                                            rsf:id="exercise_position" />
+                                        <label>Título</label>
+                                        <input class="form-control" type="text" rsf:id="exercise_title" name="title" />
+                                        <label>Descrição</label>
+                                        <textarea class="form-control" name="description" rsf:id="exercise_description">
+                                        </textarea>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group  disabled">
+                                        <label>Caminho no sistema</label>
+                                        <input class="form-control" type="text" name="exercise_path"
+                                            rsf:id="exercise_path" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Resposta (JSON)</label>
+                                        <textarea class="form-control" name="answer" rsf:id="exercise_answer">
+                                        </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button rsf:id="exercise_save" type="submit" class="btn btn-success">Salvar</button>
+                                        <button rsf:id="exercise_delete" type="submit" class="btn btn-danger">Excluir</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -119,18 +149,54 @@
             </div>
         </div>
     </div>
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-                <li>Sobre o curso</li>
-                <li>Suporte</li>
-                <li>Termos de uso</li>
-            </ul>
+
+
+    <div id="addExerciseModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fechar</span>
+                    </button>
+                    <h4 class="modal-title">Adicionar Novo Exercício</h4>
+                </div>
+                <div class="modal-body">
+                    <form rsf:id="add_exercise_form">
+                        <div class="form-group">
+                            <label>Posição</label>
+                            <input class="form-control" type="number" name="position" rsf:id="add_exercise_position" />
+                            <label>Título</label>
+                            <input class="form-control" type="text" rsf:id="add_exercise_title" name="title" />
+                            <label>Descrição</label>
+                            <textarea class="form-control" name="description" rsf:id="add_exercise_description"></textarea>
+                        </div>
+                        <hr />
+                        <div class="form-group  disabled">
+                            <label>Caminho no sistema</label>
+                            <input class="form-control" type="text" name="add_exercise_path" rsf:id="add_exercise_path" />
+                        </div>
+                        <div class="form-group">
+                            <label>Resposta (JSON)</label>
+                            <textarea class="form-control" name="answer" rsf:id="add_exercise_answer"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button rsf:id="add_exercise_save" type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
     </div>
+
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
-    <script type="text/javascript" src="../js/rsf.js"></script>
 </body>
 </html>

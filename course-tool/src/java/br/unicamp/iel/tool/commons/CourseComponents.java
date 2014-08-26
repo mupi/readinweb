@@ -23,6 +23,10 @@ import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
 public class CourseComponents {
 
+    public static final String DATA_SENT = "Data Succesfully sent";
+    public static final String DATA_EMPTY = "Data is empty, nothing to save";
+    public static final String DATA_SEND_FAILED = "Data sending failed";
+
     public static void loadMenu(ViewParameters viewparams, UIContainer tofill){
         CourseViewParameters cvpLink;
         ExerciseViewParameters evpLink;

@@ -1,31 +1,39 @@
 package br.unicamp.iel.logic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import lombok.Setter;
 
 import org.apache.log4j.Logger;
+import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 import org.sakaiproject.site.api.Site;
+import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.user.api.User;
+import org.sakaiproject.user.api.UserNotDefinedException;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.ActivitySets;
+import br.unicamp.iel.model.Justification;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
-import br.unicamp.iel.model.CourseSets;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
-import br.unicamp.iel.model.ModuleSets;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.model.sets.ActivitySets;
+import br.unicamp.iel.model.sets.CourseSets;
+import br.unicamp.iel.model.sets.JustificationSets;
+import br.unicamp.iel.model.sets.ModuleSets;
 import br.unicamp.iel.util.CourseProperties;
 import br.unicamp.iel.util.UserProperties;
 
@@ -108,6 +116,21 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
+    public Exercise getExercise(Long exercise) {
+        return dao.findById(Exercise.class, exercise);
+    }
+
+    @Override
+    public Strategy getStrategy(Long strategy) {
+        return dao.findById(Strategy.class, strategy);
+    }
+
+    @Override
+    public Justification getJustification(Long justification) {
+        return dao.findById(Justification.class, justification);
+    }
+
+    @Override
     public ReadInWebAnswer getStudentAnswer(Long question) {
         ReadInWebAnswer answer = dao.findOneBySearch(ReadInWebAnswer.class,
                 new Search(new Restriction[]{
@@ -177,48 +200,91 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
+    public List<Justification> getUserJustifications(String user, String siteId) {
+        Search search = new Search(new Restriction[]{
+                new Restriction("user", user),
+                new Restriction("site", siteId),
+        });
+        search.addOrder(new Order("sentDate", false));
+        return dao.findBySearch(Justification.class, search);
+    }
+
+    @Override
+    public List<JustificationMessage> getJustificationMessages(
+            Justification justification) {
+        JustificationSets js = new JustificationSets(justification);
+
+        return new ArrayList<JustificationMessage>(
+                js.getJustificationMessages(dao));
+    }
+
+    @Override
+    public List<Justification> getSiteJustifications(String siteId) {
+        Search search = new Search(new Restriction[]{
+                new Restriction("site", siteId),
+        });
+        search.addOrder(new Order("sentDate"));
+        return dao.findBySearch(Justification.class, search);
+    }
+
+    @Override
     public String getCurrentSiteId() {
         return sakaiProxy.getCurrentSiteId();
     }
 
     @Override
     public void saveCourse(Course c) {
-        dao.create(c);
+        dao.save(c);
     }
 
     @Override
     public void saveModule(Module m) {
-        dao.create(m);
+        dao.save(m);
     }
 
     @Override
     public void saveActivity(Activity a) {
-        dao.create(a);
+        dao.save(a);
     }
 
     @Override
     public void saveDictionaryWord(DictionaryWord dw) {
-        dao.create(dw);
+        dao.save(dw);
     }
 
     @Override
     public void saveExercise(Exercise e) {
-        dao.create(e);
+        dao.save(e);
     }
 
     @Override
     public void saveQuestion(Question q) {
-        dao.create(q);
+        dao.save(q);
     }
 
     @Override
     public void saveFunctionalWord(FunctionalWord fw) {
-        dao.create(fw);
+        dao.save(fw);
     }
 
     @Override
     public void saveStrategy(Strategy strategy) {
-        dao.create(strategy);
+        dao.save(strategy);
+    }
+
+    @Override
+    public void saveJustification(Justification j) {
+        dao.save(j);
+    }
+
+    @Override
+    public void saveJustificationMessage(JustificationMessage jm) {
+        dao.save(jm);
+    }
+
+    @Override
+    public void deleteEntity(Object entity){
+        dao.delete(entity);
     }
 
     @Override
@@ -239,7 +305,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
                 JsonObject j_a = new JsonObject();
                 j_a.add("status", false);
                 j_m.get("activities").asObject()
-                    .add(a.getId().toString(), j_a);
+                .add(a.getId().toString(), j_a);
             }
         }
         return jo.toString();
@@ -331,8 +397,23 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
+    public boolean hasSentJustification(User user, Site site) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(user.getId())));
+        return userProperties.hasSentJustification(site.getId());
+    }
+
+    @Override
+    public void setJustificationSent(String userId, String siteId, Date date) {
+        UserProperties userProperties = new UserProperties(JsonObject
+                .readFrom(getUserPropertyString(userId)));
+        userProperties.setDateSent(siteId, date);
+        setUserPropertyString(userId, userProperties.toString());
+    }
+
+    @Override
     public boolean isUserBLocked(User user, Site site) {
-        // FIXME get site and user and not the ids
         String properties = getUserPropertyString(user.getId());
         if(properties == null){
             String value = userPropertySkelString(site.getId());
@@ -405,7 +486,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public boolean isActivityPublished(Site riwClass, Long module, Long activity) {
+    public boolean isActivityPublished(Site riwClass, Long module,
+            Long activity) {
         CourseProperties courseProperties =
                 new CourseProperties(JsonObject
                         .readFrom(getCoursePropertyString(riwClass)));
@@ -430,4 +512,24 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
         return userProperties.getNumBlocks(siteId);
     }
 
+    @Override
+    public User getTeacher(String teacherId){
+        return sakaiProxy.getUser(teacherId);
+    }
+
+    @Override
+    public boolean idiomCourseExists(String idiom) {
+        return (dao.findBySearch(Course.class,
+                new Search("idiom", idiom))).size() > 0;
+    }
+
+    @Override
+    public void addReadInWebAdmin() {
+        sakaiProxy.createReadInWebAdminPage();
+    }
+
+    @Override
+    public void addReadInWebManager(Course course) {
+        sakaiProxy.createManagerPage(course);
+    }
 }
