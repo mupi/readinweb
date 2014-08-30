@@ -9,7 +9,7 @@
     <property name="evaluatedDate" column="date_evaluated" type="timestamp" />
 
     <property name="explanation" type="string" />
-    <property name="state" type="Byte" />
+    <property name="state" type="byte" />
 
     <property name="user" column="user_id" type="string" length="255" />
     <property name="site" column="site_id" type="string" length="255" />

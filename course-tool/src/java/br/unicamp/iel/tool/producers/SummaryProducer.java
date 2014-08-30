@@ -44,7 +44,6 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
         return VIEW_ID;
     }
 
-
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {

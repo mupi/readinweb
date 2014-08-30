@@ -17,6 +17,7 @@ import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
+import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.ReadInWebCourseData;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
@@ -74,6 +75,8 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
 
             CourseViewParameters cvp =
                     new CourseViewParameters(AdminTextProducer.VIEW_ID);
+            Activity a = logic.getCourseFirstActivity(c.getId());
+            cvp.activity = a.getId();
             cvp.course = c.getId();
             UIInternalLink.make(uiCourse, "course_edit_content", cvp);
         }

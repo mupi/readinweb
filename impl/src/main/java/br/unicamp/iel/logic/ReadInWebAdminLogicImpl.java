@@ -3,15 +3,22 @@
  */
 package br.unicamp.iel.logic;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.sakaiproject.genericdao.api.search.Order;
+import org.sakaiproject.genericdao.api.search.Search;
+import org.sakaiproject.javax.Restriction;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import lombok.Setter;
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
@@ -19,8 +26,11 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.ReadInWebCourseData;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.model.sets.ActivitySets;
+import br.unicamp.iel.model.sets.CourseSets;
 import br.unicamp.iel.model.types.StrategyType;
 
 /**
@@ -191,6 +201,8 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     @Override
     public boolean updateQuestion(Question question) {
         try {
+            Activity a = getActivity(question.getActivity().getId());
+            updateActivity(a);
             dao.update(question);
             return true;
         } catch (IllegalArgumentException e){
@@ -201,7 +213,8 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
     @Override
     public boolean updateActivity(Activity activity) {
         try {
-            dao.update(activity);
+            activity.setModified(new Date());
+            dao.save(activity);
             return true;
         } catch (IllegalArgumentException e){
             return false;
@@ -226,5 +239,71 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
             }
         }
         return riwData;
+    }
+
+    @Override
+    public Activity getLastActivityAdded() {
+        Search search = new Search();
+        search.addOrder(new Order("id", false));
+        return dao.findOneBySearch(Activity.class, search);
+    }
+
+    @Override
+    public Activity getLastUpdatedActivity() {
+        Search search = new Search();
+        search.addOrder(new Order("modified", false));
+        return dao.findOneBySearch(Activity.class, search);
+    }
+
+    @Override
+    public Activity getCourseFirstActivity(Long course) {
+        Search search = new Search("course.id", course);
+        search.addOrder(new Order("id", true));
+        Module m = dao.findOneBySearch(Module.class, search);
+
+        search = new Search("module.id", m.getId());
+        search.addOrder(new Order("id", true));
+        return dao.findOneBySearch(Activity.class, search);
+    }
+
+    @Override
+    public void deleteActivity(Activity activity) {
+        ActivitySets as = new ActivitySets(activity);
+        dao.deleteSet(new HashSet<ReadInWebAccess>(as.getAccesses(dao)));
+        ReadInWebControl riwc = as.getControl(dao);
+        if(riwc != null){
+            dao.delete(riwc);
+        }
+        dao.deleteSet(new HashSet<DictionaryWord>(as.getDictionary(dao)));
+        dao.deleteSet(new HashSet<Exercise>(as.getExercises(dao)));
+        dao.deleteSet(new HashSet<Question>(as.getQuestions(dao)));
+        dao.deleteSet(new HashSet<Strategy>(as.getStrategies(dao)));
+        dao.delete(activity);
+    }
+
+    @Override
+    public Exercise getActivityFirstExercise(Activity activity) {
+        Search search = new Search("activity.id", activity.getId());
+        search.addOrder(new Order("position", true));
+        return dao.findOneBySearch(Exercise.class, search);
+    }
+
+    @Override
+    public Exercise getLastExerciseAdded() {
+        Search search = new Search();
+        search.addOrder(new Order("id", false));
+        return dao.findOneBySearch(Exercise.class, search);
+    }
+
+    @Override
+    public Exercise getLastUpdatedExercise() {
+        Search search = new Search();
+        search.addOrder(new Order("modified", false));
+        return dao.findOneBySearch(Exercise.class, search);
+    }
+
+    @Override
+    public Long getCourseId() {
+        return sakaiProxy.getCourseId();
     }
 }

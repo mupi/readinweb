@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
-	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="br.unicamp.iel.model.Exercise" table="readinweb_exercises">
-    	<id name="id" type="java.lang.Long">
-			<generator class="increment" />
-		</id>	
-        <many-to-one name="activity" class="br.unicamp.iel.model.Activity"
-			foreign-key="exercise_activity_fk" fetch="select">
-			<column name="activity_id" not-null="true" />
-		</many-to-one>
-        
-        <property name="title" length="255" type="string"/>
-        <property name="description" type="text"/>
-        <property name="exercise_path" length="255" type="string"/>
-        <property name="answer" type="text" />
-        
-        <property name="position" type="integer" />
-    </class>
+  <class name="br.unicamp.iel.model.Exercise" table="readinweb_exercises">
+    <id name="id" type="java.lang.Long">
+      <generator class="increment" />
+    </id>
+    <many-to-one name="activity" class="br.unicamp.iel.model.Activity"
+      foreign-key="exercise_activity_fk" fetch="select">
+      <column name="activity_id" not-null="true" />
+    </many-to-one>
+
+    <property name="title" length="255" type="string" />
+    <property name="description" type="text" />
+    <property name="exercise_path" length="255" type="string" />
+    <property name="answer" type="text" />
+
+    <property name="position" type="integer" />
+    <property name="modified" type="timestamp"></property>
+  </class>
 </hibernate-mapping>

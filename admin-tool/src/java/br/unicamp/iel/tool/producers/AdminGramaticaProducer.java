@@ -1,23 +1,17 @@
 package br.unicamp.iel.tool.producers;
 
-import java.util.List;
-
 import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInput;
-import uk.org.ponder.rsf.components.UIInternalLink;
-import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
@@ -54,16 +48,23 @@ public class AdminGramaticaProducer implements ViewComponentProducer, ViewParams
         Course course;
 
         CourseViewParameters parameters = (CourseViewParameters) viewparams;
+        if(parameters.newdata){ // Nothing setted
+            activity = logic.getLastActivityAdded();
+        } else if(parameters.dataupdated){ // Nothing setted
+            activity = logic.getLastUpdatedActivity();
+        } else if(parameters.datadeleted){
+            activity = logic.getCourseFirstActivity(logic.getCourseId());
+        } else if(parameters.activity != null){
+            activity = logic.getActivity(parameters.activity);
+        } else { // Nothing setted =(
+            return;
+        }
 
-        if(parameters.module == null) parameters.module = 1L;
-        if(parameters.activity == null) parameters.activity = 1L;
-
-        course = logic.getCourse(parameters.course);
-        activity = logic.getActivity(parameters.activity);
-        module = logic.getModule(parameters.module);
+        module = logic.getModule(activity.getModule().getId());
+        course = logic.getCourse(module.getCourse().getId());
 
         CourseComponents.checkParameters(course, module, activity);
-        CourseComponents.loadMenu(parameters, tofill);
+        CourseComponents.loadMenu(activity, course, null, tofill);
         CourseComponents.createModulesMenu(tofill, course, this.getViewID(),
                 logic);
         CourseComponents.createBreadCrumb(tofill, activity, module,

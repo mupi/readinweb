@@ -5,11 +5,16 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
 @AllArgsConstructor
 public class CourseViewParameters extends SimpleViewParameters {
+    public boolean newdata;
+    public boolean dataupdated;
+    public boolean datadeleted;
     public Long course;
-    public Long module;
     public Long activity;
-    public Long question;
     public Long exercise;
+
+
+    public Long question;
+    public Long module;
     public String message;
 
     public CourseViewParameters(){}
@@ -19,11 +24,26 @@ public class CourseViewParameters extends SimpleViewParameters {
         this.viewID = viewID;
     }
 
-    public CourseViewParameters(Long course, Long module, Long activity) {
+    public CourseViewParameters(Long course, Long activity) {
         super();
         this.course = course;
-        this.module = module;
         this.activity = activity;
     }
 
+    public CourseViewParameters(Long course, Long exercise, Long activity) {
+        super();
+        this.course = course;
+        this.exercise = exercise;
+        this.activity = activity;
+    }
+
+    // FIXME create a better way to handle submit flow
+
+    public CourseViewParameters(String viewId, boolean newActivity,
+            boolean updatedActivity, boolean deletedActivity){
+        super(viewId);
+        this.newdata = newActivity;
+        this.dataupdated = updatedActivity;
+        this.datadeleted = deletedActivity;
+    }
 }

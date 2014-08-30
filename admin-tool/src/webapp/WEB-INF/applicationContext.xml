@@ -5,11 +5,13 @@
 <beans>
 
   <bean parent="requestAddressibleParent">
-    <property name="value" value="AdminBean, AdminActivityBean, AdminQuestionBean" />
+    <property name="value"
+      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, AdminActivityBean, AdminQuestionBean" />
   </bean>
 
   <bean id="resultsScope" parent="beanScopeParent">
-    <property name="copyPreservingBeans" value="AdminBean, AdminActivityBean, AdminQuestionBean" />
+    <property name="copyPreservingBeans"
+      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, AdminActivityBean, AdminQuestionBean" />
     <property name="exclusive" value="true" />
   </bean>
 
@@ -39,13 +41,5 @@
   <!-- Control the location of the html templates (default: content/templates/) -->
   <bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">
     <property name="baseDirectory" value="content/templates/" />
-  </bean>
-
-  <bean parent="requestAddressibleParent">
-    <property name="value">
-      <value>
-        AdminActivityBean, AdminQuestionBean
-      </value>
-    </property>
   </bean>
 </beans>

@@ -1,20 +1,20 @@
 package br.unicamp.iel.tool;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.Setter;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Course;
-import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
-import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Strategy;
-import br.unicamp.iel.model.types.StrategyType;
 import br.unicamp.iel.tool.commons.CourseComponents;
 
 @Data
 public class AdminActivityBean {
+    private Long activityId;
+    private Long activityModule;
     private Integer position;
     private String image;
     private String title;
@@ -25,8 +25,40 @@ public class AdminActivityBean {
     @Setter
     private ReadInWebAdminLogic logic;
 
-    public boolean updateActivity(Long id){
-        Activity activity = logic.getActivity(id);
+    public String updateActivity(){
+        if(activityDataSent()){
+            Activity activity = logic.getActivity(activityId);
+
+            if(position != null){
+                activity.setPosition(position);
+            }
+            if(title != null){
+                activity.setTitle(title);
+            }
+            if(text != null){
+                activity.setText(text);
+            }
+            if(preReading != null){
+                activity.setPrereading(preReading);
+            }
+            if(etaRead != null){
+                activity.setEtaRead(etaRead);
+            }
+            activity.setModified(new Date());
+            try {
+                logic.saveActivity(activity);
+            } catch(Exception e){
+                e.printStackTrace();
+                return CourseComponents.UPDATE_FAIL;
+            }
+        } else {
+            return CourseComponents.DATA_EMPTY;
+        }
+        return CourseComponents.ACTIVITY_UPDATED;
+    }
+
+    public String addActivity(){
+        Activity activity = new Activity(logic.getModule(activityModule));
 
         if(position != null){
             activity.setPosition(position);
@@ -34,152 +66,34 @@ public class AdminActivityBean {
         if(title != null){
             activity.setTitle(title);
         }
-        if(text != null){
-            activity.setText(text);
+        activity.setEtaRead(0);
+        activity.setPrereading("");
+        activity.setText("");
+        activity.setModified(new Date());
+        try{
+            logic.saveActivity(activity);
+            return CourseComponents.ACTIVITY_ADDED;
+        } catch (Exception e){
+            e.printStackTrace();
+            return CourseComponents.SAVE_FAIL;
         }
-        if(preReading != null){
-            activity.setPrereading(preReading);
-        }
-        if(etaRead != null){
-            activity.setEtaRead(etaRead);
-        }
+    }
 
-        return logic.updateActivity(activity);
+    public String deleteActivity(){
+        Activity activity = logic.getActivity(activityId);
+        try {
+            logic.deleteActivity(activity);
+        } catch (Exception e){
+            e.printStackTrace();
+            return CourseComponents.DELETE_FAIL;
+        }
+        return CourseComponents.ACTIVITY_DELETED;
     }
 
     public boolean activityDataSent() {
         return position != null || image != null || title != null
                 || text != null || preReading != null || etaRead != null;
     }
-
-    /**
-     * Functional word handling
-     */
-
-    private Long functionalWordId;
-    private Long functionalWordCourse;
-    private String functionalWord;
-    private String functionalWordMeaning;
-
-    public String updateFunctionalWord(){
-        if(functionalDataSent()){
-            FunctionalWord word = logic.getFunctionalWord(strategyId);
-            if(functionalWord != null){
-                word.setWord(functionalWord);
-            }
-            if(functionalWordMeaning != null){
-                word.setMeaning(functionalWordMeaning);
-            }
-
-            try{
-                logic.saveFunctionalWord(word);
-                return CourseComponents.UPDATED;
-            } catch (Exception e){
-                e.printStackTrace();
-                return CourseComponents.UPDATE_FAIL;
-            }
-        } else {
-            return CourseComponents.DATA_EMPTY;
-        }
-    }
-
-    public String addFunctionalWord(){
-        FunctionalWord word =
-                new FunctionalWord(logic.getCourse(functionalWordCourse));
-        if(functionalWord != null){
-            word.setWord(functionalWord);
-        }
-        if(functionalWordMeaning != null){
-            word.setMeaning(functionalWordMeaning);
-        }
-        try{
-            logic.saveFunctionalWord(word);
-            return CourseComponents.SAVED;
-        } catch (Exception e){
-            e.printStackTrace();
-            return CourseComponents.SAVE_FAIL;
-        }
-    }
-
-    public String deleteFunctionalWord(){
-        FunctionalWord word = logic.getFunctionalWord(functionalWordId);
-        try {
-            logic.deleteEntity(word);
-        } catch (Exception e){
-            e.printStackTrace();
-            return CourseComponents.DELETE_FAIL;
-        }
-        return CourseComponents.DELETED;
-    }
-
-    public boolean functionalDataSent(){
-        return functionalWord != null || functionalWordMeaning != null;
-    }
-
-    /**
-     * Dictionary handling
-     */
-
-    private Long dictionaryWordId;
-    private Long dictionaryWordActivity;
-    private String dictionaryWord;
-    private String dictionaryWordMeaning;
-
-    public String updateDictionaryWord(){
-        if(dictionaryDataSent()){
-            DictionaryWord word = logic.getDictionaryWord(dictionaryWordActivity);
-            if(dictionaryWord != null){
-                word.setWord(dictionaryWord);
-            }
-            if(dictionaryWordMeaning != null){
-                word.setMeaning(dictionaryWordMeaning);
-            }
-
-            try{
-                logic.saveDictionaryWord(word);
-                return CourseComponents.UPDATED;
-            } catch (Exception e){
-                e.printStackTrace();
-                return CourseComponents.UPDATE_FAIL;
-            }
-        } else {
-            return CourseComponents.DATA_EMPTY;
-        }
-    }
-
-    public String addDictionaryWord(){
-        DictionaryWord word =
-                new DictionaryWord(logic.getActivity(dictionaryWordActivity));
-        if(dictionaryWord != null){
-            word.setWord(dictionaryWord);
-        }
-        if(dictionaryWordMeaning != null){
-            word.setMeaning(dictionaryWordMeaning);
-        }
-        try{
-            logic.saveDictionaryWord(word);
-            return CourseComponents.SAVED;
-        } catch (Exception e){
-            e.printStackTrace();
-            return CourseComponents.SAVE_FAIL;
-        }
-    }
-
-    public String deleteDictionaryWord(){
-        DictionaryWord word = logic.getDictionaryWord(dictionaryWordId);
-        try {
-            logic.deleteEntity(word);
-        } catch (Exception e){
-            e.printStackTrace();
-            return CourseComponents.DELETE_FAIL;
-        }
-        return CourseComponents.DELETED;
-    }
-
-    public boolean dictionaryDataSent(){
-        return dictionaryWord != null || dictionaryWordMeaning != null;
-    }
-
 
     /**
      * Strategy data handling
@@ -205,6 +119,7 @@ public class AdminActivityBean {
             }
             try{
                 logic.saveStrategy(strategy);
+                logic.updateActivity(strategy.getActivity());
                 return CourseComponents.UPDATED;
             } catch (Exception e){
                 e.printStackTrace();
@@ -230,6 +145,7 @@ public class AdminActivityBean {
         }
         try{
             logic.saveStrategy(strategy);
+            logic.updateActivity(strategy.getActivity());
             return CourseComponents.SAVED;
         } catch (Exception e){
             e.printStackTrace();
@@ -241,6 +157,7 @@ public class AdminActivityBean {
         Strategy strategy = logic.getStrategy(strategyId);
         try {
             logic.deleteEntity(strategy);
+            logic.updateActivity(strategy.getActivity());
         } catch (Exception e){
             e.printStackTrace();
             return CourseComponents.DELETE_FAIL;
@@ -279,6 +196,7 @@ public class AdminActivityBean {
             if(exerciseAnswer != null){
                 exercise.setAnswer(exerciseAnswer);
             }
+            exercise.setModified(new Date());
 
             try{
                 logic.saveExercise(exercise);
@@ -306,6 +224,7 @@ public class AdminActivityBean {
         if(exerciseAnswer != null){
             exercise.setAnswer(exerciseAnswer);
         }
+        exercise.setModified(new Date());
         try{
             logic.saveExercise(exercise);
             return CourseComponents.SAVED;
@@ -318,6 +237,7 @@ public class AdminActivityBean {
     public String deleteExercise(){
         Exercise exercise = logic.getExercise(exerciseId);
         try {
+            logic.updateActivity(exercise.getActivity());
             logic.deleteEntity(exercise);
         } catch (Exception e){
             e.printStackTrace();
@@ -330,6 +250,7 @@ public class AdminActivityBean {
         return exercisePosition != null || exerciseTitle != null
                 || exerciseDescription != null || exerciseAnswer != null;
     }
+
 
     /**
      * Grammar content handling

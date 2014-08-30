@@ -223,11 +223,10 @@
                                         <div id="your_answer">
                                             <div id="form_your_answer">
                                                 <form rsf:id="answer_form" role="form">
-                                                    <input type="hidden" rsf:id="question_id"
-                                                        name="question_id" id="question_id" />
+                                                    <input type="hidden" rsf:id="question_id" name="question_id"
+                                                        id="question_id" />
                                                     <div class="form-group">
-                                                        <textarea rsf:id="answer" name="answer"
-                                                            id="answer"
+                                                        <textarea rsf:id="answer" name="answer" id="answer"
                                                             class="form-control" rows="6"
                                                             placeholder="Escreva sua resposta aqui"></textarea>
                                                     </div>
@@ -262,12 +261,32 @@
                             </ul>
                             <div class="tab-content glossario-dicionario">
                                 <div class="tab-pane fade in active" id="glossario">
-                                    <ul id="texto_dicionario" rsf:id="texto_dicionario">
-                                    </ul>
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-hover">
+                                            <tr>
+                                                <th>palavra</th>
+                                                <th>significado</th>
+                                            </tr>
+                                            <tr rsf:id="dictionary:">
+                                                <td rsf:id="dictionary_word"></td>
+                                                <td rsf:id="dictionary_meaning"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="palavras-funcao">
-                                    <ul id="texto_palavrasfuncao" rsf:id="texto_palavrasfuncao">
-                                    </ul>
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-hover">
+                                            <tr>
+                                                <th>palavra</th>
+                                                <th>significado</th>
+                                            </tr>
+                                            <tr rsf:id="functional:">
+                                                <td rsf:id="functional_word"></td>
+                                                <td rsf:id="functional_meaning"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 package br.unicamp.iel.model;
-// Generated Aug 26, 2014 12:31:43 PM by Hibernate Tools 3.2.2.GA
+// Generated Aug 29, 2014 11:33:34 PM by Hibernate Tools 3.2.2.GA
 
 
 import java.util.Date;
@@ -14,7 +14,7 @@ public class Justification  implements java.io.Serializable {
      private Date sentDate;
      private Date evaluatedDate;
      private String explanation;
-     private Byte state;
+     private byte state;
      private String user;
      private String site;
 
@@ -25,7 +25,7 @@ public class Justification  implements java.io.Serializable {
     public Justification(Date sentDate) {
         this.sentDate = sentDate;
     }
-    public Justification(Date sentDate, Date evaluatedDate, String explanation, Byte state, String user, String site) {
+    public Justification(Date sentDate, Date evaluatedDate, String explanation, byte state, String user, String site) {
        this.sentDate = sentDate;
        this.evaluatedDate = evaluatedDate;
        this.explanation = explanation;
@@ -62,11 +62,11 @@ public class Justification  implements java.io.Serializable {
     public void setExplanation(String explanation) {
         this.explanation = explanation;
     }
-    public Byte getState() {
+    public byte getState() {
         return this.state;
     }
     
-    public void setState(Byte state) {
+    public void setState(byte state) {
         this.state = state;
     }
     public String getUser() {

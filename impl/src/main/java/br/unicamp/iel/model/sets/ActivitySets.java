@@ -57,6 +57,27 @@ public class ActivitySets {
         return dao.findBySearch(DictionaryWord.class, search);
     }
 
+    public List<ReadInWebAccess> getAccesses(ReadInWebDao dao){
+        Restriction[] r = new Restriction[]{
+                new Restriction("activity.id", activity.getId()),
+        };
+        return dao.findBySearch(ReadInWebAccess.class, new Search(r));
+    }
+
+    public ReadInWebControl getControl(ReadInWebDao dao){
+        Restriction[] r = new Restriction[]{
+                new Restriction("activity.id", activity.getId()),
+        };
+        return dao.findOneBySearch(ReadInWebControl.class, new Search(r));
+    }
+
+    public List<ReadInWebAnswer> getUserAnswers(ReadInWebDao dao){
+        Restriction[] r = new Restriction[]{
+                new Restriction("activity.id", activity.getId()),
+        };
+        return dao.findBySearch(ReadInWebAnswer.class, new Search(r));
+    }
+
     public List<ReadInWebAccess> getAccesses(ReadInWebDao dao, String user){
         Restriction[] r = new Restriction[]{
                 new Restriction("activity.id", activity.getId()),
@@ -80,4 +101,6 @@ public class ActivitySets {
         };
         return dao.findBySearch(ReadInWebAnswer.class, new Search(r));
     }
+
+
 }

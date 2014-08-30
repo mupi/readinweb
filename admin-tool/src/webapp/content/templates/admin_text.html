@@ -105,13 +105,10 @@
                     <li class="active">
                         <span rsf:id="current_title">--</span>
                     </li>
-                    <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank"
-                        rsf:id="lnk_print">
-                        <div id="print_tag">
-                            <span class="glyphicon glyphicon-print"></span>
-                            IMPRIMIR
-                        </div>
-                    </a>
+                    <li>
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addActivityModal">
+                            Nova atividade</button>
+                    </li>
                     <div id="audio">
                         <div id="audio_player" style="display: none"></div>
                         <div id="audio_icon">
@@ -127,8 +124,8 @@
                 <div class="col-xs-6 col-md-8">
                     <form rsf:id="activity_form">
                         <button rsf:id="send_activity" type="submit" class="btn btn-success btn-sm">Salvar</button>
-                        <a class="btn btn-warning btn-sm">Nova Atividade</a>
-                        <a class="btn btn-danger btn-sm">Excluir</a>
+                        <button rsf:id="delete_activity" type="submit" class="btn btn-danger btn-sm">Excluir</button>
+
                         <input name="id" type="hidden" rsf:id="activity_id" />
                         <!-- this div is used to creates the audio -->
                         <div id="sound_text" rsf:id="sound_text"></div>
@@ -197,12 +194,85 @@
                             </ul>
                             <div class="tab-content glossario-dicionario">
                                 <div class="tab-pane fade in active" id="glossario">
-                                    <ul id="texto_dicionario" rsf:id="texto_dicionario">
-                                    </ul>
+                                    <div id="add_dictionary_well" class="well">
+                                        <h4>Nova palavra no dicionário</h4>
+                                        <form rsf:id="add_dictionary_form" class="form-horizontal" role="form">
+                                            <input type="hidden" id="add_dictionary_activity"
+                                                rsf:id="add_dictionary_activity" />
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" rsf:id="add_dictionary_word"
+                                                    id="add_dictionary_word" placeholder="palavra" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" rsf:id="add_dictionary_meaning"
+                                                    id="add_dictionary_meaning" placeholder="significado" />
+                                            </div>
+                                            <div class="form-group">
+                                                <button rsf:id="add_dictionary_send" id="add_dictionary_send"
+                                                    name="add_dictionary_send" class="btn btn-success">Salvar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-hover">
+                                            <tr id="dictionary_table_header">
+                                                <th>id</th>
+                                                <th>palavra</th>
+                                                <th>significado</th>
+                                                <th></th>
+                                            </tr>
+                                            <tr rsf:id="dictionary:" id="dictionary_row">
+                                                <td rsf:id="dictionary_id"></td>
+                                                <td rsf:id="dictionary_word"></td>
+                                                <td rsf:id="dictionary_meaning"></td>
+                                                <td>
+                                                    <a data-toggle="modal" data-target="#editDictionaryModal">
+                                                        <span class="glyphicon glyphicon-cog"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="palavras-funcao">
-                                    <ul id="texto_palavrasfuncao" rsf:id="texto_palavrasfuncao">
-                                    </ul>
+                                    <div id="add_functional_well" class="well">
+                                        <h4>Nova palavra função</h4>
+                                        <form rsf:id="add_functional_form" class="form-horizontal" role="form">
+                                            <input type="hidden" id="add_functional_course" rsf:id="add_functional_course" />
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" rsf:id="add_functional_word"
+                                                    id="add_functional_word" placeholder="palavra" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" rsf:id="add_functional_meaning"
+                                                    id="add_functional_meaning" placeholder="significado" />
+                                            </div>
+                                            <div class="form-group">
+                                                <button rsf:id="add_functional_send" id="add_functional_send"
+                                                    class="btn btn-success">Salvar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed table-hover">
+                                            <tr  id="functional_table_header">
+                                                <th>id</th>
+                                                <th>palavra</th>
+                                                <th>significado</th>
+                                                <th></th>
+                                            </tr>
+                                            <tr rsf:id="functional:" id="functional_row">
+                                                <td rsf:id="functional_id"></td>
+                                                <td rsf:id="functional_word"></td>
+                                                <td rsf:id="functional_meaning"></td>
+                                                <td>
+                                                    <a data-toggle="modal" data-target="#editFunctionalModal">
+                                                        <span class="glyphicon glyphicon-cog"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -211,12 +281,130 @@
             </div>
         </div>
     </div>
+    <div id="editDictionaryModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fechar</span>
+                    </button>
+                    <h4 class="modal-title">Editar palavra do dicionário</h4>
+                </div>
+                <div class="modal-body" rsf:id="edit_dictionary_form_container:">
+                    <form rsf:id="edit_dictionary_form" role="form">
+                        <input type="hidden" rsf:id="edit_dictionary_id" id="edit_dictionary_id" />
+                        <div class="col-xs-4">
+                            <input class="form-control input-sm" rsf:id="edit_dictionary_word" id="edit_dictionary_word"
+                                type="text" />
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control input-sm" rsf:id="edit_dictionary_meaning"
+                                id="edit_dictionary_meaning" type="text" />
+                        </div>
+                        <button type="submit" rsf:id="edit_dictionary_update" id="edit_dictionary_update"
+                            class="btn btn-primary" name="edit_dictionary_update">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="submit" rsf:id="edit_dictionary_delete" id="edit_dictionary_delete"
+                            class="btn btn-danger" name="edit_dictionary_delete">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div id="editFunctionalModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fechar</span>
+                    </button>
+                    <h4 class="modal-title">Editar palavra função</h4>
+                </div>
+                <div class="modal-body" rsf:id="edit_functional_form_container:">
+                    <form rsf:id="edit_functional_form" class="" role="form">
+                        <input type="hidden" rsf:id="edit_functional_id" id="edit_functional_id" />
+                        <div class="col-xs-4">
+                            <input class="form-control input-sm" rsf:id="edit_functional_word" id="edit_functional_word"
+                                type="text" />
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control input-sm" rsf:id="edit_functional_meaning"
+                                id="edit_functional_meaning" type="text" />
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary" rsf:id="edit_functional_update"
+                                id="edit_functional_update">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button type="submit" class="btn btn-danger" rsf:id="edit_functional_delete"
+                                id="edit_functional_delete">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div id="addActivityModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Fechar</span>
+                    </button>
+                    <h4 class="modal-title">Adicionar Novo Exercício</h4>
+                </div>
+                <div class="modal-body">
+                    <form rsf:id="add_activity_form">
+                        <div class="form-group">
+                            <label>Posição</label>
+                            <input class="form-control" type="number" name="position" rsf:id="add_activity_position" />
+                        </div>
+                        <div class="form-group">
+                            <label>Título</label>
+                            <input class="form-control" type="text" rsf:id="add_activity_title" name="title" />
+                        </div>
+                        <div class="form-group">
+                            <button rsf:id="add_activity" type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/rsf.js"></script>
+    <script type="text/javascript" src="../js/readinweb-admin.js"></script>
 
-    <script type="text/javascript" language="JavaScript">
+    <script rsf:id="update_call:" type="text/javascript"></script>
+    <script rsf:id="add_call:" type="text/javascript"></script>
+
+    <script type="text/javascript">
                     var sakai = sakai || {};
                     sakai.editor = sakai.editor || {};
                     sakai.locale = sakai.locale || {};
@@ -226,25 +414,13 @@
                     sakai.editor.collectionId = '/user/admin/';
                     sakai.editor.enableResourceSearch = false;
                 </script>
-    <script type="text/javascript" language="JavaScript">
+    <script type="text/javascript">
                     var CKEDITOR_BASEPATH = '/library/editor/ckeditor/';
                 </script>
-    <script type="text/javascript" language="JavaScript" src="/library/editor/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" language="JavaScript" src="/library/editor/ckeditor.launch.js"></script>
-    <script type="text/javascript" defer="1">
-                    sakai.editor.launch('text_text');
-                </script>
-
+    <script type="text/javascript" src="/library/editor/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/library/editor/ckeditor.launch.js"></script>
     <script type="text/javascript">
-                    /* FIXME Put it on a separeted file*/
-                    jQuery(document).ready(function() {
-                        jQuery("#question-tabs a:first").tab('show');
-                    });
-                </script>
-
-    <script rsf:id="init_js" type="text/javascript">
-                    // a real function call with real values which come from the
-                    // "emitJavascriptCall" method will be placed here by RSF
+                    sakai.editor.launch('text_text');
                 </script>
 </body>
 </html>

@@ -87,4 +87,20 @@ public interface ReadInWebAdminLogic {
 
     public DictionaryWord getDictionaryWord(Long word);
 
+    public Activity getLastActivityAdded();
+
+    public Activity getLastUpdatedActivity();
+
+    public Activity getCourseFirstActivity(Long course);
+
+    public void deleteActivity(Activity activity);
+
+    public Long getCourseId();
+
+    public Exercise getLastExerciseAdded();
+
+    public Exercise getLastUpdatedExercise();
+
+    public Exercise getActivityFirstExercise(Activity activity);
+
 }

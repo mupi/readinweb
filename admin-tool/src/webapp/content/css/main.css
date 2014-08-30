@@ -240,3 +240,19 @@ body{
 }
 
 /* End Codemirror */
+
+
+/* Word edits */
+
+.edit-forms {
+  width: 100%;
+  display: table;
+}
+
+.edit-forms .col-xs-4, .edit-forms .col-xs-3{
+    padding-left: 0px;
+    padding-right: 1px;
+}
+
+/* End Word edits */
+

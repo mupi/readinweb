@@ -8,6 +8,16 @@
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
   </bean>
 
+  <bean id="DictionaryAjaxBean" class="br.unicamp.iel.tool.DictionaryAjaxBean">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
+    <property name="destroyer" ref="resultsScope" />
+  </bean>
+
+  <bean id="FunctionalWordAjaxBean" class="br.unicamp.iel.tool.FunctionalWordAjaxBean">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
+    <property name="destroyer" ref="resultsScope" />
+  </bean>
+
   <bean id="AdminQuestionBean" class="br.unicamp.iel.tool.AdminQuestionBean">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
   </bean>

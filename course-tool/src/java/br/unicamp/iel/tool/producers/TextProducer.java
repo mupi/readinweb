@@ -103,10 +103,10 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
         // Audio; fill it only if file exists
         // FIXME Fix up audio retrieve method
-        audio = new File(this.makeSoundDir(activity));
+        audio = new File(activity.getImage());
         if (audio.exists()) {
             UIOutput.make(tofill, "sound_text",
-                    this.makeSoundURL(activity));
+                    activity.getImage());
         } else {
             UIOutput.make(tofill, "sound_text",
                     "Audio indispon\u00edvel.");
@@ -117,7 +117,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
                 && (activity.getImage().compareToIgnoreCase("") != 0)) {
             // FIXME Fix up image retrieve
             UIOutput.make(tofill, "picture_text",
-                    this.makeImageURL(activity));
+                    activity.getImage());
         }
 
         // Fills the text of the activity
@@ -126,27 +126,22 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         // Activity dictionary
         List<DictionaryWord> l_dw =
                 new ArrayList<DictionaryWord>(logic.getDictionary(activity));
-        String dictionary = "";
         for(DictionaryWord dw : l_dw){
-            dictionary += ""
-                    + "<li>"
-                    + "<strong>" + dw.getWord() + ":</strong> "
-                    + dw.getMeaning()
-                    + "</li>";
+            UIBranchContainer dictionary = UIBranchContainer.make(tofill,
+                    "dictionary:");
+            UIOutput.make(dictionary, "dictionary_word", dw.getWord());
+            UIVerbatim.make(dictionary, "dictionary_meaning", dw.getMeaning());
         }
-        UIVerbatim.make(tofill, "texto_dicionario", dictionary);
+
 
         // Functional Words
         List<FunctionalWord> l_fw = logic.getFunctionalWord(course);
-        String functionalWords = "";
         for (FunctionalWord fw : l_fw) {
-            functionalWords += ""
-                    + "<li>"
-                    + "<strong>" + fw.getWord() + ":</strong> "
-                    + fw.getMeaning()
-                    + "</li>";
+            UIBranchContainer functional = UIBranchContainer.make(tofill,
+                    "functional:");
+            UIOutput.make(functional, "functional_word", fw.getWord());
+            UIVerbatim.make(functional, "functional_meaning", fw.getMeaning());
         }
-        UIVerbatim.make(tofill, "texto_palavrasfuncao", functionalWords);
 
         // Question and Answers
         List<Question> l_q =
@@ -197,118 +192,5 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         return (new CourseViewParameters(this.getViewID()));
     }
 
-    /**
-     *
-     * @param activity
-     * @return
-     */
-    private String makeImageURL(Activity activity) {
-        String str_retorno, str_imagem;
-        Long int_numAct;
 
-        str_imagem = activity.getImage();
-        int_numAct = activity.getId();
-
-        str_retorno = "<img src='/readinweb-tool/content/modulos/modulo"
-                + "/atividades/atividade"
-                + makeTwoCharNumber(int_numAct)
-                + "/texto/imagens/" + str_imagem + "' id='textactimage' />"
-                + "<div align=\"center\"><div class=\"switch\" id=\"buton_image\" "
-                + "align=\"center\">IMAGEM</div></div>";
-
-        return (str_retorno);
-    }
-
-    /**
-     * Method very 'porreta' which puts a 'zero' before the numbers that dont have 2 chars
-     * @param int_numberArg
-     * @return
-     */
-    public static String makeTwoCharNumber(Long int_numberArg){
-        if ((int_numberArg < 10) && (int_numberArg >= 0)){
-            return ("0" + int_numberArg);
-        } else {
-            return (Long.toString(int_numberArg));
-        }
-    }
-
-    /**
-     *
-     * @param activity
-     * @return
-     */
-    private String makeSoundURL(Activity activityArg) {
-        String str_retorno;
-
-        str_retorno = "<script type='text/javascript'>"
-                + "var so = new SWFObject('../../../readinweb-tool/content/audio/playerSingle.swf', 'mymovie', '192', '67', '7', '#FFFFFF');"
-                + "so.addVariable('autoPlay', 'no');"
-                + "so.addVariable('soundPath', '../../../readinweb-tool/content/audio/" + this.getAudioFileName(activityArg) + "');"
-                + "so.write('audio_player');"
-                + "so.addVariable('playerSkin','1');"
-                + "</script>";
-
-        return (str_retorno);
-    }
-
-    /**
-     *
-     * @param activity
-     * @return
-     */
-    private String makeSoundDir(Activity activityArg) {
-        String str_retorno;
-        str_retorno = makeContentDir() + "audio/" + this.getAudioFileName(activityArg);
-
-        return (str_retorno);
-    }
-
-    /**
-     *
-     * @return
-     */
-    private static String makeContentDir() {
-        String str_userDir, str_retorno;
-
-        str_userDir = System.getProperty("user.dir");
-        if (!str_userDir.endsWith("/bin")) {
-            // se for no Linux (local)
-            str_retorno = str_userDir + "/tool/src/webapp/content/";
-        } else {
-            // se for no Unix (servidor)
-            str_retorno = str_userDir.substring(0, System.getProperty("user.dir").length() - 4) + "/webapps/readinweb-tool/content/";
-        }
-        return (str_retorno);
-    }
-
-    /**
-     * The audio file name has a standard format this method, given the
-     * activity, returns the correct name of file
-     *
-     * @param activity
-     * @return
-     */
-    private String getAudioFileName(Activity activity) {
-        String str_retorno;
-        long int_numAct, int_numMod;
-
-        // try to get the module and the activity Id
-        if ((activity == null)) {
-            if (true)
-//            (session != null) {
-//                int_numAct = session.getActivity();
-//                int_numMod = session.getModule();
-//            } else
-            {
-                int_numAct = 0;
-                int_numMod = 0;
-            }
-        } else {
-            int_numAct = activity.getId();
-            int_numMod = activity.getModule().getId();
-        }
-
-        str_retorno = "m" + int_numMod + "a" + int_numAct + ".mp3";
-        return (str_retorno);
-    }
 }

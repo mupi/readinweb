@@ -4,6 +4,7 @@ var RIW = RIW || {};
         var answer_field = document.getElementById(answer);
         var question_field = document.getElementById(question);
         var submit_field = document.getElementById(submit);
+        console.log(answer_field, question_field, submit_field, elBinding);
 
         // get the URL from the form
         var url = answer_field.form.action;

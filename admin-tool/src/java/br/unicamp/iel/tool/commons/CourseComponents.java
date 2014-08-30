@@ -3,22 +3,29 @@ package br.unicamp.iel.tool.commons;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.UIBranchContainer;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
+import uk.org.ponder.rsf.components.UIInitBlock;
+import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ViewRoot;
-import uk.org.ponder.rsf.viewstate.ViewParameters;
+import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.DictionaryWord;
+import br.unicamp.iel.model.FunctionalWord;
+import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.tool.producers.AdminEstrategiasProducer;
 import br.unicamp.iel.tool.producers.AdminExerciciosProducer;
 import br.unicamp.iel.tool.producers.AdminGramaticaProducer;
 import br.unicamp.iel.tool.producers.AdminTextProducer;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
-import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
 public class CourseComponents {
     /**
@@ -37,48 +44,38 @@ public class CourseComponents {
     public static final String SAVE_FAIL = "Failed to be saved";
     public static final String DELETED = "Deleted";
     public static final String DELETE_FAIL = "Failed to delete strategy";
+    public static final String ACTIVITY_ADDED = "Activity added";
+    public static final String ACTIVITY_UPDATED = "Activity updated";
+    public static final String ACTIVITY_DELETED = "Activity deleted";
 
 
 
-    public static void loadMenu(ViewParameters viewparams, UIContainer tofill){
-        CourseViewParameters cvpLink;
-        ExerciseViewParameters evpLink;
-        Long exercise = 1L;
+    public static void loadMenu(Activity activity, Course course,
+            Exercise exercise, UIContainer tofill){
+        CourseViewParameters parameters;
 
         // Checking view parameters
-        if(viewparams instanceof CourseViewParameters){
-            CourseViewParameters cvp =
-                    (CourseViewParameters) viewparams;
-
-            cvpLink = new CourseViewParameters(cvp.course,
-                    cvp.module, cvp.activity);
-            evpLink = new ExerciseViewParameters(cvp.course,
-                    cvp.module, cvp.activity, exercise);
-        } else if(viewparams instanceof ExerciseViewParameters){
-            ExerciseViewParameters evp =
-                    (ExerciseViewParameters) viewparams;
-
-            cvpLink = new CourseViewParameters(evp.course,
-                    evp.module, evp.activity);
-            evpLink = new ExerciseViewParameters(evp.course,
-                    evp.module, evp.activity, evp.exercise);
+        if(exercise != null){
+            parameters = new CourseViewParameters(course.getId(),
+                    exercise.getId(), activity.getId());
         } else {
-            return;
+            parameters = new CourseViewParameters(course.getId(),
+                    activity.getId());
         }
 
         // Menu links
 
-        cvpLink.viewID = AdminTextProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "linktext", cvpLink);
+        parameters.viewID = AdminTextProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "linktext", parameters);
 
-        evpLink.viewID = AdminExerciciosProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "linkexercise", evpLink);
+        parameters.viewID = AdminExerciciosProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "linkexercise", parameters);
 
-        cvpLink.viewID = AdminEstrategiasProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "linkstrategy", cvpLink);
+        parameters.viewID = AdminEstrategiasProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "linkstrategy", parameters);
 
-        cvpLink.viewID = AdminGramaticaProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "linkgrammar", cvpLink);
+        parameters.viewID = AdminGramaticaProducer.VIEW_ID;
+        UIInternalLink.make(tofill, "linkgrammar", parameters);
     }
 
     /**
@@ -124,7 +121,7 @@ public class CourseComponents {
     }
 
     public static void createBreadCrumb(UIContainer tofill, Activity activity,
-        Module module, String viewID) {
+            Module module, String viewID) {
 
         UIOutput.make(tofill, "current_mod",
                 Long.toString(module.getPosition()));
@@ -146,5 +143,133 @@ public class CourseComponents {
             // FIXME Return a valid expression
             System.out.println("ou ou ou ou");
         }
+    }
+
+    public static void createDictionaryForms(UIContainer tofill, Activity activity) {
+        UIBranchContainer DFormContainer = UIBranchContainer.make(tofill,
+                "edit_dictionary_form_container:");
+
+        UIForm updateDForm = UIForm.make(DFormContainer, "edit_dictionary_form");
+
+        updateDForm.viewparams =
+                new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+        UIInput id = UIInput.make(updateDForm, "edit_dictionary_id",
+                "DictionaryAjaxBean.id");
+        id.updateFullID("edit_dictionary_id");
+
+        UIInput updateword = UIInput.make(updateDForm, "edit_dictionary_word",
+                "DictionaryAjaxBean.word");
+        updateword.updateFullID("edit_dictionary_word");
+
+        UIInput updatemeaning = UIInput.make(updateDForm,
+                "edit_dictionary_meaning",
+                "DictionaryAjaxBean.meaning");
+        updatemeaning.updateFullID("edit_dictionary_meaning");
+
+        UICommand dicUpdate = UICommand.make(updateDForm,
+                "edit_dictionary_update");
+        dicUpdate.updateFullID("edit_dictionary_update");
+
+        UIInitBlock.make(tofill, "update_call:", "RIW.updateWord", new Object[]
+                {id, updateword, updatemeaning, dicUpdate,
+                "DictionaryAjaxBean.update"});
+
+        UICommand dicDelete = UICommand.make(updateDForm,
+                "edit_dictionary_delete");
+        dicDelete.updateFullID("edit_dictionary_delete");
+
+        UIInitBlock.make(tofill, "update_call:", "RIW.deleteWord", new Object[]
+                {id, dicDelete, "DictionaryAjaxBean.delete"});
+
+        /** Add Form **/
+        UIForm addDForm = UIForm.make(tofill, "add_dictionary_form");
+        addDForm.viewparams =
+                new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+        UIInput activityId = UIInput.make(addDForm, "add_dictionary_activity",
+                "DictionaryAjaxBean.activity");
+        activityId.updateFullID("add_dictionary_activity");
+        activityId.setValue(Long.toString(activity.getId()));
+
+        UIInput word = UIInput.make(addDForm, "add_dictionary_word",
+                "DictionaryAjaxBean.word");
+        word.updateFullID("add_dictionary_word");
+
+        UIInput meaning = UIInput.make(addDForm, "add_dictionary_meaning",
+                "DictionaryAjaxBean.meaning");
+        meaning.updateFullID("add_dictionary_meaning");
+
+        UICommand dicAdd =
+                UICommand.make(addDForm, "add_dictionary_send");
+        dicAdd.updateFullID("add_dictionary_send");
+
+        UIInitBlock.make(tofill, "add_call:",
+                "RIW.addWord", new Object[] {activityId, word, meaning,
+                dicAdd, "DictionaryAjaxBean.add"});
+    }
+
+    public static void createFunctionalForms(UIContainer tofill, Course course) {
+        UIBranchContainer FFormContainer = UIBranchContainer.make(tofill,
+                "edit_functional_form_container:");
+
+        UIForm updateFForm = UIForm.make(FFormContainer, "edit_functional_form");
+
+        updateFForm.viewparams =
+                new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+        UIInput id = UIInput.make(updateFForm, "edit_functional_id",
+                "FunctionalWordAjaxBean.id");
+        id.updateFullID("edit_functional_id");
+
+        UIInput updateword = UIInput.make(updateFForm, "edit_functional_word",
+                "FunctionalWordAjaxBean.word");
+        updateword.updateFullID("edit_functional_word");
+
+        UIInput updatemeaning = UIInput.make(updateFForm,
+                "edit_functional_meaning",
+                "FunctionalWordAjaxBean.meaning");
+        updatemeaning.updateFullID("edit_functional_meaning");
+
+        UICommand funcUpdate = UICommand.make(updateFForm,
+                "edit_functional_update");
+        funcUpdate.updateFullID("edit_functional_update");
+
+        UIInitBlock.make(tofill, "update_call:", "RIW.updateWord", new Object[]
+                {id, updateword, updatemeaning, funcUpdate,
+                "FunctionalWordAjaxBean.update"});
+
+        UICommand funcDelete = UICommand.make(updateFForm,
+                "edit_functional_delete");
+        funcDelete.updateFullID("edit_functional_delete");
+
+        UIInitBlock.make(tofill, "update_call:", "RIW.deleteWord", new Object[]
+                {id, funcDelete, "FunctionalWordAjaxBean.delete"});
+
+        /** Add Form **/
+        UIForm addFForm = UIForm.make(tofill, "add_functional_form");
+        addFForm.viewparams =
+                new SimpleViewParameters(UVBProducer.VIEW_ID);
+
+        UIInput courseId = UIInput.make(addFForm, "add_functional_course",
+                "FunctionalWordAjaxBean.course");
+        courseId.updateFullID("add_functional_course");
+        courseId.setValue(Long.toString(course.getId()));
+
+        UIInput word = UIInput.make(addFForm, "add_functional_word",
+                "FunctionalWordAjaxBean.word");
+        word.updateFullID("add_functional_word");
+
+        UIInput meaning = UIInput.make(addFForm, "add_functional_meaning",
+                "FunctionalWordAjaxBean.meaning");
+        meaning.updateFullID("add_functional_meaning");
+
+        UICommand funcAdd =
+                UICommand.make(addFForm, "add_functional_send");
+        funcAdd.updateFullID("add_functional_send");
+
+        UIInitBlock.make(tofill, "add_call:",
+                "RIW.addWord", new Object[] {courseId, word, meaning,
+                funcAdd, "FunctionalWordAjaxBean.add"});
     }
 }

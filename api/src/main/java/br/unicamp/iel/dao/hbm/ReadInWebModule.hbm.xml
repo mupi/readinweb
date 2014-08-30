@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
-	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="br.unicamp.iel.model.Module" table="readinweb_modules">
-		<id name="id" type="java.lang.Long">
-			<generator class="increment" />
-		</id>
+  <class name="br.unicamp.iel.model.Module" table="readinweb_modules">
+    <id name="id" type="java.lang.Long">
+      <generator class="increment" />
+    </id>
 
-		<many-to-one name="course" class="br.unicamp.iel.model.Course"
-			foreign-key="module_course_fk">
-			<column name="course_id" not-null="true" />
-		</many-to-one>
+    <many-to-one name="course" class="br.unicamp.iel.model.Course"
+      foreign-key="module_course_fk">
+      <column name="course_id" not-null="true" />
+    </many-to-one>
 
-		<property name="position" type="integer" />
-		<property name="grammar" column="module_grammar" type="text" />
+    <property name="position" type="integer" />
+    <property name="grammar" column="module_grammar" type="text" />
 
 <!-- 		<set name="activities" table="readinweb_activities" inverse="true" -->
 <!-- 			lazy="true" fetch="select"> -->
@@ -23,5 +23,5 @@
 <!-- 			</key> -->
 <!-- 			<one-to-many class="br.unicamp.iel.model.Activity" /> -->
 <!-- 		</set> -->
-	</class>
+  </class>
 </hibernate-mapping>
