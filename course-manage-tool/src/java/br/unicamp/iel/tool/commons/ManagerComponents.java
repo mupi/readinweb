@@ -24,10 +24,10 @@ public class ManagerComponents {
         ClassesViewParameters cvp = new ClassesViewParameters();
         cvp.viewID = ClassesProducer.VIEW_ID;
         UIInternalLink.make(tofill, "link_turmas", cvp);
-
-        SimpleViewParameters svp = new SimpleViewParameters();
-        svp.viewID = JustificationsProducer.VIEW_ID;
-        UIInternalLink.make(tofill, "link_justificativas", svp);
+//
+//        SimpleViewParameters svp = new SimpleViewParameters();
+//        svp.viewID = JustificationsProducer.VIEW_ID;
+//        UIInternalLink.make(tofill, "link_justificativas", svp);
     }
 
     /**

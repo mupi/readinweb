@@ -86,48 +86,11 @@ ViewParamsReporter, DefaultView {
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
-        //Long course = logic.getManagerCourseId();
-        Site site;
         Long course = logic.getManagerCourseId();
-
-        try {
-            site = siteService.getSite(
-                    toolManager.getCurrentPlacement().getContext());
-
-            Properties p = toolManager.getCurrentPlacement().getPlacementConfig();
-
-            Iterator<Object> it = p.keySet().iterator();
-            while(it.hasNext()){
-                System.out.println("Oe oe: " + p.get(it.next()));
-            }
-
-            p = toolManager.getCurrentPlacement().getConfig();
-
-            it = p.keySet().iterator();
-            while(it.hasNext()){
-                System.out.println("Oe oe: " + p.get(it.next()));
-            }
-
-        } catch (IdUnusedException e) {
-            e.printStackTrace();
-        }
-        //        catch (EntityPropertyNotDefinedException e) {
-        //            e.printStackTrace();
-        //        } catch (EntityPropertyTypeException e) {
-        //            e.printStackTrace();
-        //        }
-
-        ClassesViewParameters classesViewParameters =
-                (ClassesViewParameters) viewparams;
-
         ManagerComponents.loadMenu(viewparams, tofill);
-        SimpleViewParameters createClass = new SimpleViewParameters();
-        createClass.viewID = CreateClassProducer.VIEW_ID;
+
+        SimpleViewParameters createClass = new SimpleViewParameters(CreateClassProducer.VIEW_ID);
         UIInternalLink.make(tofill, "link_create_class", createClass);
-
-        classesViewParameters.userId = logic.getUserId(); // FIXME
-        UIInternalLink.make(tofill, "link_only_mine", classesViewParameters);
-
 
         ArrayList<Site> riwClasses =
                 new ArrayList<Site>(logic.getReadInWebClasses(course));
@@ -178,5 +141,4 @@ ViewParamsReporter, DefaultView {
     public ViewParameters getViewParameters() {
         return new ClassesViewParameters();
     }
-
 }
