@@ -8,23 +8,18 @@ import lombok.Setter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import uk.org.ponder.rsf.builtin.UVBProducer;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIELBinding;
 import uk.org.ponder.rsf.components.UIForm;
-import uk.org.ponder.rsf.components.UIInitBlock;
 import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
-import uk.org.ponder.rsf.components.UIParameter;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
-import uk.org.ponder.rsf.state.scope.BeanDestroyer;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
@@ -34,9 +29,6 @@ import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
-import br.unicamp.iel.model.ReadInWebAnswer;
-import br.unicamp.iel.tool.AdminActivityBean;
-import br.unicamp.iel.tool.AdminQuestionBean;
 import br.unicamp.iel.tool.commons.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -53,15 +45,6 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
     @Setter
     private ReadInWebAdminLogic logic;
 
-    @Setter
-    AdminQuestionBean questionBean;
-
-    @Setter
-    AdminActivityBean activityBean;
-
-    @Setter
-    private BeanDestroyer destroyer;
-
     @Override
     public String getViewID() {
         return VIEW_ID;
@@ -76,10 +59,6 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
         Course course;
 
         CourseViewParameters parameters = (CourseViewParameters) viewparams;
-        if(parameters.question != null){ // Question sent
-            questionBean.updateQuestion(parameters.question);
-            destroyer.destroy();
-        }
 
         if(parameters.newdata){ // Nothing setted
             activity = logic.getLastActivityAdded();
@@ -142,22 +121,42 @@ public class AdminTextProducer implements ViewComponentProducer, ViewParamsRepor
             ui_bc.updateFullID("question_" + q.getId());
 
             UIForm ui_form = UIForm.make(ui_bc, "question_form");
-            ui_form.parameters.add(new UIParameter("question",
-                    Long.toString(q.getId())));
+
+            ui_form.parameters.add(
+                    new UIELBinding("#{AdminActivityBean.questionId}",
+                            q.getId()));
 
             UIInput.make(ui_form, "question_position",
-                    "#{AdminQuestionBean.position}",
+                    "#{AdminActivityBean.questionPosition}",
                     Long.toString(q.getPosition()));
 
-            UIInput.make(ui_form, "question", "#{AdminQuestionBean.question}",
-                    q.getQuestion());
+            UIInput.make(ui_form, "question",
+                    "#{AdminActivityBean.questionData}", q.getQuestion());
 
             UIInput.make(ui_form, "suggested_answer",
-                    "AdminQuestionBean.suggestedAnswer",
+                    "#{AdminActivityBean.questionSuggested}",
                     q.getSuggestedAnswer());
 
-            UICommand.make(ui_form, "send_question");
+            UICommand.make(ui_form, "send_question",
+                    "#{AdminActivityBean.updateQuestion}");
+
+            UICommand.make(ui_form, "delete_question",
+                    "#{AdminActivityBean.deleteQuestion}");
         }
+
+        UIForm addQuestionForm = UIForm.make(tofill, "add_question_form");
+
+        addQuestionForm.parameters.add(
+                new UIELBinding("#{AdminActivityBean.questionActivity}",
+                        activity.getId()));
+        UIInput.make(addQuestionForm, "add_question_position",
+                "#{AdminActivityBean.questionPosition}");
+        UIInput.make(addQuestionForm, "add_question_question",
+                "#{AdminActivityBean.questionData}");
+        UIInput.make(addQuestionForm, "add_question_suggested_answer",
+                "#{AdminActivityBean.questionSuggested}");
+        UICommand.make(addQuestionForm, "add_question_send",
+                "#{AdminActivityBean.saveQuestion}");
 
         UIForm addActivityForm = UIForm.make(tofill, "add_activity_form");
 

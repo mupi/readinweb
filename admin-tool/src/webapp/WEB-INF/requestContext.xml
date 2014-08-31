@@ -18,10 +18,6 @@
     <property name="destroyer" ref="resultsScope" />
   </bean>
 
-  <bean id="AdminQuestionBean" class="br.unicamp.iel.tool.AdminQuestionBean">
-    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
-  </bean>
-
   <bean id="AdminBean" class="br.unicamp.iel.tool.AdminBean">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
     <property name="files" ref="multipartMap" />
@@ -33,9 +29,6 @@
 
   <bean class="br.unicamp.iel.tool.producers.AdminTextProducer">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
-    <property name="questionBean" ref="AdminQuestionBean" />
-    <property name="activityBean" ref="AdminActivityBean" />
-    <property name="destroyer" ref="resultsScope" />
   </bean>
 
   <bean class="br.unicamp.iel.tool.producers.AdminExerciciosProducer">

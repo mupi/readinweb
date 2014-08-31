@@ -8,6 +8,7 @@ import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.Module;
+import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.tool.commons.CourseComponents;
 
@@ -280,4 +281,81 @@ public class AdminActivityBean {
         return grammarData != null;
     }
 
+
+    /**
+     * Question data handling
+     */
+
+    private Long questionId;
+    private Long questionActivity;
+    private Integer questionPosition;
+    private String questionData;
+    private String questionSuggested;
+
+    public String updateQuestion(){
+        if(questionDataSent()){
+            Question question = logic.getQuestion(questionId);
+            if(questionPosition != null){
+                question.setPosition(questionPosition);
+            }
+            if(questionData != null){
+                question.setQuestion(questionData);
+            }
+            if(questionSuggested != null){
+                question.setSuggestedAnswer(questionSuggested);
+            }
+
+            try{
+                logic.updateActivity(logic.getActivity(question.getActivity()
+                        .getId()));
+                logic.saveQuestion(question);
+                return CourseComponents.ACTIVITY_UPDATED;
+            } catch (Exception e){
+                e.printStackTrace();
+                return CourseComponents.UPDATE_FAIL;
+            }
+        }
+        return CourseComponents.DATA_EMPTY;
+    }
+
+    public String saveQuestion(){
+        Question question = new Question(logic.getActivity(questionActivity));
+        if(questionPosition != null){
+            question.setPosition(questionPosition);
+        }
+        if(questionData != null){
+            question.setQuestion(questionData);
+        }
+        if(questionSuggested != null){
+            question.setSuggestedAnswer(questionSuggested);
+        }
+
+        try{
+            logic.updateActivity(logic.getActivity(question.getActivity()
+                    .getId()));
+            logic.saveQuestion(question);
+            return CourseComponents.ACTIVITY_UPDATED;
+        } catch (Exception e){
+            e.printStackTrace();
+            return CourseComponents.SAVE_FAIL;
+        }
+    }
+
+    public String deleteQuestion(){
+        Question question = logic.getQuestion(questionId);
+        try {
+            logic.updateActivity(logic.getActivity(question.getActivity()
+                    .getId()));
+            logic.deleteEntity(question);
+        } catch (Exception e){
+            e.printStackTrace();
+            return CourseComponents.DELETE_FAIL;
+        }
+        return CourseComponents.ACTIVITY_UPDATED;
+    }
+
+    public boolean questionDataSent(){
+        return questionPosition != null || questionData != null
+                || questionSuggested != null;
+    }
 }
