@@ -413,4 +413,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         return sakaiProxy.isSuperUser();
     }
 
+    @Override
+    public boolean isUserTeacher() {
+        return sakaiProxy.isUserTeacher();
+    }
 }

@@ -133,4 +133,6 @@ public interface SakaiProxy {
 
     public SitePage findCurrentPage();
 
+    public boolean isUserTeacher();
+
  }

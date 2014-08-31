@@ -48,11 +48,18 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         Long course = logic.getCourseId();
+        boolean isTeacher = logic.isUserTeacher();
         UIInternalLink.make(tofill, "link_home", viewparams);
-        UIInternalLink.make(tofill, "link_justification",
-                new SimpleViewParameters(JustificationProducer.VIEW_ID));
+        if(isTeacher){
+            UIInternalLink.make(tofill, "link_justification",
+                    new SimpleViewParameters(
+                            TeacherJustificationProducer.VIEW_ID));
+        } else {
+            UIInternalLink.make(tofill, "link_justification",
+                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
+        }
 
-        if(logic.blockUser()){
+        if(!isTeacher && logic.blockUser()){
             UIBranchContainer li = UIBranchContainer.make(tofill,
                     "user_blocked:");
             UIInternalLink.make(li, "user_blocked_link", "Justificativas",

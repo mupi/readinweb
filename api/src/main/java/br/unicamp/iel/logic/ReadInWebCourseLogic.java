@@ -140,4 +140,6 @@ public interface ReadInWebCourseLogic {
 
     public Justification getJustification(Long justification);
 
+    public boolean isUserTeacher();
+
 }

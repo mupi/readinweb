@@ -8,14 +8,12 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ViewRoot;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.tool.producers.ClassesProducer;
-import br.unicamp.iel.tool.producers.JustificationsProducer;
 import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
 
 public class ManagerComponents {

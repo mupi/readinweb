@@ -598,4 +598,10 @@ public class SakaiProxyImpl implements SakaiProxy {
         }
         return sp;
     }
+
+    @Override
+    public boolean isUserTeacher() {
+        User user = getCurrentUser();
+        return "Instructor".equalsIgnoreCase(user.getType());
+    }
 }
