@@ -13,7 +13,7 @@ public enum JustificationStateTypes {
     }
 
     public static boolean toShow(Byte sum){
-        return sum == 2;
+        return sum != 2;
     }
 
     public static Byte markEvaluated(Byte sum){

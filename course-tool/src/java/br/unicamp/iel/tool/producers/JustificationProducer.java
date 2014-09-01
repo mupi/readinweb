@@ -65,7 +65,7 @@ public class JustificationProducer implements ViewComponentProducer {
 
             UIBranchContainer container = UIBranchContainer.make(tofill,
                     "justification_container:");
-            if(logic.hasSentExplanation()){
+            if(logic.hasSentExplanation() && !justifications.isEmpty()){
                 Justification j = justifications.get(0);
                 justifications.remove(0);
 
@@ -96,8 +96,10 @@ public class JustificationProducer implements ViewComponentProducer {
                         "#{JustificationBean.sendMessage}");
 
             } else {
-                UIForm justificationForm =
-                        UIForm.make(container, "justification_form");
+                UIForm justificationForm = UIForm.make(
+                        UIBranchContainer.make(container,
+                                "justification_form_container:"),
+                                "justification_form");
                 UIInput.make(justificationForm, "explanation",
                         "#{JustificationBean.explanation}");
                 UICommand.make(justificationForm, "send_justification",

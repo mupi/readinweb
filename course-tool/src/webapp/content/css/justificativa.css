@@ -1,45 +1,69 @@
-h2{
-	font-size: 1.5em;
-}
-.navbar{
-	margin-bottom: 0;
+h2 {
+  font-size: 1.5em;
 }
 
-.submit-justificativa{
-	margin: 1em 0;
-	text-align: right;
+.navbar {
+  margin-bottom: 0;
 }
 
-.historico-justificativas{
-	background-color: #f5f5f5;
-	list-style: none;
-	padding: 10px;
+.submit-justificativa {
+  margin: 1em 0;
+  text-align: right;
 }
-.historico-justificativas li{
-	padding: 1em;
+
+.historico-justificativas {
+  background-color: #f5f5f5;
+  list-style: none;
+  padding: 10px;
+}
+
+.historico-justificativas li {
+  padding: 1em;
 }
 
 .resp-prof {
-	background-color: #FFF;
-	margin-left: 2em;
+  background-color: #FFF;
+  margin-left: 2em;
 }
 
-.resp-prof.text-danger::before{
-	content: "";
+.resp-prof.text-danger::before {
+  content: "";
 }
-.resp-prof.text-success::before{
-	content: "";
+
+.resp-prof.text-success::before {
+  content: "";
 }
+
 .resp-prof.text-danger::before, .resp-prof.text-success::before {
-	display: inline-block;
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
 }
-.sent-date{
-	font-size: 0.8em;
-	color: #444;
-	float: right;
-	margin-top: 1em;
+
+.sent-date {
+  font-size: 0.8em;
+  color: #444;
+  float: right;
+  margin-top: 1em;
+}
+
+.aceitar-justificativa {
+  padding: 1em 0;
+  text-align: center;
+}
+
+#justificativas li {
+  background-color: #f5f5f5;
+  margin: 10px 0;
+  padding: 1em 0;
+}
+
+.j-user {
+  font-weight: bold;
+}
+
+.j-reply {
+  margin-bottom: 1em;
 }

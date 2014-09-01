@@ -46,6 +46,10 @@ body{
   font-size: 1.1em;
 }
 
+#picture_text {
+  text-align: center;
+}
+
 /* End Text */
 
 /* Menu */
@@ -80,10 +84,10 @@ body{
 /* End tooltip */
 
 .first-row{
-	margin-top: 80px;
+  margin-top: 80px;
 }
 #hidden-text, #time_text {
-	display: none;
+  display: none;
 }
 .affix-questoes {
   padding: 20px;

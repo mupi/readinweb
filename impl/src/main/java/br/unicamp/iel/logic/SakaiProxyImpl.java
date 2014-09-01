@@ -498,9 +498,9 @@ public class SakaiProxyImpl implements SakaiProxy {
 
 
     @Override
-    public User getUser(String teacherId) {
+    public User getUser(String userId) {
         try {
-            return userDirectoryService.getUser(teacherId);
+            return userDirectoryService.getUser(userId);
         } catch (UserNotDefinedException e) {
             e.printStackTrace();
             return null;

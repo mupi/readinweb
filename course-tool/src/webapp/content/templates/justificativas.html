@@ -1,84 +1,101 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Justificativas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Justificativas</title>
 
-    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
-    <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
-    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+<link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
 </head>
 
 <body>
     <div class="portletBody">
         <nav class="navbar navbar-default main-menu" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Menu principal</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="../img/logo.png" alt="Curso Read in Web" />
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#" rsf:id="link_turmas">Turmas</a>
-                        </li>
-                        <li>
-                            <a href="#" rsf:id="link_justificativas">Justificativas</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                                <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu principal</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
+                </a>
             </div>
+            <div id="lista_menu_principal" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" rsf:id="link_home">Turma</a>
+                    </li>
+                    <li class="active">
+                        <a href="#" rsf:id="link_justificativas">Justificativas</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         </nav>
-        <div class="container" rsf:id="riw-classes:">
-            <h1>Justificativas pendentes da turma <span rsf:id="class-name">Graduação A</span></h1>
-
-            <button type="submit" class="btn btn-default" rsf:id="send_message">
-                <i class="fa fa-eye"></i> Ver apenas minhas turmas
-            </button>
-
-            <ul id="justificativas">
-                <li class="row" rsf:id="justificativa:">
-                    <div class="col-md-7">
-                        [<span rsf:id="j-class">Turma</span>]
-                        <span class="j-user" rsf:id="j-user">Aluno</span>
-                        <p class="j-body" rsf:id="j-body">Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor.</p>
-                        <div rsf:id="j-messages">
-                            <p rsf:id="j-message:"></p>
-                        </div>
-                        <a href="#">Ver histórico de justificativas do aluno</a>
-                    </div>
-                    <div class="col-md-5">
-                        <form rsf:id="reply">
-                            <input type="hidden" rsf:id="justification" name="justification_id" id="justification_id"></input>
-                            <textarea type="hidden" class="form-control j-reply" rsf:id="message" name="message" id="message"></textarea>
-                            <button type="submit" class="btn btn-danger pull-left">
-                                <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
-                            </button>
-                            <button type="submit" class="btn btn-success pull-right" rsf:id="send_message">
-                                <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
-                            </button>
-                        </form>
-                    </div>
-                </li>
-            </ul>
+        <div class="container">
+            <div class="row">
+                <h1>
+                    Justificativas
+                    <span rsf:id="riw_class_name">Graduação A</span>
+                </h1>
+            </div>
+            <div id="justificativas" class="row">
+                <h2>Novas justificativas e justificativas com novas mensagens</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Data de envio</th>
+                        <th>Mensagens</th>
+                        <th>
+                            <span class="glyphicon glyphicon-wench"></span>
+                        </th>
+                    </tr>
+                    <tr rsf:id="justificativa:">
+                        <td rsf:id="username">Virgílio</td>
+                        <td rsf:id="date_sent">26/06/1986</td>
+                        <td rsf:id="num_messages">5</td>
+                        <td rsf:id="evaluate_col:">
+                            <a href="#" rsf:id="evaluate_link">Avaliar</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <h2>Justificativas já avaliadas</h2>
+                <table class="table">
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Data de envio</th>
+                        <th>Mensagens</th>
+                        <th>
+                            <span class="glyphicon glyphicon-wench"></span>
+                        </th>
+                    </tr>
+                    <tr rsf:id="old_justificativa:" class="warning">
+                        <td rsf:id="old_username">Virgílio</td>
+                        <td rsf:id="old_date_sent">26/06/1986</td>
+                        <td rsf:id="old_num_messages">5</td>
+                        <td rsf:id="old_evaluate_col:">
+                            <a href="#" rsf:id="old_evaluate_link">Avaliar</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 

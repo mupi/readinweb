@@ -142,4 +142,10 @@ public interface ReadInWebCourseLogic {
 
     public boolean isUserTeacher();
 
+    public List<Justification> getClassJustifications();
+
+    public User getSudent(String user);
+
+    public Long countMessages(Justification j);
+
 }

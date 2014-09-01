@@ -24,5 +24,10 @@ public class JustificationSets {
         return dao.findBySearch(JustificationMessage.class, search);
     }
 
+    public Long countMessages(ReadInWebDao dao) {
+        Search search = new Search("justification.id", justification.getId());
+        return dao.countBySearch(JustificationMessage.class, search);
+    }
+
 
 }

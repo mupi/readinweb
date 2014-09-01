@@ -1,14 +1,15 @@
 package br.unicamp.iel.tool.viewparameters;
 
-import br.unicamp.iel.tool.producers.SummaryProducer;
 import lombok.Data;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 
-@Data
 public class JustificationViewParameters extends SimpleViewParameters {
-    private String str_justification;
+    public Long justification;
 
-    public JustificationViewParameters() {
-        this.viewID = SummaryProducer.VIEW_ID;
+    public JustificationViewParameters(){}
+
+    public JustificationViewParameters(String viewId, Long justification){
+        super(viewId);
+        this.justification = justification;
     }
 }

@@ -532,4 +532,10 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     public void addReadInWebManager(Course course) {
         sakaiProxy.createManagerPage(course);
     }
+
+    @Override
+    public List<Justification> getSiteJustifications(Site currentSite) {
+        return dao.findBySearch(Justification.class,
+                new Search("site", currentSite.getId()));
+    }
 }

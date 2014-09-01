@@ -14,7 +14,6 @@
 <!-- End Bootstrap -->
 <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
-<script type="text/javascript" src="../audio/swfobject.js"></script>
 </head>
 <body>
     <!-- Wrap utilizado pro sticky footer -->
@@ -118,6 +117,9 @@
                             <span id="hideAudio" class="glyphicon glyphicon-stop" style="display: none"
                                 onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
                         </div>
+                        <div>
+                            <audio rsf:id="sound_text"></audio>
+                        </div>
                         <div id="audio_tag">AUDIO</div>
                     </div>
                 </ol>
@@ -125,7 +127,7 @@
             <div class="row">
                 <div class="col-xs-6 col-md-8">
                     <!-- this div is used to creates the audio -->
-                    <div id="sound_text" rsf:id="sound_text"></div>
+
                     <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
                     <div id="prelecture_text" rsf:id="prelecture_text" class="prelecture">We′re really pleased
                         with these results”, says SeaWiFS project manager Mary Cleave. In this image, high
@@ -136,7 +138,9 @@
                     </form>
 
                     <h1 id="title_text" rsf:id="title_text"></h1>
-                    <div id="picture_text" rsf:id="picture_text"></div>
+                    <div id="picture_text" >
+                        <img rsf:id="picture_text" src="" alt="" />
+                    </div>
                     <div id="text_text" rsf:id="text_text">
                         <h1>How green is my planet?</h1>
                         <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing

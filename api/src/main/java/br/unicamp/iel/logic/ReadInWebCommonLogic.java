@@ -152,6 +152,8 @@ public interface ReadInWebCommonLogic {
 
     public Justification getJustification(Long justification);
 
+    public List<Justification> getSiteJustifications(Site currentSite);
+
 }
 
 

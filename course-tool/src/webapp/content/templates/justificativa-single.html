@@ -13,84 +13,144 @@
 <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
-<link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
+<link rel="stylesheet" type="text/css" href="../css/summary.css" />
 
 </head>
 
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../img/logo.png" alt="Curso Read in Web" />
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul id="lista_menu_principal" class="nav navbar-nav">
-                    <li>
-                        <a href="#" title="Voltar ao sumário">TURMAS</a>
-                    </li>
-
-                    <li class="active">
-                        <a href="#" title="Ver histórico de justificativas">Justificativas</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Menu principal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../imagens/logo.png" alt="Curso Read in Web" />
+            </a>
         </div>
+        <div class="collapse navbar-collapse">
+            <ul id="lista_menu_principal" class="nav navbar-nav">
+                <li>
+                    <a href="#" rsf:id="link_home" title="Voltar ao sumário">Sumário</a>
+                </li>
+
+                <li class="active">
+                    <a href="#" rsf:id="link_justification" title="Ver histórico de justificativas">Justificativas</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </nav>
     <div class="container">
-        <div class="page-header">
-            <h1>Justificativa recebida de <span rsf:id="user">fulana</span></h1>
+        <div>
+            <div class="page-header">
+                <h1>Justificativa por atraso das atividades</h1>
+            </div>
+            <div>
+                <div class="clearfix">
+                    <div rsf:id="current_justification_container:" class="alert alert-info">
+                        <div>
+                            <span rsf:id="username">Fulaninho</span>
+                            escreveu:
+                            <form rsf:id="current_evaluate_form" class="form-inline pull-right">
+                                <button onclick="confirm('Tem certeza que deseja recusar a justificativa?')"
+                                    type="submit" class="btn btn-danger">
+                                    <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
+                                </button>
+                            </form>
+                        </div>
+                        <hr />
+                        <div rsf:id="current_justification_explanation">Professor, tive um problema pessoal
+                            Professor, tive um problema pessoal Ah, meu filho, que eu posso fazer? Professor, tive um
+                            problema pessoal Professor, tive um problema pessoal Ah, meu filho, que eu posso fazer? Ah,
+                            meu filho, que eu posso fazer? Ah, meu filho, que eu posso fazer?Professor, tive um problema
+                            pessoal Professor, tive um problema pessoal Ah, meu filho, que eu posso fazer? Professor,
+                            tive um problema pessoal Professor, tive um problema pessoal Ah, meu filho, que eu posso
+                            fazer? Ah, meu filho, que eu posso fazer? Ah, meu filho, que eu posso fazer?</div>
+                        <hr />
+                        <div>
+                            <ul class="list-inline">
+                                <li>
+                                    Enviada em
+                                    <span rsf:id="sent_date">26/08/2014</span>
+                                </li>
+                                <li>
+                                    Avaliada em
+                                    <span rsf:id="evaluated_date">29/08/2014</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="justification_messages">
+                        <ul class="list-unstyled col-sm-8">
+                            <li class="alert alert-warning" rsf:id="current_justification_message:">
+                                <span class="alert alert-primary" rsf:id="message_user">Professor: </span>
+                                <span rsf:id="message_message">Ah, meu filho, que eu posso fazer?</span>
+                                <ul class="list-inline pull-right">
+                                    <li>
+                                        Enviada em
+                                        <span rsf:id="message_sent_date">26/08/2014</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li rsf:id="send_message_item:">
+                                <p>Envie uma resposta:</p>
+                                <form rsf:id="message_form" class="form-inline">
+                                    <div class="form-group">
+                                        <textarea rsf:id="message" class="form-control" cols="77" rows="1">
+                                    </textarea>
+                                    </div>
+                                    <div class="form-group submit-justificativa">
+                                        <button type="submit" rsf:id="send_message" class="btn btn-success">Enviar</button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul class="historico-justificativas">
-            <li class="resp-aluno">
-                Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.
-                <span class="sent-date" >Enviada por <span rsf:id="user">fulano</span> em <label rsf:id="sentDate">24/04/14</label></span>
-            </li>
-            <li class="resp-prof text-danger">
-                Se for negativa colocar a classe text-danger.
-                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
-                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
-            </li>
-            <li class="resp-aluno">
-                Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis.
-                <span class="sent-date" >Enviada por <span rsf:id="user">fulano</span> em <label rsf:id="sentDate">24/04/14</label></span>
-            </li>
-            <li class="resp-prof text-success">
-                Se for negativa colocar a classe text-success.
-                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
-                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
-                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
-                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi.
-                <span class="sent-date" >Enviada em <label rsf:id="sentDate">24/04/14</label></span>
-            </li>
-        </ul>
-        <h2>Responder à justificativa</h2>
-        <p>Escreva abaixo a resposta que será enviada para <span rsf:id="user">fulana</span> aceitando ou não a justificativa recebida.</p>
-        <textarea class="form-control" rows="3"></textarea>
-        <p class="aceitar-justificativa">
-            <button type="submit" class="btn btn-danger">
-                <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
-            </button>
-            <button type="submit" class="btn btn-success">
-                <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
-            </button>
-        </p>
+        <hr />
+        <div id="historico-justificativas">
+            <h2>Histórico de justificativas e respostas</h2>
+            <div rsf:id="old_justifications:" class="clearfix jumbotron">
+                <ul class="list-inline">
+                    <li>
+                        Enviada em
+                        <span rsf:id="old_sent_date">26/08/2014</span>
+                    </li>
+                    <li>
+                        Avaliada em
+                        <span rsf:id="old_evaluated_date">29/08/2014</span>
+                    </li>
+                </ul>
+                <div rsf:id="old_explanation" class="alert alert-info">Professor, tive um problema pessoal</div>
+                <ul class="list-unstyled col-sm-8">
+                    <li class="alert alert-warning" rsf:id="old_justification_message:">Ah, meu filho, que eu posso
+                        fazer?</li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
 
 </body>
 </html>

@@ -28,6 +28,7 @@ import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.model.sets.ActivitySets;
 import br.unicamp.iel.model.sets.CourseSets;
+import br.unicamp.iel.model.sets.JustificationSets;
 import br.unicamp.iel.model.types.ControlTypes;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
@@ -193,6 +194,11 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
+    public List<Justification> getClassJustifications() {
+        return common.getSiteJustifications(getCurrentSite());
+    }
+
+    @Override
     public void unblockUser(){
         common.unblockUser(getCurrentSiteId(), getUserId());
     }
@@ -200,6 +206,12 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public void deleteEntity(Object o) {
         common.deleteEntity(o);
+    }
+
+    @Override
+    public Long countMessages(Justification j) {
+        JustificationSets js = new JustificationSets(j);
+        return js.countMessages(dao);
     }
 
     /**
@@ -417,4 +429,10 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public boolean isUserTeacher() {
         return sakaiProxy.isUserTeacher();
     }
+
+    @Override
+    public User getSudent(String user) {
+        return sakaiProxy.getUser(user);
+    }
+
 }
