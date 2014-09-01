@@ -19,6 +19,7 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
+import uk.org.ponder.rsf.components.decorators.UIFreeAttributeDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
@@ -56,7 +57,6 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
         Course course = logic.getCourse(parameters.course);
         Activity activity;
         Module module;
-        File audio;
 
         if(course == null){
             System.out.println("Course is null");
@@ -99,25 +99,20 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
         UIInitBlock.make(tofill, "text_counter", "RIW.saveTextRead",
                 new Object[] {activity_time, time_time,
-                "RegisterAccessAjaxBean.results"});
+        "RegisterAccessAjaxBean.results"});
 
         // Audio; fill it only if file exists
-        // FIXME Fix up audio retrieve method
-        audio = new File(activity.getImage());
-        if (audio.exists()) {
-            UIOutput.make(tofill, "sound_text",
-                    activity.getImage());
-        } else {
-            UIOutput.make(tofill, "sound_text",
-                    "Audio indispon\u00edvel.");
-        }
+        // FIXME Fix up audio retrieve method. Name, file place.. everything
+        UILink audio = UILink.make(tofill, "sound_text",
+                "src", "../audio/" + "m" + module.getPosition() + "a" +
+                        activity.getPosition() + ".mp3");
 
         // Activity image
         if ((activity.getImage() != null)
                 && (activity.getImage().compareToIgnoreCase("") != 0)) {
             // FIXME Fix up image retrieve
-            UIOutput.make(tofill, "picture_text",
-                    activity.getImage());
+            UILink image = UILink.make(tofill, "picture_text",
+                    "../img/" + activity.getImage());
         }
 
         // Fills the text of the activity
@@ -181,7 +176,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 
             UIInitBlock.make(tofill, "init_js:", "RIW.saveUserAnswer",
                     new Object[] {ui_answer, ui_question, ui_send,
-                    "AnswerAjaxBean.results"});
+            "AnswerAjaxBean.results"});
         }
 
         logic.registerAccess("Acesso ao texto.", this.getViewID(), activity);
