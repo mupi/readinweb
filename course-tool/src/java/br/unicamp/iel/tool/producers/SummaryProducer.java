@@ -7,11 +7,13 @@ import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.user.api.User;
 
 import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
@@ -48,12 +50,13 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
         Long course = logic.getCourseId();
+
         boolean isTeacher = logic.isUserTeacher();
         UIInternalLink.make(tofill, "link_home", viewparams);
         if(isTeacher){
             UIInternalLink.make(tofill, "link_justification",
                     new SimpleViewParameters(
-                            TeacherJustificationProducer.VIEW_ID));
+                            JustificationsProducer.VIEW_ID));
         } else {
             UIInternalLink.make(tofill, "link_justification",
                     new SimpleViewParameters(JustificationProducer.VIEW_ID));
@@ -88,12 +91,10 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
             ViewParameters viewparams, ComponentChecker checker,
             Module module) {
 
-        // Create 'li' line that will be 'repeated' during module
-        // Creation iteration
         UIBranchContainer ui_bc = UIBranchContainer.make(tofill,
                 "li_rowsMod:", Long.toString(module.getId()));
-        UIInternalLink.make(ui_bc, "lnk_modulo",
-                "M\u00f3dulo " + module.getPosition(), "#");
+        UIOutput.make(ui_bc, "lnk_modulo",
+                "Módulo " + module.getPosition());
 
         // Create activity listing base
         UIBranchContainer container = UIBranchContainer.make(ui_bc,
@@ -130,8 +131,8 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
                 cvp);
 
         // FIXME links are dumb here
-        String tick = "<img src='../../../readinweb-course-tool/content/imagens/tick-icon.png'>";
-        String delete = "<img src='../../../readinweb-course-tool/content/imagens/delete-icon.png'>";
+        String tick = "<img src='/readinweb-course-tool/content/imagens/tick-icon.png'>";
+        String delete = "<img src='/readinweb-course-tool/content/imagens/delete-icon.png'>";
 
         // Show if the text was read
         if (ControlTypes.hasDone(ControlTypes.TEXT, controlSum)) {
