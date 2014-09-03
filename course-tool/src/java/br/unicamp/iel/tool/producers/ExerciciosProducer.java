@@ -1,5 +1,7 @@
 package br.unicamp.iel.tool.producers;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class ExerciciosProducer implements ViewComponentProducer,
         Course course = logic.getCourse(parameters.course);
         Activity activity;
         Module module;
+        Exercise exercise;
 
         if(course == null){
             System.out.println("Course is null");
@@ -58,6 +61,11 @@ public class ExerciciosProducer implements ViewComponentProducer,
         } else {
             activity = logic.getActivity(parameters.activity);
             module = logic.getModule(parameters.module);
+            if(parameters.exercise != null){
+                exercise = logic.getExercise(parameters.exercise);
+            } else {
+                exercise = logic.getExercise(1L);
+            }
         }
 
         CourseComponents.loadMenu(parameters, tofill);
@@ -87,10 +95,12 @@ public class ExerciciosProducer implements ViewComponentProducer,
 
         UIForm form_tst_m = UIForm.make(tofill, "input_form_tst_m");
         UIVerbatim.make(tofill, "titulo_exercicio_div", "Exerc\u00edcio");
-        String str_fileLoc = this.getExercicioFileLocation(module.getId(),
-                activity.getId(), 1);
+        String fileLocation = getExercicioFileLocation(module.getPosition(),
+                activity.getPosition(), exercise.getPosition());
         try {
-            exerciseString = ""; // FIXMEReadInWebUtilBean.readFileAsString(str_fileLoc);
+
+            System.out.println(fileLocation);
+            exerciseString = CourseComponents.readFile(fileLocation, StandardCharsets.UTF_8);
         } catch (Exception e) { //catch (IOException e) {
             exerciseString = "Ocorreu um erro no momento da leitura do arquivo referente ao exerc\u00edcio.";
             logger.warn(e.getMessage());
@@ -107,15 +117,26 @@ public class ExerciciosProducer implements ViewComponentProducer,
      * @param fileName
      * @return
      */
-    private String getExercicioFileLocation(long int_moduloIdArg, long int_atividadeIdArg, long int_exercicioIdArg) {
+    private String getExercicioFileLocation(Integer modulo, Integer atividade, Integer exercicio) {
         String retorno;
         String str_fileName;
 
-        str_fileName = "m" + int_moduloIdArg + "a" + int_atividadeIdArg + "e" + int_exercicioIdArg + ".html";
+        str_fileName = "m" + modulo + "a" + atividade + "e" + exercicio + ".html";
 
-        //retorno = CommonMethods.makeContentDir() + "/modulos/exercicios/" + str_fileName;
-        retorno = "/modulos/exercicios/" + str_fileName;
+        retorno = makeContentDir() + "/modulos/exercicios/" + str_fileName;
         return (retorno);
+    }
+
+    public static String makeContentDir() {
+        String userDir;
+
+        userDir = System.getProperty("user.dir");
+        if (!userDir.endsWith("/bin")) {
+            return userDir + "/tool/src/webapp/content";
+        } else {
+            return userDir.substring(0, System.getProperty("user.dir")
+                    .length() - 4) + "/webapps/readinweb-course-tool/content";
+        }
     }
 
     @Override

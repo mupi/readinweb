@@ -148,4 +148,6 @@ public interface ReadInWebCourseLogic {
 
     public Long countMessages(Justification j);
 
+    public Exercise getExercise(Long exercise);
+
 }

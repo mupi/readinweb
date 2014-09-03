@@ -87,6 +87,11 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
+    public Exercise getExercise(Long exercise) {
+        return common.getExercise(exercise);
+    }
+
+    @Override
     public List<Course> getCourses() {
         return common.getCourses();
     }

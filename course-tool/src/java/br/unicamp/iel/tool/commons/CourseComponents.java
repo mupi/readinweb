@@ -1,5 +1,9 @@
 package br.unicamp.iel.tool.commons;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,6 +125,13 @@ public class CourseComponents {
         UIOutput.make(tofill, "current_act",
                 Long.toString(activity.getPosition()));
         UIVerbatim.make(tofill, "current_title", activity.getTitle());
+    }
+
+    public static String readFile(String path, Charset encoding)
+            throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
     }
 
 }
