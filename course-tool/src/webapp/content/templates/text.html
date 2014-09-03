@@ -21,7 +21,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
+                data-target="#lista_menu_principal">
                 <span class="sr-only">Menu principal</span>
                 <span>MENU</span>
             </button>
@@ -30,8 +30,8 @@
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-            <ul id="lista_menu_principal" class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="lista_menu_principal">
+            <ul class="nav navbar-nav">
                 <li>
                     <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
                 </li>
@@ -75,7 +75,7 @@
                         Dicionário
                     </a>
                 </li>
-                <li>
+                <li class="hidden-xs">
                     <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
                         <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
                     </a>
