@@ -102,7 +102,7 @@ body{
 }
 #sidebar-questoes {
   max-height: 100%;
-  top: 65px;
+  top: -1em;
 }
 #audio > div{
   display: inline-block;
@@ -143,17 +143,3 @@ body{
 .btn-link:hover, .btn-link:focus {
   outline: none;
 }
-
-/* Footer */
-
-.footer-menu{
-  text-align: center;
-  padding: 10px;
-}
-.footer-menu li{
-  display: inline;
-  list-style: none;
-  padding: 10px;
-}
-
-/* End Footer

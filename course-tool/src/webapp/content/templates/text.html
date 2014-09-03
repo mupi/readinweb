@@ -64,17 +64,6 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active">
-                    <a href="#questoes" data-toggle="tab">
-                        <i class="fa fa-pencil"></i> Questões
-                    </a>
-                </li>
-                <li>
-                    <a href="#dicionario" data-toggle="tab">
-                        <span class="glyphicon glyphicon-book"></span>
-                        Dicionário
-                    </a>
-                </li>
                 <li class="hidden-xs">
                     <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
                         <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
@@ -205,8 +194,21 @@
                     </p>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-4">
-                <div class="tab-content" data-spy="affix" data-offset-top="68" id="sidebar-questoes">
+            <div class="col-xs-6 col-md-4" id="sidebar-questoes">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#questoes" data-toggle="tab">
+                            <i class="fa fa-pencil"></i> Questões
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dicionario" data-toggle="tab">
+                            <span class="glyphicon glyphicon-book"></span>
+                            Dicionário
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
                     <div id="questoes" class="tab-pane fade in active affix-questoes">
                         <div id="title_questions">QUEST&Otilde;ES</div>
                         <div id="number_questions">
