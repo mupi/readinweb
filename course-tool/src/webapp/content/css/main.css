@@ -57,6 +57,9 @@ body{
   text-transform: uppercase;
   min-width: 800px;
 }
+#lista_menu_principal .active{
+  background-color: #dfdfdf;
+}
 .navbar-default .navbar-nav>li>a.logo_unicamp, .navbar-brand{
   padding: 5px;
 }
