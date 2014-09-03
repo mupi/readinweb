@@ -18,148 +18,134 @@
 </head>
 
 <body>
-    <!-- Wrap utilizado pro sticky footer -->
-    <div id="wrap">
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul id="lista_menu_principal" class="nav navbar-nav">
-                    <li>
-                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
-                    </li>
-
-                    <li>
-                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
-                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                    </li>
-
-                    <li>
-                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                    </li>
-
-                    <li>
-                        <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
-                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Lista de módulos <b class="caret"></b>
-                        </a>
-                        <ul id="lista_menu_modulos" class="dropdown-menu">
-                            <li rsf:id="li-rowsMod:">
-                                <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                <ul rsf:id="div_atividades:" class="lista_menu_atividades">
-                                    <li rsf:id="p-rowsAct:">
-                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Menu principal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../imagens/logo.png" alt="Curso Read in Web" />
+            </a>
         </div>
-        </nav>
-        <div class="container">
-            <div class="row first-row">
-                <ol class="breadcrumb">
-                    <li>
-                        Voc&ecirc; est&aacute; no M&oacute;dulo
-                        <span rsf:id="current_mod">--</span>
-                    </li>
-                    <li>
-                        Atividade
-                        <span rsf:id="current_act">--</span>
-                    </li>
-                    <li class="active">
-                        <span rsf:id="current_title">--</span>
-                    </li>
-                </ol>
+        <div class="collapse navbar-collapse">
+            <ul id="lista_menu_principal" class="nav navbar-nav">
+                <li>
+                    <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                </li>
 
-                <div id="function">
-                    <!-- Início da DIV Estratégias de Leitura. -->
-                    <div id="estrategia_leitura" class="col-md-6">
-                        <h2 id="title_estrategias" class="leitura">
-                            <a href="#"
-                                title="Como usar seu conhecimento pr&#233;vio (sobre o tema, sobre escrita) para compensar falta de conhecimento de ingl&#234;s e monitorar a compreens&#227;o do texto">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
-                            ESTRAT&#201;GIAS DE LEITURA
-                        </h2>
+                <li>
+                    <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
+                        name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                </li>
 
-                        <div id="list_text_estrategias">
-                            <div id="read_strategy">
-                                <ol class="strategy_list">
-                                    <li rsf:id="li-rowsEstLe:">
-                                        <div rsf:id="divle">Nenhuma estratégia de leitura encontrada</div>
-                                    </li>
-                                </ol>
-                            </div>
+                <li>
+                    <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                </li>
+
+                <li>
+                    <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
+                        rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Lista de módulos <b class="caret"></b>
+                    </a>
+                    <ul id="lista_menu_modulos" class="dropdown-menu">
+                        <li rsf:id="li-rowsMod:">
+                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                                <li rsf:id="p-rowsAct:">
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <div class="container">
+        <div class="row first-row">
+            <ol class="breadcrumb">
+                <li>
+                    Voc&ecirc; est&aacute; no M&oacute;dulo
+                    <span rsf:id="current_mod">--</span>
+                </li>
+                <li>
+                    Atividade
+                    <span rsf:id="current_act">--</span>
+                </li>
+                <li class="active">
+                    <span rsf:id="current_title">--</span>
+                </li>
+            </ol>
+
+            <div id="function">
+                <!-- Início da DIV Estratégias de Leitura. -->
+                <div id="estrategia_leitura" class="col-md-6">
+                    <h2 id="title_estrategias" class="leitura">
+                        <a href="#"
+                            title="Como usar seu conhecimento pr&#233;vio (sobre o tema, sobre escrita) para compensar falta de conhecimento de ingl&#234;s e monitorar a compreens&#227;o do texto">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        ESTRAT&#201;GIAS DE LEITURA
+                    </h2>
+
+                    <div id="list_text_estrategias">
+                        <div id="read_strategy">
+                            <ol class="strategy_list">
+                                <li rsf:id="li-rowsEstLe:">
+                                    <div rsf:id="divle">Nenhuma estratégia de leitura encontrada</div>
+                                </li>
+                            </ol>
                         </div>
-
                     </div>
-                    <!-- Fim da DIV Estratégias de Leitura -->
 
-                    <!-- Início da DIV Estratégias de Aquisição de Língua. -->
-                    <div id="estrategia_aquisicao_lingua" class="col-md-6">
-                        <h2 id="title_estrategias" class="lingua">
-                            <a href="#" width="400"
-                                title="Como prestar aten&#231;&#227;o na l&#237;ngua do texto para aprender vocabul&#225;rio e normas gramaticais (no n&#237;vel da senten&#231;a e do texto).">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
-                            ESTRAT&#201;GIAS DE AQUISI&Ccedil;&Atilde;O DE L&Iacute;NGUA
-                        </h2>
+                </div>
+                <!-- Fim da DIV Estratégias de Leitura -->
 
-                        <!--  <div class="div_invisivel2" align="center"></div> -->
+                <!-- Início da DIV Estratégias de Aquisição de Língua. -->
+                <div id="estrategia_aquisicao_lingua" class="col-md-6">
+                    <h2 id="title_estrategias" class="lingua">
+                        <a href="#" width="400"
+                            title="Como prestar aten&#231;&#227;o na l&#237;ngua do texto para aprender vocabul&#225;rio e normas gramaticais (no n&#237;vel da senten&#231;a e do texto).">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        ESTRAT&#201;GIAS DE AQUISI&Ccedil;&Atilde;O DE L&Iacute;NGUA
+                    </h2>
 
-                        <div id="list_text_estrategias">
-                            <div id="language_strategy">
-                                <ol class="strategy_list">
-                                    <li rsf:id="li-rowsEstLi:">
-                                        <div rsf:id="divli">Nenhuma estratégia de língua encontrada</div>
-                                    </li>
-                                </ol>
-                            </div>
+                    <!--  <div class="div_invisivel2" align="center"></div> -->
+
+                    <div id="list_text_estrategias">
+                        <div id="language_strategy">
+                            <ol class="strategy_list">
+                                <li rsf:id="li-rowsEstLi:">
+                                    <div rsf:id="divli">Nenhuma estratégia de língua encontrada</div>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
-    <!--</div>  Fim do #wrap -->
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-                <li>Sobre o curso</li>
-                <li>Suporte</li>
-                <li>Termos de uso</li>
-            </ul>
-        </div>
-    </div>
+
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>

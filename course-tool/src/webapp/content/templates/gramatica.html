@@ -19,114 +19,100 @@
 
 <body>
 
-    <!-- Wrap utilizado pro sticky footer -->
-    <div id="wrap">
-
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul id="lista_menu_principal" class="nav navbar-nav">
-                    <li>
-                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
-                    </li>
-
-                    <li>
-                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
-                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                    </li>
-
-                    <li>
-                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                    </li>
-
-                    <li>
-                        <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
-                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Lista de módulos <b class="caret"></b>
-                        </a>
-                        <ul id="lista_menu_modulos" class="dropdown-menu">
-                            <li rsf:id="li-rowsMod:">
-                                <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                <ul rsf:id="div_atividades:" class="lista_menu_atividades">
-                                    <li rsf:id="p-rowsAct:">
-                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Menu principal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../imagens/logo.png" alt="Curso Read in Web" />
+            </a>
         </div>
-        </nav>
+        <div class="collapse navbar-collapse">
+            <ul id="lista_menu_principal" class="nav navbar-nav">
+                <li>
+                    <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                </li>
 
-        <div class="container">
-            <div class="row first-row">
-                <ol class="breadcrumb">
-                    <li>
-                        Voc&ecirc; est&aacute; no M&oacute;dulo
-                        <span rsf:id="current_mod">--</span>
-                    </li>
-                    <li>
-                        Atividade
-                        <span rsf:id="current_act">--</span>
-                    </li>
-                    <li class="active">
-                        <span rsf:id="current_title">--</span>
-                    </li>
-                </ol>
+                <li>
+                    <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para essa atividade"
+                        name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                </li>
 
-                <div id="function">
+                <li>
+                    <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                </li>
 
-                    <div id="gramatica" rsf:id="conteudo_gramatica_extendido"></div>
+                <li>
+                    <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
+                        rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                </li>
 
-                    <div id="gramatica" rsf:id="div_gramatica_html"></div>
-
-                    <!-- FECHA DIV GRAMATICA -->
-
-                </div>
-                <!-- FECHA DIV FUNCTION -->
-
-            </div>
-            <!-- Fim da DIV MIDDLE -->
-
-        </div>
-        <!-- FECHA DIV CONTENT -->
-    </div>
-    <!-- Fim do #wrap -->
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-                <li>Sobre o curso</li>
-                <li>Suporte</li>
-                <li>Termos de uso</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Lista de módulos <b class="caret"></b>
+                    </a>
+                    <ul id="lista_menu_modulos" class="dropdown-menu">
+                        <li rsf:id="li-rowsMod:">
+                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                                <li rsf:id="p-rowsAct:">
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
+    </nav>
+
+    <div class="container">
+        <div class="row first-row">
+            <ol class="breadcrumb">
+                <li>
+                    Voc&ecirc; est&aacute; no M&oacute;dulo
+                    <span rsf:id="current_mod">--</span>
+                </li>
+                <li>
+                    Atividade
+                    <span rsf:id="current_act">--</span>
+                </li>
+                <li class="active">
+                    <span rsf:id="current_title">--</span>
+                </li>
+            </ol>
+
+            <div id="function">
+
+                <div id="gramatica" rsf:id="conteudo_gramatica_extendido"></div>
+
+                <div id="gramatica" rsf:id="div_gramatica_html"></div>
+
+                <!-- FECHA DIV GRAMATICA -->
+
+            </div>
+            <!-- FECHA DIV FUNCTION -->
+
+        </div>
+        <!-- Fim da DIV MIDDLE -->
+
+    </div>
+    <!-- FECHA DIV CONTENT -->
 
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>

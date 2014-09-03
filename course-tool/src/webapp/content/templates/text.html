@@ -16,281 +16,278 @@
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
 <body>
-    <!-- Wrap utilizado pro sticky footer -->
-    <div id="wrap">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../imagens/logo.png" alt="Curso Read in Web" />
-                </a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse">
-                <ul id="lista_menu_principal" class="nav navbar-nav">
-                    <li>
-                        <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
-                    </li>
-                    <li>
-                        <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
-                            name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                    </li>
-                    <li>
-                        <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                            name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                    </li>
-                    <li>
-                        <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
-                            rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Lista de módulos <b class="caret"></b>
-                        </a>
-                        <ul id="lista_menu_modulos" class="dropdown-menu">
-                            <li rsf:id="li-rowsMod:">
-                                <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                                <ul rsf:id="div_atividades:" class="lista_menu_atividades">
-                                    <li rsf:id="p-rowsAct:">
-                                        <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
-                        <a href="#questoes" data-toggle="tab">
-                            <i class="fa fa-pencil"></i> Questões
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#dicionario" data-toggle="tab">
-                            <span class="glyphicon glyphicon-book"></span>
-                            Dicionário
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Menu principal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="../imagens/logo.png" alt="Curso Read in Web" />
+            </a>
         </div>
-        <!-- /.container-fluid --> </nav>
-        <div class="container">
-            <div class="row first-row">
-                <ol class="breadcrumb">
-                    <li>
-                        Voc&ecirc; est&aacute; no M&oacute;dulo
-                        <span rsf:id="current_mod">--</span>
-                    </li>
-                    <li>
-                        Atividade
-                        <span rsf:id="current_act">--</span>
-                    </li>
-                    <li class="active">
-                        <span rsf:id="current_title">--</span>
-                    </li>
-                    <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank"
-                        rsf:id="lnk_print">
-                        <div id="print_tag">
-                            <span class="glyphicon glyphicon-print"></span>
-                            IMPRIMIR
-                        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+            <ul id="lista_menu_principal" class="nav navbar-nav">
+                <li>
+                    <a href="text.html" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                </li>
+                <li>
+                    <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
+                        name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                </li>
+                <li>
+                    <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                </li>
+                <li>
+                    <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
+                        rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Lista de módulos <b class="caret"></b>
                     </a>
-                    <div id="audio">
-                        <div id="audio_player" style="display: none"></div>
-                        <div id="audio_icon">
-                            <span id="showAudio" class="glyphicon glyphicon-play" style="display: block"></span>
-                            <span id="hideAudio" class="glyphicon glyphicon-stop" style="display: none"
-                                onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
-                        </div>
-                        <div>
-                            <audio rsf:id="sound_text"></audio>
-                        </div>
-                        <div id="audio_tag">AUDIO</div>
-                    </div>
-                </ol>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-md-8">
-                    <!-- this div is used to creates the audio -->
-
-                    <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
-                    <div id="prelecture_text" rsf:id="prelecture_text" class="prelecture">We′re really pleased
-                        with these results”, says SeaWiFS project manager Mary Cleave. In this image, high
-                        concentrations of plant life are shown as yellow or green, while low densities are blue.</div>
-                    <form rsf:id="time_form" role="form">
-                        <input type="hidden" name="activity" id="activity_time" rsf:id="activity" />
-                        <input type="hidden" id="time_text" rsf:id="time_text" />
-                    </form>
-
-                    <h1 id="title_text" rsf:id="title_text"></h1>
-                    <div id="picture_text" >
-                        <img rsf:id="picture_text" src="" alt="" />
-                    </div>
-                    <div id="text_text" rsf:id="text_text">
-                        <h1>How green is my planet?</h1>
-                        <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
-                            Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
-                            photosynthesis.</p>
-                        <p>
-                            The main goal of the SeaWiFS mission,
-                            <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
-                                title='patrocinado'>sponsored</a>
-                            by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
-                            when the satellite began beaming back data last month, it
-                            <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
-                            that the sensor was powerful enough to see land plants as well.
-                        </p>
-                        <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
-                            Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
-                            while low densities are blue.</p>
-                        <p>
-                            The team hopes that the satellite
-                            <a href='#' title='data' trans='dados'>data</a>
-                            will help in predictions of climate change, for example that caused by El Ni&ntilde;o
-                            &#8212; the
-                            <a href='#' title='warming' trans='aquecimento'>warming</a>
-                            of Pacific waters that occurs every few years. Phytoplankton populations increase as the
-                            oceans heat up. The data
-                            <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
-                            also
-                            <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
-                            marine biologists to monitor the
-                            <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
-                            of toxic algal
-                            <a href='#' title='blooms' trans='florescimento'>blooms</a>
-                            , which can kill millions of fish
-                        </p>
-                        <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
-                            Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
-                            photosynthesis.</p>
-                        <p>
-                            The main goal of the SeaWiFS mission,
-                            <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
-                                title='patrocinado'>sponsored</a>
-                            by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
-                            when the satellite began beaming back data last month, it
-                            <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
-                            that the sensor was powerful enough to see land plants as well.
-                        </p>
-                        <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
-                            Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
-                            while low densities are blue.</p>
-                        <p>
-                            The team hopes that the satellite
-                            <a href='#' title='data' trans='dados'>data</a>
-                            will help in predictions of climate change, for example that caused by El Ni&ntilde;o
-                            &#8212; the
-                            <a href='#' title='warming' trans='aquecimento'>warming</a>
-                            of Pacific waters that occurs every few years. Phytoplankton populations increase as the
-                            oceans heat up. The data
-                            <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
-                            also
-                            <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
-                            marine biologists to monitor the
-                            <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
-                            of toxic algal
-                            <a href='#' title='blooms' trans='florescimento'>blooms</a>
-                            , which can kill millions of fish
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="tab-content" data-spy="affix" data-offset-top="68" id="sidebar-questoes">
-                        <div id="questoes" class="tab-pane fade in active affix-questoes">
-                            <div id="title_questions">QUEST&Otilde;ES</div>
-                            <div id="number_questions">
-                                <ul class="nav nav-tabs nav-justified" id="question-tabs">
-                                    <li rsf:id="li-rows:">
-                                        <a href="#" rsf:id="input_link_q_" role="tab" data-toggle="tab">1</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="contentOn_questions" class="tab-pane" rsf:id="div_questions:">
-                                        <div id="enunciado_questions">
-                                            <div rsf:id="question">Erro! Contate o administrador</div>
-                                        </div>
-                                        <div id="your_answer">
-                                            <div id="form_your_answer">
-                                                <form rsf:id="answer_form" role="form">
-                                                    <input type="hidden" rsf:id="question_id" name="question_id"
-                                                        id="question_id" />
-                                                    <div class="form-group">
-                                                        <textarea rsf:id="answer" name="answer" id="answer"
-                                                            class="form-control" rows="6"
-                                                            placeholder="Escreva sua resposta aqui"></textarea>
-                                                    </div>
-                                                    <button type="submit" rsf:id="send_answer" id="send_answer"
-                                                        class="btn btn-default btn-sm btn-block" name="send_answer">
-                                                        <span class="glyphicon glyphicon-floppy-disk"></span>
-                                                        Salvar
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div id="suggested_answer">
-                                            <a class="btn btn-link btn-block btn-resposta-sugerida" type="button">
-                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                Resposta Sugerida
-                                            </a>
-                                            <p rsf:id="suggested_answer"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tabs Glossário e Palavras-função-->
-                        <div id="dicionario" class="tab-pane fade affix-questoes">
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#glossario" data-toggle="tab">Glossário</a>
-                                </li>
-                                <li>
-                                    <a href="#palavras-funcao" data-toggle="tab">Palavras-função</a>
+                    <ul id="lista_menu_modulos" class="dropdown-menu">
+                        <li rsf:id="li-rowsMod:">
+                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
+                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                                <li rsf:id="p-rowsAct:">
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
                                 </li>
                             </ul>
-                            <div class="tab-content glossario-dicionario">
-                                <div class="tab-pane fade in active" id="glossario">
-                                    <div class="table-responsive">
-                                        <table class="table table-condensed table-hover">
-                                            <tr>
-                                                <th>palavra</th>
-                                                <th>significado</th>
-                                            </tr>
-                                            <tr rsf:id="dictionary:">
-                                                <td rsf:id="dictionary_word"></td>
-                                                <td rsf:id="dictionary_meaning"></td>
-                                            </tr>
-                                        </table>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="#questoes" data-toggle="tab">
+                        <i class="fa fa-pencil"></i> Questões
+                    </a>
+                </li>
+                <li>
+                    <a href="#dicionario" data-toggle="tab">
+                        <span class="glyphicon glyphicon-book"></span>
+                        Dicionário
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid --> </nav>
+    <div class="container">
+        <div class="row first-row">
+            <ol class="breadcrumb">
+                <li>
+                    Voc&ecirc; est&aacute; no M&oacute;dulo
+                    <span rsf:id="current_mod">--</span>
+                </li>
+                <li>
+                    Atividade
+                    <span rsf:id="current_act">--</span>
+                </li>
+                <li class="active">
+                    <span rsf:id="current_title">--</span>
+                </li>
+                <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank"
+                    rsf:id="lnk_print">
+                    <div id="print_tag">
+                        <span class="glyphicon glyphicon-print"></span>
+                        IMPRIMIR
+                    </div>
+                </a>
+                <div id="audio">
+                    <div id="audio_player" style="display: none"></div>
+                    <div id="audio_icon">
+                        <span id="showAudio" class="glyphicon glyphicon-play" style="display: block"></span>
+                        <span id="hideAudio" class="glyphicon glyphicon-stop" style="display: none"
+                            onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
+                    </div>
+                    <div>
+                        <audio rsf:id="sound_text"></audio>
+                    </div>
+                    <div id="audio_tag">AUDIO</div>
+                </div>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-8">
+                <!-- this div is used to creates the audio -->
+
+                <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
+                <div id="prelecture_text" rsf:id="prelecture_text" class="prelecture">We′re really pleased
+                    with these results”, says SeaWiFS project manager Mary Cleave. In this image, high
+                    concentrations of plant life are shown as yellow or green, while low densities are blue.</div>
+                <form rsf:id="time_form" role="form">
+                    <input type="hidden" name="activity" id="activity_time" rsf:id="activity" />
+                    <input type="hidden" id="time_text" rsf:id="time_text" />
+                </form>
+
+                <h1 id="title_text" rsf:id="title_text"></h1>
+                <div id="picture_text" >
+                    <img rsf:id="picture_text" src="" alt="" />
+                </div>
+                <div id="text_text" rsf:id="text_text">
+                    <h1>How green is my planet?</h1>
+                    <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
+                        Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
+                        photosynthesis.</p>
+                    <p>
+                        The main goal of the SeaWiFS mission,
+                        <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
+                            title='patrocinado'>sponsored</a>
+                        by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
+                        when the satellite began beaming back data last month, it
+                        <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
+                        that the sensor was powerful enough to see land plants as well.
+                    </p>
+                    <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
+                        Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
+                        while low densities are blue.</p>
+                    <p>
+                        The team hopes that the satellite
+                        <a href='#' title='data' trans='dados'>data</a>
+                        will help in predictions of climate change, for example that caused by El Ni&ntilde;o
+                        &#8212; the
+                        <a href='#' title='warming' trans='aquecimento'>warming</a>
+                        of Pacific waters that occurs every few years. Phytoplankton populations increase as the
+                        oceans heat up. The data
+                        <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
+                        also
+                        <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
+                        marine biologists to monitor the
+                        <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
+                        of toxic algal
+                        <a href='#' title='blooms' trans='florescimento'>blooms</a>
+                        , which can kill millions of fish
+                    </p>
+                    <p>A SATELLITE is sending back spectacular images of plant life on Earth. The Sea-viewing
+                        Wide Field-of-view Sensor (SeaWiFS) monitors the absorption of light by chlorophyll, used in
+                        photosynthesis.</p>
+                    <p>
+                        The main goal of the SeaWiFS mission,
+                        <a href='#' class="translation" data-toggle="tooltip" data-placement="top"
+                            title='patrocinado'>sponsored</a>
+                        by NASA, is to measure populations of microscopic marine plants called phytoplankton. But
+                        when the satellite began beaming back data last month, it
+                        <a href='#' title='turned out' trans='acabou sendo'>turned out</a>
+                        that the sensor was powerful enough to see land plants as well.
+                    </p>
+                    <p>&ldquo;We&#8242;re really pleased with these results&rdquo;, says SeaWiFS project manager
+                        Mary Cleave. In this image, high concentrations of plant life are shown as yellow or green,
+                        while low densities are blue.</p>
+                    <p>
+                        The team hopes that the satellite
+                        <a href='#' title='data' trans='dados'>data</a>
+                        will help in predictions of climate change, for example that caused by El Ni&ntilde;o
+                        &#8212; the
+                        <a href='#' title='warming' trans='aquecimento'>warming</a>
+                        of Pacific waters that occurs every few years. Phytoplankton populations increase as the
+                        oceans heat up. The data
+                        <a href='#' title='will allow' trans='permitir&#227;o'>will</a>
+                        also
+                        <a href='#' title='will allow' trans='permitir&#227;o'>allow</a>
+                        marine biologists to monitor the
+                        <a href='#' title='spread' trans='prolifera&#231;&#227;o'>spread</a>
+                        of toxic algal
+                        <a href='#' title='blooms' trans='florescimento'>blooms</a>
+                        , which can kill millions of fish
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <div class="tab-content" data-spy="affix" data-offset-top="68" id="sidebar-questoes">
+                    <div id="questoes" class="tab-pane fade in active affix-questoes">
+                        <div id="title_questions">QUEST&Otilde;ES</div>
+                        <div id="number_questions">
+                            <ul class="nav nav-tabs nav-justified" id="question-tabs">
+                                <li rsf:id="li-rows:">
+                                    <a href="#" rsf:id="input_link_q_" role="tab" data-toggle="tab">1</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="contentOn_questions" class="tab-pane" rsf:id="div_questions:">
+                                    <div id="enunciado_questions">
+                                        <div rsf:id="question">Erro! Contate o administrador</div>
+                                    </div>
+                                    <div id="your_answer">
+                                        <div id="form_your_answer">
+                                            <form rsf:id="answer_form" role="form">
+                                                <input type="hidden" rsf:id="question_id" name="question_id"
+                                                    id="question_id" />
+                                                <div class="form-group">
+                                                    <textarea rsf:id="answer" name="answer" id="answer"
+                                                        class="form-control" rows="6"
+                                                        placeholder="Escreva sua resposta aqui"></textarea>
+                                                </div>
+                                                <button type="submit" rsf:id="send_answer" id="send_answer"
+                                                    class="btn btn-default btn-sm btn-block" name="send_answer">
+                                                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                                                    Salvar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div id="suggested_answer">
+                                        <a class="btn btn-link btn-block btn-resposta-sugerida" type="button">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            Resposta Sugerida
+                                        </a>
+                                        <p rsf:id="suggested_answer"></p>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="palavras-funcao">
-                                    <div class="table-responsive">
-                                        <table class="table table-condensed table-hover">
-                                            <tr>
-                                                <th>palavra</th>
-                                                <th>significado</th>
-                                            </tr>
-                                            <tr rsf:id="functional:">
-                                                <td rsf:id="functional_word"></td>
-                                                <td rsf:id="functional_meaning"></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabs Glossário e Palavras-função-->
+                    <div id="dicionario" class="tab-pane fade affix-questoes">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#glossario" data-toggle="tab">Glossário</a>
+                            </li>
+                            <li>
+                                <a href="#palavras-funcao" data-toggle="tab">Palavras-função</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content glossario-dicionario">
+                            <div class="tab-pane fade in active" id="glossario">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <th>palavra</th>
+                                            <th>significado</th>
+                                        </tr>
+                                        <tr rsf:id="dictionary:">
+                                            <td rsf:id="dictionary_word"></td>
+                                            <td rsf:id="dictionary_meaning"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="palavras-funcao">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <th>palavra</th>
+                                            <th>significado</th>
+                                        </tr>
+                                        <tr rsf:id="functional:">
+                                            <td rsf:id="functional_word"></td>
+                                            <td rsf:id="functional_meaning"></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -299,16 +296,7 @@
             </div>
         </div>
     </div>
-    <!-- Fim do #wrap -->
-    <div id="footer">
-        <div class="container">
-            <ul class="footer-menu">
-                <li>Sobre o curso</li>
-                <li>Suporte</li>
-                <li>Termos de uso</li>
-            </ul>
-        </div>
-    </div>
+    
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
