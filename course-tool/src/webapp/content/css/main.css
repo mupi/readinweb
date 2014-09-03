@@ -55,6 +55,7 @@ body{
 /* Menu */
 #lista_menu_principal{
   text-transform: uppercase;
+  min-width: 800px;
 }
 .navbar-default .navbar-nav>li>a.logo_unicamp, .navbar-brand{
   padding: 5px;
