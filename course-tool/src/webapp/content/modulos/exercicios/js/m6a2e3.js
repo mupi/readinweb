@@ -70,8 +70,8 @@ $(document).ready(function(){
    
     $("#resposta").click(function(){
     	
-    	var imgcerto = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-        var imgerrado = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+    	var imgcerto = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+        var imgerrado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 	   
         if (certo1)
 	    {

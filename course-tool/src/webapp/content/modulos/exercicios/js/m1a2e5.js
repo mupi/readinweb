@@ -1,14 +1,14 @@
 $(document).ready(function(){
 	var flashvars ={
-		'file': '../../../../readinweb-tool/content/modulos/exercicios/schizophrenia.flv',
-		'image': '../../../../readinweb-tool/content/modulos/exercicios/preview.jpg',
+		'file': '/readinweb-course-tool/content/modulos/exercicios/schizophrenia.flv',
+		'image': '/readinweb-course-tool/content/modulos/exercicios/preview.jpg',
 		'plugins': 'captions-1',
-		'captions.file': '../../../../readinweb-tool/content/modulos/exercicios/schizophrenia.xml'
+		'captions.file': '/readinweb-course-tool/content/modulos/exercicios/schizophrenia.xml'
 	};
 	var params ={
 		'allowscriptaccess': 'always'
 	};
-	swfobject.embedSWF('../../../../readinweb-tool/content/modulos/exercicios/player.swf', 'myAlternativeContent', '420', '300', '9.0.124', 'expressInstall.swf', flashvars, params);
+	swfobject.embedSWF('/readinweb-course-tool/content/modulos/exercicios/player.swf', 'myAlternativeContent', '420', '300', '9.0.124', 'expressInstall.swf', flashvars, params);
 
 	$("#butQuest1").click(function(){
 		$("#answer1").fadeIn(400);

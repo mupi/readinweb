@@ -1,8 +1,8 @@
 
   $(document).ready(function(){
     $("#resposta").click(function(){
-      var certo = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-      var errado = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+      var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+      var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
         
       if ($("#opcao1").val() == "2") {
 	  $("#resp1").attr({ src: certo});

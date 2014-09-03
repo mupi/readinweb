@@ -2,8 +2,8 @@ $(document).ready(function(){
 
 	$("#tabs_m1a2e4").tabs();
 	
-	var certo = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-    var errado = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+	var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+    var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 
     $('#btn_resposta1').click(function(){
 		if ($('#opcao1').val() == '3') {

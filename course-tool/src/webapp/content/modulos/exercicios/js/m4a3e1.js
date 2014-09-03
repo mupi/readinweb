@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	 var certo = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-     var errado = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+	 var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+     var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 	
 	$('#answer1').click(function(){
 		if($("#select11").val() == "1" && $("#select12").val() == "4")

@@ -2,8 +2,8 @@
   $(document).ready(function(){
     $(".respos").click(function(){
     
-        var certo = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-        var errado = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+        var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+        var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 
         if ($(this).prev().prev().children('input').val().toUpperCase() == 
         $(this).next().children('.resposta1').text().toUpperCase() ){

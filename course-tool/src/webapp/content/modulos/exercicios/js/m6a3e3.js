@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	$(".answerButton").click(function(){
 		
-		var right = "../../../../readinweb-tool/content/modulos/exercicios/imagens/certo.gif";
-	    var wrong = "../../../../readinweb-tool/content/modulos/exercicios/imagens/errado.gif";
+		var right = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
+	    var wrong = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 		
 		$('.image').hide();
 		$('.comment, .translation').show('fast');

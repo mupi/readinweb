@@ -74,7 +74,7 @@ $(document).ready(function(){
 	}
 	
   	//Pega as propriedades de cada peça (imagem) e as coloca no html
-	$.get('../../../../readinweb-tool/content/modulos/exercicios/xml/parts'+dominoType+'.xml', function(xml){
+	$.get('/readinweb-course-tool/content/modulos/exercicios/xml/parts'+dominoType+'.xml', function(xml){
 		var partN	= 0;	//Contador para peças
 
 		//Setando variáveis de posicionamento das peças
@@ -349,7 +349,7 @@ function transform(droppable, draggable, actualPart){
 	//Se a peça for da classe 'holeLast'
 	if(holeLast == 1){
 		//Muda suas dimensões
-		$(draggable).css('background', 'url("../../../../../readinweb-tool/content/modulos/exercicios/imagens/dominov.gif")');
+		$(draggable).css('background', 'url("..//readinweb-course-tool/content/modulos/exercicios/imagens/dominov.gif")');
 		$(draggable).css('height', '130px');
 		$(draggable).css('width', '60px');
 		$(draggable).find('div').each(
@@ -374,7 +374,7 @@ function deTransform(droppable, draggable, actualPart){
 	//Se a peça for da classe 'holeLast' 
 	if($(droppable).attr('class').search('holeLast') != -1){
 		//Muda suas dimensões
-		$(draggable).css('background', 'url("../../../../../readinweb-tool/content/modulos/exercicios/imagens/dominoh.gif")');
+		$(draggable).css('background', 'url("..//readinweb-course-tool/content/modulos/exercicios/imagens/dominoh.gif")');
 		$(draggable).css('height', '60px');
 		$(draggable).css('width', '130px');
 		$(draggable).find('div').each(
@@ -474,7 +474,7 @@ function popUp(phrase){
 		$('#message').css('margin-top', '40px');
 		$('#message').css('color', 'black');
 		$('#close').css('display', 'none');
-		$('#popUp').css('background', "*url('../../../../../readinweb-tool/content/modulos/exercicios/imagens/fundo_prompt.gif') repeat");
+		$('#popUp').css('background', "*url('..//readinweb-course-tool/content/modulos/exercicios/imagens/fundo_prompt.gif') repeat");
 		$('#popUp').fadeIn('fast').wait(1000).fadeOut('fast');
 	}
 	
@@ -486,7 +486,7 @@ function popUp(phrase){
 		
 		$('#close').css('display', 'block');
 		
-		$('#popUp').css('background', "*url('../../../../../readinweb-tool/content/modulos/exercicios/imagens/fundo_prompt.gif') repeat");
+		$('#popUp').css('background', "*url('..//readinweb-course-tool/content/modulos/exercicios/imagens/fundo_prompt.gif') repeat");
 		$('#popUp').fadeIn('fast');
 		$('#close:first').click(function(){
 			$('#popUp').fadeOut('fast');
