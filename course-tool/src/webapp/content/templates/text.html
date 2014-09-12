@@ -220,7 +220,7 @@
                             <div class="tab-content">
                                 <div id="contentOn_questions" class="tab-pane" rsf:id="div_questions:">
                                     <div id="enunciado_questions">
-                                        <div rsf:id="question">Erro! Contate o administrador</div>
+                                        <div rsf:id="question">questão</div>
                                     </div>
                                     <div id="your_answer">
                                         <div id="form_your_answer">
@@ -240,12 +240,14 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div id="suggested_answer">
-                                        <a class="btn btn-link btn-block btn-resposta-sugerida" type="button">
+                                    <div id="suggested_answer_container">
+                                        <a class="btn btn-link btn-block btn-resposta-sugerida" data-toggle="collapse" type="button" href="#suggested_answer">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                             Resposta Sugerida
                                         </a>
-                                        <p rsf:id="suggested_answer"></p>
+                                        <div id="suggested_answer" class="panel-collapse collapse">
+                                            <p rsf:id="suggested_answer">Resposta suferida</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
