@@ -53,10 +53,10 @@
                     </a>
                     <ul id="lista_menu_modulos" class="dropdown-menu">
                         <li rsf:id="li-rowsMod:">
-                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                            <a class="link-modulo" data-parent="#lista_menu_modulos" rsf:id="lnk_modulo" data-toggle="collapse" type="button" href="#div_atividades">M&oacute;dulo X</a>
+                            <ul rsf:id="div_atividades:" id="div_atividades" class="lista_menu_atividades panel-collapse collapse">
                                 <li rsf:id="p-rowsAct:">
-                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="link_atividade"> Atividade X </a>
                                 </li>
                             </ul>
                         </li>
@@ -302,6 +302,7 @@
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/dropdown-menu.js"></script>
     <script type="text/javascript" src="../js/rsf.js"></script>
     <script type="text/javascript" src="../js/readinweb-course.js"></script>
     <script type="text/javascript">

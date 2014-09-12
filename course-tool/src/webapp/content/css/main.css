@@ -71,6 +71,7 @@ body{
 }
 #lista_menu_modulos{
   padding: 5px;
+  min-width: 270px;
 }
 .lista_menu_atividades{
   list-style: none;
@@ -144,6 +145,12 @@ body{
 .btn-resposta-sugerida:hover{
   text-decoration: none;
 }
-.btn-link:hover, .btn-link:focus {
-  outline: none;
+a.link_atividade{
+  padding: 3px 20px; 
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+}
+a.link_atividade:hover{
+  background-color: #F5F5F5;
 }

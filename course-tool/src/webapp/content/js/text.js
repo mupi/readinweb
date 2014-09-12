@@ -2,8 +2,6 @@ $(document).ready(function(){
 
     $('.translation').tooltip();
 
-
-
     var gmodule = 0;
     var question = 1;
     var menu_switch = 0;
@@ -19,7 +17,7 @@ $(document).ready(function(){
             menu_switch = 0;
         }
     });
-
+    
     $(".modulo").click(function(){
         var module = $(this).val();
         if(module != gmodule){
