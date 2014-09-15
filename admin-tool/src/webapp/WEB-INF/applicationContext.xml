@@ -11,7 +11,7 @@
 
   <bean id="resultsScope" parent="beanScopeParent">
     <property name="copyPreservingBeans"
-      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, AdminActivityBean" />
+      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean" />
     <property name="exclusive" value="true" />
   </bean>
 
