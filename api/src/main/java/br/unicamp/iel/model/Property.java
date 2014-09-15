@@ -10,9 +10,9 @@ public enum Property {
     COURSEDATA("readinwebcourse.data"),
     COURSESTARTDATE("readinwebcourse.startdate"),
     COURSEREMISSIONTIME("readinwebcourse.remissiontime"),
-    COURSEFINISHED("readinwebcourse.finished");
+    COURSEFINISHED("readinwebcourse.finished"),
+    COURSESTATE("readinwebcourse.state");
 
-    @Setter
     @Getter
     String name;
 
