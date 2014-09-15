@@ -31,9 +31,5 @@
   <bean class="br.unicamp.iel.tool.producers.CreateClassProducer">
     <property name="logic"
       ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
-    <property name="userDirectoryService"
-      ref="org.sakaiproject.user.api.UserDirectoryService" />
-    <property name="createClassBean" ref="CreateClassBean" />
-    <property name="destroyer" ref="resultsScope" />
   </bean>
 </beans>

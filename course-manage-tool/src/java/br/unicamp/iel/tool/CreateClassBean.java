@@ -42,7 +42,6 @@ public class CreateClassBean {
             }
 
             if(startDate != null){
-                System.out.println("The date to start: " + startDate);
                 logic.addProperty(site,
                         Property.COURSESTARTDATE.getName(), startDate);
             }
@@ -50,6 +49,9 @@ public class CreateClassBean {
             logic.addProperty(site,
                     Property.COURSEREMISSIONTIME.getName(),
                     Integer.toString(2));
+
+            logic.addProperty(site, Property.COURSESTATE.getName(),
+                    Boolean.toString(false));
 
             logic.saveSite(site);
 

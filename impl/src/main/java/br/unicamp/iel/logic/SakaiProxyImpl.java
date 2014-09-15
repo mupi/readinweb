@@ -413,7 +413,6 @@ public class SakaiProxyImpl implements SakaiProxy {
     public void setStringProperty(Site site, String name, String value){
         try {
             site.getProperties().addProperty(name, value);
-            System.out.println("Olha aí: " + name + ": " + value);
             siteService.save(site);
         } catch (IdUnusedException e) {
             e.printStackTrace();
@@ -423,8 +422,25 @@ public class SakaiProxyImpl implements SakaiProxy {
     }
 
     @Override
-    public List<Site> getReadInWebSites(Long course) {
+    public void updateStringProperty(Site site, String name, String value) {
+        try {
+            ResourceProperties rp = site.getPropertiesEdit();
+            rp.addProperty(name, value);
+            siteService.save(site);
+        } catch (IdUnusedException e) {
+            e.printStackTrace();
+        } catch (PermissionException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void updateBooleanProperty(Site site, String name, Boolean value) {
+        updateStringProperty(site, name, Boolean.toString(value));
+    }
+
+    @Override
+    public List<Site> getReadInWebSites(Long course) {
         Map<String, String> m = new HashMap<String, String>();
         m.put(Property.COURSE.getName(), Long.toString(course));
         m.put(Property.COURSEFINISHED.getName(), Boolean.toString(false));
@@ -436,7 +452,6 @@ public class SakaiProxyImpl implements SakaiProxy {
 
     @Override
     public List<Site> getReadInWebArchivedSites(Long course) {
-
         Map<String, String> m = new HashMap<String, String>();
         m.put(Property.COURSE.getName(), Long.toString(course));
         m.put(Property.COURSEFINISHED.getName(), Boolean.toString(true));
@@ -603,5 +618,38 @@ public class SakaiProxyImpl implements SakaiProxy {
     public boolean isUserTeacher() {
         User user = getCurrentUser();
         return "Instructor".equalsIgnoreCase(user.getType());
+    }
+
+    @Override
+    public Boolean getBooleanProperty(Site site, String property) {
+        try {
+            return site.getProperties().getBooleanProperty(property);
+        } catch (EntityPropertyNotDefinedException e) {
+            e.printStackTrace();
+            return null;
+        } catch (EntityPropertyTypeException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Site getLastAddedSiteByProperty(Long course) {
+        Map<String, String> m = new HashMap<String, String>();
+        m.put(Property.COURSE.getName(), Long.toString(course));
+
+        return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
+                null, null, m, SortType.CREATED_BY_DESC,
+                null)).get(0);
+    }
+
+    @Override
+    public Site getLastModifiedSiteByProperty(Long course) {
+        Map<String, String> m = new HashMap<String, String>();
+        m.put(Property.COURSE.getName(), Long.toString(course));
+
+        return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
+                null, null, m, SortType.MODIFIED_BY_DESC,
+                null)).get(0);
     }
 }

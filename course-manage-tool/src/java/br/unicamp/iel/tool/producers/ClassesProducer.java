@@ -1,41 +1,24 @@
 package br.unicamp.iel.tool.producers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.security.auth.kerberos.KerberosKey;
 
 import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
-import org.sakaiproject.entity.api.EntityPropertyTypeException;
-import org.sakaiproject.exception.IdUnusedException;
-import org.sakaiproject.exception.PermissionException;
-import org.sakaiproject.javax.PagingPosition;
 import org.sakaiproject.site.api.Site;
-import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.site.api.SiteService;
-import org.sakaiproject.site.api.SiteService.SelectionType;
-import org.sakaiproject.site.api.SiteService.SortType;
-import org.sakaiproject.site.api.ToolConfiguration;
-import org.sakaiproject.tool.api.Placement;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
-import org.sakaiproject.tool.api.ToolSession;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
-import org.sakaiproject.user.api.UserNotDefinedException;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
@@ -43,12 +26,10 @@ import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
-import br.unicamp.iel.logic.SakaiProxy;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.tool.commons.ManagerComponents;
 import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
 import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
-import br.unicamp.iel.tool.viewparameters.JustificationViewParameters;
 
 /**
  *
@@ -95,7 +76,7 @@ ViewParamsReporter, DefaultView {
         ArrayList<Site> riwClasses =
                 new ArrayList<Site>(logic.getReadInWebClasses(course));
 
-        UIBranchContainer riw_classes = UIBranchContainer.make(tofill,
+        UIBranchContainer riwClassesContainer = UIBranchContainer.make(tofill,
                 "riw_classes:");
 
         ClassViewParameters riwClassParams = new ClassViewParameters();
@@ -106,17 +87,21 @@ ViewParamsReporter, DefaultView {
             ArrayList<User> users =
                     new ArrayList<User>(logic.getUsers(s.getId()));
 
-            UIBranchContainer riw_class =
-                    UIBranchContainer.make(riw_classes, "riw_class:");
+            UIBranchContainer riwClass =
+                    UIBranchContainer.make(riwClassesContainer, "riw_class:");
 
-            UIInternalLink.make(riw_class, "riw_class_title", s.getTitle(),
+            if(!logic.isReadInWebClassActive(s)){
+                riwClass.decorate(new UIStyleDecorator("danger"));
+            }
+
+            UIInternalLink.make(riwClass, "riw_class_title", s.getTitle(),
                     riwClassParams); // FIXME
-            UIInternalLink.make(riw_class, "riw_class_students",
+            UIInternalLink.make(riwClass, "riw_class_students",
                     Integer.toString(users.size()),
                     riwClassParams); // FIXME
 
-            riwClassParams.viewID = JustificationsProducer.VIEW_ID;
-            UIInternalLink.make(riw_class, "riw_class_justifications",
+            riwClassParams.viewID = VIEW_ID;
+            UIInternalLink.make(riwClass, "riw_class_justifications",
                     "Show justification count for " + s.getId(),
                     // logic.countJustifications(s.getId()), //FIXME
                     riwClassParams); // FIXME
@@ -126,11 +111,11 @@ ViewParamsReporter, DefaultView {
                         s.getUsersHasRole("Instructor"))).get(0));
 
                 if(teacher != null){
-                    UIInternalLink.make(riw_class, "riw_class_teacher",
+                    UIInternalLink.make(riwClass, "riw_class_teacher",
                             teacher.getDisplayName(), viewparams);
                 }
             } catch (IndexOutOfBoundsException e){
-                UIInternalLink.make(riw_class, "riw_class_teacher",
+                UIInternalLink.make(riwClass, "riw_class_teacher",
                         "-", viewparams);
 
             }

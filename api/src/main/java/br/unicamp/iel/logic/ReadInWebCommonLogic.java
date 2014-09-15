@@ -154,6 +154,16 @@ public interface ReadInWebCommonLogic {
 
     public List<Justification> getSiteJustifications(Site currentSite);
 
+    public Long countPublishedActivities(Site site);
+
+    public Long countUsers(Site site);
+
+    public Date getStartDate(Site site);
+
+    public Boolean getReadInWebClassState(Site site);
+
+    public void setClassState(Site site, Boolean classState);
+
 }
 
 

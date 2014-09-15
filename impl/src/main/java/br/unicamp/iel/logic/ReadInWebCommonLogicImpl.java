@@ -1,5 +1,8 @@
 package br.unicamp.iel.logic;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -229,7 +232,7 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public String getCurrentSiteId() {
-        return sakaiProxy.getCurrentSiteId();
+        return sakaiProxy.getCurrentSite().getId();
     }
 
     @Override
@@ -537,5 +540,42 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     public List<Justification> getSiteJustifications(Site currentSite) {
         return dao.findBySearch(Justification.class,
                 new Search("site", currentSite.getId()));
+    }
+
+    @Override
+    public Long countPublishedActivities(Site site) {
+        CourseProperties courseProperties =
+                new CourseProperties(JsonObject
+                        .readFrom(getCoursePropertyString(site)));
+        return courseProperties.countPublishedActivities();
+    }
+
+    @Override
+    public Long countUsers(Site site) {
+        return new Long(sakaiProxy.countUsers(site.getId()));
+    }
+
+    @Override
+    public Date getStartDate(Site site) {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            return df.parse(sakaiProxy.getStringProperty(site,
+                    Property.COURSESTARTDATE.getName()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean getReadInWebClassState(Site site) {
+        return sakaiProxy.getBooleanProperty(site,
+                Property.COURSESTATE.getName());
+    }
+
+    @Override
+    public void setClassState(Site site, Boolean classState) {
+        sakaiProxy.updateBooleanProperty(site, Property.COURSESTATE.getName(),
+                classState);
     }
 }

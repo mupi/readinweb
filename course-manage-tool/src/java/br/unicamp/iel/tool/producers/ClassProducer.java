@@ -8,14 +8,17 @@ import lombok.Setter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.site.api.Site;
-import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.user.api.User;
-import org.sakaiproject.user.api.UserDirectoryService;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
-import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UIELBinding;
+import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
+import uk.org.ponder.rsf.flow.jsfnav.NavigationCaseReporter;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
@@ -33,18 +36,13 @@ import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
  *
  */
 
-public class ClassProducer implements ViewComponentProducer, ViewParamsReporter {
+public class ClassProducer implements ViewComponentProducer, ViewParamsReporter,
+NavigationCaseReporter {
 
     private static Log logger = LogFactory.getLog(ClassProducer.class);
 
     @Setter
     private ReadInWebClassManagementLogic logic;
-
-    @Setter
-    private UserDirectoryService userDirectoryService;
-
-    @Setter
-    private SiteService siteService;
 
     public static final String VIEW_ID = "turma";
 
@@ -63,20 +61,62 @@ public class ClassProducer implements ViewComponentProducer, ViewParamsReporter 
 
         ManagerComponents.loadMenu(viewparams, tofill);
 
-        System.out.println(course.getTitle());
+        UIOutput.make(tofill, "course_name", course.getTitle());
 
-        Site riwClass = logic.getReadInWebClass(classViewParameters.siteId);
+        Site riwClass = null;
+        if(classViewParameters.classAdded){
+            System.out.println("class added");
+            riwClass = logic.getLastAddedReadInWebClass(course.getId());
+        } else if(classViewParameters.classChanged){
+            System.out.println("class changed");
+            riwClass = logic.getLastModifiedReadInWebClass(course.getId());
+        } else {
+            System.out.println("class just class!");
+            riwClass = logic.getReadInWebClass(classViewParameters.siteId);
+        }
+
+        UIOutput.make(tofill, "riw_class_name", riwClass.getTitle());
+
+        UIOutput.make(tofill, "riw_startdate",
+                logic.getStartDate(riwClass).toString());
+
+        UIOutput.make(tofill, "riw_students_count",
+                Long.toString(logic.countStudents(riwClass)));
+
+        UIOutput.make(tofill, "riw_activities_published",
+                Long.toString(logic.countPublishedActivities(riwClass)));
 
         ArrayList<User> riwStudents =
                 new ArrayList<User>(logic.getStudents(riwClass));
         UIBranchContainer studentsTable =
                 UIBranchContainer.make(tofill, "riw_students:");
 
-        // TODO if no students
+
+        UIForm classState = UIForm.make(tofill, "form_class_state");
+        Boolean state = logic.getReadInWebClassState(riwClass);
+
+        classState.parameters.add(
+                new UIELBinding("#{ManageClassBean.riwClass}",
+                        riwClass.getId()));
+
+        classState.parameters.add(
+                new UIELBinding("#{ManageClassBean.classState}",
+                        Boolean.toString(!state)));
+        if(state){ // render pause
+            UICommand.make(classState, "pause_class",
+                    "#{ManageClassBean.changeClassState}");
+        } else { // render play
+            UICommand.make(classState, "play_class",
+                    "#{ManageClassBean.changeClassState}");
+        }
 
         for(User u : riwStudents){
             UIBranchContainer studentRow =
                     UIBranchContainer.make(studentsTable, "riw_student:");
+
+            if(logic.isUserBlocked(u, riwClass)){
+                studentRow.decorate((new UIStyleDecorator("danger")));
+            }
 
             UIOutput.make(studentRow, "student_name", u.getDisplayName());
 
@@ -126,11 +166,6 @@ public class ClassProducer implements ViewComponentProducer, ViewParamsReporter 
                 UIOutput.make(riwActivity, "activity_published",
                         logic.isActivityPublished(riwClass, m.getId(),
                                 a.getId()) ? "Sim" : "Não");
-
-                System.out.println(a.getTitle()
-                        + ": "
-                        + logic.isActivityPublished(riwClass, m.getId(),
-                                a.getId()));
             }
         }
 
@@ -139,5 +174,13 @@ public class ClassProducer implements ViewComponentProducer, ViewParamsReporter 
     @Override
     public ViewParameters getViewParameters() {
         return new ClassViewParameters(getViewID());
+    }
+
+    @Override
+    public List<NavigationCase> reportNavigationCases() {
+        List<NavigationCase> l = new ArrayList<NavigationCase>();
+        l.add(new NavigationCase(ManagerComponents.MODIFIED,
+                new ClassViewParameters(ClassProducer.VIEW_ID, false, true)));
+        return l;
     }
 }

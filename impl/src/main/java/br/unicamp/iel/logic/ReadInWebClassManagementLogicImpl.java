@@ -1,6 +1,7 @@
 package br.unicamp.iel.logic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Map;
 import lombok.Setter;
 
 import org.apache.log4j.Logger;
+import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
+import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService.SelectionType;
 import org.sakaiproject.site.api.SiteService.SortType;
@@ -158,5 +161,52 @@ ReadInWebClassManagementLogic {
         common.deleteEntity(message);
     }
 
+    @Override
+    public Long countPublishedActivities(Site riwClass) {
+        return common.countPublishedActivities(riwClass);
+    }
 
+    @Override
+    public Long countStudents(Site site) {
+        return common.countUsers(site);
+    }
+
+    @Override
+    public Date getStartDate(Site site) {
+        return common.getStartDate(site);
+    }
+
+    @Override
+    public Boolean getReadInWebClassState(Site site) {
+        return common.getReadInWebClassState(site);
+    }
+
+    @Override
+    public void setClassState(Site site, Boolean classState) {
+        common.setClassState(site, classState);
+    }
+
+    @Override
+    public Site getLastAddedReadInWebClass(Long course) {
+        return sakaiProxy.getLastAddedSiteByProperty(course);
+    }
+
+    @Override
+    public Site getLastModifiedReadInWebClass(Long course) {
+        return sakaiProxy.getLastModifiedSiteByProperty(course);
+    }
+
+    @Override
+    public boolean isReadInWebClassActive(Site s) {
+        try {
+            return s.getProperties().getBooleanProperty(
+                    Property.COURSESTATE.getName());
+        } catch (EntityPropertyNotDefinedException e) {
+            e.printStackTrace();
+        } catch (EntityPropertyTypeException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
+

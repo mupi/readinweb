@@ -6,6 +6,7 @@ import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
 
+import java.util.Date;
 import java.util.List;
 
 import org.sakaiproject.site.api.Site;
@@ -61,4 +62,20 @@ public interface ReadInWebClassManagementLogic {
     public void deleteJustificationMessage(JustificationMessage message);
 
     public void unblockUser(String userId, String siteId);
+
+    public Date getStartDate(Site site);
+
+    public Long countStudents(Site site);
+
+    public Long countPublishedActivities(Site site);
+
+    public Boolean getReadInWebClassState(Site site);
+
+    public void setClassState(Site site, Boolean classState);
+
+    public Site getLastAddedReadInWebClass(Long course);
+
+    public Site getLastModifiedReadInWebClass(Long id);
+
+    public boolean isReadInWebClassActive(Site s);
 }

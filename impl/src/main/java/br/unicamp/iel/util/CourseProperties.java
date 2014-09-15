@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonObject.Member;
+import com.eclipsesource.json.JsonValue;
 
 public class CourseProperties {
     private JsonObject courseProperties;
@@ -120,6 +122,10 @@ public class CourseProperties {
                 .get(Long.toString(module)).asObject();
 
         return j_module.get("status").asBoolean();
+    }
+
+    public Long countPublishedActivities() {
+        return new Long(getAllPublishedActivities().length);
     }
 
 

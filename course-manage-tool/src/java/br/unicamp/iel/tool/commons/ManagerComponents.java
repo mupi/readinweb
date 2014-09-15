@@ -18,14 +18,15 @@ import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
 
 public class ManagerComponents {
 
+    public static final String DATA_EMPTY = "No data sent";
+    public static final String CREATED = "Created";
+    public static final String CREATE_FAIL = "Creation has failed";
+    public static final String MODIFIED = "Data changed";
+
     public static void loadMenu(ViewParameters viewparams, UIContainer tofill){
         ClassesViewParameters cvp = new ClassesViewParameters();
         cvp.viewID = ClassesProducer.VIEW_ID;
         UIInternalLink.make(tofill, "link_turmas", cvp);
-//
-//        SimpleViewParameters svp = new SimpleViewParameters();
-//        svp.viewID = JustificationsProducer.VIEW_ID;
-//        UIInternalLink.make(tofill, "link_justificativas", svp);
     }
 
     /**

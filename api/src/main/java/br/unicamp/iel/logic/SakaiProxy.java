@@ -101,6 +101,10 @@ public interface SakaiProxy {
 
     public void setStringProperty(Site site, String property, String value);
 
+    public void updateStringProperty(Site site, String name, String value);
+
+    public void updateBooleanProperty(Site site, String name, Boolean value);
+
     public void setJoinable(Site site, Boolean joinable);
 
     public void archiveSite(String siteId);
@@ -134,5 +138,11 @@ public interface SakaiProxy {
     public SitePage findCurrentPage();
 
     public boolean isUserTeacher();
+
+    public Boolean getBooleanProperty(Site site, String name);
+
+    public Site getLastAddedSiteByProperty(Long course);
+
+    public Site getLastModifiedSiteByProperty(Long course);
 
  }

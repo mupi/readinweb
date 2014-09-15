@@ -52,18 +52,14 @@
                 <li>
                     <span rsf:id="course_name">Curso Read in Web</span>
                 </li>
-                <li>
-                    <a href="#" rsf:id="course_classes">Turmas</a>
-                </li>
                 <li class="active">
                     <span rsf:id="riw_class_name">Turma</span>
                 </li>
             </ol>
             <header class="page-header">
-                <h1>
-                    Read in Web - turma
-                    <span rsf:id="riw_class">sucesso</span>
-                </h1>
+            <h1>
+                <span rsf:id="riw_class_name">Turma</span>
+            </h1>
             </header>
             <section class="class-info">
             <p>
@@ -76,61 +72,61 @@
             </p>
             <p>
                 Atividades liberadas:
-                <span rsf:id="riw_published">10</span>
-            </p>
-            <p>
-                Atividades a serem liberadas:
-                <span rsf:id="riw_class">2</span>
+                <span rsf:id="riw_activities_published">10</span>
             </p>
             </section>
-            <p class="text-right">
-                <button type="submit" class="btn btn-default " rsf:id="send_message">
-                    <i class="fa fa-list-ul"></i> Liberar atividades
-                </button>
-                <button type="submit" class="btn btn-danger " rsf:id="send_message">
-                    <i class="fa fa-times-circle"></i> Desativar turma
-                </button>
-            </p>
             <div class="row">
-                <div>
+                <div class="col-xs-10">
                     <h3>Alunos matriculados</h3>
-                    <table class="table table-striped" rsf:id="riw_students:">
-                        <tr>
-                            <th>Nome</th>
-                            <th>Bloqueado</th>
-                            <th>Quantidade de bloqueios</th>
-                        </tr>
-                        <tr rsf:id="riw_student:" class="danger">
-                            <td>
-                                <a rsf:id="student_name" href="#">Ana Rute Cavalcanti Vaz Mendes Tenório Ribeiro</a>
-                            </td>
-                            <td>
-                                <a rsf:id="student_isblocked" href="#">Não. se desativado add class danger</a>
-                            </td>
-                            <td>
-                                <a rsf:id="student_blocks" href="#justificativas">4</a>
-                            </td>
-                        </tr>
-                    </table>
                 </div>
-                <div>
-                    <h3>Módulos e Atividades do Curso</h3>
-                    <ul class="table table-striped" rsf:id="riw_data:">
-                        <li rsf:id="riw_module:">
-                            <a rsf:id="riw_module_position" href="#">1</a>
-                            <ul class="default">
-                                <li rsf:id="riw_activity:">
-                                    <span rsf:id="activity_title" href="#">How green</span>
-                                    -
-                                    <span rsf:id="activity_published">Sim</span>
-                                    <form class="form-inline" rsf:id="publish_activity:">
-                                        <button class="btn btn-danger" rsf:id="switch_publish">liberar</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="col-xs-2">
+                    <form rsf:id="form_class_state" class="form-inline  pull-right">
+                        <button type="submit" class="btn btn-success" rsf:id="play_class">
+                            <span class="glyphicon glyphicon-play"></span>
+                            Continuar turma
+                        </button>
+
+                        <button type="submit" class="btn btn-danger" rsf:id="pause_class">
+                            <span class="glyphicon glyphicon-pause"></span>
+                            Pausar turma
+                        </button>
+                    </form>
                 </div>
+            </div>
+            <div>
+                <table class="table table-striped" rsf:id="riw_students:">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Bloqueado</th>
+                        <th>Quantidade de bloqueios</th>
+                    </tr>
+                    <tr rsf:id="riw_student:" class="danger">
+                        <td>
+                            <a rsf:id="student_name" href="#">Ana Rute Cavalcanti Vaz Mendes Tenório Ribeiro</a>
+                        </td>
+                        <td>
+                            <a rsf:id="student_isblocked" href="#">Não. se desativado add class danger</a>
+                        </td>
+                        <td>
+                            <a rsf:id="student_blocks" href="#justificativas">4</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3>Módulos e Atividades do Curso</h3>
+                <ul class="table table-striped" rsf:id="riw_data:">
+                    <li rsf:id="riw_module:">
+                        <span rsf:id="riw_module_position">1</span>
+                        <ul class="default">
+                            <li rsf:id="riw_activity:">
+                                <span rsf:id="activity_title" href="#">How green</span>
+                                -
+                                <span rsf:id="activity_published">Sim</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
