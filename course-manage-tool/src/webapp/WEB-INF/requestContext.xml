@@ -3,7 +3,7 @@
   "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-  <bean id="AdminActivityBean" class="br.unicamp.iel.tool.AdminActivityBean">
+  <bean id="ManageClassBean" class="br.unicamp.iel.tool.ManageClassBean">
     <property name="logic"
       ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
   </bean>
@@ -26,9 +26,6 @@
   <bean class="br.unicamp.iel.tool.producers.ClassProducer">
     <property name="logic"
       ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
-    <property name="userDirectoryService"
-      ref="org.sakaiproject.user.api.UserDirectoryService" />
-    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
   </bean>
 
   <bean class="br.unicamp.iel.tool.producers.CreateClassProducer">
@@ -38,22 +35,5 @@
       ref="org.sakaiproject.user.api.UserDirectoryService" />
     <property name="createClassBean" ref="CreateClassBean" />
     <property name="destroyer" ref="resultsScope" />
-
-  </bean>
-
-  <bean class="br.unicamp.iel.tool.producers.JustificationsProducer">
-    <property name="logic"
-      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
-    <property name="userDirectoryService"
-      ref="org.sakaiproject.user.api.UserDirectoryService" />
-    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
-  </bean>
-
-  <bean class="br.unicamp.iel.tool.producers.JustificationProducer">
-    <property name="logic"
-      ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
-    <property name="userDirectoryService"
-      ref="org.sakaiproject.user.api.UserDirectoryService" />
-    <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
   </bean>
 </beans>

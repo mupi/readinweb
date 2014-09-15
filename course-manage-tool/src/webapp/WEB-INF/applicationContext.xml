@@ -4,11 +4,11 @@
 
 <beans>
   <bean parent="requestAddressibleParent">
-    <property name="value" value="AdminActivityBean, CreateClassBean" />
+    <property name="value" value="ManageClassBean, CreateClassBean" />
   </bean>
 
   <bean id="resultsScope" parent="beanScopeParent">
-    <property name="copyPreservingBeans" value="AdminActivityBean, CreateClassBean" />
+    <property name="copyPreservingBeans" value="ManageClassBean, CreateClassBean" />
     <property name="exclusive" value="true" />
   </bean>
 
@@ -43,7 +43,7 @@
   <bean parent="requestAddressibleParent">
     <property name="value">
       <value>
-        AdminActivityBean, CreateClassBean
+        ManageClassBean, CreateClassBean
       </value>
     </property>
   </bean>
