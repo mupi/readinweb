@@ -12,9 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
 <!-- End Bootstrap -->
 <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
-
 </head>
 
 <body>
@@ -22,8 +20,7 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#lista_menu_principal">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lista_menu_principal">
                 <span class="sr-only">Menu principal</span>
                 <span>MENU</span>
             </button>
@@ -58,10 +55,13 @@
                     </a>
                     <ul id="lista_menu_modulos" class="dropdown-menu">
                         <li rsf:id="li-rowsMod:">
-                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                            <a class="link-modulo" data-parent="#lista_menu_modulos" rsf:id="lnk_modulo"
+                                data-toggle="collapse" type="button" href="#div_atividades">M&oacute;dulo X</a>
+                            <ul rsf:id="div_atividades:" id="div_atividades"
+                                class="lista_menu_atividades panel-collapse collapse">
                                 <li rsf:id="p-rowsAct:">
-                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="link_atividade"> Atividade X
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -117,98 +117,8 @@
 
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/dropdown.js"></script>
-
-    <script type="text/javascript" src="../js/headscripts.js"></script>
-
-    <script type="text/javascript" src="../js/transparencia.js"></script>
-
-    <script type="text/javascript" src="../js/textsizer.js"></script>
-
-    <script type="text/javascript" src="../js/styleswitch.js"></script>
-
-    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
-
-    <script type="text/javascript" src="../js/readinweb.js"></script>
-
-    <script type="text/javascript">
-            /**
-             *
-             * submiter_obj - OBJETO do tipo 'input submit' que ira alterar o valor da coisa toda - deve ter o ID no formato ''
-             * hidden_module_id - ID do objeto 'hidden' que ira armazenar o valor do modulo de coisa toda
-             * hidden_activity_id - ID do objeto 'hidden' que ira armazenar o valor da atividade de coisa toda
-             * hidden_exercise_id - ID do objeto 'hidden' que ira armazenar o valor do exercicio como zero
-             */
-            function update_module( submiter_obj, hidden_module_id, hidden_activity_id, hidden_exercise_id ){
-                var submiter_id;
-                var submiter_splited;
-                var module_id, activity_id;
-                var hidden_mod_obj;
-                var hidden_act_obj;
-                var hidden_exe_obj;
-
-                submiter_id = submiter_obj.id;
-                submiter_splited = submiter_id.split('_');
-
-                activity_id = submiter_splited[submiter_splited.length - 2];
-                module_id = submiter_splited[submiter_splited.length - 1];
-
-                hidden_mod_obj = document.getElementById(hidden_module_id);
-                hidden_act_obj = document.getElementById(hidden_activity_id);
-                hidden_exe_obj = document.getElementById(hidden_exercise_id);
-
-                if (hidden_mod_obj != null){
-                    hidden_mod_obj.value = module_id;
-                    if (hidden_act_obj != null){
-                        hidden_act_obj.value = activity_id;
-                        if (hidden_exe_obj != null){
-                            hidden_exe_obj.value = 0;
-                        } else {
-                            alert('Problemas com H de exe.');
-                        }
-                    } else {
-                        alert('Problemas com H de act.');
-                    }
-                } else {
-                    alert('Problemas com H de mod.');
-                }
-
-                return;
-            }
-        </script>
-
-    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
-    <!--  <script src="http://jquery.com/src/jquery-latest.js"></script> -->
-    <script>
-            $(document).ready(function(){
-                var gmodule = 0;
-                var question = 1;
-                var menu_switch = 0;
-                $(".menu").click(function(){
-                    if(menu_switch == 0){
-                        $(".bloco").fadeIn("fast");
-                        menu_switch = 1;
-                    }
-                    else{
-                        $(".bloco").fadeOut("fast");
-                        menu_switch = 0;
-                    }
-                });
-
-                $(".modulo").click(function(){
-                    var module = $(this).val();
-                    if(module != gmodule){
-                        gmodule = module;
-                        $("div .atividades").hide(0);
-                        $("div ." + module).fadeIn("slow");
-                    }
-                    else {
-                        gmodule = 0;
-                        $("div ." + module).fadeOut("slow");
-                    }
-                });
-            });
-        </script>
-
+    <script type="text/javascript" src="../js/dropdown-menu.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
 </body>
 </html>

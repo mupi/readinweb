@@ -1,27 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Projeto Read in Web - Exerc&iacute;cios</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Projeto Read in Web - Exerc&iacute;cios</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
-    <!-- End Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/exercicios.css" />
+<link rel="stylesheet" type="text/css" href="../css/exercicios.css" />
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#lista_menu_principal">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lista_menu_principal">
                 <span class="sr-only">Menu principal</span>
                 <span>MENU</span>
             </button>
@@ -39,8 +38,9 @@
                         name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
                 </li>
                 <li>
-                    <a href="exercicios.html" class="active" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                    <a href="exercicios.html" class="active"
+                        title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua" name="EXERCICIOS"
+                        rsf:id="linkexercise">EXERC&#205;CIOS</a>
                 </li>
                 <li>
                     <a href="gramatica.html" title="Dicion&#225;rio gramatical" name="GRAM&#193;TICA"
@@ -52,10 +52,13 @@
                     </a>
                     <ul id="lista_menu_modulos" class="dropdown-menu">
                         <li rsf:id="li-rowsMod:">
-                            <span href="#" class="link-modulo" rsf:id="lnk_modulo">M&oacute;dulo X</span>
-                            <ul rsf:id="div_atividades:" class="lista_menu_atividades">
+                            <a class="link-modulo" data-parent="#lista_menu_modulos" rsf:id="lnk_modulo"
+                                data-toggle="collapse" type="button" href="#div_atividades">M&oacute;dulo X</a>
+                            <ul rsf:id="div_atividades:" id="div_atividades"
+                                class="lista_menu_atividades panel-collapse collapse">
                                 <li rsf:id="p-rowsAct:">
-                                    <a rsf:id="input_link_a_" id="input_link_a_" class="btn-link"> Atividade X </a>
+                                    <a rsf:id="input_link_a_" id="input_link_a_" class="link_atividade"> Atividade X
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -119,6 +122,7 @@
     </div>
     <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/dropdown-menu.js"></script>
     <script type="text/javascript" src="/library/js/headscripts.js"></script>
     <script type="text/javascript" src="../js/rsf.js"></script>
 </body>

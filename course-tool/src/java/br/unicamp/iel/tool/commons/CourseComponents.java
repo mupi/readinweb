@@ -7,9 +7,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.org.ponder.rsf.components.UIAnchor;
+import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
+import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
@@ -99,11 +102,14 @@ public class CourseComponents {
 
             UIBranchContainer ui_modules =
                     UIBranchContainer.make(tofill, "li-rowsMod:");
-            UIOutput.make(ui_modules, "lnk_modulo",
-                    ("Módulo " + m.getPosition()));
+
+            UILink.make(ui_modules, "lnk_modulo",
+                    new UIBoundString("Módulo " + m.getPosition()),
+                    "/#module_" + m.getId() + "_activities");
 
             UIBranchContainer ui_activities =
                     UIBranchContainer.make(ui_modules, "div_atividades:");
+            ui_activities.updateFullID("module_" + m.getId() + "_activities");
             for(Activity a : activities){
                 UIBranchContainer row =
                         UIBranchContainer.make(ui_activities, "p-rowsAct:");
