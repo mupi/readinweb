@@ -90,25 +90,16 @@
                 <li class="active">
                     <span rsf:id="current_title">--</span>
                 </li>
-                <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank"
-                    rsf:id="lnk_print">
-                    <div id="print_tag">
-                        <span class="glyphicon glyphicon-print"></span>
-                        IMPRIMIR
-                    </div>
-                </a>
-                <div id="audio">
-                    <div id="audio_player" style="display: none"></div>
-                    <div id="audio_icon">
-                        <span id="showAudio" class="glyphicon glyphicon-play" style="display: block"></span>
-                        <span id="hideAudio" class="glyphicon glyphicon-stop" style="display: none"
-                            onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
-                    </div>
-                    <div>
-                        <audio rsf:id="sound_text"></audio>
-                    </div>
-                    <div id="audio_tag">AUDIO</div>
-                </div>
+                <!--                 <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank" -->
+                <!--                     rsf:id="lnk_print"> -->
+                <!--                     <div id="print_tag"> -->
+                <!--                         <span class="glyphicon glyphicon-print"></span> -->
+                <!--                         IMPRIMIR -->
+                <!--                     </div> -->
+                <!--                 </a> -->
+                <span id="audio" rsf:id="sound_text">
+                    <audio src="audio" controls="controls"></audio>
+                </span>
             </ol>
         </div>
         <div class="row">
@@ -242,12 +233,13 @@
                                         </div>
                                     </div>
                                     <div id="suggested_answer_container">
-                                        <a class="btn btn-link btn-block btn-resposta-sugerida" data-toggle="collapse"
-                                            type="button" href="#suggested_answer">
+                                        <a rsf:id="suggested_link" class="btn btn-link btn-block btn-resposta-sugerida"
+                                            data-toggle="collapse" type="button" href="#suggested_answer">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                             Resposta Sugerida
                                         </a>
-                                        <div id="suggested_answer" class="panel-collapse collapse">
+                                        <div rsf:id="suggested_answer_container:" id="suggested_answer"
+                                            class="panel-collapse collapse">
                                             <p rsf:id="suggested_answer">Resposta suferida</p>
                                         </div>
                                     </div>

@@ -1,6 +1,5 @@
 package br.unicamp.iel.tool.producers;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
-import uk.org.ponder.rsf.components.decorators.UIFreeAttributeDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
@@ -27,12 +25,12 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.tool.commons.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -101,11 +99,14 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
                 new Object[] {activity_time, time_time,
         "RegisterAccessAjaxBean.results"});
 
-        // Audio; fill it only if file exists
-        // FIXME Fix up audio retrieve method. Name, file place.. everything
-        UILink audio = UILink.make(tofill, "sound_text",
-                "src", "../audio/" + "m" + module.getPosition() + "a" +
-                        activity.getPosition() + ".mp3");
+        String audioString = ""
+                + "<audio "
+                + "    src='/readinweb-course-tool/content/audio/m" + module.getPosition() + "a" + activity.getPosition() + ".mp3' controls>"
+                + "    Seu navegador não suporta a tag &lt;audio&gt;"
+                + "</audio>";
+
+        UIVerbatim audio = UIVerbatim.make(tofill, "sound_text", audioString);
+        audio.updateFullID("audio");
 
         // Activity image
         if ((activity.getImage() != null)
@@ -154,7 +155,17 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
             ui_bc.updateFullID("question_" + q.getId());
 
             UIVerbatim.make(ui_bc, "question", q.getQuestion());
-            UIVerbatim.make(ui_bc, "suggested_answer", q.getSuggestedAnswer());
+
+            UILink.make(ui_bc, "suggested_link", "/#suggested_" + q.getId());
+
+            UIBranchContainer suggestedAnswer = UIBranchContainer.make(ui_bc,
+                    "suggested_answer_container:");
+            UIVerbatim.make(suggestedAnswer, "suggested_answer",
+                    q.getSuggestedAnswer());
+
+            suggestedAnswer.updateFullID("suggested_" + q.getId());
+
+
 
             UIForm answer_form = UIForm.make(ui_bc, "answer_form");
             answer_form.viewparams =
