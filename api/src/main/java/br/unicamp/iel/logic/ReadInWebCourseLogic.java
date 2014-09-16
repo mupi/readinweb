@@ -22,7 +22,6 @@ import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
-import br.unicamp.iel.model.ReadInWebControl;
 import br.unicamp.iel.model.Strategy;
 
 /**
@@ -77,7 +76,13 @@ public interface ReadInWebCourseLogic {
 
     public void saveStrategy(Strategy strategy);
 
+    public void sendJustification(Justification justification);
+
     public void sendJustificationMessage(JustificationMessage message);
+
+    public void deleteJustificationMessage(JustificationMessage message);
+
+    public void unblockUser(String userId, String siteId);
 
     public void deleteEntity(Object o);
 
@@ -121,8 +126,6 @@ public interface ReadInWebCourseLogic {
 
     public Site getCurrentSite();
 
-    public void sendJustification(Justification justification);
-
     public boolean isUserAdmin();
 
     public String getCurrentPlacement();
@@ -149,5 +152,9 @@ public interface ReadInWebCourseLogic {
     public Long countMessages(Justification j);
 
     public Exercise getExercise(Long exercise);
+
+    public void updateJustification(Justification justification);
+
+    public void updateBlockInfo(String user, String site, Date evalDate);
 
 }

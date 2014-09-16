@@ -188,6 +188,21 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
+    public void deleteJustificationMessage(JustificationMessage message) {
+        common.deleteEntity(message);
+    }
+
+    @Override
+    public void unblockUser(String userId, String siteId) {
+        common.unblockUser(siteId, userId);
+    }
+
+    @Override
+    public void updateBlockInfo(String user, String site, Date evalDate) {
+        common.updateBlockInfoDate(user, site, evalDate);
+    }
+
+    @Override
     public List<Justification> getUserJustifications() {
         return common.getUserJustifications(getUserId(), getCurrentSiteId());
     }
@@ -360,6 +375,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
                 });
 
         Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        System.out.println((published - started) > 5 && expired);
         if((published - started) > 5 && expired) {
             common.blockUser(site.getId(), user.getId());
             return true;
@@ -368,6 +384,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         s.addRestriction(new Restriction("control", ControlTypes.getSum(),
                 Restriction.LESS));
         Long finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        System.out.println((published - finished) > 5 && expired);
         if((published - finished) > 5
                 && expired){
             common.blockUser(site.getId(), user.getId());
@@ -440,4 +457,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         return sakaiProxy.getUser(user);
     }
 
+    @Override
+    public void updateJustification(Justification justification) {
+        dao.save(justification);
+    }
 }

@@ -448,8 +448,6 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
         setUserPropertyString(userId, userProperties.toString());
     }
 
-    // FIXME Move this method to management only. The user will be never
-    // unblocked in a course scope, only management
     @Override
     public void unblockUser(String siteId, String userId) {
         UserProperties userProperties =
@@ -457,6 +455,16 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
                         .readFrom(getUserPropertyString(userId)));
 
         userProperties.setUserBlocked(siteId, false);
+        setUserPropertyString(userId, userProperties.toString());
+    }
+
+    @Override
+    public void updateBlockInfoDate(String userId, String siteId, Date evalDate) {
+        UserProperties userProperties =
+                new UserProperties(JsonObject
+                        .readFrom(getUserPropertyString(userId)));
+
+        userProperties.setDate(siteId, evalDate.getTime());
         setUserPropertyString(userId, userProperties.toString());
     }
 

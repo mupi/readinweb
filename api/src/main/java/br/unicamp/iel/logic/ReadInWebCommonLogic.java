@@ -164,6 +164,8 @@ public interface ReadInWebCommonLogic {
 
     public void setClassState(Site site, Boolean classState);
 
+    public void updateBlockInfoDate(String user, String site, Date evalDate);
+
 }
 
 

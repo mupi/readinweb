@@ -390,9 +390,11 @@ public class SakaiProxyImpl implements SakaiProxy {
     public void setJsonUserStringProperty(String userId, String name,
             String value){
         try {
-            UserEdit ue = userDirectoryService.editUser(userId);
-            ue.getProperties().addProperty(name, value);
-            userDirectoryService.commitEdit(ue);
+            if(userDirectoryService.allowUpdateUser(userId)){
+                UserEdit ue = userDirectoryService.editUser(userId);
+                ue.getProperties().addProperty(name, value);
+                userDirectoryService.commitEdit(ue);
+            }
         } catch (UserNotDefinedException e) {
             e.printStackTrace();
         } catch (UserPermissionException e) {

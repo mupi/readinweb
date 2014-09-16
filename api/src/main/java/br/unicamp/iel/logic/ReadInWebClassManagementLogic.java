@@ -57,12 +57,6 @@ public interface ReadInWebClassManagementLogic {
 
     public String getUserId();
 
-    public void sendJustificationMessage(JustificationMessage message);
-
-    public void deleteJustificationMessage(JustificationMessage message);
-
-    public void unblockUser(String userId, String siteId);
-
     public Date getStartDate(Site site);
 
     public Long countStudents(Site site);

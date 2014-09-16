@@ -2,6 +2,10 @@ package br.unicamp.iel.tool;
 
 import java.util.Date;
 
+import org.sakaiproject.site.api.Site;
+import org.sakaiproject.user.api.User;
+
+import uk.org.ponder.rsf.request.EarlyRequestParser;
 import lombok.Data;
 import lombok.Setter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
@@ -63,4 +67,37 @@ public class JustificationBean {
             return CourseComponents.DATA_EMPTY;
         }
     }
+
+    public String acceptJustification(){
+        handleUserStatus(true);
+        return CourseComponents.DATA_SENT;
+    }
+    public String refuseJustification(){
+        handleUserStatus(false);
+        return CourseComponents.DATA_SENT;
+    }
+
+    private void handleUserStatus(boolean approved){
+        Justification justification = logic.getJustification(justificationId);
+
+        Byte state = justification.getState();
+        state = JustificationStateTypes.markEvaluated(state);
+        state = JustificationStateTypes.markAsRead(state);
+
+        Date evalDate = new Date();
+
+        justification.setState(state);
+        justification.setEvaluatedDate(evalDate);
+        logic.updateJustification(justification);
+
+        User user = logic.getSudent(justification.getUser());
+        if(approved){
+            logic.unblockUser(justification.getUser(),
+                    justification.getSite());
+        } else {
+            logic.updateBlockInfo(justification.getUser(),
+                    justification.getSite(), evalDate);
+        }
+    }
+
 }

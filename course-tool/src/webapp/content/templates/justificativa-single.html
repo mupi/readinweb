@@ -64,11 +64,11 @@
                             <span rsf:id="username">Fulaninho</span>
                             escreveu:
                             <form rsf:id="current_evaluate_form" class="form-inline pull-right">
-                                <button onclick="confirm('Tem certeza que deseja recusar a justificativa?')"
+                                <button rsf:id="current_refuse" onclick="confirm('Tem certeza que deseja recusar a justificativa?')"
                                     type="submit" class="btn btn-danger">
                                     <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
                                 </button>
-                                <button type="submit" class="btn btn-success">
+                                <button rsf:id="current_accept" type="submit" class="btn btn-success">
                                     <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
                                 </button>
                             </form>

@@ -75,6 +75,17 @@ public class JustificationManagerProducer implements ViewComponentProducer, View
         UIOutput.make(container, "username", student.getDisplayName());
 
         // TODO refuse acept form
+        //        current_evaluate_form
+        UIForm evaluateForm = UIForm.make(container, "current_evaluate_form");
+        evaluateForm.parameters.add(
+                new UIELBinding("#{JustificationBean.justificationId}",
+                        justification.getId()));
+        //        current_refuse
+        UICommand.make(evaluateForm, "current_refuse",
+                "#{JustificationBean.refuseJustification}");
+        //        current_accept
+        UICommand.make(evaluateForm, "current_accept",
+                "#{JustificationBean.acceptJustification}");
 
         UIOutput.make(container, "current_justification_explanation",
                 justification.getExplanation());

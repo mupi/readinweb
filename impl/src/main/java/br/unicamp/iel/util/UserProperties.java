@@ -33,6 +33,13 @@ public class UserProperties {
         }
     }
 
+    public void setDate(String siteId, Long date) {
+        JsonObject status = userProperties.get("sites").asObject()
+                .get(siteId).asObject()
+                .get("status").asObject();
+        status.set("date", date);
+    }
+
     public void setDateSent(String siteId, Date date){
         JsonObject status = userProperties.get("sites").asObject()
                 .get(siteId).asObject()

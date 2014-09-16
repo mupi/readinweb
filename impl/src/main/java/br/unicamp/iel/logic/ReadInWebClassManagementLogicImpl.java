@@ -141,24 +141,9 @@ ReadInWebClassManagementLogic {
         return common.getTeacher(teacherId);
     }
 
-    @Override
-    public void unblockUser(String userId, String siteId) {
-        common.unblockUser(siteId, userId);
-    }
-
-    @Override
+   @Override
     public String getUserId(){
         return sakaiProxy.getCurrentUserId();
-    }
-
-    @Override
-    public void sendJustificationMessage(JustificationMessage message) {
-        common.saveJustificationMessage(message);
-    }
-
-    @Override
-    public void deleteJustificationMessage(JustificationMessage message) {
-        common.deleteEntity(message);
     }
 
     @Override
