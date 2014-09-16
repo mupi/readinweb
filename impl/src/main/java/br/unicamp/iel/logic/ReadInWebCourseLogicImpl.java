@@ -339,13 +339,13 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public List<Activity> getPusblishedActivities(Module module) {
+    public List<Activity> getPublishedActivities(Module module) {
         return common.getPublishedActivities(sakaiProxy.getCurrentSiteId(),
                 module);
     }
 
     @Override
-    public List<Module> getPusblishedModules(Course course) {
+    public List<Module> getPublishedModules(Course course) {
         return common.getPublishedModules(sakaiProxy.getCurrentSiteId(),
                 course);
     }

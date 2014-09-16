@@ -95,10 +95,9 @@ public class CourseComponents {
     public static void createModulesMenu(UIContainer tofill, Course course,
             String viewID, ReadInWebCourseLogic logic){
 
-        List<Module> modules = new ArrayList<Module>(logic.getModules(course));
+        List<Module> modules = logic.getPublishedModules(course);
         for(Module m : modules){
-            List<Activity> activities =
-                    new ArrayList<Activity>(logic.getActivities(m));
+            List<Activity> activities = logic.getPublishedActivities(m);
 
             UIBranchContainer ui_modules =
                     UIBranchContainer.make(tofill, "li-rowsMod:");

@@ -112,9 +112,9 @@ public interface ReadInWebCourseLogic {
 
     public Long[] getQuestionsIds(Long course);
 
-    public List<Module> getPusblishedModules(Course course);
+    public List<Module> getPublishedModules(Course course);
 
-    public List<Activity> getPusblishedActivities(Module course);
+    public List<Activity> getPublishedActivities(Module course);
 
     public boolean blockUser();
 

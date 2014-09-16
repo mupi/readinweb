@@ -69,13 +69,13 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
                     new SimpleViewParameters(JustificationProducer.VIEW_ID));
         } else {
             List<Module> modules =
-                    logic.getPusblishedModules(logic.getCourse(course));
+                    logic.getPublishedModules(logic.getCourse(course));
             // Fill form with modules
             for(Module m : modules){
                 // Get activities
                 ArrayList<Activity> activities =
                         new ArrayList<Activity>(
-                                logic.getPusblishedActivities(m));
+                                logic.getPublishedActivities(m));
                 UIBranchContainer container = createModuleLink(tofill,
                         viewparams, checker, m);
                 for(Activity a : activities){
