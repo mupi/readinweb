@@ -51,13 +51,19 @@ public class JustificationBean {
         if(message != null){
             JustificationMessage justificationMessage =
                     new JustificationMessage();
-            justificationMessage.setJustification(
-                    logic.getJustification(justificationId));
+            Justification justification =
+                    logic.getJustification(justificationId);
+            justificationMessage.setJustification(justification);
             justificationMessage.setMessage(message);
             justificationMessage.setUser(logic.getUserId());
             justificationMessage.setDateSent(new Date());
+
+
+            justification.setState(JustificationStateTypes
+                    .flagUnread(justification.getState()));
             try{
                 logic.sendJustificationMessage(justificationMessage);
+                logic.updateJustification(justification);
                 return CourseComponents.DATA_SENT;
             }catch (Exception e){
                 e.printStackTrace();
