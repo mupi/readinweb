@@ -16,6 +16,7 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIVerbatim;
+import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
@@ -81,6 +82,9 @@ public class ExerciciosProducer implements ViewComponentProducer,
             UIBranchContainer rowMod = UIBranchContainer.make(ui_bc,
                     "li-linkExer:",
                     Long.toString(e.getId()));
+            if(e.getId().equals(exercise.getId())){
+                rowMod.decorate(new UIStyleDecorator("active"));
+            }
 
             ExerciseViewParameters evp =
                     new ExerciseViewParameters(parameters.course,
@@ -98,7 +102,6 @@ public class ExerciciosProducer implements ViewComponentProducer,
         String fileLocation = getExercicioFileLocation(module.getPosition(),
                 activity.getPosition(), exercise.getPosition());
         try {
-
             System.out.println(fileLocation);
             exerciseString = CourseComponents.readFile(fileLocation, StandardCharsets.UTF_8);
         } catch (Exception e) { //catch (IOException e) {
@@ -106,9 +109,7 @@ public class ExerciciosProducer implements ViewComponentProducer,
             logger.warn(e.getMessage());
         }
 
-
         UIVerbatim.make(tofill, "html_exercicio_div", exerciseString);
-
         logic.registerExercisesAccess(activity.getId());
     }
 
