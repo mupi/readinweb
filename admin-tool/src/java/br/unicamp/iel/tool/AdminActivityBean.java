@@ -120,7 +120,8 @@ public class AdminActivityBean {
             }
             try{
                 logic.saveStrategy(strategy);
-                logic.updateActivity(strategy.getActivity());
+                logic.updateActivity(logic.getActivity(
+                        strategy.getActivity().getId()));
                 return CourseComponents.UPDATED;
             } catch (Exception e){
                 e.printStackTrace();
@@ -146,7 +147,8 @@ public class AdminActivityBean {
         }
         try{
             logic.saveStrategy(strategy);
-            logic.updateActivity(strategy.getActivity());
+            logic.updateActivity(logic.getActivity(
+                    strategy.getActivity().getId()));
             return CourseComponents.SAVED;
         } catch (Exception e){
             e.printStackTrace();
@@ -158,7 +160,8 @@ public class AdminActivityBean {
         Strategy strategy = logic.getStrategy(strategyId);
         try {
             logic.deleteEntity(strategy);
-            logic.updateActivity(strategy.getActivity());
+            logic.updateActivity(logic.getActivity(
+                    strategy.getActivity().getId()));
         } catch (Exception e){
             e.printStackTrace();
             return CourseComponents.DELETE_FAIL;
@@ -238,7 +241,8 @@ public class AdminActivityBean {
     public String deleteExercise(){
         Exercise exercise = logic.getExercise(exerciseId);
         try {
-            logic.updateActivity(exercise.getActivity());
+            logic.updateActivity(logic.getActivity(
+                    exercise.getActivity().getId()));
             logic.deleteEntity(exercise);
         } catch (Exception e){
             e.printStackTrace();
