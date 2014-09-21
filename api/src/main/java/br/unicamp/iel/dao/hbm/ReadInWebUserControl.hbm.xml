@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="br.unicamp.iel.model.ReadInWebUserControl" table="readinweb_usercontrols">
+    <id name="id" type="java.lang.Long">
+      <generator class="increment" />
+    </id>
+
+    <property name="state" type="byte" not-null="true" />
+    <property name="blockDate" column="block_date" not-null="false" type="timestamp" />
+    <property name="evalDate" column="eval_date" not-null="false" type="timestamp" />
+
+    <property name="user" column="user_id" type="string" length="255" />
+    <property name="site" column="site_id" type="string" length="255" />
+
+    <property name="blocks" type="integer" />
+  </class>
+</hibernate-mapping>

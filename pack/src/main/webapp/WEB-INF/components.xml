@@ -68,6 +68,7 @@
         <value>br/unicamp/iel/dao/hbm/ReadInWebQuestion.hbm.xml</value>
         <value>br/unicamp/iel/dao/hbm/ReadInWebAnswer.hbm.xml</value>
 
+        <value>br/unicamp/iel/dao/hbm/ReadInWebUserControl.hbm.xml</value>
         <value>br/unicamp/iel/dao/hbm/ReadInWebControl.hbm.xml</value>
         <value>br/unicamp/iel/dao/hbm/ReadInWebAccess.hbm.xml</value>
 
@@ -98,6 +99,7 @@
 
         <value>br.unicamp.iel.model.ReadInWebAccess</value>
         <value>br.unicamp.iel.model.ReadInWebControl</value>
+        <value>br.unicamp.iel.model.ReadInWebUserControl</value>
       </list>
     </property>
   </bean>

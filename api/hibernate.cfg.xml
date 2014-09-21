@@ -2,23 +2,24 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory>
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebCourse.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebFunctionalWord.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebModule.hbm.xml" />
+  <session-factory>
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebCourse.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebFunctionalWord.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebModule.hbm.xml" />
 
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebActivity.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebExercise.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebDictionaryWord.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebActivity.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebExercise.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebDictionaryWord.hbm.xml" />
 
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebStrategy.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebQuestion.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebAnswer.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebStrategy.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebQuestion.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebAnswer.hbm.xml" />
 
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebControl.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebAccess.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebControl.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebAccess.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebUserControl.hbm.xml" />
 
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebJustification.hbm.xml" />
-		<mapping resource="br/unicamp/iel/dao/hbm/ReadInWebJustificationMessage.hbm.xml" />
-	</session-factory>
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebJustification.hbm.xml" />
+    <mapping resource="br/unicamp/iel/dao/hbm/ReadInWebJustificationMessage.hbm.xml" />
+  </session-factory>
 </hibernate-configuration>
