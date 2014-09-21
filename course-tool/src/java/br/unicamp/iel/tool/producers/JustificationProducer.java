@@ -58,7 +58,7 @@ public class JustificationProducer implements ViewComponentProducer {
         UIOutput.make(tofill, "user", logic.getUser().getFirstName());
 
         List<Justification> justifications = logic.getUserJustifications();
-        if(logic.blockUser()) {
+        if(logic.isUserBlocked()) {
             UIBranchContainer userAlert =
                     UIBranchContainer.make(tofill, "user_alert_message:");
             UIOutput.make(userAlert, "user", logic.getUser().getDisplayName());

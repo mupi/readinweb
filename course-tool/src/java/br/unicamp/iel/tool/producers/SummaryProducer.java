@@ -23,6 +23,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Module;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.types.ControlTypes;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
@@ -62,7 +63,14 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
                     new SimpleViewParameters(JustificationProducer.VIEW_ID));
         }
 
-        if(!isTeacher && logic.blockUser()){
+        ReadInWebUserControl userControl =
+                logic.getUserControl(logic.getUserId(),
+                        logic.getCurrentSiteId());
+
+        if(logic.isUserLate(userControl))
+            logic.blockUser(userControl);
+
+        if(!isTeacher && logic.isUserBlocked()){
             UIBranchContainer li = UIBranchContainer.make(tofill,
                     "user_blocked:");
             UIInternalLink.make(li, "user_blocked_link", "Justificativas",

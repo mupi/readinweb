@@ -25,10 +25,12 @@ import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.ReadInWebAccess;
 import br.unicamp.iel.model.ReadInWebControl;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.model.sets.ActivitySets;
 import br.unicamp.iel.model.sets.CourseSets;
 import br.unicamp.iel.model.sets.JustificationSets;
+import br.unicamp.iel.model.types.BlockStateTypes;
 import br.unicamp.iel.model.types.ControlTypes;
 
 public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
@@ -89,6 +91,11 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public Exercise getExercise(Long exercise) {
         return common.getExercise(exercise);
+    }
+
+    @Override
+    public ReadInWebUserControl getUserControl(String userId, String siteId) {
+        return common.getUserControl(userId, siteId);
     }
 
     @Override
@@ -178,8 +185,6 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     @Override
     public void sendJustification(Justification justification) {
         common.saveJustification(justification);
-        common.setJustificationSent(justification.getUser(),
-                justification.getSite(), justification.getSentDate());
     }
 
     @Override
@@ -193,13 +198,14 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public void unblockUser(String userId, String siteId) {
-        common.unblockUser(siteId, userId);
+    public void unblockUser(ReadInWebUserControl userControl) {
+        common.unblockUser(userControl);
     }
 
     @Override
-    public void updateBlockInfo(String user, String site, Date evalDate) {
-        common.updateBlockInfoDate(user, site, evalDate);
+    public void updateBlockInfo(ReadInWebUserControl userControl,
+            Date evalDate) {
+        common.updateBlockInfoDate(userControl, evalDate);
     }
 
     @Override
@@ -220,7 +226,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
 
     @Override
     public void unblockUser(){
-        common.unblockUser(getCurrentSiteId(), getUserId());
+        common.unblockUser(common.getUserControl(getUserId(),
+                getCurrentSiteId()));
     }
 
     @Override
@@ -351,51 +358,53 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public boolean blockUser() {
-        User user = getUser();
-        Site site = getCurrentSite();
-        boolean expired = true;
-
-        if(common.isUserBLocked(user, site)) {
-            return true; // A propriedade já existe
-        } else {
-            Long blockedAt = common.getUserBlockingDate(site.getId(), user.getId());
-            Long remissionTime = common.getRemissionTime(site.getId());
-            Long today = System.currentTimeMillis();
-            if(blockedAt != null && remissionTime != null){
-                expired = (today - blockedAt) > remissionTime;
-            }
+    public void blockUser(ReadInWebUserControl userControl) {
+        if(!BlockStateTypes.isUserBlocked(userControl.getState())
+                && !BlockStateTypes.isUserBlocked(userControl.getState())) {
+            userControl.setBlockDate(new Date(System.currentTimeMillis()));
+            userControl.setBlocks(userControl.getBlocks() + 1);
+            userControl.setState(BlockStateTypes.BLOCKED.getValue());
         }
-        Long[] ids = common.getAllPublishedActivities(site.getId());
+    }
+
+    @Override
+    public boolean isUserLate(ReadInWebUserControl userControl) {
+        Long[] ids = common.getAllPublishedActivities(userControl.getSite());
         Long published = new Long(ids.length);
         Search s = new Search(
                 new Restriction[] {
-                        new Restriction("user", user.getId()),
+                        new Restriction("user", userControl.getUser()),
                         new Restriction("activity.id", ids),
                 });
-
         Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
-        System.out.println((published - started) > 5 && expired);
-        if((published - started) > 5 && expired) {
-            common.blockUser(site.getId(), user.getId());
-            return true;
-        }
+
+        // User have not even started more than five activities
+        if((published - started) > 5) return true;
 
         s.addRestriction(new Restriction("control", ControlTypes.getSum(),
                 Restriction.LESS));
         Long finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
-        System.out.println((published - finished) > 5 && expired);
-        if((published - finished) > 5
-                && expired){
-            common.blockUser(site.getId(), user.getId());
-            return true;
-        }
 
-        if(expired){
-            common.cleanExpireDate(site.getId(), user.getId());
-        }
+        // User have not finished
+        if((published - finished) > 5) return true;
 
         return false;
+    }
+
+    @Override
+    public boolean remissionTimeEnded(ReadInWebUserControl userControl) {
+        Long remission = common.getRemissionTime(userControl.getSite());
+        Long evaluated = userControl.getEvalDate().getTime();
+        Long today = System.currentTimeMillis();
+
+        return today - evaluated > remission;
+    }
+
+
+    @Override
+    public boolean isUserBlocked() {
+        return common.isUserBLocked(common.getUserControl(getUserId(),
+                getCurrentSiteId()));
     }
 
     @Override

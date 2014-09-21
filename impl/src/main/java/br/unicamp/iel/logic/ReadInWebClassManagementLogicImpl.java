@@ -128,12 +128,14 @@ ReadInWebClassManagementLogic {
 
     @Override
     public Integer getUserBlocks(User user, String siteId) {
-        return common.getUserBlocks(user, siteId);
+        return common.getUserBlocks(common.getUserControl(user.getId(),
+                siteId));
     }
 
     @Override
     public boolean isUserBlocked(User user, Site riwClass) {
-        return common.isUserBLocked(user, riwClass);
+        return common.isUserBLocked(common.getUserControl(user.getId(),
+                riwClass.getId()));
     }
 
     @Override

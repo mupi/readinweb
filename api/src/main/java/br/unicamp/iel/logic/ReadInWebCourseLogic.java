@@ -22,6 +22,7 @@ import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.Strategy;
 
 /**
@@ -41,6 +42,8 @@ public interface ReadInWebCourseLogic {
     public Question getQuestion(Long question);
 
     public ReadInWebAnswer getStudentAnswer(Long question);
+
+    public ReadInWebUserControl getUserControl(String userId, String siteId);
 
     public List<Course> getCourses();
 
@@ -82,7 +85,7 @@ public interface ReadInWebCourseLogic {
 
     public void deleteJustificationMessage(JustificationMessage message);
 
-    public void unblockUser(String userId, String siteId);
+    public void unblockUser(ReadInWebUserControl userControl);
 
     public void deleteEntity(Object o);
 
@@ -116,7 +119,13 @@ public interface ReadInWebCourseLogic {
 
     public List<Activity> getPublishedActivities(Module course);
 
-    public boolean blockUser();
+    public void blockUser(ReadInWebUserControl userControl);
+
+    public boolean remissionTimeEnded(ReadInWebUserControl userControl);
+
+    public boolean isUserLate(ReadInWebUserControl userControl);
+
+    public void updateBlockInfo(ReadInWebUserControl userControl, Date evalDate);
 
     public Long getCourseId();
 
@@ -155,6 +164,6 @@ public interface ReadInWebCourseLogic {
 
     public void updateJustification(Justification justification);
 
-    public void updateBlockInfo(String user, String site, Date evalDate);
+    public boolean isUserBlocked();
 
 }

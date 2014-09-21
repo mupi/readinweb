@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 import lombok.Setter;
 
@@ -16,29 +15,28 @@ import org.sakaiproject.genericdao.api.search.Order;
 import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 import org.sakaiproject.site.api.Site;
-import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.user.api.User;
-import org.sakaiproject.user.api.UserNotDefinedException;
 
 import br.unicamp.iel.dao.ReadInWebDao;
 import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Justification;
-import br.unicamp.iel.model.JustificationMessage;
-import br.unicamp.iel.model.ReadInWebAnswer;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.DictionaryWord;
 import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
+import br.unicamp.iel.model.Justification;
+import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebAnswer;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.Strategy;
 import br.unicamp.iel.model.sets.ActivitySets;
 import br.unicamp.iel.model.sets.CourseSets;
 import br.unicamp.iel.model.sets.JustificationSets;
 import br.unicamp.iel.model.sets.ModuleSets;
+import br.unicamp.iel.model.types.BlockStateTypes;
 import br.unicamp.iel.util.CourseProperties;
-import br.unicamp.iel.util.UserProperties;
 
 import com.eclipsesource.json.JsonObject;
 
@@ -126,6 +124,26 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     @Override
     public Strategy getStrategy(Long strategy) {
         return dao.findById(Strategy.class, strategy);
+    }
+
+    @Override
+    public ReadInWebUserControl getUserControl(String userId, String siteId) {
+        ReadInWebUserControl userControl =
+                dao.findOneBySearch(ReadInWebUserControl.class,
+                        new Search(new Restriction[]{
+                                new Restriction("user", userId),
+                                new Restriction("site", siteId),
+                        }));
+
+        if(userControl == null){
+            userControl = new ReadInWebUserControl(
+                    BlockStateTypes.UNBLOCKED.getValue(),
+                    null, null, userId, siteId, 0);
+            dao.save(userControl);
+            return userControl;
+        } else {
+            return userControl;
+        }
     }
 
     @Override
@@ -401,90 +419,50 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public boolean hasSentJustification(User user, Site site) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(user.getId())));
-        return userProperties.hasSentJustification(site.getId());
+        Justification justification = dao.findOneBySearch(Justification.class,
+                new Search(new Restriction[]{
+                        new Restriction("user", user.getId()),
+                        new Restriction("site", site.getId()),
+                }));
+        return justification != null;
     }
 
     @Override
-    public void setJustificationSent(String userId, String siteId, Date date) {
-        UserProperties userProperties = new UserProperties(JsonObject
-                .readFrom(getUserPropertyString(userId)));
-        userProperties.setDateSent(siteId, date);
-        setUserPropertyString(userId, userProperties.toString());
+    public boolean isUserBLocked(ReadInWebUserControl userControl) {
+        return BlockStateTypes.isUserBlocked(userControl.getState());
     }
 
     @Override
-    public boolean isUserBLocked(User user, Site site) {
-        String properties = getUserPropertyString(user.getId());
-        if(properties == null){
-            String value = userPropertySkelString(site.getId());
-            setUserPropertyString(user.getId(), value);
-            return false;
-        } else {
-            UserProperties userProperties =
-                    new UserProperties(JsonObject
-                            .readFrom(properties));
-            if(userProperties.hasUserData(site.getId())){
-                return userProperties.isUserBlocked(site.getId());
-            } else {
-                userProperties.addUserData(site.getId(),
-                        getDefaultUserPropertyString());
-
-                setUserPropertyString(user.getId(), userProperties.toString());
-                return false;
-            }
-        }
+    public void blockUser(ReadInWebUserControl userControl) {
+        userControl.setState(BlockStateTypes.BLOCKED.getValue());
+        userControl.setBlockDate(new Date(System.currentTimeMillis()));
+        dao.save(userControl);
     }
 
     @Override
-    public void blockUser(String siteId, String userId) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(userId)));
-
-        userProperties.setUserBlocked(siteId, true);
-        setUserPropertyString(userId, userProperties.toString());
+    public void unblockUser(ReadInWebUserControl userControl) {
+        userControl.setState(BlockStateTypes.REMISSION.getValue());
+        userControl.setBlockDate(null);
+        dao.save(userControl);
     }
 
     @Override
-    public void unblockUser(String siteId, String userId) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(userId)));
-
-        userProperties.setUserBlocked(siteId, false);
-        setUserPropertyString(userId, userProperties.toString());
+    public void updateBlockInfoDate(ReadInWebUserControl userControl,
+            Date evalDate) {
+        userControl.setEvalDate(evalDate);
+        dao.save(userControl);
     }
 
     @Override
-    public void updateBlockInfoDate(String userId, String siteId, Date evalDate) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(userId)));
-
-        userProperties.setDate(siteId, evalDate.getTime());
-        setUserPropertyString(userId, userProperties.toString());
+    public void cleanUserStatus(ReadInWebUserControl userControl) {
+        userControl.setState(BlockStateTypes.UNBLOCKED.getValue());
+        userControl.setBlockDate(null);
+        dao.save(userControl);
     }
 
     @Override
-    public void cleanExpireDate(String siteId, String userId) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(userId)));
-
-        userProperties.cleanExpireDate(siteId);
-        setUserPropertyString(userId, userProperties.toString());
-    }
-
-    @Override
-    public Long getUserBlockingDate(String siteId, String userId) {
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(userId)));
-
-        return userProperties.getBlockingDate(siteId);
+    public Long getUserBlockingDate(ReadInWebUserControl userControl) {
+        return userControl.getBlockDate().getTime();
     }
 
     @Override
@@ -514,13 +492,8 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public Integer getUserBlocks(User user, String siteId) {
-        // FIXME Pass user, not userId, any entity should be queried just once
-        UserProperties userProperties =
-                new UserProperties(JsonObject
-                        .readFrom(getUserPropertyString(user.getId())));
-
-        return userProperties.getNumBlocks(siteId);
+    public Integer getUserBlocks(ReadInWebUserControl userControl) {
+        return userControl.getBlocks();
     }
 
     @Override

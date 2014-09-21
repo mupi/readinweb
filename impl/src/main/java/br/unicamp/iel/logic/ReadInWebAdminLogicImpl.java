@@ -235,7 +235,8 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
                 //FIXME Users that never entered the course could be considered
                 // graduated. By the policy, it would never happen as the user
                 // is weekly tested as blocked or not, but it is still soft
-                riwData.sumCountGraduates(common.isUserBLocked(u, s));
+                riwData.sumCountGraduates(common.isUserBLocked(
+                        common.getUserControl(u.getId(), s.getId())));
             }
         }
         return riwData;

@@ -11,6 +11,7 @@ import lombok.Setter;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.JustificationMessage;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.types.JustificationStateTypes;
 import br.unicamp.iel.tool.commons.CourseComponents;
 
@@ -96,13 +97,12 @@ public class JustificationBean {
         justification.setEvaluatedDate(evalDate);
         logic.updateJustification(justification);
 
-        User user = logic.getSudent(justification.getUser());
+        ReadInWebUserControl userControl = logic.getUserControl(
+                justification.getUser(), justification.getSite());
+
+        logic.updateBlockInfo(userControl, evalDate);
         if(approved){
-            logic.unblockUser(justification.getUser(),
-                    justification.getSite());
-        } else {
-            logic.updateBlockInfo(justification.getUser(),
-                    justification.getSite(), evalDate);
+            logic.unblockUser(userControl);
         }
     }
 

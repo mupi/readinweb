@@ -22,6 +22,7 @@ import br.unicamp.iel.model.Exercise;
 import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
+import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.Strategy;
 
 /**
@@ -47,6 +48,8 @@ public interface ReadInWebCommonLogic {
     public Strategy getStrategy(Long strategy);
 
     public Exercise getExercise(Long exercise);
+
+    public ReadInWebUserControl getUserControl(String userId, String siteId);
 
     public Long countUserAnswers(String user, Long[] ids);
 
@@ -120,17 +123,15 @@ public interface ReadInWebCommonLogic {
 
     public boolean hasSentJustification(User user, Site site);
 
-    public void setJustificationSent(String userId, String siteId, Date date);
+    public boolean isUserBLocked(ReadInWebUserControl userControl);
 
-    public boolean isUserBLocked(User user, Site site);
+    public void blockUser(ReadInWebUserControl userControl);
 
-    public void blockUser(String siteId, String userId);
+    public void cleanUserStatus(ReadInWebUserControl userControl);
 
-    public void cleanExpireDate(String siteId, String userId);
+    public void unblockUser(ReadInWebUserControl userControl);
 
-    public void unblockUser(String siteId, String userId);
-
-    public Long getUserBlockingDate(String siteId, String userId);
+    public Long getUserBlockingDate(ReadInWebUserControl userControl);
 
     public Long getRemissionTime(String siteId);
 
@@ -138,7 +139,7 @@ public interface ReadInWebCommonLogic {
 
     public boolean isActivityPublished(Site riwClass, Long module, Long activity);
 
-    public Integer getUserBlocks(User user, String siteId);
+    public Integer getUserBlocks(ReadInWebUserControl userControl);
 
     public User getTeacher(String teacherId);
 
@@ -164,7 +165,7 @@ public interface ReadInWebCommonLogic {
 
     public void setClassState(Site site, Boolean classState);
 
-    public void updateBlockInfoDate(String user, String site, Date evalDate);
+    public void updateBlockInfoDate(ReadInWebUserControl userControl, Date evalDate);
 
 }
 
