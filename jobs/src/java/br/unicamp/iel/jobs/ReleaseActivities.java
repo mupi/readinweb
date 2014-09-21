@@ -1,10 +1,20 @@
 package br.unicamp.iel.jobs;
 
+import java.util.List;
+
+import javax.xml.ws.ServiceMode;
+
+import lombok.Setter;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.sakaiproject.site.api.Site;
+
+import br.unicamp.iel.logic.ReadInWebCommonLogic;
+import br.unicamp.iel.logic.SakaiProxy;
 
 
 /* this is a test Quartz job to show that we can inject jobs into the jobscheduler from an external location */
@@ -13,21 +23,18 @@ import org.quartz.JobExecutionException;
 public class ReleaseActivities implements Job {
 
     private static final Log LOG = LogFactory.getLog(ReleaseActivities.class);
-    private String configMessage;
 
+    @Setter
+    private ReadInWebCommonLogic common;
+
+    @Setter
+    private SakaiProxy sakaiProxy;
 
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        LOG.info("ReleaseActivities! " + getConfigMessage());
-        System.out.println("ReleaseActivities! " + getConfigMessage());
+        List<Site> classes = sakaiProxy.getReadInWebSites(1L);
+        for(Site riwClass : classes){
+            System.out.println("ReleaseActivities! " + riwClass.getTitle());
+        }
     }
-
-    public String getConfigMessage() {
-        return configMessage;
-    }
-
-    public void setConfigMessage(String configMessage) {
-        this.configMessage = configMessage;
-    }
-
 
 }

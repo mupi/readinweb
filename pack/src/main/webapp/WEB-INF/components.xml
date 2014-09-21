@@ -131,7 +131,6 @@
   </bean>
 
   <bean id="releaseActivities" class="br.unicamp.iel.jobs.ReleaseActivities">
-    <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
     <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
     <property name="sakaiProxy" ref="br.unicamp.iel.logic.SakaiProxy" />
   </bean>
