@@ -11,7 +11,8 @@ public enum Property {
     COURSESTARTDATE("readinwebcourse.startdate"),
     COURSEREMISSIONTIME("readinwebcourse.remissiontime"),
     COURSEFINISHED("readinwebcourse.finished"),
-    COURSESTATE("readinwebcourse.state");
+    COURSESTATE("readinwebcourse.state"),
+    COURSELASTRELEASEDATE("readinwebcourse.lastreleasedate");
 
     @Getter
     String name;

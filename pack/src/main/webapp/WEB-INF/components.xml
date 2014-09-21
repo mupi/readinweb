@@ -130,4 +130,25 @@
     <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
   </bean>
 
+  <bean id="releaseActivities" class="br.unicamp.iel.jobs.ReleaseActivities">
+    <property name="dao" ref="br.unicamp.iel.dao.ReadInWebDao" />
+    <property name="common" ref="br.unicamp.iel.logic.ReadInWebCommonLogic" />
+    <property name="sakaiProxy" ref="br.unicamp.iel.logic.SakaiProxy" />
+  </bean>
+
+  <bean
+    id="org.sakaiproject.api.app.scheduler.JobBeanWrapper.releaseActivities"
+    class="org.sakaiproject.component.app.scheduler.jobs.SpringJobBeanWrapper"
+    singleton="true" init-method="init">
+    <property name="beanId">
+      <value>releaseActivities</value>
+    </property>
+
+    <property name="jobName">
+      <value>Liberar Atividades</value>
+    </property>
+    <property name="schedulerManager">
+      <ref bean="org.sakaiproject.api.app.scheduler.SchedulerManager" />
+    </property>
+  </bean>
 </beans>

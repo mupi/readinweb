@@ -67,7 +67,8 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
                 logic.getUserControl(logic.getUserId(),
                         logic.getCurrentSiteId());
 
-        if(logic.isUserLate(userControl))
+        if(logic.isUserLate(userControl)
+                && logic.remissionTimeEnded(userControl))
             logic.blockUser(userControl);
 
         if(!isTeacher && logic.isUserBlocked()){
