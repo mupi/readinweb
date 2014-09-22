@@ -128,7 +128,7 @@ body{
   margin: 10px 0;
 }
 
-#audio, .print{
+.print{
   float: right;
   margin-left: 15px;
 }
