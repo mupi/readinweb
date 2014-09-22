@@ -11,3 +11,8 @@
 .leitura a:hover, .lingua a:hover{
 	text-decoration: none;
 }
+.pop-over{
+	margin-bottom: 2px;
+	padding: 0;
+	border: 0;
+}
