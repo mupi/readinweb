@@ -559,4 +559,14 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
         sakaiProxy.updateBooleanProperty(site, Property.COURSESTATE.getName(),
                 classState);
     }
+
+    @Override
+    public void releaseActivities(Site riwClass) {
+        CourseProperties courseProperties = new CourseProperties(JsonObject
+                .readFrom(getCoursePropertyString(riwClass)));
+        System.out.println(courseProperties.toString());
+        courseProperties.publishNextActivities();
+
+        sakaiProxy.updateStringProperty(riwClass, Property.COURSEDATA.getName(), courseProperties.toString());
+    }
 }

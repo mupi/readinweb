@@ -364,6 +364,7 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
             userControl.setBlockDate(new Date(System.currentTimeMillis()));
             userControl.setBlocks(userControl.getBlocks() + 1);
             userControl.setState(BlockStateTypes.BLOCKED.getValue());
+            dao.save(userControl);
         }
     }
 
@@ -392,14 +393,18 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public boolean remissionTimeEnded(ReadInWebUserControl userControl) {
-        Long remission = common.getRemissionTime(userControl.getSite());
-        Long evaluated = userControl.getEvalDate().getTime();
-        Long today = System.currentTimeMillis();
-
-        return today - evaluated > remission;
+    public boolean isRemissionTime(ReadInWebUserControl userControl) {
+        return BlockStateTypes.isUserRemission(userControl.getState());
     }
 
+    @Override
+    public boolean hasRemissionTimeEnded(ReadInWebUserControl userControl) {
+        if(userControl.getEvalDate() == null) return false;
+
+        return System.currentTimeMillis() -
+                userControl.getEvalDate().getTime() >
+        common.getRemissionTime(userControl.getSite());
+    }
 
     @Override
     public boolean isUserBlocked() {

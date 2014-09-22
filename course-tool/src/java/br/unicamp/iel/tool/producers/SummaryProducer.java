@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.user.api.User;
 
 import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIBranchContainer;
@@ -67,9 +66,18 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
                 logic.getUserControl(logic.getUserId(),
                         logic.getCurrentSiteId());
 
-        if(logic.isUserLate(userControl)
-                && logic.remissionTimeEnded(userControl))
-            logic.blockUser(userControl);
+        if(logic.isUserLate(userControl) && !logic.isUserBlocked()){
+            System.out.println("User Late and not blocked");
+            if(logic.isRemissionTime(userControl)){ // is REMISSION
+                System.out.println("Is Remission time");
+                if(logic.hasRemissionTimeEnded(userControl)){
+                    logic.blockUser(userControl);
+                }
+            } else { // is UNBLOCKED
+                System.out.println("Is Unblocked");
+                logic.blockUser(userControl);
+            }
+        } // is BLOCKED
 
         if(!isTeacher && logic.isUserBlocked()){
             UIBranchContainer li = UIBranchContainer.make(tofill,

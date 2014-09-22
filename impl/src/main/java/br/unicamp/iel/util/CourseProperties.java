@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import br.unicamp.iel.model.instance.ReadInWebClassInstance;
+
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonObject.Member;
@@ -96,17 +98,36 @@ public class CourseProperties {
         j_activity.set("status", true);
     }
 
-    public void publishNextActivity(Long currentModule, Long currentActivity){
-        // Pega o modulo.
-        // Itera no modulo até achar a current.
-        // Se tiver próxima, libera
-        // Senão, verifica se tem outro modulo
-        //   Se tiver, verifica se tem atividade e se sim, libera
-        //   Senão, morre (modulo vazio)
-        // Se não tiver morre (acabou atividades)
+    public void publishNextActivities(){
+        int pub = 0;
+        JsonObject modules = courseProperties
+                .get("modules").asObject();
+        Iterator<Member> itM = modules.iterator();
+        while(itM.hasNext() && pub < 2){
+            Member m = itM.next();
+            JsonObject module = m.getValue().asObject();
+            if(!module.get("status").asBoolean()){
+                module.set("status", true);
+            }
+            JsonObject activities = module.get("activities").asObject();
+            Iterator<Member> itA = activities.iterator();
+            while(itA.hasNext() && pub < 2){
+                Member a = itA.next();
+                JsonObject activity = a.getValue().asObject();
+                if(!activity.get("status").asBoolean()){
+                    activity.set("status", true);
+                    pub++;
+                }
+            }
+        }
     }
 
-    public boolean isActivityPublished(Long module, Long activity) {
+    @Override
+    public String toString() {
+        return courseProperties.toString();
+    }
+
+    public boolean isActivityPublished(Long module, Long activity){
         JsonObject j_activity = courseProperties
                 .get("modules").asObject()
                 .get(Long.toString(module)).asObject()
@@ -127,6 +148,5 @@ public class CourseProperties {
     public Long countPublishedActivities() {
         return new Long(getAllPublishedActivities().length);
     }
-
 
 }

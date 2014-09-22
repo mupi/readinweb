@@ -3,7 +3,6 @@ package br.unicamp.iel.logic;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,7 @@ import org.sakaiproject.entity.api.EntityPropertyTypeException;
 import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.event.api.EventTrackingService;
+import org.sakaiproject.event.api.UsageSessionService;
 import org.sakaiproject.exception.IdInvalidException;
 import org.sakaiproject.exception.IdUnusedException;
 import org.sakaiproject.exception.IdUsedException;
@@ -33,10 +33,11 @@ import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.site.api.SiteService;
-import org.sakaiproject.site.api.ToolConfiguration;
 import org.sakaiproject.site.api.SiteService.SelectionType;
 import org.sakaiproject.site.api.SiteService.SortType;
+import org.sakaiproject.site.api.ToolConfiguration;
 import org.sakaiproject.tool.api.Placement;
+import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
 import org.sakaiproject.tool.api.ToolSession;
@@ -47,8 +48,6 @@ import org.sakaiproject.user.api.UserEdit;
 import org.sakaiproject.user.api.UserLockedException;
 import org.sakaiproject.user.api.UserNotDefinedException;
 import org.sakaiproject.user.api.UserPermissionException;
-import org.sakaiproject.util.SakaiProperties;
-import org.sakaiproject.util.SiteEmailNotification;
 
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
@@ -90,6 +89,9 @@ public class SakaiProxyImpl implements SakaiProxy {
 
     @Getter @Setter
     private AuthzGroupService authzGroupService;
+
+    @Getter @Setter
+    private UsageSessionService usageSessionService;
 
 
     /**
@@ -653,5 +655,18 @@ public class SakaiProxyImpl implements SakaiProxy {
         return new ArrayList<Site>(siteService.getSites(SelectionType.ANY,
                 null, null, m, SortType.MODIFIED_BY_DESC,
                 null)).get(0);
+    }
+
+    @Override
+    public void adminSessionStart() {
+        // set the user information into the current session
+        Session sakaiSession = sessionManager.getCurrentSession();
+        sakaiSession.setUserId("admin");
+        sakaiSession.setUserEid("admin");
+
+        // establish the user's session
+        org.sakaiproject.event.api.UsageSession session = usageSessionService.startSession("admin", "127.0.0.1", "Quartz_Session");
+        // update the user's externally provided realm definitions
+        authzGroupService.refreshUser("admin");
     }
 }

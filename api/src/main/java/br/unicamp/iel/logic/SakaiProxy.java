@@ -145,4 +145,6 @@ public interface SakaiProxy {
 
     public Site getLastModifiedSiteByProperty(Long course);
 
+    public void adminSessionStart();
+
  }

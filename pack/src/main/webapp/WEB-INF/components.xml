@@ -19,6 +19,7 @@
     <property name="siteService" ref="org.sakaiproject.site.api.SiteService" />
     <property name="authzGroupService" ref="org.sakaiproject.authz.api.AuthzGroupService" />
     <property name="functionManager" ref="org.sakaiproject.authz.api.FunctionManager" />
+    <property name="usageSessionService" ref="org.sakaiproject.event.api.UsageSessionService" />
   </bean>
 
   <!-- ProjectLogic -->

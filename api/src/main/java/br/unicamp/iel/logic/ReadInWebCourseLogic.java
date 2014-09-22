@@ -121,7 +121,9 @@ public interface ReadInWebCourseLogic {
 
     public void blockUser(ReadInWebUserControl userControl);
 
-    public boolean remissionTimeEnded(ReadInWebUserControl userControl);
+    public boolean isRemissionTime(ReadInWebUserControl userControl);
+
+    public boolean hasRemissionTimeEnded(ReadInWebUserControl userControl);
 
     public boolean isUserLate(ReadInWebUserControl userControl);
 

@@ -167,6 +167,8 @@ public interface ReadInWebCommonLogic {
 
     public void updateBlockInfoDate(ReadInWebUserControl userControl, Date evalDate);
 
+    public void releaseActivities(Site riwClass);
+
 }
 
 
