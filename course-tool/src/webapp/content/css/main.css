@@ -113,6 +113,9 @@ body{
   width: 33%;
   overflow: hidden;
 }
+#sidebar-questoes .nav>li>a {
+    padding: 5px 10px;
+}
 #audio > div{
   display: inline-block;
 }
