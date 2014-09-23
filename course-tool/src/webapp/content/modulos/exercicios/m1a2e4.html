@@ -1,31 +1,34 @@
-<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'
                     'http://www.w3.org/TR/html4/loose.dtd'>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m1a2e4.css"/>
 	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/ui.all.css"/>
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.core.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.tabs.js"></script>
+    <!--<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.core.js"></script>
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.tabs.js"></script> -->
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m1a2e4.js"></script>
 </head>
 
 <body>
-	<p class='titulo'> 
+	<p class='titulo'>
 		Exerc&#237;cios de vocabul&aacute;rio
 	</p>
 
 	<div id="tabs_m1a2e4">
-	    <ul>
-	        <li><a href="#fragment-1"><span>1</span></a></li>
-	        <li><a href="#fragment-2"><span>2</span></a></li>
-	        <li><a href="#fragment-3"><span>3</span></a></li>
-	        <li><a href="#fragment-4"><span>4</span></a></li>
-	        <li><a href="#fragment-5"><span>5</span></a></li>
-	        <li><a href="#fragment-6"><span>6</span></a></li>
-	        <li><a href="#fragment-7"><span>7</span></a></li>
-	    </ul>
-	    <div id="fragment-1">
+        <div class="conteudo">
+	        <ul class="nav nav-tabs nav-justified" role="tablist">
+	            <li class="active"><a href="#fragment-1" role="tab" data-toggle="tab"><span>1</span></a></li>
+    	        <li><a href="#fragment-2" role="tab" data-toggle="tab"><span>2</span></a></li>
+	            <li><a href="#fragment-3" role="tab" data-toggle="tab"><span>3</span></a></li>
+	            <li><a href="#fragment-4" role="tab" data-toggle="tab"><span>4</span></a></li>
+    	        <li><a href="#fragment-5" role="tab" data-toggle="tab"><span>5</span></a></li>
+	            <li><a href="#fragment-6" role="tab" data-toggle="tab"><span>6</span></a></li>
+	            <li><a href="#fragment-7" role="tab" data-toggle="tab"><span>7</span></a></li>
+    	    </ul>
+        </div>
+        <div class="tab-content conteudo">
+	    <div id="fragment-1" class="tab-pane active">
 		    <p>
 	            O texto abaixo apresenta uma biografia resumida do matem&aacute;tico John Nash. Clique no quadro e escolha a <por quadrinho no mouse over> classe gramatical correta das palavras listadas para completar o texto. Observe as figuras. Elas v&#227;o se alternando para ilustrar o contexto dos par&aacute;grafos.
 		    </p>
@@ -35,13 +38,13 @@
 				    <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc1.jpg" />
 				</div>
 				<div class="quadrinho">
-				    John Forbes Nash Jr. is a mathematician who worked in game theory and differential geometry. He was 
+				    John Forbes Nash Jr. is a mathematician who worked in game theory and differential geometry. He was
 					<select id="opcao1">
 					    <option></option>
 					    <option value="1">birth</option>
 					    <option value="2">newly born</option>
 					    <option value="3">born</option>
-					</select>                
+					</select>
 				    on June13, 1928, in Bluefield, West Virginia. His father, John Nash Sr., was an electrotechnician and his mother, Virginia Martin, a language teacher.
 				</div>
 				<div class="resp">
@@ -55,7 +58,7 @@
 				</p>
 		    </div>
 	    </div>
-	    <div id="fragment-2">
+	    <div id="fragment-2" class="tab-pane">
 		    <p>
 	           	O texto que segue:
 		    </p>
@@ -64,7 +67,7 @@
 			        <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc2.jpg" />
 			    </div>
 			    <div class="quadrinho">
-			        As a young boy he spent much time reading books and experimenting in his room, which he had converted into a laboratory. He was a singular little boy, solitary and introverted. His parents 
+			        As a young boy he spent much time reading books and experimenting in his room, which he had converted into a laboratory. He was a singular little boy, solitary and introverted. His parents
 				<select id="opcao2">
 				    <option></option>
 			            <option value="1">encouraged</option>
@@ -78,7 +81,7 @@
 				<p align="center"><br/><input type="button" id="btn_resposta2" value="Resposta sugerida"/></p>
 		    </div>
 	    </div>
-	    <div id="fragment-3">
+	    <div id="fragment-3" class="tab-pane">
 		    <p>
 	            O texto que segue:
 		    </p>
@@ -87,13 +90,13 @@
 			        <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc3.gif" />
 			    </div>
 			    <div class="quadrinho">
-		         	In 1948 Nash 
+		         	In 1948 Nash
 					<select id="opcao3">
 					    <option></option>
 					    <option value="1">received</option>
 					    <option value="2">receiver</option>
 					    <option value="3">receipt</option>
-					</select>   
+					</select>
 				bachelor's and master's degrees in mathematics from the Carnegie Institute of Technology in Pittsburgh. Two years later, at age 22, he completed his doctorate at Princeton University, publishing his influential thesis Non-cooperative Games. The thesis contained the definition and properties of what would later be called the Nash equilibrium.
 			    </div>
 				<div class="resp">
@@ -102,7 +105,7 @@
 				<p align="center"><br/><input type="button" id="btn_resposta3" value="Resposta sugerida"/></p>
 		    </div>
 	    </div>
-		<div id="fragment-4">
+		<div id="fragment-4" class="tab-pane">
 		    <p>
 	            O texto que segue:
 		    </p>
@@ -111,14 +114,14 @@
 			        <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc4.jpg" />
 			    </div>
 			    <div class="quadrinho">
-			        After a promising start to his mathematical career, Nash 
+			        After a promising start to his mathematical career, Nash
 					 <select id="opcao4">
 				    	<option></option>
 				    	<option value="1">beginner</option>
 			            <option value="2">began</option>
 			            <option value="3">beginning</option>
-			        </select>          			
-					to suffer from schizophrenia around his 30th year, an illness from which he has only recovered some 25 years later. He was involuntarily hospitalized at McLean Hospital, a private psychiatric hospital outside of Boston.  	
+			        </select>
+					to suffer from schizophrenia around his 30th year, an illness from which he has only recovered some 25 years later. He was involuntarily hospitalized at McLean Hospital, a private psychiatric hospital outside of Boston.
 			    </div>
 				<div class="resp">
 				    <img id='img_resp4' src=''>
@@ -129,7 +132,7 @@
 				</p>
 		    </div>
 	    </div>
-	    <div id="fragment-5">
+	    <div id="fragment-5" class="tab-pane">
 		    <p>
 	            O texto que segue:
 		    </p>
@@ -138,13 +141,13 @@
 			        <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc5.gif" />
 			    </div>
 			    <div class="quadrinho">
-			        From 1950-1951 he 
+			        From 1950-1951 he
 					<select id="opcao5">
 					    <option></option>
 					    <option value="1">taught</option>
 			            <option value="2">teacher</option>
 			            <option value="3">teachings</option>
-			        </select>  calculus courses at Princeton, studied and managed to stay out of military service. In 1951 Nash 
+			        </select>  calculus courses at Princeton, studied and managed to stay out of military service. In 1951 Nash
 					<select id="opcao6">
 					    <option></option>
 					    <option value="1">joint</option>
@@ -159,7 +162,7 @@
 				<p align="center"><br/><input type="button" id="btn_resposta5" value="Resposta sugerida"/></p>
 		    </div>
 	    </div>
-	    <div id="fragment-6">
+	    <div id="fragment-6" class="tab-pane">
 		    <p>
 	            O texto que segue:
 		    </p>
@@ -174,7 +177,7 @@
 					    <option value="1">share</option>
 			            <option value="2">shared</option>
 			            <option value="3">shareholder</option>
-			        </select> 
+			        </select>
 				the 1994 Nobel Prize in Economics with Hungarian-American economist John Harsanyi and German mathematician Reinhard Selten. Nash is now in his seventies and keeps an office at Princeton in order to continue his work in mathematics.
 			    </div>
 				<div class="resp">
@@ -183,16 +186,16 @@
 				<p align="center"><br/><input type="button" id="btn_resposta6" value="Resposta sugerida"/></p>
 		    </div>
 	    </div>
-	    <div id="fragment-7">
+	    <div id="fragment-7" class="tab-pane">
 		    <p>
-	             O texto que segue:  	
+	             O texto que segue:
 		    </p>
 		    <div class="conteudo">
 			    <div class="quadrinho">
 			        <img src="/readinweb-course-tool/content/modulos/exercicios/imagens/voc7.gif" />
 			    </div>
 			    <div class="quadrinho">
-			        Nash's life is recounted in the Academy Award-winning movie, <a href="http://news.bbc.co.uk/2/hi/in_depth/entertainment/2002/oscars_2002/1809454.stm">"A Beautiful Mind"</a>, by <a href="http://news.bbc.co.uk/2/hi/entertainment/1835728.stm">Ron Howard</a> and in the book of the same name written by Sylvia Nasar. This book 
+			        Nash's life is recounted in the Academy Award-winning movie, <a href="http://news.bbc.co.uk/2/hi/in_depth/entertainment/2002/oscars_2002/1809454.stm">"A Beautiful Mind"</a>, by <a href="http://news.bbc.co.uk/2/hi/entertainment/1835728.stm">Ron Howard</a> and in the book of the same name written by Sylvia Nasar. This book
 					<select id="opcao8">
 					    <option></option>
 					    <option value="1">winner</option>
@@ -206,7 +209,7 @@
 				<p align="center"><br/><input type="button" id="btn_resposta7" value="Resposta sugerida"/></p>
 		    </div>
 	    </div>
-	    
+    </div>
 	</div>
 </body>
 </html>

@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-	$("#tabs_m1a2e4").tabs();
 	
 	var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
     var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
