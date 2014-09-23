@@ -8,8 +8,6 @@ import java.util.List;
 
 import lombok.Setter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -21,8 +19,6 @@ import br.unicamp.iel.logic.SakaiProxy;
 import br.unicamp.iel.model.Property;
 
 public class ReleaseActivities implements Job {
-
-    private static final Log LOG = LogFactory.getLog(ReleaseActivities.class);
 
     @Setter
     private ReadInWebCommonLogic common;
