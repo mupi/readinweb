@@ -76,8 +76,8 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid --> </nav>
-    <div class="container">
-        <div class="row first-row">
+    <div class="container-fluid">
+        <div class="row-fluid first-row">
             <ol class="breadcrumb">
                 <li>
                     Voc&ecirc; est&aacute; no M&oacute;dulo
@@ -99,8 +99,8 @@
                 <!--                 </a> -->
             </ol>
         </div>
-        <div class="row">
-            <div class="col-xs-6 col-md-8">
+        <div class="row-fluid">
+            <div class="col-xs-8 col-md-8">
                 <!-- this div is used to creates the audio -->
 
                 <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
@@ -186,18 +186,20 @@
                     </p>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-4" id="sidebar-questoes">
-                <ul class="nav nav-tabs" role="tablist">
+            <div class="col-xs-4 col-md-4" id="sidebar-questoes">
+                <ul class="nav nav-tabs sidebar-tabs" role="tablist">
                     <li class="active">
                         <a href="#questoes" data-toggle="tab">
                             <i class="fa fa-pencil"></i> Questões
                         </a>
                     </li>
                     <li>
-                        <a href="#dicionario" data-toggle="tab">
-                            <span class="glyphicon glyphicon-book"></span>
-                            Dicionário
+                        <a href="#glossario" data-toggle="tab">
+                            Glossário
                         </a>
+                    </li>
+                    <li>
+                        <a href="#palavras-funcao" data-toggle="tab">Palavras-função</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -247,45 +249,32 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabs Glossário e Palavras-função-->
-                    <div id="dicionario" class="tab-pane fade affix-questoes">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#glossario" data-toggle="tab">Glossário</a>
-                            </li>
-                            <li>
-                                <a href="#palavras-funcao" data-toggle="tab">Palavras-função</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content glossario-dicionario">
-                            <div class="tab-pane fade in active" id="glossario">
-                                <div class="table-responsive">
-                                    <table class="table table-condensed table-hover">
-                                        <tr>
-                                            <th>palavra</th>
-                                            <th>significado</th>
-                                        </tr>
-                                        <tr rsf:id="dictionary:">
-                                            <td rsf:id="dictionary_word"></td>
-                                            <td rsf:id="dictionary_meaning"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="palavras-funcao">
-                                <div class="table-responsive">
-                                    <table class="table table-condensed table-hover">
-                                        <tr>
-                                            <th>palavra</th>
-                                            <th>significado</th>
-                                        </tr>
-                                        <tr rsf:id="functional:">
-                                            <td rsf:id="functional_word"></td>
-                                            <td rsf:id="functional_meaning"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
+                    <div class="tab-pane fade" id="glossario">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <tr>
+                                    <th>Palavra</th>
+                                    <th>Significado</th>
+                                </tr>
+                                <tr rsf:id="dictionary:">
+                                    <td rsf:id="dictionary_word"></td>
+                                    <td rsf:id="dictionary_meaning"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="palavras-funcao">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <tr>
+                                    <th>Palavra</th>
+                                    <th>Significado</th>
+                                </tr>
+                                <tr rsf:id="functional:">
+                                    <td rsf:id="functional_word"></td>
+                                    <td rsf:id="functional_meaning"></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -109,6 +109,10 @@ body{
   max-height: 100%;
   top: -1em;
 }
+.sidebar-tabs > li{
+  width: 33%;
+  overflow: hidden;
+}
 #audio > div{
   display: inline-block;
 }
