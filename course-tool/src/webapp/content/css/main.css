@@ -55,7 +55,7 @@ body{
 /* Menu */
 #lista_menu_principal{
   text-transform: uppercase;
-  min-width: 800px;
+  padding: 0;
 }
 #lista_menu_principal .active{
   background-color: #dfdfdf;

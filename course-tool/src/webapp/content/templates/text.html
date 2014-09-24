@@ -16,91 +16,83 @@
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lista_menu_principal">
-                <span class="sr-only">Menu principal</span>
-                <span>MENU</span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="../imagens/logo.png" alt="Curso Read in Web" />
-            </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="lista_menu_principal">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="text.html" class="active" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
-                </li>
-                <li>
-                    <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
-                        name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
-                </li>
-                <li>
-                    <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
-                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
-                </li>
-                <li>
-                    <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
-                        rsf:id="linkgrammar">GRAM&#193;TICA</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Lista de módulos <b class="caret"></b>
-                    </a>
-                    <ul id="lista_menu_modulos" class="dropdown-menu">
-                        <li rsf:id="li-rowsMod:">
-                            <a class="link-modulo" data-parent="#lista_menu_modulos" rsf:id="lnk_modulo"
-                                data-toggle="collapse" type="button" href="#div_atividades">M&oacute;dulo X</a>
-                            <ul rsf:id="div_atividades:" id="div_atividades"
-                                class="lista_menu_atividades panel-collapse collapse">
-                                <li rsf:id="p-rowsAct:">
-                                    <a rsf:id="input_link_a_" id="input_link_a_" class="link_atividade"> Atividade X
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden-xs">
-                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid --> </nav>
     <div class="container-fluid">
-        <div class="row-fluid first-row">
-            <ol class="breadcrumb">
-                <li>
-                    Voc&ecirc; est&aacute; no M&oacute;dulo
-                    <span rsf:id="current_mod">--</span>
-                </li>
-                <li>
-                    Atividade
-                    <span rsf:id="current_act">--</span>
-                </li>
-                <li class="active">
-                    <span rsf:id="current_title">--</span>
-                </li>
-                <!--                 <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank" -->
-                <!--                     rsf:id="lnk_print"> -->
-                <!--                     <div id="print_tag"> -->
-                <!--                         <span class="glyphicon glyphicon-print"></span> -->
-                <!--                         IMPRIMIR -->
-                <!--                     </div> -->
-                <!--                 </a> -->
-            </ol>
-        </div>
+        <ol class="breadcrumb">
+            <li>
+                Voc&ecirc; est&aacute; no M&oacute;dulo
+                <span rsf:id="current_mod">--</span>
+            </li>
+            <li>
+                Atividade
+                <span rsf:id="current_act">--</span>
+            </li>
+            <li class="active">
+                <span rsf:id="current_title">--</span>
+            </li>
+            <!--                 <a id="print" class="print" href="printerText.html" title="Versao para impressao" target="_blank" -->
+            <!--                     rsf:id="lnk_print"> -->
+            <!--                     <div id="print_tag"> -->
+            <!--                         <span class="glyphicon glyphicon-print"></span> -->
+            <!--                         IMPRIMIR -->
+            <!--                     </div> -->
+            <!--                 </a> -->
+        </ol>
+    </div>
+    <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-xs-8 col-md-8">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div>
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lista_menu_principal">
+                                <span class="sr-only">Menu principal</span>
+                                <span>MENU</span>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="lista_menu_principal">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="text.html" class="active" title="Leia o texto da atividade" name="TEXTO" rsf:id="linktext">TEXTO</a>
+                                </li>
+                                <li>
+                                    <a href="estrategias.html" title="Veja as estrat&#233;gias de leitura para esta atividade"
+                                        name="ESTRATEGIA" rsf:id="linkstrategy">ESTRAT&#201;GIAS</a>
+                                </li>
+                                <li>
+                                    <a href="exercicios.html" title="Exerc&#237;cios para aquisi&#231;&#227;o de l&#237;ngua"
+                                        name="EXERCICIOS" rsf:id="linkexercise">EXERC&#205;CIOS</a>
+                                </li>
+                                <li>
+                                    <a href="gramatica.html" title="Regras de funcionamento da l&#237;ngua" name="GRAM&#193;TICA"
+                                        rsf:id="linkgrammar">GRAM&#193;TICA</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        Lista de módulos <b class="caret"></b>
+                                    </a>
+                                    <ul id="lista_menu_modulos" class="dropdown-menu">
+                                        <li rsf:id="li-rowsMod:">
+                                            <a class="link-modulo" data-parent="#lista_menu_modulos" rsf:id="lnk_modulo"
+                                                data-toggle="collapse" type="button" href="#div_atividades">M&oacute;dulo X</a>
+                                            <ul rsf:id="div_atividades:" id="div_atividades"
+                                                class="lista_menu_atividades panel-collapse collapse">
+                                                <li rsf:id="p-rowsAct:">
+                                                    <a rsf:id="input_link_a_" id="input_link_a_" class="link_atividade"> Atividade X
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid --> 
+                    </nav>
+
                 <!-- this div is used to creates the audio -->
 
                 <div rsf:id="preLecture_title" id="preLecture_title">Pr&eacute;-leitura:</div>
