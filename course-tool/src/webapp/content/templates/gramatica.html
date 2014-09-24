@@ -16,17 +16,29 @@
 </head>
 
 <body>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li>
+                Voc&ecirc; est&aacute; no M&oacute;dulo
+                <span rsf:id="current_mod">--</span>
+            </li>
+            <li>
+                Atividade
+                <span rsf:id="current_act">--</span>
+            </li>
+            <li class="active">
+                <span rsf:id="current_title">--</span>
+            </li>
+        </ol>
+    </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lista_menu_principal">
                 <span class="sr-only">Menu principal</span>
                 <span>MENU</span>
             </button>
-            <a class="navbar-brand" href="#">
-                <img src="../imagens/logo.png" alt="Curso Read in Web" />
-            </a>
         </div>
         <div class="collapse navbar-collapse" id="lista_menu_principal">
             <ul class="nav navbar-nav">
@@ -68,35 +80,12 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right hidden-xs">
-                <li>
-                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                    </a>
-                </li>
-            </ul>
         </div>
     </div>
     </nav>
 
-    <div class="container">
-        <div class="row first-row">
-            <ol class="breadcrumb">
-                <li>
-                    Voc&ecirc; est&aacute; no M&oacute;dulo
-                    <span rsf:id="current_mod">--</span>
-                </li>
-                <li>
-                    Atividade
-                    <span rsf:id="current_act">--</span>
-                </li>
-                <li>
-                    <span rsf:id="current_title">--</span>
-                </li>
-                <li class="active">
-                    <span>Gramática</span>
-                </li>
-            </ol>
+    <div class="container-fluid">
+        <div class="row-fluid">
 
             <div id="function">
 
