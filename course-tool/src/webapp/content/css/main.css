@@ -166,3 +166,8 @@ a.link_atividade{
 a.link_atividade:hover{
   background-color: #F5F5F5;
 }
+
+#palavras-funcao, #glossario{
+  max-height: 800px;
+  overflow-y: auto;
+}
