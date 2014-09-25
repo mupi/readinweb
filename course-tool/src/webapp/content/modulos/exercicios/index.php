@@ -98,9 +98,18 @@
                         <div id="conteudo_conteudo_exercicios">
                             <div  id="html_exercicio_div">
 <?php
-    $exercise = file_get_contents($_GET['e'] . ".html");
-    $exercise = str_replace("/readinweb-course-tool/content/modulos/exercicios/", "", $exercise); 
-    echo $exercise;
+    if(isset($_GET['e'])){
+        $exercise = file_get_contents($_GET['e'] . ".html");
+        if(!empty($exercise)){
+            $exercise = str_replace("/readinweb-course-tool/content/modulos/exercicios/", "", $exercise); 
+            echo $exercise;
+        } else {
+            echo "<p>Não tem mais nessa atividade! zerou!... ou errou o número! hahahahhaha!!!</p>";
+        }
+    } else {
+        echo "<p>Jovem, coloca um exercicio pra eu dar load aí, na boa mesmo! ex: ?e=m1a1e1</p>";
+    }
+
 ?>
 
 </div>
