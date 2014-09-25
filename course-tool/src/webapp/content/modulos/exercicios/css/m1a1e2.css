@@ -32,6 +32,6 @@ label { cursor:text; }
 .legenda { border: 1px solid black; width:20px; height: 13px; margin:0 0 0 10px; padding:0; float: left;  clear: both }
 
 #texto {
-	display: none;
+    visibility: hidden;
 	line-height: 135%;
 }

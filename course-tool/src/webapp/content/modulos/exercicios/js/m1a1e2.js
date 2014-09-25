@@ -1,9 +1,6 @@
 $(document).ready(function(){
-
-//resposta
-
     $("#resposta").click(function(){
-      $("#texto").show("slow");
+      $("#texto").css("visibility", "visible");
     });
 
 });
