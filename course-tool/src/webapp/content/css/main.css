@@ -35,10 +35,15 @@ body{
   font-family: 'Open Sans',sans-serif;
 }
 /* Text */
-.prelecture{
+.prereading, .enunciado{
   background-color: #f5f5f5;
   padding: 15px;
   border-left: 4px solid #76a6d7;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+.prereading{
+  font-style: italic;
 }
 #text_text{
   font-family: 'Open Sans', sans-serif;
