@@ -10,5 +10,9 @@ $(document).ready(function(){
 				$(this).addClass('red');
 			}
 		});
+        $('.attention').each(function(){
+            $(this).addClass('grey');
+        });
+        $("#answer_comment").css("visibility", "visible");
 	});
 });

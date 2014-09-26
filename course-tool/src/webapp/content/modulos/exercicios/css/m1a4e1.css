@@ -7,7 +7,7 @@ label {
 	font-weight:bold;
 }
 
-#div_resposta{
+.resposta {
 	display: none;
 	color: red;
 	padding-top:10px;
@@ -23,4 +23,17 @@ label {
 
 .red{
 	background: #FF5555;
+}
+
+.grey{
+    background: #ccc;
+}
+
+.texto {
+    line-height: 30px;
+}
+
+.comentario {
+    visibility: hidden;
+    color: #666;
 }
