@@ -3,85 +3,71 @@
 <html>
 <head>
   	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m3a1e3.css"/>
-	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/ui.all.css"/>
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.core.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.tabs.js"></script>
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m3a1e3.js"></script>
 </head>
 
 <body>
+
 <p class="enunciado">
 	3. Os grupos nominais em ingl&#234;s, devido a sua redu&#231;&#227;o caracter&#237;stica, podem ser amb&#237;guos e permitir dois sentidos. Leia os t&#237;tulos abaixo e identifique esses sentidos.
 </p>
 
-<div id="tabs">
-    <ul>
-        <li><a href="#fragment-1"><span>A</span></a></li>
-        <li><a href="#fragment-2"><span>B</span></a></li>
-        <li><a href="#fragment-3"><span>C</span></a></li>
+<div class="conteudo">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="active"><a href="#fragment-1" role="tab" data-toggle="tab"><span>A</span></a></li>
+        <li><a href="#fragment-2" role="tab" data-toggle="tab"><span>B</span></a></li>
+        <li><a href="#fragment-3" role="tab" data-toggle="tab"><span>C</span></a></li>
     </ul>
-    
-    <div id="fragment-1">
-	    <br/>
-		<p>
-			<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-1.jpg">
-		</p>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta1' class="resposta">
-			a) Esquadr&#227;o ajuda v&#237;tima de mordida de cachorro. (dog bite victim = grupo nominal).
-			<br/>b) Esquadr&#227;o ajuda cachorro a morder v&#237;tima. (bite = verbo).
-		</div>
-    </div>
-    
-    <div id="fragment-2">
-    	<br/>
-		<p>
-			<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-2.jpg">
-		</p>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta2' class="resposta">
-			a) Uma especialidade m&#233;dica promissora emerge para ajudar v&#237;timas de tortura. (torture victims = grupo nominal). 
-			<br/>b) Uma especialidade m&#233;dica promissora emerge para ajudar a torturar v&#237;timas. (torture = verbo).
-		</div>
-    </div>
-    
-    <div id="fragment-3">
-    	<br/>
-		<p>
-			<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-3.jpg">
-		</p>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta3' class="resposta">
-			a) Leitor fica abalado com (fato de) os filipinos comedores de c&#227;es. (dog eating filipinos = grupo nominal / eating = adjetivo).
-			<br/>b) Leitor fica abalado com (fato de) os c&#227;es comerem filipinos. (eating = verbo).
-		</div>
-    </div>
-    
-</div>
+    <div class="tab-content conteudo-abas">
+	    <div id="fragment-1" class="tab-pane fade in active row">
+			<p class="text-center">
+				<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-1.jpg">
+			</p>
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta1' class="resposta">
+				a) Esquadr&#227;o ajuda v&#237;tima de mordida de cachorro. (dog bite victim = grupo nominal).
+				<br/>b) Esquadr&#227;o ajuda cachorro a morder v&#237;tima. (bite = verbo).
+			</div>
+	    </div>
+	    
+	    <div id="fragment-2" class="tab-pane fade row">
+			<p class="text-center">
+				<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-2.jpg">
+			</p>
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta2' class="resposta">
+				a) Uma especialidade m&#233;dica promissora emerge para ajudar v&#237;timas de tortura. (torture victims = grupo nominal). 
+				<br/>b) Uma especialidade m&#233;dica promissora emerge para ajudar a torturar v&#237;timas. (torture = verbo).
+			</div>
+	    </div>
+	    
+	    <div id="fragment-3" class="tab-pane fade row">
+			<p class="text-center">
+				<img src="/readinweb-course-tool/content/modulos/exercicios/imagens/m3a1e3-3.jpg">
+			</p>
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta3' class="resposta">
+				a) Leitor fica abalado com (fato de) os filipinos comedores de c&#227;es. (dog eating filipinos = grupo nominal / eating = adjetivo).
+				<br/>b) Leitor fica abalado com (fato de) os c&#227;es comerem filipinos. (eating = verbo).
+			</div>
+	    </div>
+	</div>
+  </div>
 </body>
 </html>
