@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    $("#tabs").tabs();
-
     $('#resposta1').click(function(){
         $('#div_resposta1').show();
         $(".grupo_nominal").addClass("grupo");

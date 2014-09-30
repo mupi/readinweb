@@ -4,10 +4,7 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m3a2e4.css"/>
-	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/ui.all.css"/>    
     <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.core.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.tabs.js"></script>
     <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m3a2e4.js"></script>
 
 
@@ -16,60 +13,62 @@
 <body>
     <p class="enunciado">
         4. T&#237;tulos de artigos acad&#234;micos, muitas vezes, cont&#234;m v&#225;rios grupos nominais. Para perceber o sentido desses t&#237;tulos &#233; necess&#225;rio segment&#225;-los para localizar esses grupos nominais e identificar o sentido de cada um deles a fim de entender o t&#237;tulo como um todo. Tendo isso em mente, traduza os t&#237;tulos abaixo.
-        <br/>Nas respostas, o texto escrito em azul &#233; o n&#250;cleo do grupo nominal, o texto com borda ou com fundo azul s&#227;o os grupos nominais.
+        <br/>Nas respostas, o texto escrito em azul &#233; o n&#250;cleo do grupo nominal, o texto com borda ou com fundo verde s&#227;o os grupos nominais.
     </p>
 
-    <div id="tabs">
-        <ul>
-            <li><a href="#fragment-1"><span>A</span></a></li>
-            <li><a href="#fragment-2"><span>B</span></a></li>
-            <li><a href="#fragment-3"><span>C</span></a></li>
+    <div class="conteudo">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li class="active"><a href="#fragment-1" role="tab" data-toggle="tab">A</a></li>
+            <li><a href="#fragment-2" role="tab" data-toggle="tab">B</a></li>
+            <li><a href="#fragment-3" role="tab" data-toggle="tab">C</a></li>
         </ul>
-        <div id="fragment-1">
-        <p class="sentence">
-            "<span class="grupo_nominal">Technology <span class="nucleo">transfer</span></span> and <span class="grupo_nominal">the research <span class="nucleo">university</span></span>:
-            <br/>
-            <span class="grupo_nominal"><span class="nucleo">a search</span> for the boundaries</span> <span class="grupo_nominal">of university-industry     
-            <span class="nucleo">collaboration</span></span>"
-        </p>
-        <div id='div_resposta1' class="resposta">
-            "Transfer&#234;ncia de tecnologia e a universidade de pesquisa: uma busca pelas fronteiras da colabora&#231;&#227;o ind&#250;stria-universidade."
-        </div>
-        <p>
-            <textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-        </p>
-        <p>
-            <input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
-        </p>
-        </div>
-        <div id="fragment-2">
-            <p class="sentence">
-            	A framework for identifying <span class="grupo_nominal2">web-based eletronic commerce <span class="nucleo2">oportunities</span></span>
-            </p>
-            <div id='div_resposta2' class="resposta">
-                "Um modelo para identificar oportunidades de com&eacute;rcio eletr&ocirc;nico baseado na web"
+        <div class="tab-content conteudo-abas">
+            <div id="fragment-1" class="tab-pane fade in active row">
+                <p class="lead">
+                    "<span class="grupo_nominal">Technology <span class="nucleo">transfer</span></span> and <span class="grupo_nominal">the research <span class="nucleo">university</span></span>:
+                    <br/>
+                    <span class="grupo_nominal"><span class="nucleo">a search</span> for the boundaries</span> <span class="grupo_nominal">of university-industry     
+                    <span class="nucleo">collaboration</span></span>."
+                </p>
+                <div id='div_resposta1' class="resposta">
+                    "Transfer&#234;ncia de tecnologia e a universidade de pesquisa: uma busca pelas fronteiras da colabora&#231;&#227;o ind&#250;stria-universidade."
+                </div>
+                <p>
+                    <textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+                </p>
+                <p>
+                    <input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
+                </p>
             </div>
-            
-            <p>
-            <textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-            </p>
-            <p>
-            <input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
-            </p>
-        </div>
-        <div id="fragment-3">
-            <p class="sentence">
-                <span class="grupo_maior3">Inovation and the <span class="grupo_nominal3">international <span class="nucleo3">diffusion</span></span></span> <span class="grupo_nominal3">of environmentally responsive <span class="nucleo3">technology</span></span>
-            </p>
-            <div id='div_resposta3' class="resposta">
-                "(A) inova&#231;&#227;o e a difus&#227;o internacional de tecnologia ambientalmente sens&#237;vel."
+            <div id="fragment-2" class="tab-pane fade row">
+                <p class="lead">
+                	A framework for identifying <span class="grupo_nominal2">web-based eletronic commerce <span class="nucleo2">oportunities</span></span>.
+                </p>
+                <div id='div_resposta2' class="resposta">
+                    "Um modelo para identificar oportunidades de com&eacute;rcio eletr&ocirc;nico baseado na web."
+                </div>
+                
+                <p>
+                    <textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+                </p>
+                <p>
+                    <input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
+                </p>
             </div>
-            <p>
-            <textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-            </p>
-            <p>
-            <input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
-            </p>
+            <div id="fragment-3" class="tab-pane fade row">
+                <p class="lead">
+                    <span class="grupo_maior3">Inovation and the <span class="grupo_nominal3">international <span class="nucleo3">diffusion</span></span></span> <span class="grupo_nominal3">of environmentally responsive <span class="nucleo3">technology</span></span>.
+                </p>
+                <div id='div_resposta3' class="resposta">
+                    "(A) inova&#231;&#227;o e a difus&#227;o internacional de tecnologia ambientalmente sens&#237;vel."
+                </div>
+                <p>
+                    <textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+                </p>
+                <p>
+                    <input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
+                </p>
+            </div>
         </div>
     </div>
 </body>
