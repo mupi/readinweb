@@ -3,10 +3,8 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m3a1e2.css"/>
-	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/ui.all.css"/>
+	
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.core.js"></script>
-    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/ui.tabs.js"></script>
 	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m3a1e2.js"></script>
 
 </head>
@@ -16,118 +14,102 @@
 	2. Levando em conta os prefixos e sufixos, bem como a tradu&#231;&#227;o das palavras das listas abaixo, busque identificar o crit&#233;rio adotado para agrupar tais palavras.
 </p>
 
-<div id="tabs">
-    <ul>
-        <li><a href="#fragment-1"><span>A</span></a></li>
-        <li><a href="#fragment-2"><span>B</span></a></li>
-        <li><a href="#fragment-3"><span>C</span></a></li>
-		<li><a href="#fragment-4"><span>D</span></a></li>
+<div class="conteudo">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="active"><a href="#fragment-1" role="tab" data-toggle="tab">A</a></li>
+        <li><a href="#fragment-2" role="tab" data-toggle="tab">B</a></li>
+        <li><a href="#fragment-3" role="tab" data-toggle="tab">C</a></li>
+		<li><a href="#fragment-4" role="tab" data-toggle="tab">D</a></li>
     </ul>
-    <div id="fragment-1">
-		<div id="tabela">
-			<div class="coluna">
-				<span class='titulo'>Sigla</span>
-				<br/><span class='texto_azul'>UN</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>N</span>ations)
-				<br/><span class='texto_azul'>IMF</span> (<span class='texto_azul'>I</span>nternational <span class='texto_azul'>M</span>onetary <span class='texto_azul'>F</span>und) 
+    <div class="tab-content conteudo-abas">
+	    <div id="fragment-1" class="tab-pane fade in active row">
+			<div class="col-sm-6">
+				<h2>Sigla</h2>
+				<p><span class='texto_azul'>UN</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>N</span>ations)</p>
+				<p><span class='texto_azul'>IMF</span> (<span class='texto_azul'>I</span>nternational <span class='texto_azul'>M</span>onetary <span class='texto_azul'>F</span>und)</p>
 			</div>
-			<div class="coluna">
-				<span class='titulo'>Tradu&#231;&#227;o</span>
-				<br/>Na&#231;&#245;es Unidas
-				<br/>Fundo Monet&#225;rio Internacional
+			<div class="col-sm-6">
+				<h2>Tradu&#231;&#227;o</h2>
+				<p>Na&#231;&#245;es Unidas</p>
+				<p>Fundo Monet&#225;rio Internacional</p>
 			</div>
-		</div>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta1' class="resposta">
-			A tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal: esta &#233; a ordem mais comum.
-		</div>
-    </div>
-    <div id="fragment-2">
-		<div id="tabela">
-			<div class="coluna">
-				<span class='titulo'>Sigla</span>
-				<br/><span class='texto_azul'>NYU</span> (<span class='texto_azul'>N</span>ew <span class='texto_azul'>Y</span>ork <span class='texto_azul'>U</span>niversity) 	
-				<br/><span class='texto_azul'>UCLA</span> (<span class='texto_azul'>U</span>niversity of <span class='texto_azul'>C</span>alifornia at <span class='texto_azul'>L</span>os <span class='texto_azul'>A</span>ngeles) 	
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta1' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<br/>
+			<div id='div_resposta1' class="resposta">
+				A tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal: esta &#233; a ordem mais comum.
 			</div>
-			<div class="coluna">
-				<span class='titulo'>Tradu&#231;&#227;o</span>
-				<br/>Universidade de Nova York
-				<br/>Universidade da Calif&#243;rnia em Los Angeles
+	    </div>
+	    <div id="fragment-2" class="tab-pane fade row">
+			<div class="col-sm-6">
+				<h2>Sigla</h2>
+				<p><span class='texto_azul'>NYU</span> (<span class='texto_azul'>N</span>ew <span class='texto_azul'>Y</span>ork <span class='texto_azul'>U</span>niversity)</p>
+				<p><span class='texto_azul'>UCLA</span> (<span class='texto_azul'>U</span>niversity of <span class='texto_azul'>C</span>alifornia at <span class='texto_azul'>L</span>os <span class='texto_azul'>A</span>ngeles)</p>
 			</div>
-		</div>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta2' class="resposta">
-			No primeiro exemplo, a tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal, e, no segundo, a ordem do ingl&#234;s &#233; igual a do portugu&#234;s.
-		</div>
-    </div>
-    <div id="fragment-3">
-		<div id="tabela">
-			<div class="coluna">
-				<span class='titulo'>Sigla</span>
-				<br/><span class='texto_azul'>UFO</span> (<span class='texto_azul'>U</span>nidentified <span class='texto_azul'>F</span>lying <span class='texto_azul'>O</span>bject)
-				<br/><span class='texto_azul'>USA</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>S</span>tates of <span class='texto_azul'>A</span>merica)
+			<div class="col-sm-6">
+				<h2>Tradu&#231;&#227;o</h2>
+				<p>Universidade de Nova York</p>
+				<p>Universidade da Calif&#243;rnia em Los Angeles</p>
 			</div>
-			<div class="coluna">
-				<span class='titulo'>Tradu&#231;&#227;o</span>
-				<br/>Objeto Voador N&#227;o identificado
-				<br/>Estados Unidos da Am&#233;rica
+
+			<p>
+				<textarea  class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta2' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta2' class="resposta">
+				No primeiro exemplo, a tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal, e, no segundo, a ordem do ingl&#234;s &#233; igual a do portugu&#234;s.
 			</div>
-		</div>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta3' class="resposta">
-			No primeiro exemplo, a tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal, e, no segundo, esta invers&#227;o s&#243; ocorre nos dois primeiros elementos da cadeia.
-		</div>
-    </div>
-    
-    <div id="fragment-4">
-		<div id="tabela">
-			<div class="coluna">
-				<span class='titulo'>Sigla</span>
-				<br/><span class='texto_azul'>EEC</span> (<span class='texto_azul'>E</span>uropean <span class='texto_azul'>E</span>conomic <span class='texto_azul'>C</span>ommunity)
-				<br/><span class='texto_azul'>UNO</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>N</span>ations <span class='texto_azul'>O</span>rganization)
+	    </div>
+	    <div id="fragment-3" class="tab-pane fade row">
+			<div class="col-sm-6">
+				<h2>Sigla</h2>
+				<p><span class='texto_azul'>UFO</span> (<span class='texto_azul'>U</span>nidentified <span class='texto_azul'>F</span>lying <span class='texto_azul'>O</span>bject)</p>
+				<p><span class='texto_azul'>USA</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>S</span>tates of <span class='texto_azul'>A</span>merica)</p>
 			</div>
-			<div class="coluna">
-				<span class='titulo'>Tradu&#231;&#227;o</span>
-				<br/>Comunidade Econ&#244;mica Europ&#233;ia
-				<br/>Organiza&#231;&#227;o das Na&#231;&#245;es Unidas
+			<div class="col-sm-6">
+				<h2>Tradu&#231;&#227;o</h2>
+				<p>Objeto Voador N&#227;o identificado</p>
+				<p>Estados Unidos da Am&#233;rica</p>
 			</div>
-		</div>
-		<br/>
-		<p>
-			<textarea  cols='60' rows='6' id='txt_resposta'></textarea>
-		</p>
-		<br/>
-		<p>
-			<input type='button' id='resposta4' class="btn btn-success" value='Resposta sugerida'>
-		</p>
-		<br/>
-		<div id='div_resposta4' class="resposta">
-			No primeiro exemplo, a tradu&#231;&#227;o dispensa o uso de preposi&#231;&#227;o (os modificadores s&#227;o adjetivos); no segundo exemplo, a tradu&#231;&#227;o exige  preposi&#231;&#227;o (um dos modificadores &#233; um substantivo)
-		</div>
-    </div>
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>
+			<p>
+				<input type='button' id='resposta3' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta3' class="resposta">
+				No primeiro exemplo, a tradu&#231;&#227;o come&#231;a sequencialmente a partir do &#250;ltimo elemento do grupo nominal, e, no segundo, esta invers&#227;o s&#243; ocorre nos dois primeiros elementos da cadeia.
+			</div>
+	    </div>
+	    
+	    <div id="fragment-4" class="tab-pane fade row">
+			<div class="col-sm-6">
+				<h2>Sigla</h2>
+				<p><span class='texto_azul'>EEC</span> (<span class='texto_azul'>E</span>uropean <span class='texto_azul'>E</span>conomic <span class='texto_azul'>C</span>ommunity)</p>
+				<p><span class='texto_azul'>UNO</span> (<span class='texto_azul'>U</span>nited <span class='texto_azul'>N</span>ations <span class='texto_azul'>O</span>rganization)</p>
+			</div>
+			<div class="col-sm-6">
+				<h2>Tradu&#231;&#227;o</h2>
+				<p>Comunidade Econ&#244;mica Europ&#233;ia</p>
+				<p>Organiza&#231;&#227;o das Na&#231;&#245;es Unidas</p>
+			</div>
+			<p>
+				<textarea class="form-control" rows='6' id='txt_resposta'></textarea>
+			</p>			
+			<p>
+				<input type='button' id='resposta4' class="btn btn-success" value='Resposta sugerida'>
+			</p>
+			<div id='div_resposta4' class="resposta">
+				No primeiro exemplo, a tradu&#231;&#227;o dispensa o uso de preposi&#231;&#227;o (os modificadores s&#227;o adjetivos); no segundo exemplo, a tradu&#231;&#227;o exige  preposi&#231;&#227;o (um dos modificadores &#233; um substantivo)
+			</div>
+	    </div>
+	</div>
 </div>
 </body>
 </html>

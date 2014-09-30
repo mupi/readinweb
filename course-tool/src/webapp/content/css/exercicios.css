@@ -44,3 +44,7 @@
 .quote{
 	font-style: italic;
 }
+.conteudo-abas{
+	max-width: 600px;
+	margin: 0 auto;
+}
