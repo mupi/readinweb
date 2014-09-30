@@ -1,5 +1,9 @@
 $(document).ready(function(){
 	
+	// $('.nav-tabs a').click(function(e){
+	// 	e.preventDefault(); 
+	// });
+
 	var certo = "/readinweb-course-tool/content/modulos/exercicios/imagens/certo.gif";
     var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
 

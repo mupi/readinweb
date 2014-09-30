@@ -1,76 +1,22 @@
-.titulo { font-weight:bold; }
-.resposta { display: none; color: red;}
-p{clear: both;}
-.texto_azul { color:blue; }
-.conteudo {width:600px;margin: 0 auto;}
-.quadrinho {width:45%; float:left;}
-.resp {width:10%; float:left;}
-
-
-.ui-tabs{
-	/*padding: .2em;*/
-	zoom: 1;
-	margin-top: 10px
+.conteudo {
+	max-width:600px;
+	margin: 0 auto;
 }
-
-span{
-	width: 100%;
-}
-
-.ui-tabs .ui-tabs-nav{
-	list-style: none;
-	position: relative;
-	padding: .2em .2em 0;
-	text-align: center;
-}
-
-.ui-tabs .ui-tabs-nav li{
-	position: relative;
+.quadrinho {
+	margin-right: 1em;
 	float: left;
-	border-bottom-width: 0 !important;
-	margin: 0 .2em -1px 0;
-	padding: 0;
 }
-
-.ui-tabs .ui-tabs-nav li a{
-	/*float: left;*/
-	text-decoration: none;
-	display: block;
-	/*padding: .5em 1em;*/
+.resp {
+	width:10%; 
+	float:right;
 }
-
-.ui-state-default{
-	width: 12%;
+.tab-content.conteudo{
+	padding-top: 1em;
 }
-
-.ui-tabs-nav{
-	border-bottom:1px solid #AAAAAA;
-	height:21px;
-	background-color: #000066;
+.btn-success{
+	margin-top: 1em;
 }
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected{
-	padding-bottom: 1px;
-	border-bottom-width: 0;
-	width: 22%;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
-	cursor: text;
-}
-	
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a{
-	cursor: pointer;
-	height:20px;
-}
-
-.ui-tabs .ui-tabs-panel{
-	padding: 1em 1.4em;
-	display: block;
-	border-width: 0;
-	background: none;
-}
-
-.ui-tabs .ui-tabs-hide {
-	display: none !important;
+.fonte{
+	font-size: 0.9em;
+	margin-top: 2em;
 }
