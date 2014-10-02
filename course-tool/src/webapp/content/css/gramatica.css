@@ -1,4 +1,7 @@
-@charset "utf-8";
-/* CSS Document */
-
-
+#conteudo_gramatica{
+	position: absolute;
+	left: 25%;
+}
+.affix{
+	top: 10px;
+}
