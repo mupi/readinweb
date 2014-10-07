@@ -380,14 +380,15 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
         Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
 
         // User have not even started more than five activities
-        if((published - started) > 5) return true;
+        if((published - started) >= 5) return true;
 
         s.addRestriction(new Restriction("control", ControlTypes.getSum(),
                 Restriction.LESS));
-        Long finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        Long not_finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
 
         // User have not finished
-        if((published - finished) > 5) return true;
+        System.out.println("Não terminou: " + not_finished);
+        if(not_finished >= 5) return true;
 
         return false;
     }
