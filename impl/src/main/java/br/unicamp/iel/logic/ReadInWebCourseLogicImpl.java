@@ -376,21 +376,11 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
                 new Restriction[] {
                         new Restriction("user", userControl.getUser()),
                         new Restriction("activity.id", ids),
+                        new Restriction("control", ControlTypes.getSum())
                 });
-        Long started = new Long(dao.countBySearch(ReadInWebControl.class, s));
+        Long done = new Long(dao.countBySearch(ReadInWebControl.class, s));
 
-        // User have not even started more than five activities
-        if((published - started) >= 5) return true;
-
-        s.addRestriction(new Restriction("control", ControlTypes.getSum(),
-                Restriction.LESS));
-        Long not_finished = new Long(dao.countBySearch(ReadInWebControl.class, s));
-
-        // User have not finished
-        System.out.println("Não terminou: " + not_finished);
-        if(not_finished >= 5) return true;
-
-        return false;
+        return (published - done) >= 5;
     }
 
     @Override
