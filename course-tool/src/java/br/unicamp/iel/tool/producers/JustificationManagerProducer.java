@@ -58,7 +58,7 @@ public class JustificationManagerProducer implements ViewComponentProducer, View
 
         UIInternalLink.make(tofill, "link_home",
                 new SimpleViewParameters(SummaryProducer.VIEW_ID));
-        UIInternalLink.make(tofill, "link_justification", viewparams);
+        UIInternalLink.make(tofill, "link_justification", JustificationsProducer.VIEW_ID);
 
         UIBranchContainer container = UIBranchContainer.make(tofill,
                 "current_justification_container:");
