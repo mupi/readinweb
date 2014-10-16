@@ -1,8 +1,8 @@
-.verbo {
+/*.verbo {
 	float: left;
 	width: 40%;
 }
-
+*/
 .part{
 	margin-top: 30px;
 }
@@ -12,19 +12,19 @@
 }
 
 .resposta1, .resposta2{
-	position: absolute;
-	float: left;
-	display: none;
+	/*position: absolute;
+	float: left; */
+	visibility: hidden;
 }
 
-.resposta1{
+/*.resposta1{
 	margin-left: 0px;
 }
 
 .resposta2{
 	margin-left: 313px;
 }
-
+*/
 .imgResp{
 	margin-bottom: -8px;
 }
