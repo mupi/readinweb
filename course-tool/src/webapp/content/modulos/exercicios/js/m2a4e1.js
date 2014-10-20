@@ -6,31 +6,31 @@
         var errado = "/readinweb-course-tool/content/modulos/exercicios/imagens/errado.gif";
       
       if ($("#opcao1").val() == "2") {
-          document["resp1"].src = certo;
+          document.getElementById("resp1").src = certo;
       }
       else {
-    	  document["resp1"].src = errado;
+    	  document.getElementById("resp1").src = errado;
       }
 
       if ($("#opcao2").val() == "1") {
-          document["resp2"].src = certo;
+          document.getElementById("resp2").src = certo;
       }
       else {
-    	  document["resp2"].src = errado;
+    	  document.getElementById("resp2").src = errado;
       }
 
       if ($("#opcao3").val() == "1") {
-          document["resp3"].src = certo;
+          document.getElementById("resp3").src = certo;
       }
       else {
-    	  document["resp3"].src = errado;
+    	  document.getElementById("resp3").src = errado;
       }
 
       if (($("#opcao4").val() == "2") && ($("#opcao5").val() == "2")) {
-          document["resp4"].src = certo;
+          document.getElementById("resp4").src = certo;
       }
       else {
-    	  document["resp4"].src = errado;
+    	  document.getElementById("resp4").src = errado;
       }
 
     });
