@@ -28,7 +28,9 @@ public enum JustificationStateTypes {
     }
 
     public static Byte markAsRead(Byte sum){
-        return new Byte((byte)(sum - UNREAD_MESSAGES.getValue()));
+        if(sum.getValue() == 1 || sum.getValue() == 3){
+            return new Byte((byte)(sum - UNREAD_MESSAGES.getValue()));
+        return sum;
     }
 
 }
