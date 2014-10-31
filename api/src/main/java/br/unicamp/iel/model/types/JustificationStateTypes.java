@@ -17,19 +17,23 @@ public enum JustificationStateTypes {
     }
 
     public static Byte markEvaluated(Byte sum){
-        if((sum - EVALUATED.getValue()) < 0){
+        if(sum.byteValue() < 2){
             return new Byte((byte)(sum + EVALUATED.getValue()));
         }
         return sum;
     }
 
     public static Byte flagUnread(Byte sum){
-        return new Byte((byte)(sum + UNREAD_MESSAGES.getValue()));
+        if(sum.byteValue() % 2 == 0){
+            return new Byte((byte)(sum + UNREAD_MESSAGES.getValue()));
+        }
+        return sum;
     }
 
     public static Byte markAsRead(Byte sum){
-        if(sum.getValue() == 1 || sum.getValue() == 3){
+        if(sum.byteValue() % 2 == 1){
             return new Byte((byte)(sum - UNREAD_MESSAGES.getValue()));
+        }
         return sum;
     }
 
