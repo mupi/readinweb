@@ -36,6 +36,7 @@ import br.unicamp.iel.model.sets.CourseSets;
 import br.unicamp.iel.model.sets.JustificationSets;
 import br.unicamp.iel.model.sets.ModuleSets;
 import br.unicamp.iel.model.types.BlockStateTypes;
+import br.unicamp.iel.model.types.JustificationStateTypes;
 import br.unicamp.iel.util.CourseProperties;
 
 import com.eclipsesource.json.JsonObject;
@@ -418,13 +419,9 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
     }
 
     @Override
-    public boolean hasSentJustification(User user, Site site) {
-        Justification justification = dao.findOneBySearch(Justification.class,
-                new Search(new Restriction[]{
-                        new Restriction("user", user.getId()),
-                        new Restriction("site", site.getId()),
-                }));
-        return justification != null;
+    public boolean isActiveJustification(Justification justification) {
+        Byte evaluated = JustificationStateTypes.EVALUATED.getValue();
+        return justification.getState() < evaluated;
     }
 
     @Override

@@ -145,7 +145,7 @@ public interface ReadInWebCourseLogic {
 
     public User getUser();
 
-    public boolean hasSentExplanation();
+    public boolean isActiveJustification(Justification justification);
 
     public List<Justification> getUserJustifications();
 

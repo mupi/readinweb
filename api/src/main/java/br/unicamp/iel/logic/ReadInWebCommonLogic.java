@@ -121,7 +121,7 @@ public interface ReadInWebCommonLogic {
 
     public Long[] getAllPublishedActivities(String siteId);
 
-    public boolean hasSentJustification(User user, Site site);
+    public boolean isActiveJustification(Justification justification);
 
     public boolean isUserBLocked(ReadInWebUserControl userControl);
 

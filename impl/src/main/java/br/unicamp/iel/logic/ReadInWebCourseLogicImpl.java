@@ -404,8 +404,8 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     }
 
     @Override
-    public boolean hasSentExplanation() {
-        return common.hasSentJustification(getUser(), getCurrentSite());
+    public boolean isActiveJustification(Justification justification) {
+        return common.isActiveJustification(justification);
     }
 
     @Override

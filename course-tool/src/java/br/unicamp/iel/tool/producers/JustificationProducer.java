@@ -18,6 +18,7 @@ import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.UIVerbatim;
+import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
@@ -25,6 +26,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.JustificationMessage;
+import br.unicamp.iel.model.types.JustificationStateTypes;
 
 /**
  *
@@ -57,54 +59,60 @@ public class JustificationProducer implements ViewComponentProducer {
 
         UIOutput.make(tofill, "user", logic.getUser().getFirstName());
 
+        UIBranchContainer userAlert =
+                UIBranchContainer.make(tofill, "user_alert_message:");
+        UIOutput.make(userAlert, "user", logic.getUser().getDisplayName());
+
         List<Justification> justifications = logic.getUserJustifications();
         if(logic.isUserBlocked()) {
-            UIBranchContainer userAlert =
-                    UIBranchContainer.make(tofill, "user_alert_message:");
-            UIOutput.make(userAlert, "user", logic.getUser().getDisplayName());
+            userAlert.decorate(new UIStyleDecorator("alert alert-danger"));
+            String message =
+                    "o seu acesso está bloqueado pois você não completou as"
+                    + " últimas duas atividades no tempo correto. Para liberar"
+                    + " o curso novamente você precisa enviar uma justificativa"
+                    + " pelo atraso que será avaliada pela equipe docente.";
+            UIOutput.make(userAlert, "message", message);
 
-            UIBranchContainer container = UIBranchContainer.make(tofill,
-                    "justification_container:");
-            if(logic.hasSentExplanation() && !justifications.isEmpty()){
-                Justification j = justifications.get(0);
-                justifications.remove(0);
+            if(!justifications.isEmpty()){ // Not empty?
+                Justification j = justifications.get(0); // Get first
+                if(logic.isActiveJustification(j)){ // Test if is active
+                    justifications.remove(0); // if it is, remove it from list
 
-                UIBranchContainer addMessage =
-                        UIBranchContainer.make(tofill, "add_message:");
-                UIOutput.make(addMessage, "current_justification",
-                        j.getExplanation());
-                List<JustificationMessage> messages =
-                        logic.getJustificationMessages(j);
-                for(JustificationMessage jm : messages){
-                    UIOutput.make(addMessage, "current_justification_message:",
-                            jm.getMessage());
+                    UIBranchContainer addMessage =
+                            UIBranchContainer.make(tofill, "add_message:");
+                    UIOutput.make(addMessage, "current_justification",
+                            j.getExplanation());
+                    List<JustificationMessage> messages =
+                            logic.getJustificationMessages(j);
+                    for(JustificationMessage jm : messages){
+                        UIOutput.make(addMessage, "current_justification_message:",
+                                jm.getMessage());
+                    }
+
+                    UIBranchContainer messageContainer = UIBranchContainer
+                            .make(addMessage, "send_message_item:");
+                    UIForm messageForm =
+                            UIForm.make(messageContainer, "message_form");
+
+                    messageForm.parameters.add(
+                            new UIELBinding("#{JustificationBean.justificationId}",
+                                    j.getId()));
+
+                    UIInput.make(messageForm, "message",
+                            "#{JustificationBean.message}");
+
+                    UICommand.make(messageForm, "send_message",
+                            "#{JustificationBean.sendMessage}");
+                } else { // if not, print the form
+                    buildJustificationForm(tofill);
                 }
-
-                UIBranchContainer messageContainer = UIBranchContainer
-                        .make(addMessage, "send_message_item:");
-                UIForm messageForm =
-                        UIForm.make(messageContainer, "message_form");
-
-                messageForm.parameters.add(
-                        new UIELBinding("#{JustificationBean.justificationId}",
-                                j.getId()));
-
-                UIInput.make(messageForm, "message",
-                        "#{JustificationBean.message}");
-
-                UICommand.make(messageForm, "send_message",
-                        "#{JustificationBean.sendMessage}");
-
             } else {
-                UIForm justificationForm = UIForm.make(
-                        UIBranchContainer.make(container,
-                                "justification_form_container:"),
-                                "justification_form");
-                UIInput.make(justificationForm, "explanation",
-                        "#{JustificationBean.explanation}");
-                UICommand.make(justificationForm, "send_justification",
-                        "#{JustificationBean.sendJustification}");
+                buildJustificationForm(tofill);
             }
+        } else {
+            String message = "Sem atrasos ou justificativas pendentes!";
+            userAlert.decorate(new UIStyleDecorator("alert alert-info"));
+            UIOutput.make(userAlert, "message", message);
         }
 
         for(Justification j : justifications){
@@ -128,5 +136,16 @@ public class JustificationProducer implements ViewComponentProducer {
             }
         }
 
+    }
+
+    private void buildJustificationForm(UIContainer tofill){
+        UIForm justificationForm = UIForm.make(
+                UIBranchContainer.make(tofill,
+                        "justification_form_container:"),
+                "justification_form");
+        UIInput.make(justificationForm, "explanation",
+                "#{JustificationBean.explanation}");
+        UICommand.make(justificationForm, "send_justification",
+                "#{JustificationBean.sendJustification}");
     }
 }

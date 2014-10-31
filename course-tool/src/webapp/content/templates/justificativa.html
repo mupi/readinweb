@@ -52,57 +52,54 @@
         </div>
     </div>
     </nav>
-    <div rsf:id="user_alert_message:" class="alert alert-danger" role="alert">
-        <p class="container">
-            Olá
-            <span rsf:id="user">fulano</span>
-            , o seu acesso está bloqueado pois você não completou as últimas duas atividades no tempo correto. Para
-            liberar o curso novamente você precisa enviar uma justificativa pelo atraso que será avaliada pela equipe
-            docente.
-        </p>
-    </div>
     <div class="container">
-        <div rsf:id="justification_container:">
-            <div class="page-header">
-                <h1>Justificativa por atraso das atividades</h1>
-            </div>
-            <div rsf:id="justification_form_container:">
-                <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for aceita o acesso ao curso
-                    será liberado, caso contrátio a resposta da equipe docente será exibida nesta página.</p>
-                <form rsf:id="justification_form">
-                    <div class="form-group">
-                        <textarea rsf:id="explanation" class="form-control" rows="3"></textarea>
-                    </div>
-                    <div class="form-group submit-justificativa">
-                        <button type="submit" rsf:id="send_justification" class="btn btn-success">Enviar
-                            justificativa</button>
-                    </div>
-                </form>
-            </div>
-            <div rsf:id="add_message:">
-                <div class="clearfix">
-                    <p rsf:id="current_justification" class="alert alert-info">Professor, tive um problema pessoal</p>
-                    <ul class="list-unstyled col-sm-8">
-                        <li class="alert alert-warning" rsf:id="current_justification_message:">Ah, meu filho, que
-                            eu posso fazer?</li>
-                        <li rsf:id="send_message_item:">
-                            <p>Envie uma resposta:</p>
-                            <form rsf:id="message_form">
-                                <div class="form-group">
-                                    <textarea rsf:id="message" class="form-control" rows="2">
-                                    </textarea>
-                                </div>
-                                <div class="form-group submit-justificativa">
-                                    <button type="submit" rsf:id="send_message" class="btn btn-success">Enviar</button>
-                                </div>
-                            </form>
-                        </li>
-                    </ul>
+        <div rsf:id="user_alert_message:"  role="alert">
+            <p>
+                Olá
+                <span rsf:id="user">fulano</span>
+                ,
+                <span rsf:id="message"> o seu acesso está bloqueado pois você não completou as últimas duas
+                    atividades no tempo correto. Para liberar o curso novamente você precisa enviar uma justificativa
+                    pelo atraso que será avaliada pela equipe docente. </span>
+            </p>
+        </div>
+        <div rsf:id="justification_form_container:">
+            <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for aceita o acesso ao curso será
+                liberado, caso contrátio a resposta da equipe docente será exibida nesta página.</p>
+            <form rsf:id="justification_form">
+                <div class="form-group">
+                    <textarea rsf:id="explanation" class="form-control" rows="3"></textarea>
                 </div>
+                <div class="form-group submit-justificativa">
+                    <button type="submit" rsf:id="send_justification" class="btn btn-success">Enviar
+                        justificativa</button>
+                </div>
+            </form>
+        </div>
+        <div rsf:id="add_message:">
+            <div class="clearfix">
+                <p>Justificativa aguardando avaliação: </p>
+                <p rsf:id="current_justification" class="alert alert-info">Professor, tive um problema pessoal</p>
+                <ul class="list-unstyled col-sm-8">
+                    <li class="alert alert-warning" rsf:id="current_justification_message:">Ah, meu filho, que eu
+                        posso fazer?</li>
+                    <li rsf:id="send_message_item:">
+                        <p>Envie uma mensagem:</p>
+                        <form rsf:id="message_form">
+                            <div class="form-group">
+                                <textarea rsf:id="message" class="form-control" rows="2">
+                                    </textarea>
+                            </div>
+                            <div class="form-group submit-justificativa">
+                                <button type="submit" rsf:id="send_message" class="btn btn-success">Enviar</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="historico-justificativas">
-            <h2>Histórico de justificativas e respostas</h2>
+            <h3>Histórico de justificativas e respostas</h3>
             <div rsf:id="old_justifications:" class="clearfix jumbotron">
                 <ul class="list-inline">
                     <li>
@@ -114,7 +111,9 @@
                         <span rsf:id="old_evaluated_date">29/08/2014</span>
                     </li>
                 </ul>
-                <p rsf:id="old_explanation" class="alert alert-danger">Professor, tive um problema pessoal</p>
+                <p rsf:id="old_explanation" class="alert alert-danger" style="font-size: 14px;">
+                    Professor, tive um problema pessoal
+                </p>
                 <ul class="list-unstyled col-sm-8">
                     <li class="alert alert-warning" rsf:id="old_justification_message:">Ah, meu filho, que eu posso
                         fazer?</li>
