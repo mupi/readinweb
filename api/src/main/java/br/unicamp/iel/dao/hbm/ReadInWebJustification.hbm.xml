@@ -8,7 +8,7 @@
     <property name="sentDate" column="date_sent" not-null="true" type="timestamp" />
     <property name="evaluatedDate" column="date_evaluated" type="timestamp" />
 
-    <property name="explanation" type="string" />
+    <property name="explanation" type="text" />
     <property name="state" type="byte" />
 
     <property name="user" column="user_id" type="string" length="255" />
