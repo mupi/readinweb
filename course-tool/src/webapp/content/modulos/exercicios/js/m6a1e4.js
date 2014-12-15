@@ -1,58 +1,58 @@
-$(document).ready(function(){
+$j(document).ready(function(){
 	var left = 240;
 
 
-	$('.hole').each(function(){
-		$(this).css('left', left);
+	$j('.hole').each(function(){
+		$j(this).css('left', left);
 		left += 120;
 	});
-	
+
 	left = 240;
-	
-	$('.image').each(function(){
-		$(this).css('left', left);
+
+	$j('.image').each(function(){
+		$j(this).css('left', left);
 		left += 120;
 	});
-	
+
 	left = 240;
-	
-	$('.subtitle').each(function(){
-		$(this).css('left', left);
+
+	$j('.subtitle').each(function(){
+		$j(this).css('left', left);
 		left += 120;
 	});
 
 	//Função para implementar um 'wait'
-	$.fn.wait = function(time, type){
+	$j.fn.wait = function(time, type){
 	    time = time || 1000;
 	    type = type || "fx";
 	    return this.queue(type, function() {
 	        var self = this;
 	        setTimeout(function() {
-	            $(self).dequeue();
+	            $j(self).dequeue();
 	        }, time);
 	    });
 	};
-	
 
-	$('.hole').droppable({
+
+	$j('.hole').droppable({
 		'accept': 		'.image',
 		'tolerance': 	'pointer',
 		'drop': function(event, ui){
-			if($(ui.draggable).attr('id') == $(this).attr('id')){
-				$(ui.draggable).css('top', $(this).css('top'));
-				$(ui.draggable).css('left', $(this).css('left'));
-				$('#message').html('Encaixe correto!<br/>Parab&eacute;ns!');
-				$('#popUp').fadeIn('fast').wait(1000).fadeOut('fast');
-				$(ui).draggable({'revert':'false'});
+			if($j(ui.draggable).attr('id') == $j(this).attr('id')){
+				$j(ui.draggable).css('top', $j(this).css('top'));
+				$j(ui.draggable).css('left', $j(this).css('left'));
+				$j('#message').html('Encaixe correto!<br/>Parab&eacute;ns!');
+				$j('#popUp').fadeIn('fast').wait(1000).fadeOut('fast');
+				$j(ui).draggable({'revert':'false'});
 			}
 			else{
-				$('#message').html('Encaixe incorreto!<br/>Tente novamente!');
-				$('#popUp').fadeIn('fast').wait(1000).fadeOut('fast');
+				$j('#message').html('Encaixe incorreto!<br/>Tente novamente!');
+				$j('#popUp').fadeIn('fast').wait(1000).fadeOut('fast');
 			}
 		}
 	});
-	
-	$('.image').draggable({
+
+	$j('.image').draggable({
 		revert:true,
 		scroll:false
 	});
