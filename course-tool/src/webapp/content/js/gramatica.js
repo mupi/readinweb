@@ -10,16 +10,17 @@ var indice_affix = function() {
 };
 
 $(document).ready( function() {
-        indice_affix;
-        $("a[href='#topo']").click(function(){
+        //indice_affix;
+        $("a[href='#topo']").click(function(e){
+                e.preventDefault();
                 $("html,body", window.parent.document).scrollTop(0);
-                return false;
+                window.parent.location.hash="#topo";
+                return true; 
                 });
-        $("#lista_indice_gramatica ul li a").click(function(){
-                console.log("oi oi");
-                /*$("html, body", window.parent.document).animate({
-                 *                         'scrollTop':   $($(this).attr("href")).offset().top
-                 *                                         }, 2000);*/
+        $("#lista_indice_gramatica ul li a").click(function(e){
+                e.preventDefault();
                 $("html, body", window.parent.document).scrollTop($($(this).attr("href")).offset().top);
+                window.parent.location.hash=$(this).attr("href");
+                return true; 
                 });
         });
