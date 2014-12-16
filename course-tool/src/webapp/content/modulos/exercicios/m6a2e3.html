@@ -1,81 +1,85 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 
-	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m6a2e3.css"/>
+    <link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m6a2e3.css" />
     <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m6a2e3.js"></script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.svg.js"></script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.drawinglibrary.js"></script>
-	
+
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.svg.js"></script>
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.drawinglibrary.js"></script>
+    <script type="text/javascript">
+    var $j = $.noConflict(true);
+    </script>
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m6a2e3.js"></script>
+
 </head>
+
 <body>
+    <div class="container m6a2e3">
+        <div id="linha_resp" class="canvas"></div>
+        <div id="linha" class="canvas"></div>
+        <p class="enunciado">
+            3. Ligue as senten&#231;as semelhantes clicando primeiro sobre uma senten&#231;a da coluna da esquerda e depois sobre sua correspondente da coluna direita:
+        </p>
 
-	<div id="linha_resp" class="canvas"></div>
-	<div id="linha" class="canvas"></div>
-	<p class="enunciado">
-		3. Ligue as senten&#231;as semelhantes clicando primeiro sobre uma senten&#231;a da coluna da esquerda e depois sobre sua correspondente da coluna direita: 
-	</p>
+        <div class="resposta">
+            <div class="resp">
+                <img id='resp1' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp2' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp3' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp4' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+        </div>
 
-	<div class="resposta">
-		<div class="resp">
-			<img id='resp1' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-		</div>
-		<div class="resp">
-			<img id='resp2' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-		</div>
-		<div class="resp">
-			<img id='resp3' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-		</div>
-		<div class="resp">
-			<img id='resp4' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-		</div>
-	</div>
-	
-	<div class="esquerda" id="col_esquerda">
-	
-		<div class="quadro" id="esq1" ><span class="negrito">1</span>
-			The garlic extract <span class="palavra_vermelha">possibly</span> killed the bacteria, <span class="palavra_vermelha">suggests</span> Klein. 
-		</div>
+        <div class="esquerda" id="col_esquerda">
 
-		<div class="quadro" id="esq2" >
-			<span class="negrito">2</span>
-			The garlic extract<span class="palavra_vermelha"> never</span> killed the bacteria, <span class="palavra_vermelha">protests</span> Klein. 
-		</div>
-		<div class="quadro" id="esq3" ><span class="negrito">3</span>
+            <div class="quadro" id="esq1"><span class="negrito">1</span> The garlic extract <span class="palavra_vermelha">possibly</span> killed the bacteria, <span class="palavra_vermelha">suggests</span> Klein.
+            </div>
 
-			The garlic extract <span class="palavra_vermelha">seldom</span> killed the bacteria, <span class="palavra_vermelha">objects</span> Klein. 
-		</div>
-		<div class="quadro" id="esq4" ><span class="negrito">4</span>
-			The garlic extract <span class="palavra_vermelha">definitely</span> killed the bacteria, <span class="palavra_vermelha">affirms</span> Klein. 
-		</div>
-	</div>
-	
-	<div class="direita" id="col_direita"> 
-		<div class="quadro" id="dir1" >
-			The garlic extract <span class="palavra_vermelha">completely</span> killed the bacteria, <span class="palavra_vermelha">declares</span> Klein.
-		</div>
+            <div class="quadro" id="esq2">
+                <span class="negrito">2</span> The garlic extract<span class="palavra_vermelha"> never</span> killed the bacteria, <span class="palavra_vermelha">protests</span> Klein.
+            </div>
+            <div class="quadro" id="esq3"><span class="negrito">3</span> The garlic extract <span class="palavra_vermelha">seldom</span> killed the bacteria, <span class="palavra_vermelha">objects</span> Klein.
+            </div>
+            <div class="quadro" id="esq4"><span class="negrito">4</span> The garlic extract <span class="palavra_vermelha">definitely</span> killed the bacteria, <span class="palavra_vermelha">affirms</span> Klein.
+            </div>
+        </div>
 
-		<div class="quadro" id="dir2" >
-			The garlic extract <span class="palavra_vermelha">probably</span> killed the bacteria, <span class="palavra_vermelha">supposes</span> Klein.
-		</div>
-		<div class="quadro" id="dir3" >
-			The garlic extract <span class="palavra_vermelha">rarely</span> killed the bacteria, <span class="palavra_vermelha">denies</span> Klein.
+        <div class="direita" id="col_direita">
+            <div class="quadro" id="dir1">
+                The garlic extract <span class="palavra_vermelha">completely</span> killed the bacteria, <span class="palavra_vermelha">declares</span> Klein.
+            </div>
 
-		</div>
-		<div class="quadro" id="dir4" >
-			The garlic extract <span class="palavra_vermelha">didn't ever</span>  kill the bacteria, <span class="palavra_vermelha">refutes</span> Klein.
-		</div>
+            <div class="quadro" id="dir2">
+                The garlic extract <span class="palavra_vermelha">probably</span> killed the bacteria, <span class="palavra_vermelha">supposes</span> Klein.
+            </div>
+            <div class="quadro" id="dir3">
+                The garlic extract <span class="palavra_vermelha">rarely</span> killed the bacteria, <span class="palavra_vermelha">denies</span> Klein.
 
-		<br/>
+            </div>
+            <div class="quadro" id="dir4">
+                The garlic extract <span class="palavra_vermelha">didn't ever</span> kill the bacteria, <span class="palavra_vermelha">refutes</span> Klein.
+            </div>
 
-		<input type="button" id="resposta" class="btn btn-success" value="Resposta"/>
-		
-	</div>
+            <br/>
 
+            <input type="button" id="resposta" class="btn btn-success" value="Resposta" />
+
+        </div>
+    </div>
 
 </body>
+
 </html>
-
-
