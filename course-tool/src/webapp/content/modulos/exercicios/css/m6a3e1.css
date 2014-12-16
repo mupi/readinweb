@@ -29,16 +29,6 @@ hr{
 	padding: 0;
 }
 
-.line{
-	width: 100%;
-	hight: 20px;
-}
-
-.row{
-	width: 20%;
-	float: left;
-}
-
 .answer{
 	color: red;
 	display: none;
