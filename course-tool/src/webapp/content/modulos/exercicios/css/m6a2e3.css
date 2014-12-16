@@ -6,28 +6,28 @@
 }
 .quadro {
     left: 0;
-    width: 200px;
-    height: 110px;
-    border: 1px solid;
+    width: 300px;
+    height: 90px;
+    /*border: 1px solid;*/
     padding: 0;
     margin: 0;
 }
 .resp {
     left: 0;
     width: 30px;
-    height: 100px;
-    padding-top: 45px;
+    height: 80px;
+    padding-top: 10px;
     margin: 0;
 }
 .esquerda {
-    width: 200px;
+    width: 230px;
     float: left;
     margin: 0;
     padding: 0;
 }
 .direita {
     float: left;
-    width: 200px;
+    width: 230px;
     margin-left: 100px;
 }
 .resposta {
