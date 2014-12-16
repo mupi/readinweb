@@ -1,84 +1,158 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-	<link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m6a3e4.css"/>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.svg.js"></script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.drawinglibrary.js"></script>
-	<script type="text/javascript">
-       var $j = $.noConflict(true);
+    <link rel="stylesheet" type="text/css" href="/readinweb-course-tool/content/modulos/exercicios/css/m6a3e4.css" />
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.svg.js"></script>
+	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/jquery.drawinglibrary.js"></script> -->
+    <script type="text/javascript">
+    	var $j = $.noConflict(true);
     </script>
-	<script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m6a3e4.js"></script>
+    <script type="text/javascript" src="/readinweb-course-tool/content/modulos/exercicios/js/m6a3e4.js"></script>
 
 </head>
+
 <body>
 
-	<div id="container_m6a3e4">
+    <div id="container_m6a3e4">
 
-		<div id="linha_resp" class="canvas"></div>
-		<div id="linha" class="canvas"></div>
-		<p class="enunciado">
-			4. Ligue as senten&#231;as semelhantes clicando primeiro sobre uma senten&#231;a da coluna da esquerda e depois sobre sua correspondente da coluna direita:
-		</p>
+        <div id="linha_resp" class="canvas"></div>
+        <div id="linha" class="canvas"></div>
+        <p class="enunciado">
+            4. Relacione as senten&#231;as semelhantes escolhendo na setença da direita o número correspondente à sentença da esquerda:
+        </p>
 
-		<div class="resposta">
-			<div class="resp">
-			<img id='resp1' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-			</div>
-			<div class="resp">
-				<img id='resp2' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-			</div>
-			<div class="resp">
-				<img id='resp3' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-			</div>
-			<div class="resp">
-				<img id='resp4' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'><br/>
-			</div>
-		</div>
+        <div class="resposta">
+            <div class="resp">
+                <img id='resp1' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp2' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp3' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+            <div class="resp">
+                <img id='resp4' src='/readinweb-course-tool/content/modulos/exercicios/imagens/imgtransparente.png'>
+                <br/>
+            </div>
+        </div>
 
-		<div class="esquerda" id="col_esquerda">
+        <div class="esquerda" id="col_esquerda">
+            <div class="quadro row" id="esq1">
+                <div class="col-xs-2">
+                    <p>
+                        <span class="label label-info">1</span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">often</span> show preference for baby boys.
+                </div>
+            </div>
+            <div class="quadro row" id="esq2">
+                <div class="col-xs-2">
+                    <p>
+                        <span class="label label-info">2</span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">are likely</span> to show preference for baby boys.
+                </div>
+            </div>
+            <div class="quadro row" id="esq3">
+                <div class="col-xs-2">
+                    <p>
+                        <span class="label label-info">3</span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">seldom</span> show preference for baby boys.
+                </div>
+            </div>
+            <div class="quadro row" id="esq4">
+                <div class="col-xs-2">
+                    <p>
+                        <span class="label label-info">4</span>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">definitely</span> show preference for baby boys.
+                </div>
+            </div>
+        </div>
 
-			<div class="quadro" id="esq1" ><span class="negrito">1</span>
-				Canadian parents <span class="vermelho">often</span> show preference for baby boys.
-			</div>
-			<div class="quadro" id="esq2" >
-				<span class="negrito">2</span>
-				Canadian parents <span class="vermelho">are likely</span> to show preference for baby boys.
-			</div>
-			<div class="quadro" id="esq3" ><span class="negrito">3</span>
-				Canadian parents <span class="vermelho">seldom</span> show preference for baby boys.
-			</div>
-			<div class="quadro" id="esq4" ><span class="negrito">4</span>
-				Canadian parents <span class="vermelho">definitely</span> show preference for baby boys.
-			</div>
-		</div>
+        <div class="direita" id="col_direita">
+            <div class="quadro row" id="dir1">
+                <div class="col-xs-2">
+                    <select id="select1">
+                        <option value="0"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">always</span> show preference for baby boys.
+                </div>
+            </div>
 
-		<div class="direita" id="col_direita">
-			<div class="quadro" id="dir1" >
-				Canadian parents <span class="vermelho">always</span> show preference for baby boys.
-			</div>
+            <div class="quadro row" id="dir2">
+                <div class="col-xs-2">
+                    <select id="select2">
+                        <option value="0"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">hardly ever</span> show preference for baby boys.
+                </div>
+            </div>
+            <div class="quadro row" id="dir3">
+                <div class="col-xs-2">
+                    <select id="select3">
+                        <option value="0"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="col-xs-10">
+                    It is <span class="vermelho">probable</span> that Canadian Parents will show preference for baby boys.
+                </div>
+            </div>
+            <div class="quadro row" id="dir4">
+                <div class="col-xs-2">
+                    <select id="select4">
+                        <option value="0"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="col-xs-10">
+                    Canadian parents <span class="vermelho">frequently</span> show preference for baby boys.
+                </div>
+            </div>
 
-			<div class="quadro" id="dir2" >
-				 Canadian parents <span class="vermelho">hardly ever</span> show preference for baby boys.
-			</div>
-			<div class="quadro" id="dir3" >
-				It is <span class="vermelho">probable</span> that Canadian Parents will show preference for baby boys.
-			</div>
-			<div class="quadro" id="dir4" >
-				Canadian parents <span class="vermelho">frequently</span> show preference for baby boys.
-			</div>
+            <br/>
 
-			<br/>
+            <input type="button" id="resposta" class="btn btn-success" value="Resposta" />
 
-			<input type="button" id="apagar" class="btn btn-default" value="Apagar"/>
-			<input type="button" id="resposta" class="btn btn-success" value="Resposta"/>
-
-		</div>
+        </div>
 
 
-	</div>
+    </div>
 </body>
+
 </html>
-
-
