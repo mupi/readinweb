@@ -1,7 +1,7 @@
 
   $(document).ready(function(){
-   
-    $("#tabs").tabs();
+
+    // $("#tabs").tabs();
 
     $('#resposta1').click(function(){
 	$('#div_resposta1').show();
