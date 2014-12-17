@@ -15,9 +15,9 @@
 	opacity: 0.50;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	filter: alpha(opacity = 50);
-	left:-150px;
+	/*left:-150px;
 	position:relative;
-	top:-65px;
+	top:-65px;*/
 }
 
 .azul {

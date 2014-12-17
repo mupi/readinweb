@@ -1,9 +1,9 @@
-$(document).ready(function(){
+$j(document).ready(function(){
 
-	$('#resposta').click(function(){
-		$("#div_resposta").show();
+	$j('#resposta').click(function(){
+		$j("#div_resposta").show();
 	});
-	    
+
 	var clicou = new Array(9);
 	var cor = new Array(4);
 
@@ -12,32 +12,32 @@ $(document).ready(function(){
 				cor[3] = '#FFA500';
 				cor[4] = '#FF6A6A'; */
 
-	$('.clicavel').click(function(){
-		$num = parseInt($(this).attr("id").charAt(1)) - 1;
-		$num = "p" + $num;
+	$j('.clicavel').click(function(){
+		$jnum = parseInt($j(this).attr("id").charAt(1)) - 1;
+		$jnum = "p" + $jnum;
 
-		if (clicou[$num] != true)          //verifica se a palavra já foi clicada, para não desenhar nada por cima sem necessidade
+		if (clicou[$jnum] != true)          //verifica se a palavra já foi clicada, para não desenhar nada por cima sem necessidade
 		{
-			clicou[$num] = true;
+			clicou[$jnum] = true;
 
-			var position = $(this).position();
-			var position2 = $("span[id="+$num+"]").position();
+			var position = $j(this).position();
+			var position2 = $j("span[id="+$jnum+"]").position();
 			//alert (position2);
 
-			$(this).children('.pa1').addClass("azul");
-			$(this).children('.pa2').addClass("verde");
-			$(this).children('.pa3').addClass("amarelo");
-			$(this).children('.pa4').addClass("vermelho");
-			$("span[id="+$num+"]").children('.pa1').addClass("azul");
-			$("span[id="+$num+"]").children('.pa2').addClass("verde");
-			$("span[id="+$num+"]").children('.pa3').addClass("amarelo");
-			$("span[id="+$num+"]").children('.pa4').addClass("vermelho");
+			$j(this).children('.pa1').addClass("azul");
+			$j(this).children('.pa2').addClass("verde");
+			$j(this).children('.pa3').addClass("amarelo");
+			$j(this).children('.pa4').addClass("vermelho");
+			$j("span[id="+$jnum+"]").children('.pa1').addClass("azul");
+			$j("span[id="+$jnum+"]").children('.pa2').addClass("verde");
+			$j("span[id="+$jnum+"]").children('.pa3').addClass("amarelo");
+			$j("span[id="+$jnum+"]").children('.pa4').addClass("vermelho");
 
 
 			if ((position.left)<(position2.left)){
 				var l1 = position.left;
 				var l2 = position2.left;
-				var p1_esquerda = true; 
+				var p1_esquerda = true;
 			} else {
 				var l1 = position2.left;
 				var l2 = position.left;
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 			if ((position.top)<(position2.top)){
 				var t1 = position.top;
-				var t2 = position2.top; 
+				var t2 = position2.top;
 				var p1_emcima = true;          //se a palavra1.top < palavra2.top, palavra1 está em cima
 			} else {
 				var t1 = position2.top;
@@ -97,7 +97,7 @@ $(document).ready(function(){
 				var y11 = y5 - 8;
 
 			}else { //palavra de onde sai a flecha está na direita e embaixo
-				var x1 = l2 + 30;  		   //meio da palavra da direita (início da flecha)    OK  
+				var x1 = l2 + 30;  		   //meio da palavra da direita (início da flecha)    OK
 				var x2 = 1/2 * (d + 60) + l1;     //metade da distancia mais o left da palavra da esquerda (assim fica no meio das duas palavras) OK
 				var x3 = x2;     			//os dois pontos de controle iguais     OK
 				var x4 = l1 + 30;  		   //meio da palavra da esquerda    OK
@@ -125,8 +125,8 @@ $(document).ready(function(){
 			};
 			// };
 
-			$("#div1").fillBezier_modificado([ x1, x2, x3, x4],[y1, y2, y3, y4], [x5, x6, x7, x8],[y5, y6, y7, y8],{color: '#696969' , stroke: 2});
-			$("#div1").fillPolygon([x9, x10 , x11], [y9, y10, y11], {color:'#696969'});
+			$j("#div1").fillBezier_modificado([ x1, x2, x3, x4],[y1, y2, y3, y4], [x5, x6, x7, x8],[y5, y6, y7, y8],{color: '#696969' , stroke: 2});
+			$j("#div1").fillPolygon([x9, x10 , x11], [y9, y10, y11], {color:'#696969'});
 		};
-	});                                                      
+	});
 })
