@@ -50,11 +50,17 @@ body{
   line-height: 1.5em;
   font-size: 1.1em;
 }
-
+#subtitle{
+  display: none;
+  font-size: 1.2em;
+  font-style: italic;
+}
 #picture_text {
   text-align: center;
 }
-
+.subtitlehide{
+  display: none;
+}
 /* End Text */
 
 /* Menu */
@@ -158,7 +164,7 @@ body{
   text-decoration: none;
 }
 a.link_atividade{
-  padding: 3px 20px; 
+  padding: 3px 20px;
   display: block;
   cursor: pointer;
   text-decoration: none;

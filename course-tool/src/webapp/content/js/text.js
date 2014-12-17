@@ -17,7 +17,7 @@ $(document).ready(function(){
             menu_switch = 0;
         }
     });
-    
+
     $(".modulo").click(function(){
         var module = $(this).val();
         if(module != gmodule){
@@ -150,7 +150,7 @@ $(document).ready(function(){
 
 
 /**
- * This function just changes the visibility of the object 
+ * This function just changes the visibility of the object
  */
 function show_answer(el_id) {
     var el = document.getElementById(el_id).style;
@@ -158,7 +158,7 @@ function show_answer(el_id) {
 }
 
 /**
- * 
+ *
  * submiter_obj - OBJETO do tipo 'input submit' que ira alterar o valor da coisa toda - deve ter o ID no formato ''
  * hidden_module_id - ID do objeto 'hidden' que ira armazenar o valor do modulo de coisa toda
  * hidden_activity_id - ID do objeto 'hidden' que ira armazenar o valor da atividade de coisa toda
@@ -171,17 +171,17 @@ function update_module( submiter_obj, hidden_module_id, hidden_activity_id, hidd
     var hidden_exe_obj;
     var submiter_splited;
     var module_id, activity_id;
-        
+
     submiter_id = submiter_obj.id;
     submiter_splited = submiter_id.split('_');
-        
+
     activity_id = submiter_splited[submiter_splited.length - 2];
     module_id = submiter_splited[submiter_splited.length - 1];
 
     hidden_mod_obj = document.getElementById(hidden_module_id);
     hidden_act_obj = document.getElementById(hidden_activity_id);
     hidden_exe_obj = document.getElementById(hidden_exercise_id);
-    
+
     if (hidden_mod_obj != null){
         hidden_mod_obj.value = module_id;
         if (hidden_act_obj != null){
