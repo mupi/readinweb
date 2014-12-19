@@ -2,9 +2,9 @@ h2 {
   font-size: 1.5em;
 }
 
-.navbar {
-  margin-bottom: 0;
-}
+/* .navbar { */
+/*   margin-bottom: 0; */
+/* } */
 
 .submit-justificativa {
   margin: 1em 0;
@@ -66,4 +66,10 @@ h2 {
 
 .j-reply {
   margin-bottom: 1em;
+}
+
+/** bootstrap **/
+
+.alert {
+	margin: 5px 0;
 }
