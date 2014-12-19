@@ -1,0 +1,114 @@
+h1,h2,h3{
+  font-family: 'Rufina';
+}
+h1{
+  font-size: 2em;
+}
+body{
+  font-family: 'Open Sans',sans-serif;
+}
+/* Text */
+.prelecture{
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-left: 4px solid #76a6d7;
+}
+#text_text{
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5em;
+  font-size: 1.1em;
+}
+
+/* End Text */
+
+/* Menu */
+.main-menu{
+  text-transform: uppercase;
+}
+.navbar-default .navbar-nav>li>a.logo_unicamp, .navbar-brand{
+  padding: 5px;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #000066;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  color: #777;
+}
+#lista_menu_modulos{
+  padding: 5px;
+}
+.lista_menu_atividades{
+  list-style: none;
+  padding: 0;
+}
+.lista_menu_atividades input{
+  text-transform: uppercase;
+}
+/* End Menu */
+
+/* Tooltip */
+.translation:hover{
+  text-decoration: none;
+}
+/* End tooltip */
+
+.first-row{
+	margin-top: 80px;
+}
+#hidden-text, #time_text {
+	display: none;
+}
+.affix-questoes {
+  padding: 20px;
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  width: inherit;
+}
+
+#title_questions{
+  font-weight: bold;
+  color: #000066;
+}
+#sidebar-questoes {
+  max-height: 100%;
+  top: 65px;
+}
+#audio > div{
+  display: inline-block;
+}
+
+/* Glossário e palavras-função */
+.glossario-dicionario{
+  max-height: 400px;
+  overflow-y: auto;
+}
+#texto_palavrasfuncao, #texto_dicionario{
+  list-style: none;
+  padding: 5px;
+}
+/* End Glossário e palavras-função */
+
+#preLecture_title{
+  margin: 10px 0;
+}
+
+#audio, .print{
+  float: right;
+  margin-left: 15px;
+}
+#enunciado_questions, #suggested_answer p{
+  padding: 5px;
+  line-height: 1.5em;
+}
+.submitModule:hover, .link-modulo:hover{
+  text-decoration: none;
+}
+/*.btn-resposta-sugerida{
+  color: #fff;
+}*/
+.btn-resposta-sugerida:hover{
+  text-decoration: none;
+}
+.btn-link:hover, .btn-link:focus {
+  outline: none;
+}

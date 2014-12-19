@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Projeto Read in Web - Administra&ccedil;&atilde;</title>
+
+    <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/turmas.css" />
+
+</head>
+
+<body>
+    <div class="portletBody">
+        <nav class="navbar navbar-default main-menu" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                        <span class="sr-only">Menu principal</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="../img/logo.png" alt="Curso Read in Web" />
+                    </a>
+                </div>
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" rsf:id="link_turmas">Turmas</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
+                                <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <header class="page-header">
+                <h1>Turmas ativas do curso Read in Web</h1>
+            </header>
+            <p>
+                <a class="btn btn-danger" rsf:id="link_create_class">
+                    <i class="fa fa-folder-open"></i> Criar nova turma
+                </a>
+            </p>
+            <table class="table table-striped" rsf:id="riw_classes:">
+                <tr>
+                    <th>Turma</th>
+                    <th>Alunos matriculados</th>
+<!--                     <th>Justificativas pendentes</th> -->
+                    <th>Professor responsável</th>
+                </tr>
+                <tr rsf:id="riw_class:">
+                    <td><a rsf:id="riw_class_title" href="#">LA122 A</a></td>
+                    <td><a rsf:id="riw_class_students" href="#">31</a></td>
+<!--                     <td><a rsf:id="riw_class_justifications" href="#justificativas">4</a></td> -->
+                    <td rsf:id="riw_class_teacher">Lucia</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/css">
+            jQuery(document).ready(function(){console.log("alive");)})
+        </script>
+</body>
+</html>

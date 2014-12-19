@@ -6,12 +6,14 @@
 
   <bean parent="requestAddressibleParent">
     <property name="value"
-      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, AdminActivityBean" />
+	value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, 
+      AdminActivityBean, ManageClassBean, CreateClassBean" />
   </bean>
 
   <bean id="resultsScope" parent="beanScopeParent">
     <property name="copyPreservingBeans"
-      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean" />
+      value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, 
+      ManageClassBean, CreateClassBean" />
     <property name="exclusive" value="true" />
   </bean>
 
