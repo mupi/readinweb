@@ -24,6 +24,7 @@ import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.types.ControlTypes;
+import br.unicamp.iel.tool.components.GatewayMenuComponent;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 /**
@@ -52,30 +53,20 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
         Long course = logic.getCourseId();
 
         boolean isTeacher = logic.isUserTeacher();
-        UIInternalLink.make(tofill, "link_home", viewparams);
-        if(isTeacher){
-            UIInternalLink.make(tofill, "link_justification",
-                    new SimpleViewParameters(
-                            JustificationsProducer.VIEW_ID));
-        } else {
-            UIInternalLink.make(tofill, "link_justification",
-                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
-        }
+        GatewayMenuComponent menu = new GatewayMenuComponent(viewparams, 
+        		isTeacher);
+        menu.make(UIBranchContainer.make(tofill, "gateway_menu_replace:"));
 
         ReadInWebUserControl userControl =
                 logic.getUserControl(logic.getUserId(),
                         logic.getCurrentSiteId());
 
-        System.out.println(ControlTypes.getSum());
         if(logic.isUserLate(userControl) && !logic.isUserBlocked()){
-            System.out.println("User Late and not blocked");
             if(logic.isRemissionTime(userControl)){ // is REMISSION
-                System.out.println("Is Remission time");
                 if(logic.hasRemissionTimeEnded(userControl)){
                     logic.blockUser(userControl);
                 }
             } else { // is UNBLOCKED
-                System.out.println("Is Unblocked");
                 logic.blockUser(userControl);
             }
         } // is BLOCKED

@@ -20,6 +20,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.types.JustificationStateTypes;
+import br.unicamp.iel.tool.components.GatewayMenuComponent;
 import br.unicamp.iel.tool.viewparameters.JustificationViewParameters;
 
 /**
@@ -45,14 +46,14 @@ public class JustificationsProducer implements ViewComponentProducer {
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
-
-        if(!logic.isUserTeacher()){
+    	boolean isTeacher = logic.isUserTeacher();
+        if(!isTeacher){
             return;
         }
 
-        UIInternalLink.make(tofill, "link_home",
-                new SimpleViewParameters(SummaryProducer.VIEW_ID));
-        UIInternalLink.make(tofill, "link_justificativas", viewparams);
+        GatewayMenuComponent menu = new GatewayMenuComponent(viewparams, 
+        		isTeacher);
+        menu.make(UIBranchContainer.make(tofill, "gateway_menu_replace:"));
 
         Site site = logic.getCurrentSite();
 

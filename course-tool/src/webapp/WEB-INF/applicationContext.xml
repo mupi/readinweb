@@ -39,6 +39,12 @@
     <property name="baseDirectory" value="component-templates/" />
     <property name="templateNames" value="Messages" />
   </bean>
+  
+  <bean parent="templateContributorParent">
+    <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
+    <property name="templateNames"
+      value="gateway-menu" />
+  </bean>
 
   <bean id="componentsTemplateResourceBase" class="java.lang.String">
     <constructor-arg value="/" />

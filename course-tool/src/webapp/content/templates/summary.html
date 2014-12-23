@@ -7,91 +7,71 @@
 
 <title>Projeto Read in Web</title>
 
-<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700'
+	rel='stylesheet' type='text/css' />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
+	rel='stylesheet' type='text/css' />
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../assets/bootstrap/css/bootstrap.min.css" />
 <!-- End Bootstrap -->
-<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#lista_menu_principal">
-                <span class="sr-only">Menu principal</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="../imagens/logo.png" alt="Curso Read in Web" />
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="lista_menu_principal">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#" rsf:id="link_home" class="active" title="Voltar ao sumário">Sumário</a>
-                </li>
-                <li>
-                    <a href="#" rsf:id="link_justification" title="Ver histórico de justificativas">Justificativas</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                        <img src="../imagens/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    </nav>
-    <div class="container">
-        <div id="middle" class="row">
-            <div id="function">
-                <div id="sumario" style="overflow: auto" class="clean">
-                    <h1 id="title_sumario">SUM&#193;RIO</h1>
-                    <div class="border_outer">
-                        <p class="title">Escolha abaixo um m&oacute;dulo e uma atividade a ser estudado. A tabela
-                            indica o que est&aacute; incompleto e o que j&aacute; foi feito.</p>
-                        <p rsf:id="user_blocked:">
-                            <span>Seu usuário está bloqueado, siga para página de </span>
-                            <a href="#" rsf:id="user_blocked_link"></a>
-                        </p>
-                        <ul id="ul_menuModulos" class="table_module list-unstyled">
-                            <li rsf:id="li_rowsMod:" class="module">
-                                <h3 rsf:id="lnk_modulo" id="lnk_modulo_" class="lnkmodulo">M&oacute;dulo X</h3>
-                                <table rsf:id="ul_atividades:" id="ul_atividades_" class="ul_atividade table table-hover">
-                                    <tr class="title_atividade">
-                                        <th style="padding-right: 410px; padding-left: 0px;">Atividade</th>
-                                        <th style="padding-right: 65px; padding-left: 30px;">Texto</th>
-                                        <th style="padding-right: 40px;">Quest&otilde;es</th>
-                                        <th style="padding-right: 0px;">Exerc&iacute;cios</th>
-                                    </tr>
-                                    <tr rsf:id="li_rowsAct:" id="li_rowsAct_">
-                                        <td><a rsf:id="but_linkA_" id="but_linkA_" class="atividade" href="#" /></td>
-                                        <td rsf:id="txt_textRead_" id="" class="td_image"></td>
-                                        <td rsf:id="txt_questionMade_" id="" class="td_image"></td>
-                                        <td rsf:id="txt_exercMade_" id="" class="td_image"></td>
-                                    </tr>
-                                </table>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<nav class="navbar navbar-default" role="navigation">
+	<div rsf:id="gateway_menu_replace:" class="container"></div>
+	</nav>
+	<div class="container">
+		<div id="middle" class="row">
+			<div id="function">
+				<div id="sumario" style="overflow: auto" class="clean">
+					<h1 id="title_sumario">SUM&#193;RIO</h1>
+					<div class="border_outer">
+						<p class="title">Escolha abaixo um m&oacute;dulo e uma
+							atividade a ser estudado. A tabela indica o que est&aacute;
+							incompleto e o que j&aacute; foi feito.</p>
+						<p rsf:id="user_blocked:">
+							<span>Seu usuário está bloqueado, siga para página de </span> <a
+								href="#" rsf:id="user_blocked_link"></a>
+						</p>
+						<ul id="ul_menuModulos" class="table_module list-unstyled">
+							<li rsf:id="li_rowsMod:" class="module">
+								<h3 rsf:id="lnk_modulo" id="lnk_modulo_" class="lnkmodulo">M&oacute;dulo
+									X</h3>
+								<table rsf:id="ul_atividades:" id="ul_atividades_"
+									class="ul_atividade table table-hover">
+									<tr class="title_atividade">
+										<th style="padding-right: 410px; padding-left: 0px;">Atividade</th>
+										<th style="padding-right: 65px; padding-left: 30px;">Texto</th>
+										<th style="padding-right: 40px;">Quest&otilde;es</th>
+										<th style="padding-right: 0px;">Exerc&iacute;cios</th>
+									</tr>
+									<tr rsf:id="li_rowsAct:" id="li_rowsAct_">
+										<td><a rsf:id="but_linkA_" id="but_linkA_"
+											class="atividade" href="#" /></td>
+										<td rsf:id="txt_textRead_" id="" class="td_image"></td>
+										<td rsf:id="txt_questionMade_" id="" class="td_image"></td>
+										<td rsf:id="txt_exercMade_" id="" class="td_image"></td>
+									</tr>
+								</table>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/library/js/headscripts.js"></script>
-    <script type="text/javascript" src="../js/rsf.js"></script>
-    <script type="text/javascript" src="../js/readinweb-course.js"></script>
+	<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript"
+		src="../assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/library/js/headscripts.js"></script>
+	<script type="text/javascript" src="../js/rsf.js"></script>
+	<script type="text/javascript" src="../js/readinweb-course.js"></script>
 </body>
 </html>
