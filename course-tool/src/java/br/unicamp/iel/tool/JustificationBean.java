@@ -13,7 +13,7 @@ import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.ReadInWebUserControl;
 import br.unicamp.iel.model.types.JustificationStateTypes;
-import br.unicamp.iel.tool.commons.CourseComponents;
+import br.unicamp.iel.tool.components.CourseComponents;
 
 @Data
 public class JustificationBean {

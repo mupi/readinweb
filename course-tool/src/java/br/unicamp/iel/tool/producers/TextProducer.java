@@ -31,7 +31,7 @@ import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.ReadInWebAnswer;
-import br.unicamp.iel.tool.commons.CourseComponents;
+import br.unicamp.iel.tool.components.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.CourseViewParameters;
 
 public class TextProducer implements ViewComponentProducer, ViewParamsReporter {

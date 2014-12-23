@@ -1,4 +1,4 @@
-package br.unicamp.iel.tool.commons;
+package br.unicamp.iel.tool.components;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
