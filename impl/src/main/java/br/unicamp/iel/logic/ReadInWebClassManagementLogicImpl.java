@@ -1,5 +1,6 @@
 package br.unicamp.iel.logic;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +12,8 @@ import lombok.Setter;
 import org.apache.log4j.Logger;
 import org.sakaiproject.entity.api.EntityPropertyNotDefinedException;
 import org.sakaiproject.entity.api.EntityPropertyTypeException;
+import org.sakaiproject.genericdao.api.search.Restriction;
+import org.sakaiproject.genericdao.api.search.Search;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService.SelectionType;
 import org.sakaiproject.site.api.SiteService.SortType;
@@ -22,6 +25,9 @@ import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Property;
+import br.unicamp.iel.model.ReadInWebControl;
+import br.unicamp.iel.model.reports.UserAccess;
+import br.unicamp.iel.model.types.ControlTypes;
 
 public class ReadInWebClassManagementLogicImpl implements
 ReadInWebClassManagementLogic {
@@ -194,6 +200,26 @@ ReadInWebClassManagementLogic {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    @Override
+    public Long countActivities(User u, Site riwClass) {
+    	Long[] ids = common.getAllPublishedActivities(riwClass.getId());
+        
+        Search s = new Search(
+                new Restriction[] {
+                        new Restriction("user", u.getId()),
+                        new Restriction("activity.id", ids),
+                        new Restriction("control", ControlTypes.getSum())
+                });
+        Long done = new Long(dao.countBySearch(ReadInWebControl.class, s));
+
+        return done;
+    }
+    
+    @Override
+    public List<UserAccess> getAccessData(User student, Site riwClass) {
+    	return dao.getUserAccessesReport(student.getId());
     }
 }
 

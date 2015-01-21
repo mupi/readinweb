@@ -466,4 +466,15 @@ public class ReadInWebCourseLogicImpl implements ReadInWebCourseLogic {
     public void updateJustification(Justification justification) {
         dao.save(justification);
     }
+    
+    @Override
+    public Long countActivities(Site riwClass) {
+    	return common.countPublishedActivities(riwClass);
+    }
+    
+    @Override
+    public List<Justification> getUserJustifications(User student) {
+    	return common.getUserJustifications(student.getId(), 
+    			getCurrentSiteId());
+    }
 }

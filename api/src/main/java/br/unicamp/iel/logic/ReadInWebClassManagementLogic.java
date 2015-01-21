@@ -5,6 +5,7 @@ import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.Module;
+import br.unicamp.iel.model.reports.UserAccess;
 
 import java.util.Date;
 import java.util.List;
@@ -72,4 +73,8 @@ public interface ReadInWebClassManagementLogic {
     public Site getLastModifiedReadInWebClass(Long id);
 
     public boolean isReadInWebClassActive(Site s);
+
+	public Long countActivities(User u, Site riwClass);
+
+	public List<UserAccess> getAccessData(User student, Site riwClass);
 }

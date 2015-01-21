@@ -16,6 +16,8 @@ import java.util.List;
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.site.api.Site;
 
+import br.unicamp.iel.model.reports.UserAccess;
+
 
 /**
  * This is a specialized DAO that allows the developer to extend
@@ -24,4 +26,5 @@ import org.sakaiproject.site.api.Site;
  */
 public interface ReadInWebDao extends GeneralGenericDao {
 	public List<Site> getReadInWebSites();
+	public List<UserAccess> getUserAccessesReport(String userId);
 }

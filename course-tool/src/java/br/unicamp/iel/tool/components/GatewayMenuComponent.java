@@ -44,16 +44,13 @@ public class GatewayMenuComponent {
 		
 		UIInternalLink link = 
 				decorateActive(UIInternalLink.make(tofill, "link_justification",
-                new SimpleViewParameters(JustificationsProducer.VIEW_ID)));
+                new SimpleViewParameters(JustificationProducer.VIEW_ID)));
 
 		if(isTeacher){
 			decorateActive(UIInternalLink.make(tofill, "link_class",
                     new SimpleViewParameters(ClassProducer.VIEW_ID)));
 			link.viewparams = 
 					new SimpleViewParameters(JustificationsProducer.VIEW_ID);
-        } else {
-        	decorateActive(UIInternalLink.make(tofill, "link_justification",
-                    new SimpleViewParameters(JustificationProducer.VIEW_ID)));
         }
     }
 

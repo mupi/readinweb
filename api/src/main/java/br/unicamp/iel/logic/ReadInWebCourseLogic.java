@@ -168,4 +168,8 @@ public interface ReadInWebCourseLogic {
 
     public boolean isUserBlocked();
 
+	public Long countActivities(Site riwClass);
+
+	public List<Justification> getUserJustifications(User student);
+
 }
