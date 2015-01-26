@@ -30,7 +30,7 @@ import br.unicamp.iel.tool.viewparameters.JustificationViewParameters;
  */
 public class JustificationsProducer implements ViewComponentProducer {
 
-    public static final String VIEW_ID = "justificativas";
+    public static final String VIEW_ID = "justificativa-list";
 
     private static Log logger = LogFactory.getLog(JustificationsProducer.class);
 
@@ -89,7 +89,7 @@ public class JustificationsProducer implements ViewComponentProducer {
                         Long.toString(logic.countMessages(j)));
 
                 UIInternalLink.make(
-                        (UIBranchContainer.make(just, "old_evaluate_col:")),
+                        (UIBranchContainer.make(oldJust, "old_evaluate_col:")),
                         "old_evaluate_link",
                         new JustificationViewParameters(
                                 JustificationManagerProducer.VIEW_ID,

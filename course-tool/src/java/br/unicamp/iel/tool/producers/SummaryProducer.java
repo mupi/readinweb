@@ -75,7 +75,7 @@ public class SummaryProducer implements ViewComponentProducer, DefaultView {
             UIBranchContainer li = UIBranchContainer.make(tofill,
                     "user_blocked:");
             UIInternalLink.make(li, "user_blocked_link", "Justificativas",
-                    new SimpleViewParameters(JustificationProducer.VIEW_ID));
+                    new SimpleViewParameters(JustificationStudentProducer.VIEW_ID));
         } else {
             List<Module> modules =
                     logic.getPublishedModules(logic.getCourse(course));

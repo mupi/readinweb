@@ -1,11 +1,5 @@
 package br.unicamp.iel.tool.components;
 
-import org.sakaiproject.entity.api.Summary;
-
-import br.unicamp.iel.tool.producers.ClassProducer;
-import br.unicamp.iel.tool.producers.JustificationProducer;
-import br.unicamp.iel.tool.producers.JustificationsProducer;
-import br.unicamp.iel.tool.producers.SummaryProducer;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -14,6 +8,10 @@ import uk.org.ponder.rsf.components.UIJointContainer;
 import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
 import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
+import br.unicamp.iel.tool.producers.ClassProducer;
+import br.unicamp.iel.tool.producers.JustificationStudentProducer;
+import br.unicamp.iel.tool.producers.JustificationsProducer;
+import br.unicamp.iel.tool.producers.SummaryProducer;
 
 @AllArgsConstructor
 public class GatewayMenuComponent {
@@ -42,9 +40,8 @@ public class GatewayMenuComponent {
 		decorateActive(UIInternalLink.make(tofill, "link_home", 
 				new SimpleViewParameters(SummaryProducer.VIEW_ID)));
 		
-		UIInternalLink link = 
-				decorateActive(UIInternalLink.make(tofill, "link_justification",
-                new SimpleViewParameters(JustificationProducer.VIEW_ID)));
+		UIInternalLink link = UIInternalLink.make(tofill, "link_justification",
+                new SimpleViewParameters(JustificationStudentProducer.VIEW_ID));
 
 		if(isTeacher){
 			decorateActive(UIInternalLink.make(tofill, "link_class",
@@ -52,6 +49,8 @@ public class GatewayMenuComponent {
 			link.viewparams = 
 					new SimpleViewParameters(JustificationsProducer.VIEW_ID);
         }
+		
+		decorateActive(link);
     }
 
 	private UIInternalLink decorateActive(UIInternalLink link){

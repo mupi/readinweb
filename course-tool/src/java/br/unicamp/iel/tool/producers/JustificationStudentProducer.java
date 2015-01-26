@@ -35,11 +35,11 @@ import br.unicamp.iel.model.types.JustificationStateTypes;
  * @author Virgilio Santos
  *
  */
-public class JustificationProducer implements ViewComponentProducer {
+public class JustificationStudentProducer implements ViewComponentProducer {
 
-	public static final String VIEW_ID = "minhas-justificativas";
+	public static final String VIEW_ID = "justificativa-mine";
 
-	private static Log logger = LogFactory.getLog(JustificationProducer.class);
+	private static Log logger = LogFactory.getLog(JustificationStudentProducer.class);
 
 	@Setter
 	private ReadInWebCourseLogic logic;
@@ -60,73 +60,6 @@ public class JustificationProducer implements ViewComponentProducer {
 
 		User user = logic.getUser();
 
-		/*UIBranchContainer userAlert =
-                UIBranchContainer.make(tofill, "user_alert_message:");
-        UIOutput.make(userAlert, "user", user.getDisplayName());
-
-        List<Justification> justifications = logic.getUserJustifications();
-        if(logic.isUserBlocked()) {
-            userAlert.decorate(new UIStyleDecorator("alert alert-danger"));
-            String message =
-                    "o seu acesso está bloqueado pois você não completou pelo menos"
-                    + " cinco atividades no tempo correto. Para liberar"
-                    + " o curso novamente você precisa enviar uma justificativa"
-                    + " pelo atraso que será avaliada pela equipe docente.";
-            UIOutput.make(userAlert, "message", message);
-
-            if(!justifications.isEmpty()){ // Not empty?
-                Justification j = justifications.get(0); // Get first
-                if(logic.isActiveJustification(j)){ // Test if is active
-                    justifications.remove(0); // if it is, remove it from list
-
-                    UIBranchContainer addMessage =
-                            UIBranchContainer.make(tofill, "add_message:");
-                    UIOutput.make(addMessage, "current_justification",
-                            j.getExplanation());
-                    List<JustificationMessage> messages =
-                            logic.getJustificationMessages(j);
-                    for(JustificationMessage jm : messages){
-                    	UIBranchContainer msgsContainer = 
-                    			UIBranchContainer.make(addMessage, 
-                    					"current_justification_message:");
-                        UIOutput.make(msgsContainer, 
-                        		"current_justification_sender", 
-                        		user.getId().equals(jm.getUser()) ? 
-                        				user.getFirstName() : "  :");
-                        UIOutput.make(msgsContainer, 
-                        		"current_justification_body", jm.getMessage());
-                        UIOutput.make(msgsContainer, 
-                        		"current_justification_date", 
-                        		jm.getDateSent().toString());
-                    }
-
-                    UIBranchContainer messageContainer = UIBranchContainer
-                            .make(addMessage, "send_message_item:");
-                    UIForm messageForm =
-                            UIForm.make(messageContainer, "message_form");
-
-                    messageForm.parameters.add(
-                            new UIELBinding("#{JustificationBean.justificationId}",
-                                    j.getId()));
-
-                    UIOutput.make(messageForm, "message_user", user.getFirstName());
-
-                    UIInput.make(messageForm, "message",
-                            "#{JustificationBean.message}");
-
-                    UICommand.make(messageForm, "send_message",
-                            "#{JustificationBean.sendMessage}");
-                } else { // if not, print the form
-                    buildJustificationForm(tofill);
-                }
-            } else {
-                buildJustificationForm(tofill);
-            }
-        } else {
-            String message = "Sem atrasos ou justificativas pendentes!";
-            userAlert.decorate(new UIStyleDecorator("alert alert-success"));
-            UIOutput.make(userAlert, "message", message);
-        }*/
 		List<Justification> justifications = logic.getUserJustifications();
 		Justification firstJustification = null;
 		boolean isActiveJustification = false;
