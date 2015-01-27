@@ -1,11 +1,11 @@
 package br.unicamp.iel.tool;
 
-import org.sakaiproject.site.api.Site;
-
 import lombok.Data;
 import lombok.Setter;
+
+import org.sakaiproject.site.api.Site;
+
 import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
-import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Property;
 import br.unicamp.iel.tool.commons.ManagerComponents;
 

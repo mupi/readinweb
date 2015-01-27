@@ -3,154 +3,120 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Projeto Read in Web - Estrat&eacute;gias</title>
-
-<link href='http://fonts.googleapis.com/css?family=Rufina:400,700'
-	rel='stylesheet' type='text/css' />
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
-	rel='stylesheet' type='text/css' />
-
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet'
+   type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'
+   type='text/css' />
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"
-	href="../assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
 <!-- End Bootstrap -->
 <link rel="stylesheet" type="text/css"
-	href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-
+   href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/justificativa.css" />
 </head>
-
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Menu principal</span> <span class="icon-bar"></span>
-				<span class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#"> <img src="../imagens/logo.png"
-				alt="Curso Read in Web" />
-			</a>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul id="lista_menu_principal" class="nav navbar-nav">
-				<li><a href="#" rsf:id="link_home" title="Voltar ao sumário">Sumário</a>
-				</li>
-
-				<li class="active"><a href="#" rsf:id="link_justification"
-					title="Ver histórico de justificativas">Justificativas</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://www.unicamp.br/" target="_blank"
-					class="logo_unicamp"> <img src="../imagens/logounicamp.png"
-						alt="Universidade Estadual de Campinas" />
-				</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="container">
-		<div rsf:id="justification_container:" class="row">
-			<div class="panel panel-default col-xs-10 col-xs-offset-1">
-				<div role="alert">
-					<p rsf:id="user_alert_message:">
-						Olá <span rsf:id="user">fulano</span> , <span rsf:id="message">
-							o seu acesso está bloqueado pois você não completou as últimas
-							duas atividades no tempo correto. Para liberar o curso novamente
-							você precisa enviar uma justificativa pelo atraso que será
-							avaliada pela equipe docente. </span>
-					</p>
-				</div>
-				<div rsf:id="justification_form_container:">
-					<h3>Justificativa</h3>
-					<p>Escreva abaixo a sua justificativa pelo atraso. Se a
-						justificativa for aceita o acesso ao curso será liberado, caso
-						contrátio a resposta da equipe docente será exibida nesta página.</p>
-					<form rsf:id="justification_form">
-						<div class="form-group">
-							<textarea rsf:id="explanation" class="form-control" rows="3"></textarea>
-						</div>
-						<div class="form-group submit-justificativa">
-							<button type="submit" rsf:id="send_justification"
-								class="btn btn-success">Enviar justificativa</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="row" rsf:id="add_message:">
-			<div class="panel panel-default col-xs-10 col-xs-offset-1">
-				<h3>Justificativa aguardando avaliação:</h3>
-				<div>
-					<div class="clearfix">
-						<p rsf:id="current_justification" class="alert alert-info">Professor,
-							tive um problema pessoal</p>
-						<table class="table table-striped">
-							<tr rsf:id="current_justification_message:">
-								<td><span rsf:id="current_justification_sender">Professor
-								</span>: <span rsf:id="current_justification_body">Ah, meu
-										filho, que eu posso fazer?</span> <span class="sent-date"
-									rsf:id="current_justification_date">26/10/2014</span></td>
-							</tr>
-							<tr>
-								<td><span rsf:id="send_message_item:">
-										<form class="form-inline" rsf:id="message_form">
-											<div class="form-group">
-												<div class="input-group">
-													<div class="input-group-addon">
-														<span rsf:id="message_user"></span>
-													</div>
-													<textarea class="form-control" rows="1"
-														placeholder="Envie uma mensagem" rsf:id="message"></textarea>
-													<div class="input-group-btn">
-														<button type="submit" rsf:id="send_message"
-															class="btn btn-success">Enviar</button>
-													</div>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="input-group"></div>
-											</div>
-										</form>
-								</span></td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="panel panel-default col-xs-10 col-xs-offset-1">
-				<h3>Histórico de justificativas e respostas</h3>
-				<div id="historico-justificativas" class="clearfix">
-					<div rsf:id="old_justifications:" class="jumbotron clearfix">
-						<ul class="list-inline">
-							<li>Enviada em <span rsf:id="old_sent_date">26/08/2014</span>
-							</li>
-							<li>Avaliada em <span rsf:id="old_evaluated_date">29/08/2014</span>
-							</li>
-						</ul>
-						<p rsf:id="old_explanation" class="alert alert-danger"
-							style="font-size: 14px;">Professor, tive um problema pessoal</p>
-						<ul class="list-unstyled col-sm-8">
-							<li class="alert alert-warning"
-								rsf:id="old_justification_message:">Ah, meu filho, que eu
-								posso fazer?</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
-	<script type="text/javascript"
-		src="../assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/library/js/headscripts.js"></script>
-	<script type="text/javascript" src="../js/rsf.js"></script>
-
+   <nav class="navbar navbar-default" role="navigation">
+   <div rsf:id="gateway_menu_replace:" class="container"></div>
+   </nav>
+   <div class="container">
+      <div rsf:id="justification_container:" class="row">
+         <div class="panel panel-default col-xs-10 col-xs-offset-1">
+            <div role="alert">
+               <p rsf:id="user_alert_message:">
+                  Olá <span rsf:id="user">fulano</span> , <span rsf:id="message"> o seu
+                     acesso está bloqueado pois você não completou as últimas duas atividades
+                     no tempo correto. Para liberar o curso novamente você precisa enviar uma
+                     justificativa pelo atraso que será avaliada pela equipe docente. </span>
+               </p>
+            </div>
+            <div rsf:id="justification_form_container:">
+               <h3>Justificativa</h3>
+               <p>Escreva abaixo a sua justificativa pelo atraso. Se a justificativa for
+                  aceita o acesso ao curso será liberado, caso contrátio a resposta da equipe
+                  docente será exibida nesta página.</p>
+               <form rsf:id="justification_form">
+                  <div class="form-group">
+                     <textarea rsf:id="explanation" class="form-control" rows="3"></textarea>
+                  </div>
+                  <div class="form-group submit-justificativa">
+                     <button type="submit" rsf:id="send_justification" class="btn btn-success">Enviar
+                        justificativa</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <div class="row" rsf:id="add_message:">
+         <div class="panel panel-default col-xs-10 col-xs-offset-1">
+            <h3>Justificativa aguardando avaliação:</h3>
+            <div>
+               <div class="clearfix">
+                  <p rsf:id="current_justification" class="alert alert-info">Professor,
+                     tive um problema pessoal</p>
+                  <table class="table table-striped">
+                     <tr rsf:id="current_justification_message:">
+                        <td><span rsf:id="current_justification_sender">Professor </span>:
+                           <span rsf:id="current_justification_body">Ah, meu filho, que
+                              eu posso fazer?</span> <span class="sent-date"
+                           rsf:id="current_justification_date">26/10/2014</span></td>
+                     </tr>
+                     <tr>
+                        <td><span rsf:id="send_message_item:">
+                              <form class="form-inline" rsf:id="message_form">
+                                 <div class="form-group">
+                                    <div class="input-group">
+                                       <div class="input-group-addon">
+                                          <span rsf:id="message_user"></span>
+                                       </div>
+                                       <textarea class="form-control" rows="1"
+                                          placeholder="Envie uma mensagem" rsf:id="message"></textarea>
+                                       <div class="input-group-btn">
+                                          <button type="submit" rsf:id="send_message"
+                                             class="btn btn-success">Enviar</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="input-group"></div>
+                                 </div>
+                              </form>
+                        </span></td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="panel panel-default col-xs-10 col-xs-offset-1">
+            <h3>Histórico de justificativas e respostas</h3>
+            <div id="historico-justificativas" class="clearfix">
+               <div rsf:id="old_justifications:" class="jumbotron clearfix">
+                  <ul class="list-inline">
+                     <li>Enviada em <span rsf:id="old_sent_date">26/08/2014</span>
+                     </li>
+                     <li>Avaliada em <span rsf:id="old_evaluated_date">29/08/2014</span>
+                     </li>
+                  </ul>
+                  <p rsf:id="old_explanation" class="alert alert-info"
+                     style="font-size: 14px;">Professor, tive um problema pessoal</p>
+                  <table class="table">
+                     <tr rsf:id="old_justification_message:">
+                        <td><span rsf:id="old_justification_sender">Professor </span>:
+                           <span rsf:id="old_justification_body:">Ah, meu filho, que
+                              eu posso fazer?</span> <span class="sent-date"
+                           rsf:id="old_justification_date">26/10/2014</span></td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+   <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="/library/js/headscripts.js"></script>
+   <script type="text/javascript" src="../js/rsf.js"></script>
 </body>
 </html>

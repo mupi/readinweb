@@ -15,7 +15,6 @@ import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Justification;
@@ -61,12 +60,14 @@ public class JustificationsProducer implements ViewComponentProducer {
 
         // Get all Justifications from this siteId
         List<Justification> justifications = logic.getClassJustifications();
+        
         for(Justification j : justifications){
             User student = logic.getSudent(j.getUser());
             UIBranchContainer just =
                     UIBranchContainer.make(tofill, "justificativa:");
             UIBranchContainer oldJust =
                     UIBranchContainer.make(tofill, "old_justificativa:");
+            
             if(JustificationStateTypes.toShow(j.getState())){
                 UIOutput.make(just, "username", student.getDisplayName());
                 UIOutput.make(just, "date_sent", j.getSentDate().toString());

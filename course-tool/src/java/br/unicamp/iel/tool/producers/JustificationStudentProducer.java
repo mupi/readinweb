@@ -28,6 +28,7 @@ import br.unicamp.iel.logic.ReadInWebCourseLogic;
 import br.unicamp.iel.model.Justification;
 import br.unicamp.iel.model.JustificationMessage;
 import br.unicamp.iel.model.types.JustificationStateTypes;
+import br.unicamp.iel.tool.components.GatewayMenuComponent;
 
 /**
  *
@@ -54,9 +55,10 @@ public class JustificationStudentProducer implements ViewComponentProducer {
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
 
-		UIInternalLink.make(tofill, "link_home",
-				new SimpleViewParameters(SummaryProducer.VIEW_ID));
-		UIInternalLink.make(tofill, "link_justification", viewparams);
+		boolean isTeacher = logic.isUserTeacher();
+        GatewayMenuComponent menu = new GatewayMenuComponent(viewparams, 
+        		isTeacher);
+        menu.make(UIBranchContainer.make(tofill, "gateway_menu_replace:"));
 
 		User user = logic.getUser();
 
@@ -108,7 +110,12 @@ public class JustificationStudentProducer implements ViewComponentProducer {
 				UIOutput.make(msgsContainer, 
 						"current_justification_sender", 
 						user.getId().equals(jm.getUser()) ? 
-								user.getFirstName() : "  :");
+								user.getFirstName() : "Professor");
+				
+				if(!user.getId().equals(jm.getUser())){
+					msgsContainer.decorate(new UIStyleDecorator("alert-warning"));
+				}
+				
 				UIOutput.make(msgsContainer, 
 						"current_justification_body", jm.getMessage());
 				UIOutput.make(msgsContainer, 
@@ -137,6 +144,10 @@ public class JustificationStudentProducer implements ViewComponentProducer {
 		for(Justification j : justifications){
 			UIBranchContainer old_justifications =
 					UIBranchContainer.make(tofill, "old_justifications:");
+			if(j.getState() >= 4){
+				old_justifications.decorate(new UIStyleDecorator("alert-danger"));
+			}
+			
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 			UIOutput.make(old_justifications, "old_sent_date",
 					df.format(j.getSentDate()));
@@ -150,8 +161,23 @@ public class JustificationStudentProducer implements ViewComponentProducer {
 			List<JustificationMessage> messages =
 					logic.getJustificationMessages(j);
 			for(JustificationMessage jm : messages){
-				UIOutput.make(old_justifications, "old_justification_message:",
-						jm.getMessage());
+				UIBranchContainer msgsContainer = 
+						UIBranchContainer.make(old_justifications, 
+								"old_justification_message:");
+				UIOutput.make(msgsContainer, 
+						"old_justification_sender", 
+						user.getId().equals(jm.getUser()) ? 
+								user.getFirstName() : "Professor");
+				
+				if(!user.getId().equals(jm.getUser())){
+					msgsContainer.decorate(new UIStyleDecorator("alert-warning"));
+				}
+				
+				UIOutput.make(msgsContainer, 
+						"old_justification_body", jm.getMessage());
+				UIOutput.make(msgsContainer, 
+						"old_justification_date", 
+						jm.getDateSent().toString());
 			}
 		}
 

@@ -148,6 +148,8 @@ public interface ReadInWebCourseLogic {
     public boolean isActiveJustification(Justification justification);
 
     public List<Justification> getUserJustifications();
+    
+    public List<Justification> getUserJustifications(String user);
 
     public List<JustificationMessage> getJustificationMessages(
             Justification justification);

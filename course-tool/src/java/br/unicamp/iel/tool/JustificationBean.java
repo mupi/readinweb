@@ -88,7 +88,7 @@ public class JustificationBean {
         Justification justification = logic.getJustification(justificationId);
 
         Byte state = justification.getState();
-        state = JustificationStateTypes.markEvaluated(state);
+        state = JustificationStateTypes.markEvaluated(state, approved);
         state = JustificationStateTypes.markAsRead(state);
 
         Date evalDate = new Date();

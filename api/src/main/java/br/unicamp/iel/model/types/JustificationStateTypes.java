@@ -4,7 +4,8 @@ import lombok.Getter;
 
 public enum JustificationStateTypes {
     UNREAD_MESSAGES(new Byte((byte)1)),
-    EVALUATED(new Byte((byte)2));
+    EVALUATED(new Byte((byte)2)),
+    NOTACCEPTED(new Byte((byte)(4)));
 
     @Getter
     private Byte value;
@@ -13,12 +14,20 @@ public enum JustificationStateTypes {
     }
 
     public static boolean toShow(Byte sum){
-        return sum != 2;
+        return sum != 2 && sum != 4;
+    }
+    
+    public static boolean isOld(Byte sum) {
+    	return sum >= 2;
     }
 
-    public static Byte markEvaluated(Byte sum){
+    public static Byte markEvaluated(Byte sum, boolean accepted){
+    	Byte state = new Byte((byte)0);
         if(sum.byteValue() < 2){
-            return new Byte((byte)(sum + EVALUATED.getValue()));
+            sum = new Byte((byte)(sum + EVALUATED.getValue()));
+        }
+        if(!accepted && sum.byteValue() < 4){
+        	sum = new Byte((byte)(state + NOTACCEPTED.getValue()));
         }
         return sum;
     }

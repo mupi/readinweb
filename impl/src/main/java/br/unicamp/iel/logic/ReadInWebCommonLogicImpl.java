@@ -516,8 +516,10 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 
     @Override
     public List<Justification> getSiteJustifications(Site currentSite) {
-        return dao.findBySearch(Justification.class,
-                new Search("site", currentSite.getId()));
+    	Search s = new Search();
+    	s.addOrder(new Order("evaluatedDate", false));
+    	s.addRestriction(new Restriction("site", currentSite.getId()));
+        return dao.findBySearch(Justification.class, s);
     }
 
     @Override
