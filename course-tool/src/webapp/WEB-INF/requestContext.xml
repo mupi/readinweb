@@ -14,6 +14,11 @@
 		<property name="destroyer" ref="resultsScope" />
 	</bean>
 
+	<bean id="ManageClassBean" class="br.unicamp.iel.tool.ManageClassBean">
+		<property name="logic"
+			ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+	</bean>
+
 	<bean id="JustificationBean" class="br.unicamp.iel.tool.JustificationBean">
 		<property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
 	</bean>
@@ -56,10 +61,10 @@
 		<property name="classLogic"
 			ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
 	</bean>
-	
+
 	<bean class="br.unicamp.iel.tool.producers.StudentProducer">
-        <property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
-        <property name="classLogic"
-            ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
-    </bean>
+		<property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
+		<property name="classLogic"
+			ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
+	</bean>
 </beans>

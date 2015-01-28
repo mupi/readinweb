@@ -3,58 +3,59 @@
   "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-  <bean parent="requestAddressibleParent">
-    <property name="value" value="JustificationBean, RegisterAccessAjaxBean, AnswerAjaxBean" />
-  </bean>
+	<bean parent="requestAddressibleParent">
+		<property name="value"
+			value="JustificationBean, ManageClassBean, RegisterAccessAjaxBean, AnswerAjaxBean" />
+	</bean>
 
-  <bean id="resultsScope" parent="beanScopeParent">
-    <property name="copyPreservingBeans" value="JustificationBean, RegisterAccessAjaxBean, AnswerAjaxBean" />
-    <property name="exclusive" value="true" />
-  </bean>
+	<bean id="resultsScope" parent="beanScopeParent">
+		<property name="copyPreservingBeans"
+			value="JustificationBean, ManageClassBean, RegisterAccessAjaxBean, AnswerAjaxBean" />
+		<property name="exclusive" value="true" />
+	</bean>
 
 
-  <!-- handles configuration of internationalization messages -->
-  <bean id="messageLocator" class="uk.org.ponder.springutil.SpringMessageLocator">
-    <property name="messageSource">
-      <bean
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename">
-          <value>WEB-INF/bundle/messages</value>
-        </property>
-        <property name="cacheSeconds">
-          <value>10</value>
-        </property>
-      </bean>
-    </property>
-    <property name="localeGetter" ref="requestLocaleProxy" />
-  </bean>
+	<!-- handles configuration of internationalization messages -->
+	<bean id="messageLocator" class="uk.org.ponder.springutil.SpringMessageLocator">
+		<property name="messageSource">
+			<bean
+				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+				<property name="basename">
+					<value>WEB-INF/bundle/messages</value>
+				</property>
+				<property name="cacheSeconds">
+					<value>10</value>
+				</property>
+			</bean>
+		</property>
+		<property name="localeGetter" ref="requestLocaleProxy" />
+	</bean>
 
-  <!-- Control the location of the html templates (default: content/templates/) -->
-  <bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">
-    <property name="baseDirectory" value="content/templates/" />
-  </bean>
+	<!-- Control the location of the html templates (default: content/templates/) -->
+	<bean id="templateResolverStrategy" parent="CRITemplateResolverStrategy">
+		<property name="baseDirectory" value="content/templates/" />
+	</bean>
 
-  <!-- Override the default style of user messages -->
-  <bean id="messageTemplateContributor" parent="templateContributorParent">
-    <property name="baseDirectory" value="component-templates/" />
-    <property name="templateNames" value="Messages" />
-  </bean>
-  
-  <bean parent="templateContributorParent">
-    <property name="templateResourceBase" ref="componentsTemplateResourceBase"/>
-    <property name="templateNames"
-      value="gateway-menu" />
-  </bean>
+	<!-- Override the default style of user messages -->
+	<bean id="messageTemplateContributor" parent="templateContributorParent">
+		<property name="baseDirectory" value="component-templates/" />
+		<property name="templateNames" value="Messages" />
+	</bean>
 
-  <bean id="componentsTemplateResourceBase" class="java.lang.String">
-    <constructor-arg value="/" />
-  </bean>
+	<bean parent="templateContributorParent">
+		<property name="templateResourceBase" ref="componentsTemplateResourceBase" />
+		<property name="templateNames" value="gateway-menu" />
+	</bean>
 
-  <bean parent="requestAddressibleParent">
-    <property name="value">
-      <value>
-        JustificationBean, RegisterAccessAjaxBean, AnswerAjaxBean
-      </value>
-    </property>
-  </bean>
+	<bean id="componentsTemplateResourceBase" class="java.lang.String">
+		<constructor-arg value="/" />
+	</bean>
+
+<!-- 	<bean parent="requestAddressibleParent"> -->
+<!-- 		<property name="value"> -->
+<!-- 			<value> -->
+<!-- 				JustificationBean, RegisterAccessAjaxBean, AnswerAjaxBean -->
+<!-- 			</value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 </beans>

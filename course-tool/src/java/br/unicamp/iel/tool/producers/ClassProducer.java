@@ -166,7 +166,6 @@ public class ClassProducer implements ViewComponentProducer,
                                 a.getId()) ? "Sim" : "Não");
             }
         }
-
     }
 
     @Override
