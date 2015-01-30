@@ -86,7 +86,6 @@
     <module>impl</module>
     <module>admin-tool</module>
     <module>course-tool</module>
-    <module>course-manage-tool</module>
     <module>jobs</module>
     <module>pack</module>
   </modules>
