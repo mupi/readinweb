@@ -38,6 +38,8 @@
 
 	<bean class="br.unicamp.iel.tool.producers.JustificationManagerProducer">
 		<property name="logic" ref="br.unicamp.iel.logic.ReadInWebCourseLogic" />
+		<property name="classLogic"
+            ref="br.unicamp.iel.logic.ReadInWebClassManagementLogic" />
 	</bean>
 
 	<bean class="br.unicamp.iel.tool.producers.TextProducer">

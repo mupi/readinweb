@@ -130,42 +130,6 @@ public class ClassProducer implements ViewComponentProducer,
             		Long.toString(classLogic.countActivities(u, riwClass)));
 
         }
-
-        /**
-            "riw_data:"
-                "riw_module:"
-                    "riw_module_position"
-                    "riw_activities:"
-                        "activity_title"
-                        "activity_published"
-                        "publish_activity"
-                            "switch_publish"
-         */
-
-        List<Module> modules = logic.getModules(course);
-        UIBranchContainer riwData = UIBranchContainer.make(tofill, 
-        		"riw_data:");
-        for(Module m : modules){
-            UIBranchContainer riwModule =
-                    UIBranchContainer.make(riwData, "riw_module:");
-
-            UIOutput.make(riwModule, "riw_module_position",
-                    Integer.toString(m.getPosition()));
-
-
-            List<Activity> activities = logic.getActivities(m);
-            for(Activity a : activities){
-
-                UIBranchContainer riwActivity =
-                        UIBranchContainer.make(riwModule, "riw_activity:");
-
-                UIOutput.make(riwActivity, "activity_title", a.getTitle());
-
-                UIOutput.make(riwActivity, "activity_published",
-                        classLogic.isActivityPublished(riwClass, m.getId(),
-                                a.getId()) ? "Sim" : "Não");
-            }
-        }
     }
 
     @Override

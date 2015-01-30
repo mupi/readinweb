@@ -29,14 +29,18 @@
                <div class="alert alert-info">
                   <div>
                      <span rsf:id="username">Fulaninho</span> escreveu:
+                     <button type="button" class="btn btn-info" aria-label="Left Align"
+                        data-toggle="modal" data-target="#infoAluno">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                     </button>
                      <form rsf:id="current_evaluate_form" class="form-inline pull-right">
                         <button rsf:id="current_refuse"
                            onclick="confirm('Tem certeza que deseja recusar a justificativa?')"
                            type="submit" class="btn btn-danger">
-                           <i class="fa fa-thumbs-o-down"></i> Recusar justificativa
+                           <i class="fa fa-thumbs-o-down"></i> Recusar
                         </button>
                         <button rsf:id="current_accept" type="submit" class="btn btn-success">
-                           <i class="fa fa-thumbs-o-up"></i> Aceitar justificativa
+                           <i class="fa fa-thumbs-o-up"></i> Aceitar
                         </button>
                      </form>
                   </div>
@@ -89,7 +93,7 @@
                            </form>
                      </span></td>
                   </tr>
-               </table>               
+               </table>
             </div>
          </div>
       </div>
@@ -109,16 +113,57 @@
                      tive um problema pessoal</p>
                   <table class="table">
                      <tr rsf:id="old_justification_message:">
-                        <td><span rsf:id="old_justification_sender">Professor </span>:
-                           <span rsf:id="old_justification_body:">Ah, meu filho, que
-                              eu posso fazer?</span> <span class="sent-date"
-                           rsf:id="old_justification_date">26/10/2014</span></td>
+                        <td><span rsf:id="old_justification_sender">Professor </span>: <span
+                           rsf:id="old_justification_body:">Ah, meu filho, que eu posso
+                              fazer?</span> <span class="sent-date" rsf:id="old_justification_date">26/10/2014</span></td>
                      </tr>
                   </table>
                </div>
             </div>
          </div>
       </div>
+   </div>
+   <div id="infoAluno" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span> <span class="sr-only">Fechar</span>
+               </button>
+               <h3 class="modal-title">Informações sobre o Aluno</h3>
+            </div>
+            <div class="modal-body">
+               <div>
+                  <p>
+                     O aluno completou <span rsf:id="activities_completed">x</span> ativades de
+                     <span rsf:id="activities_published">y</span> atividades liberadas
+                  </p>
+                  <hr />
+                  <p>Lista de acessos (o primeiro, último e quantidade total) por
+                     atividade, ordenado pelo seu último acesso:</p>
+                  <table class="table table-striped table-condensed">
+                     <tr>
+                        <th>Primeiro</th>
+                        <th>Último</th>
+                        <th>Atividade</th>
+                        <th>Total</th>
+                     </tr>
+                     <tr rsf:id="activity_access_detail:">
+                        <td rsf:id="activity_first_access">24/11/2014 23:56</td>
+                        <td rsf:id="activity_last_access">25/11/2014 00:17</td>
+                        <td rsf:id="activity_title">17- The Taj Mahal</td>
+                        <td rsf:id="activity_total_accesses">8</td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+         </div>
+         <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
    </div>
    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
    <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
