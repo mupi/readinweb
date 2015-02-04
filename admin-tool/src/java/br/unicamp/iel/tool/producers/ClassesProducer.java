@@ -1,7 +1,6 @@
 package br.unicamp.iel.tool.producers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.Setter;
 
@@ -18,18 +17,14 @@ import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
-import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
 import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
-import uk.org.ponder.rsf.viewstate.SimpleViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
-import br.unicamp.iel.model.Property;
-import br.unicamp.iel.tool.commons.ManagerComponents;
+import br.unicamp.iel.tool.commons.ClassMenuComponent;
 import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
-import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
 
 /**
  *
@@ -38,92 +33,95 @@ import br.unicamp.iel.tool.viewparameters.ClassesViewParameters;
  */
 
 public class ClassesProducer implements ViewComponentProducer,
-ViewParamsReporter, DefaultView {
+		ViewParamsReporter, DefaultView {
 
-    private static Log logger = LogFactory.getLog(ClassesProducer.class);
+	private static Log logger = LogFactory.getLog(ClassesProducer.class);
 
-    @Setter
-    private ReadInWebClassManagementLogic logic;
+	@Setter
+	private ReadInWebClassManagementLogic logic;
 
-    @Setter
-    private UserDirectoryService userDirectoryService;
+	@Setter
+	private UserDirectoryService userDirectoryService;
 
-    @Setter
-    private SiteService siteService;
+	@Setter
+	private SiteService siteService;
 
-    @Setter
-    private ToolManager toolManager;
+	@Setter
+	private ToolManager toolManager;
 
-    @Setter
-    private SessionManager sessionManager;
+	@Setter
+	private SessionManager sessionManager;
 
-    public static final String VIEW_ID = "turmas";
+	public static final String VIEW_ID = "turmas";
 
-    @Override
-    public String getViewID() {
-        return VIEW_ID;
-    }
+	@Override
+	public String getViewID() {
+		return VIEW_ID;
+	}
 
-    @Override
-    public void fillComponents(UIContainer tofill, ViewParameters viewparams,
-            ComponentChecker checker) {
-        Long course = logic.getManagerCourseId();
-        ManagerComponents.loadMenu(viewparams, tofill);
+	@Override
+	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
+			ComponentChecker checker) {
 
-        SimpleViewParameters createClass = new SimpleViewParameters(CreateClassProducer.VIEW_ID);
-        UIInternalLink.make(tofill, "link_create_class", createClass);
+		ClassViewParameters cvp = (ClassViewParameters) viewparams;
+		if (cvp.course == null) {
+			return;
+		}
 
-        ArrayList<Site> riwClasses =
-                new ArrayList<Site>(logic.getReadInWebClasses(course));
+		ClassMenuComponent menu = new ClassMenuComponent(cvp);
+		menu.make(UIBranchContainer.make(tofill, "class_menu_replace:"));
 
-        UIBranchContainer riwClassesContainer = UIBranchContainer.make(tofill,
-                "riw_classes:");
+		ArrayList<Site> riwClasses = new ArrayList<Site>(
+				logic.getReadInWebClasses(cvp.course));
 
-        ClassViewParameters riwClassParams = new ClassViewParameters();
+		UIBranchContainer riwClassesContainer = UIBranchContainer.make(tofill,
+				"riw_classes:");
 
-        for(Site s : riwClasses) {
-            riwClassParams.siteId = s.getId();
-            riwClassParams.viewID = ClassProducer.VIEW_ID;
-            ArrayList<User> users =
-                    new ArrayList<User>(logic.getUsers(s.getId()));
+		ClassViewParameters riwClassParams = new ClassViewParameters();
 
-            UIBranchContainer riwClass =
-                    UIBranchContainer.make(riwClassesContainer, "riw_class:");
+		for (Site s : riwClasses) {
+			riwClassParams.siteId = s.getId();
+			riwClassParams.viewID = ClassProducer.VIEW_ID;
+			riwClassParams.course = cvp.course;
+			ArrayList<User> users = new ArrayList<User>(logic.getUsers(s
+					.getId()));
 
-            if(!logic.isReadInWebClassActive(s)){
-                riwClass.decorate(new UIStyleDecorator("danger"));
-            }
+			UIBranchContainer riwClass = UIBranchContainer.make(
+					riwClassesContainer, "riw_class:");
 
-            UIInternalLink.make(riwClass, "riw_class_title", s.getTitle(),
-                    riwClassParams); // FIXME
-            UIInternalLink.make(riwClass, "riw_class_students",
-                    Integer.toString(users.size()),
-                    riwClassParams); // FIXME
+			if (!logic.isReadInWebClassActive(s)) {
+				riwClass.decorate(new UIStyleDecorator("danger"));
+			}
 
-            riwClassParams.viewID = VIEW_ID;
-            UIInternalLink.make(riwClass, "riw_class_justifications",
-                    "Show justification count for " + s.getId(),
-                    // logic.countJustifications(s.getId()), //FIXME
-                    riwClassParams); // FIXME
+			UIInternalLink.make(riwClass, "riw_class_title", s.getTitle(),
+					riwClassParams); // FIXME
+			UIInternalLink.make(riwClass, "riw_class_students",
+					Integer.toString(users.size()), riwClassParams); // FIXME
 
-            try {
-                User teacher = logic.getTeacher((new ArrayList<String>(
-                        s.getUsersHasRole("Instructor"))).get(0));
+			riwClassParams.viewID = VIEW_ID;
+			UIInternalLink.make(riwClass, "riw_class_justifications",
+					"Show justification count for " + s.getId(),
+					// logic.countJustifications(s.getId()), //FIXME
+					riwClassParams); // FIXME
 
-                if(teacher != null){
-                    UIInternalLink.make(riwClass, "riw_class_teacher",
-                            teacher.getDisplayName(), viewparams);
-                }
-            } catch (IndexOutOfBoundsException e){
-                UIInternalLink.make(riwClass, "riw_class_teacher",
-                        "-", viewparams);
+			try {
+				User teacher = logic.getTeacher((new ArrayList<String>(s
+						.getUsersHasRole("Instructor"))).get(0));
 
-            }
-        }
-    }
+				if (teacher != null) {
+					UIInternalLink.make(riwClass, "riw_class_teacher",
+							teacher.getDisplayName(), viewparams);
+				}
+			} catch (IndexOutOfBoundsException e) {
+				UIInternalLink.make(riwClass, "riw_class_teacher", "-",
+						viewparams);
 
-    @Override
-    public ViewParameters getViewParameters() {
-        return new ClassesViewParameters();
-    }
+			}
+		}
+	}
+
+	@Override
+	public ViewParameters getViewParameters() {
+		return new ClassViewParameters(getViewID());
+	}
 }

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Projeto Read in Web - Gram&aacute;tica</title>
+<link href='http://fonts.googleapis.com/css?family=Rufina:400,700' rel='stylesheet'
+   type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'
+   type='text/css' />
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+<!-- End Bootstrap -->
+<link rel="stylesheet" type="text/css"
+   href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+</head>
+<body>
+   <!-- Wrap utilizado pro sticky footer -->
+   <div id="wrap">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div rsf:id="activity_menu_replace:" class="container"></div>
+      </nav>
+      <div class="container">
+         <div class="row first-row">
+            <ol class="breadcrumb">
+               <li>Palavras Função</li>
+            </ol>
+            <div id="function">
+               <div id="add_functional_well" class="well col-sm-6 col-sm-offset-3">
+                  <h4>Nova palavra função</h4>
+                  <form rsf:id="add_functional_form" class="form-horizontal" role="form">
+                     <input type="hidden" id="add_functional_course"
+                        rsf:id="add_functional_course" />
+                     <div class="form-group col-sm-5">
+                        <input type="text" class="form-control" rsf:id="add_functional_word"
+                           id="add_functional_word" placeholder="palavra" />
+                     </div>
+                     <div class="form-group col-sm-5">
+                        <input class="form-control" rsf:id="add_functional_meaning"
+                           id="add_functional_meaning" placeholder="significado" />
+                     </div>
+                     <div class="form-group col-sm-2">
+                        <button rsf:id="add_functional_send" id="add_functional_send"
+                           class="btn btn-success">Salvar</button>
+                     </div>
+                  </form>
+               </div>
+               <div class="table-responsive">
+                  <table class="table table-condensed table-hover">
+                     <tr id="functional_table_header">
+                        <th>id</th>
+                        <th>palavra</th>
+                        <th>significado</th>
+                        <th></th>
+                     </tr>
+                     <tr rsf:id="functional:" id="functional_row">
+                        <td rsf:id="functional_id"></td>
+                        <td rsf:id="functional_word"></td>
+                        <td rsf:id="functional_meaning"></td>
+                        <td><a data-toggle="modal" data-target="#editFunctionalModal">
+                              <span class="glyphicon glyphicon-cog"></span>
+                        </a></td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <!-- FECHA DIV FUNCTION -->
+         </div>
+         <!-- Fim da DIV MIDDLE -->
+      </div>
+      <!-- FECHA DIV CONTENT -->
+   </div>
+   <div id="editFunctionalModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span> <span class="sr-only">Fechar</span>
+               </button>
+               <h4 class="modal-title">Editar palavra função</h4>
+            </div>
+            <div class="modal-body" rsf:id="edit_functional_form_container:">
+               <form rsf:id="edit_functional_form" class="" role="form">
+                  <input type="hidden" rsf:id="edit_functional_id" id="edit_functional_id" />
+                  <div class="col-xs-4">
+                     <input class="form-control input-sm" rsf:id="edit_functional_word"
+                        id="edit_functional_word" type="text" />
+                  </div>
+                  <div class="col-xs-4">
+                     <input class="form-control input-sm" rsf:id="edit_functional_meaning"
+                        id="edit_functional_meaning" type="text" />
+                  </div>
+                  <div class="col-xs-4">
+                     <button type="submit" class="btn btn-primary"
+                        rsf:id="edit_functional_update" id="edit_functional_update">
+                        <span class="glyphicon glyphicon-edit"></span>
+                     </button>
+                     <button type="submit" class="btn btn-danger"
+                        rsf:id="edit_functional_delete" id="edit_functional_delete">
+                        <span class="glyphicon glyphicon-remove"></span>
+                     </button>
+                  </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+         </div>
+         <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+   </div>
+   <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+   <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript" src="../js/rsf.js"></script>
+   <script type="text/javascript" src="../js/readinweb-admin.js"></script>
+   <script rsf:id="update_call:" type="text/javascript"></script>
+   <script rsf:id="add_call:" type="text/javascript"></script>
+</body>
+</html>

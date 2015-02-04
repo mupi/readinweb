@@ -72,6 +72,10 @@
   <bean class="br.unicamp.iel.tool.producers.AdminGramaticaProducer">
     <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
   </bean>
+  
+  <bean class="br.unicamp.iel.tool.producers.AdminFunctionalWordsProducer">
+    <property name="logic" ref="br.unicamp.iel.logic.ReadInWebAdminLogic" />
+  </bean>
 
   <bean class="br.unicamp.iel.tool.producers.AdminCreateCourseProducer"
     id="AdminCreateCourseProducer">

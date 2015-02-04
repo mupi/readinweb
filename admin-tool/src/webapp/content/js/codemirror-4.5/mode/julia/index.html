@@ -70,31 +70,31 @@ finally
 end
 
 #types
-immutable Color{T<:Number}
-  r::T
-  g::T
-  b::T
-end
+<!-- immutable Color{T<:Number} -->
+<!--   r::T -->
+<!--   g::T -->
+<!--   b::T -->
+<!-- end -->
 
-#functions
-function change!(x::Vector{Float64})
-  for i = 1:length(x)
-    x[i] *= 2
-  end
-end
+<!-- #functions -->
+<!-- function change!(x::Vector{Float64}) -->
+<!--   for i = 1:length(x) -->
+<!--     x[i] *= 2 -->
+<!--   end -->
+<!-- end -->
 
-#function invocation
-f('b', (2, 3)...)
+<!-- #function invocation -->
+<!-- f('b', (2, 3)...) -->
 
-#operators
-|=
-&=
-^=
-\-
-%=
-*=
-+=
--=
+<!-- #operators -->
+<!-- |= -->
+<!-- &= -->
+<!-- ^= -->
+<!-- \- -->
+<!-- %= -->
+<!-- *= -->
+<!-- += -->
+<!-- -= -->
 <=
 >=
 !=
