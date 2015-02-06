@@ -1,5 +1,5 @@
 package br.unicamp.iel.model;
-// Generated Aug 31, 2014 9:27:19 PM by Hibernate Tools 3.2.2.GA
+// Generated Feb 6, 2015 10:24:22 AM by Hibernate Tools 3.2.2.GA
 
 
 import java.util.Date;
@@ -18,6 +18,7 @@ public class Activity  implements java.io.Serializable {
      private String text;
      private String prereading;
      private Integer etaRead;
+     private String audiofile;
      private Date modified;
 
     public Activity() {
@@ -27,7 +28,7 @@ public class Activity  implements java.io.Serializable {
     public Activity(Module module) {
         this.module = module;
     }
-    public Activity(Module module, Integer position, String image, String title, String text, String prereading, Integer etaRead, Date modified) {
+    public Activity(Module module, Integer position, String image, String title, String text, String prereading, Integer etaRead, String audiofile, Date modified) {
        this.module = module;
        this.position = position;
        this.image = image;
@@ -35,6 +36,7 @@ public class Activity  implements java.io.Serializable {
        this.text = text;
        this.prereading = prereading;
        this.etaRead = etaRead;
+       this.audiofile = audiofile;
        this.modified = modified;
     }
    
@@ -93,6 +95,13 @@ public class Activity  implements java.io.Serializable {
     
     public void setEtaRead(Integer etaRead) {
         this.etaRead = etaRead;
+    }
+    public String getAudiofile() {
+        return this.audiofile;
+    }
+    
+    public void setAudiofile(String audiofile) {
+        this.audiofile = audiofile;
     }
     public Date getModified() {
         return this.modified;

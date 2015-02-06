@@ -3,56 +3,57 @@
   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="br.unicamp.iel.model.Activity" table="readinweb_activities">
-    <id name="id" type="java.lang.Long">
-      <generator class="increment" />
-    </id>
-    <many-to-one name="module" class="br.unicamp.iel.model.Module"
-      foreign-key="activity_module_fk" fetch="select" >
-      <column name="module_id" not-null="true" />
-    </many-to-one>
+	<class name="br.unicamp.iel.model.Activity" table="readinweb_activities">
+		<id name="id" type="java.lang.Long">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="module" class="br.unicamp.iel.model.Module"
+			foreign-key="activity_module_fk" fetch="select">
+			<column name="module_id" not-null="true" />
+		</many-to-one>
 
-    <property name="position" type="integer" />
-    <property name="image" length="125" not-null="false" type="string" />
-    <property name="title" length="255" not-null="false" type="string" />
-    <property name="text" not-null="false" type="text" />
-    <property name="prereading" length="1024" not-null="false"
-      type="string" />
-    <property name="etaRead" not-null="false" type="integer" />
+		<property name="position" type="integer" />
+		<property name="image" length="125" not-null="false" type="string" />
+		<property name="title" length="255" not-null="false" type="string" />
+		<property name="text" not-null="false" type="text" />
+		<property name="prereading" length="1024" not-null="false"
+			type="string" />
+		<property name="etaRead" not-null="false" type="integer" />
+        <property name="audiofile" type="string" not-null="false"></property>
+		<property name="modified" type="timestamp"></property>
 
-    <property name="modified" type="timestamp"></property>
+		
 
+		<!-- <set name="strategies" table="readinweb_strategies" inverse="true" -->
+		<!-- lazy="true" fetch="select"> -->
+		<!-- <key foreign-key="strategy_activity_fk"> -->
+		<!-- <column name="activity_id" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="br.unicamp.iel.model.Strategy" /> -->
+		<!-- </set> -->
 
-    <!-- <set name="strategies" table="readinweb_strategies" inverse="true" -->
-    <!-- lazy="true" fetch="select"> -->
-    <!-- <key foreign-key="strategy_activity_fk"> -->
-    <!-- <column name="activity_id" /> -->
-    <!-- </key> -->
-    <!-- <one-to-many class="br.unicamp.iel.model.Strategy" /> -->
-    <!-- </set> -->
+		<!-- <set name="exercises" table="readinweb_exercises" inverse="true" -->
+		<!-- lazy="true" fetch="select"> -->
+		<!-- <key foreign-key="exercises_activity_fk"> -->
+		<!-- <column name="activity_id" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="br.unicamp.iel.model.Exercise" /> -->
+		<!-- </set> -->
 
-    <!-- <set name="exercises" table="readinweb_exercises" inverse="true" -->
-    <!-- lazy="true" fetch="select"> -->
-    <!-- <key foreign-key="exercises_activity_fk"> -->
-    <!-- <column name="activity_id" /> -->
-    <!-- </key> -->
-    <!-- <one-to-many class="br.unicamp.iel.model.Exercise" /> -->
-    <!-- </set> -->
+		<!-- <set name="questions" table="readinweb_questions" inverse="true" -->
+		<!-- lazy="true" fetch="select"> -->
+		<!-- <key foreign-key="questions_activity_fk"> -->
+		<!-- <column name="activity_id" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="br.unicamp.iel.model.Question" /> -->
+		<!-- </set> -->
 
-    <!-- <set name="questions" table="readinweb_questions" inverse="true" -->
-    <!-- lazy="true" fetch="select"> -->
-    <!-- <key foreign-key="questions_activity_fk"> -->
-    <!-- <column name="activity_id" /> -->
-    <!-- </key> -->
-    <!-- <one-to-many class="br.unicamp.iel.model.Question" /> -->
-    <!-- </set> -->
-
-    <!-- <set name="dictionary" table="readinweb_dictionarywords" inverse="true" -->
-    <!-- lazy="true" fetch="select"> -->
-    <!-- <key foreign-key="dictionary_activity_fk"> -->
-    <!-- <column name="activity_id" /> -->
-    <!-- </key> -->
-    <!-- <one-to-many class="br.unicamp.iel.model.DictionaryWord" /> -->
-    <!-- </set> -->
-  </class>
+		<!-- <set name="dictionary" table="readinweb_dictionarywords" inverse="true" -->
+		<!-- lazy="true" fetch="select"> -->
+		<!-- <key foreign-key="dictionary_activity_fk"> -->
+		<!-- <column name="activity_id" /> -->
+		<!-- </key> -->
+		<!-- <one-to-many class="br.unicamp.iel.model.DictionaryWord" /> -->
+		<!-- </set> -->
+	</class>
 </hibernate-mapping>
