@@ -1,6 +1,6 @@
 package br.unicamp.iel.tool.producers;
 
-import java.nio.charset.Charset;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,117 +31,137 @@ import br.unicamp.iel.tool.components.CourseComponents;
 import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
 public class ExerciciosProducer implements ViewComponentProducer,
-    ViewParamsReporter {
+		ViewParamsReporter {
 
-    private static Log logger = LogFactory.getLog(ExerciciosProducer.class);
-    @Setter
-    private ReadInWebCourseLogic logic;
+	private static Log logger = LogFactory.getLog(ExerciciosProducer.class);
+	@Setter
+	private ReadInWebCourseLogic logic;
 
-    public static final String VIEW_ID = "exercicios";
+	public static final String VIEW_ID = "exercicios";
 
-    @Override
-    public String getViewID() {
-        return VIEW_ID;
-    }
+	@Override
+	public String getViewID() {
+		return VIEW_ID;
+	}
 
-    @Override
-    public void fillComponents(UIContainer tofill, ViewParameters viewparams,
-            ComponentChecker checker) {
-        String exerciseString;
-        ExerciseViewParameters parameters =
-                (ExerciseViewParameters) viewparams;
+	@Override
+	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
+			ComponentChecker checker) {
+		String exerciseString;
+		ExerciseViewParameters parameters = (ExerciseViewParameters) viewparams;
 
-        Course course = logic.getCourse(parameters.course);
-        Activity activity;
-        Module module;
-        Exercise exercise;
+		Course course = logic.getCourse(parameters.course);
+		Activity activity;
+		Module module;
+		Exercise exercise;
 
-        if(course == null){
-            System.out.println("Course is null");
-            return;
-        } else {
-            activity = logic.getActivity(parameters.activity);
-            module = logic.getModule(parameters.module);
-            if(parameters.exercise != null){
-                exercise = logic.getExercise(parameters.exercise);
-            } else {
-                exercise = logic.getExercise(1L);
-            }
-        }
+		if (course == null) {
+			System.out.println("Course is null");
+			return;
+		} else {
+			activity = logic.getActivity(parameters.activity);
+			module = logic.getModule(parameters.module);
+			if (parameters.exercise != null) {
+				exercise = logic.getExercise(parameters.exercise);
+			} else {
+				exercise = logic.getExercise(1L);
+			}
+		}
 
-        CourseComponents.loadMenu(parameters, tofill);
-        CourseComponents.createModulesMenu(tofill, course, this.getViewID(), logic);
-        CourseComponents.createBreadCrumb(tofill, module, activity);
+		CourseComponents.loadMenu(parameters, tofill);
+		CourseComponents.createModulesMenu(tofill, course, this.getViewID(),
+				logic);
+		CourseComponents.createBreadCrumb(tofill, module, activity);
 
-        logic.registerAccess(AccessTypes.EXERCISE.getTitle(), this.getViewID(),
-                activity);
+		logic.registerAccess(AccessTypes.EXERCISE.getTitle(), this.getViewID(),
+				activity);
 
-        UIBranchContainer ui_bc = UIBranchContainer.make(tofill, "ul-exercicios:");
-        List<Exercise> exercises = new ArrayList<Exercise>(logic.getExercises(activity));
-        for(Exercise e : exercises){
-            UIBranchContainer rowMod = UIBranchContainer.make(ui_bc,
-                    "li-linkExer:",
-                    Long.toString(e.getId()));
-            if(e.getId().equals(exercise.getId())){
-                rowMod.decorate(new UIStyleDecorator("active"));
-            }
+		UIBranchContainer ui_bc = UIBranchContainer.make(tofill,
+				"ul-exercicios:");
+		List<Exercise> exercises = new ArrayList<Exercise>(
+				logic.getExercises(activity));
+		for (Exercise e : exercises) {
+			UIBranchContainer rowMod = UIBranchContainer.make(ui_bc,
+					"li-linkExer:", Long.toString(e.getId()));
+			if (e.getId().equals(exercise.getId())) {
+				rowMod.decorate(new UIStyleDecorator("active"));
+			}
 
-            ExerciseViewParameters evp =
-                    new ExerciseViewParameters(parameters.course,
-                            parameters.module, parameters.activity, e.getId());
-            evp.viewID = this.getViewID();
+			ExerciseViewParameters evp = new ExerciseViewParameters(
+					parameters.course, parameters.module, parameters.activity,
+					e.getId());
+			evp.viewID = this.getViewID();
 
-            UIInternalLink link = UIInternalLink.make(rowMod, "input_link_e_",
-                    new UIBoundString("Exerc\u00edcio " + e.getPosition()), evp);
+			UIInternalLink link = UIInternalLink
+					.make(rowMod, "input_link_e_", new UIBoundString(
+							"Exerc\u00edcio " + e.getPosition()), evp);
 
-            link.updateFullID("input_link_e_" + e.getId());
-        }
+			link.updateFullID("input_link_e_" + e.getId());
+		}
 
-        UIForm form_tst_m = UIForm.make(tofill, "input_form_tst_m");
-        UIVerbatim.make(tofill, "titulo_exercicio_div", "Exerc\u00edcio");
-        String fileLocation = getExercicioFileLocation(module.getPosition(),
-                activity.getPosition(), exercise.getPosition());
-        try {
-            System.out.println(fileLocation);
-            exerciseString = CourseComponents.readFile(fileLocation, StandardCharsets.UTF_8);
-        } catch (Exception e) { //catch (IOException e) {
-            exerciseString = "Ocorreu um erro no momento da leitura do arquivo referente ao exerc\u00edcio.";
-            logger.warn(e.getMessage());
-        }
+		UIForm form_tst_m = UIForm.make(tofill, "input_form_tst_m");
+		UIVerbatim.make(tofill, "titulo_exercicio_div", "Exerc\u00edcio");
 
-        UIVerbatim.make(tofill, "html_exercicio_div", exerciseString);
-        logic.registerExercisesAccess(activity.getId());
-    }
+		// String fileLocation = getExercicioFileLocation(module.getPosition(),
+		// activity.getPosition(), exercise.getPosition());
 
-    /**
-     *
-     * @param fileName
-     * @return
-     */
-    private String getExercicioFileLocation(Integer modulo, Integer atividade, Integer exercicio) {
-        String retorno;
-        String str_fileName;
+		String fileLocation = exercise.getExercise_path() + File.separator
+				+ "index.html";
+		try {
+			System.out.println(fileLocation);
+			exerciseString = CourseComponents.readFile(fileLocation,
+					StandardCharsets.UTF_8);
+		} catch (Exception e) { // catch (IOException e) {
+			exerciseString = "Ocorreu um erro no momento da leitura do arquivo referente ao exerc\u00edcio.";
+			logger.warn(e.getMessage());
+		}
 
-        str_fileName = "m" + modulo + "a" + atividade + "e" + exercicio + ".html";
+		UIVerbatim.make(tofill, "html_exercicio_div", exerciseString);
+		logic.registerExercisesAccess(activity.getId());
+	}
 
-        retorno = makeContentDir() + "/modulos/exercicios/" + str_fileName;
-        return (retorno);
-    }
+	/**
+	 *
+	 * @param fileName
+	 * @return
+	 */
+	@Deprecated
+	private String getExercicioFileLocation(Integer modulo, Integer atividade,
+			Integer exercicio) {
+		String retorno;
+		String str_fileName;
 
-    public static String makeContentDir() {
-        String userDir;
+		str_fileName = "m" + modulo + "a" + atividade + "e" + exercicio
+				+ ".html";
 
-        userDir = System.getProperty("user.dir");
-        if (!userDir.endsWith("/bin")) {
-            return userDir + "/tool/src/webapp/content";
-        } else {
-            return userDir.substring(0, System.getProperty("user.dir")
-                    .length() - 4) + "/webapps/readinweb-course-tool/content";
-        }
-    }
+		retorno = makeContentDir() + "/modulos/exercicios/" + str_fileName;
+		return (retorno);
+	}
 
-    @Override
-    public ViewParameters getViewParameters() {
-        return new ExerciseViewParameters(this.getViewID());
-    }
+	/**
+	 *
+	 * @param fileName
+	 * @return
+	 */
+	private String getExercicioLocation() {
+		return "readinweb-uploads/english/exercises";
+	}
+
+	public static String makeContentDir() {
+		String userDir;
+
+		userDir = System.getProperty("user.dir");
+		if (!userDir.endsWith("/bin")) {
+			return userDir + "/tool/src/webapp/content";
+		} else {
+			return userDir.substring(0,
+					System.getProperty("user.dir").length() - 4)
+					+ "/webapps/readinweb-course-tool/content";
+		}
+	}
+
+	@Override
+	public ViewParameters getViewParameters() {
+		return new ExerciseViewParameters(this.getViewID());
+	}
 }
