@@ -60,7 +60,7 @@ public class AdminActivityBean {
 
 	public String addActivity() {
 		Activity activity = new Activity(logic.getModule(activityModule), 1,
-				"", "", "", "", 0, new Date());
+				"", "", "", "", 0, "", new Date());
 
 		if (position != null) {
 			activity.setPosition(position);

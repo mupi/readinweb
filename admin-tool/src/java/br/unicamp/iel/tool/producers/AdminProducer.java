@@ -8,7 +8,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
+import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
+import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.view.ComponentChecker;
@@ -51,8 +53,13 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
 		AdminMenuComponent menu = new AdminMenuComponent(viewparams);
 		menu.make(UIBranchContainer.make(tofill, "admin_menu_replace:"));
 
+		UIForm uploadform = UIForm.make(tofill, "uploadform");
+		// UICommand.make(uploadform, "submit", "AdminBean.handleContentSent");
+		UICommand.make(uploadform, "submit", "AdminBean.exerciseHandler");
+
 		UIBranchContainer uiCourses = UIBranchContainer
 				.make(tofill, "courses:");
+
 		for (Course c : courses) {
 			UIBranchContainer uiCourse = UIBranchContainer.make(uiCourses,
 					"course:");
@@ -91,10 +98,6 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
 			coursevp.activity = a.getId();
 			coursevp.course = c.getId();
 			UIInternalLink.make(uiCourse, "course_edit_content", coursevp);
-
-			// UIForm uploadform = UIForm.make(tofill, "uploadform");
-			// UICommand.make(uploadform, "submit",
-			// "AdminBean.handleContentSent");
 		}
 	}
 }

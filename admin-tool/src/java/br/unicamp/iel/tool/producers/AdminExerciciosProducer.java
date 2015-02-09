@@ -85,9 +85,6 @@ public class AdminExerciciosProducer implements ViewComponentProducer,
 
 		// FIXME get the last modified exercise and load it
 
-		// CourseComponents.loadMenu(activity, course, exercise, tofill);
-		// CourseComponents.createModulesMenu(tofill, course, this.getViewID(),
-		// logic);
 		ActivityMenuComponent menu = new ActivityMenuComponent(logic,
 				viewparams, activity, course, exercise, getViewID());
 		menu.fillComponents(tofill, "activity_menu_replace:");
@@ -134,6 +131,10 @@ public class AdminExerciciosProducer implements ViewComponentProducer,
 					"#{AdminActivityBean.exerciseDescription}",
 					exercise.getDescription());
 
+			UIInput.make(exerciseForm, "exercise_path",
+					"#{AdminActivityBean.exercisePath}",
+					exercise.getExercise_path());
+
 			UIInput.make(exerciseForm, "exercise_answer",
 					"#{AdminActivityBean.exerciseAnswer}", exercise.getAnswer());
 
@@ -164,6 +165,20 @@ public class AdminExerciciosProducer implements ViewComponentProducer,
 
 		UICommand.make(addExerciseForm, "add_exercise_save",
 				"#{AdminActivityBean.saveExercise}");
+
+		/** Send Data Form **/
+		UIForm form = UIForm.make(tofill, "uploadexercise");
+		form.parameters.add(new UIELBinding("#{UploaderBean.course}", course
+				.getId()));
+
+		form.parameters.add(new UIELBinding("#{UploaderBean.activity}",
+				activity.getId()));
+
+		form.parameters.add(new UIELBinding("#{UploaderBean.exercise}",
+				exercise.getId()));
+
+		UICommand.make(tofill, "send_exercise",
+				"#{UploaderBean.exerciseHandler}");
 
 	}
 

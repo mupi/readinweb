@@ -104,6 +104,16 @@ public class AdminTextProducer implements ViewComponentProducer,
 				activity.getPrereading() != null ? activity.getPrereading()
 						: "");
 
+		UIForm form = UIForm.make(tofill, "audiouploadform");
+		form.parameters.add(new UIELBinding("#{UploaderBean.course}", course
+				.getId()));
+
+		form.parameters.add(new UIELBinding("#{UploaderBean.activity}",
+				activity.getId()));
+
+		UICommand.make(tofill, "audiosentbutton",
+				"#{UploaderBean.audioHandler}");
+
 		UIInput.make(updateActivityForm, "position_text",
 				"#{AdminActivityBean.position}",
 				Integer.toString(activity.getPosition()));

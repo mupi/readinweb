@@ -35,15 +35,16 @@
                   <button class="btn btn-primary btn-sm" data-toggle="modal"
                      data-target="#addActivityModal">Nova atividade</button>
                </li>
-               <div id="audio">
-                  <div id="audio_player" style="display: none"></div>
-                  <div id="audio_icon">
-                     <span id="showAudio" class="glyphicon glyphicon-play"
-                        style="display: block"></span> <span id="hideAudio"
-                        class="glyphicon glyphicon-stop" style="display: none"
-                        onclick="javascript:document.getElementById('audio_player').style.display='none';document.getElementById('showAudio').style.display='block';this.style.display='none';"></span>
-                  </div>
-                  <div id="audio_tag">AUDIO</div>
+               <div class="pull-right col-sm-5">
+                  <form class="form-inline" rsf:id="audiouploadform" method="post"
+                     enctype="multipart/form-data">
+                     <div class="form-group">
+                        <label>Audio</label> <span class=""> <input class="form-control"
+                           name="audiofile" type="file" /></span> <input style="display: inline;"
+                           class="btn btn-default" rsf:id="audiosentbutton" type="submit"
+                           value="Enviar" />
+                     </div>
+                  </form>
                </div>
             </ol>
          </div>

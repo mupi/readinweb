@@ -3,16 +3,15 @@
   "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
 	<bean parent="requestAddressibleParent">
 		<property name="value"
-			value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, 
+			value="UploaderBean, AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, 
       AdminActivityBean, ManageClassBean, CreateClassBean" />
 	</bean>
 
 	<bean id="resultsScope" parent="beanScopeParent">
 		<property name="copyPreservingBeans"
-			value="AdminBean, DictionaryAjaxBean, FunctionalWordAjaxBean, 
+			value="DictionaryAjaxBean, FunctionalWordAjaxBean, 
       ManageClassBean, CreateClassBean" />
 		<property name="exclusive" value="true" />
 	</bean>
