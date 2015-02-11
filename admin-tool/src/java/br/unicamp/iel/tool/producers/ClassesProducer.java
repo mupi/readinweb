@@ -18,7 +18,6 @@ import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
 import uk.org.ponder.rsf.view.ComponentChecker;
-import uk.org.ponder.rsf.view.DefaultView;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
@@ -33,7 +32,7 @@ import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
  */
 
 public class ClassesProducer implements ViewComponentProducer,
-		ViewParamsReporter, DefaultView {
+		ViewParamsReporter {
 
 	private static Log logger = LogFactory.getLog(ClassesProducer.class);
 
@@ -62,6 +61,8 @@ public class ClassesProducer implements ViewComponentProducer,
 	@Override
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
+
+		System.out.println("Ma oe oe oe! =)");
 
 		ClassViewParameters cvp = (ClassViewParameters) viewparams;
 		if (cvp.course == null) {
@@ -115,7 +116,6 @@ public class ClassesProducer implements ViewComponentProducer,
 			} catch (IndexOutOfBoundsException e) {
 				UIInternalLink.make(riwClass, "riw_class_teacher", "-",
 						viewparams);
-
 			}
 		}
 	}
@@ -124,4 +124,5 @@ public class ClassesProducer implements ViewComponentProducer,
 	public ViewParameters getViewParameters() {
 		return new ClassViewParameters(getViewID());
 	}
+
 }

@@ -76,6 +76,8 @@ public class CreateClassProducer implements ViewComponentProducer,
 		UIForm form = UIForm.make(tofill, "add_riw_class");
 		form.parameters.add(new UIELBinding("#{ManageClassBean.course}", course
 				.getId()));
+		form.addResultingViewBinding("course", course.getId());
+
 		UIInput.make(form, "title", "#{ManageClassBean.title}");
 		UIInput.make(form, "type", "#{ManageClassBean.type}");
 		UIInput.make(form, "description", "#{ManageClassBean.description}");
@@ -85,7 +87,6 @@ public class CreateClassProducer implements ViewComponentProducer,
 		String[] teacherOptions = new String[teachers.size()];
 		String[] teacherLabels = new String[teachers.size()];
 		for (int i = 0; i < teachers.size(); i++) {
-			System.out.println(teachers.get(i).getDisplayName());
 			teacherOptions[i] = teachers.get(i).getId();
 			teacherLabels[i] = teachers.get(i).getDisplayName();
 		}
@@ -111,7 +112,7 @@ public class CreateClassProducer implements ViewComponentProducer,
 	public List<NavigationCase> reportNavigationCases() {
 		List<NavigationCase> l = new ArrayList<NavigationCase>();
 		l.add(new NavigationCase(ManagerComponents.CREATED,
-				new ClassViewParameters(ClassProducer.VIEW_ID, true, false)));
+				new ClassViewParameters(ClassesProducer.VIEW_ID, true, false)));
 		return l;
 	}
 }
