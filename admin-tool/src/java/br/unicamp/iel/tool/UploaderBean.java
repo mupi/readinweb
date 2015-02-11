@@ -42,6 +42,8 @@ public class UploaderBean {
 
 	public String exerciseHandler() {
 		MessageDigest md;
+		Course c = logic.getCourse(course);
+		Activity a = logic.getActivity(activity);
 
 		try {
 			md = MessageDigest.getInstance("MD5");
@@ -52,7 +54,8 @@ public class UploaderBean {
 
 		if (files.isEmpty())
 			return CourseComponents.DATA_EMPTY;
-		String riwUpload = configuration.getString("readinweb.upload");
+		String riwUpload = configuration.getString("readinweb.upload")
+				+ File.separator + getIdiomName(c.getIdiom());
 
 		Iterator<String> it = files.keySet().iterator();
 		if (it.hasNext()) {
@@ -78,9 +81,12 @@ public class UploaderBean {
 
 			// Now extract it to:
 			// riwUpload/courselanguage/exercises/randomdir/
-			File exercisePath = new File(riwUpload + File.separator + "english"
-					+ File.separator + "exercises" + File.separator
-					+ randomName);
+			// File exercisePath = new File(riwUpload + File.separator +
+			// "english"
+			// + File.separator + "exercises" + File.separator
+			// + randomName);
+			File exercisePath = new File(riwUpload + File.separator
+					+ "exercises" + File.separator + randomName);
 			exercisePath.mkdirs();
 
 			Unzip unzip = new Unzip();
@@ -108,10 +114,8 @@ public class UploaderBean {
 
 		if (files.isEmpty())
 			return CourseComponents.DATA_EMPTY;
-		String idiom = StringUtils.lowerCase(StringUtils.strip(c.getIdiom(),
-				" çãê"));
 		String riwUpload = configuration.getString("readinweb.upload")
-				+ File.separator + idiom;
+				+ File.separator + getIdiomName(c.getIdiom());
 
 		Iterator<String> it = files.keySet().iterator();
 		if (it.hasNext()) {
@@ -183,6 +187,10 @@ public class UploaderBean {
 			}
 		}
 		return CourseComponents.DATA_SAVED;
+	}
+
+	private String getIdiomName(String idiom) {
+		return StringUtils.lowerCase(StringUtils.strip(idiom, " çãê"));
 	}
 
 	private String getMediaPath(String path, String contenType) {
