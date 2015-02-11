@@ -3,137 +3,87 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Projeto Read in Web - Administra&ccedil;&atilde;</title>
-
 <link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
-<link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all" />
-<link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
-
+<link href="../assets/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"
+   media="all" />
+<link rel="stylesheet" type="text/css"
+   href="../assets/font-awesome-4.1.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/turmas.css" />
-
 </head>
-
 <body>
-    <div class="portletBody">
-        <nav class="navbar navbar-default main-menu" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-                    <span class="sr-only">Menu principal</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../img/logo.png" alt="Curso Read in Web" />
-                </a>
+   <div class="portletBody">
+      <nav class="navbar navbar-default main-menu" role="navigation">
+      <div rsf:id="class_menu_replace:" class="container"></div>
+      </nav>
+      <div class="container">
+         <ol class="breadcrumb">
+            <li><span rsf:id="course_name">Curso Read in Web</span></li>
+            <li class="active"><span rsf:id="riw_class_name">Turma</span></li>
+         </ol>
+         <header class="page-header">
+         <h1>
+            <span rsf:id="riw_class_name">Turma</span>
+         </h1>
+         </header>
+         <section class="class-info">
+         <p>
+            Início das atividades em <span sf:id="riw_startdate">21/08/2014</span>
+         </p>
+         <p>
+            Quantidade de alunos: <span rsf:id="riw_students_count">30</span>
+         </p>
+         <p>
+            Atividades liberadas: <span rsf:id="riw_activities_published">10</span>
+         </p>
+         </section>
+         <div class="row">
+            <div class="col-xs-10">
+               <h3>Alunos matriculados</h3>
             </div>
-            <div id="main-nav" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" rsf:id="link_turmas">Turmas</a>
-                    </li>
-                    <li>
-                        <a href="#" rsf:id="link_justificativas">Justificativas</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="http://www.unicamp.br/" target="_blank" class="logo_unicamp">
-                            <img src="../img/logounicamp.png" alt="Universidade Estadual de Campinas" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        </nav>
-        <div class="container">
-            <ol class="breadcrumb">
-                <li>
-                    <span rsf:id="course_name">Curso Read in Web</span>
-                </li>
-                <li class="active">
-                    <span rsf:id="riw_class_name">Turma</span>
-                </li>
-            </ol>
-            <header class="page-header">
-            <h1>
-                <span rsf:id="riw_class_name">Turma</span>
-            </h1>
-            </header>
-            <section class="class-info">
-            <p>
-                Início das atividades em
-                <span sf:id="riw_startdate">21/08/2014</span>
-            </p>
-            <p>
-                Quantidade de alunos:
-                <span rsf:id="riw_students_count">30</span>
-            </p>
-            <p>
-                Atividades liberadas:
-                <span rsf:id="riw_activities_published">10</span>
-            </p>
-            </section>
-            <div class="row">
-                <div class="col-xs-10">
-                    <h3>Alunos matriculados</h3>
-                </div>
-                <div class="col-xs-2">
-                    <form rsf:id="form_class_state" class="form-inline  pull-right">
-                        <button type="submit" class="btn btn-success" rsf:id="play_class">
-                            <span class="glyphicon glyphicon-play"></span>
-                            Continuar turma
-                        </button>
-
-                        <button type="submit" class="btn btn-danger" rsf:id="pause_class">
-                            <span class="glyphicon glyphicon-pause"></span>
-                            Pausar turma
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div>
-                <table class="table table-striped" rsf:id="riw_students:">
-                    <tr>
-                        <th>Nome</th>
-                        <th>Bloqueado</th>
-                        <th>Quantidade de bloqueios</th>
-                    </tr>
-                    <tr rsf:id="riw_student:" class="danger">
-                        <td>
-                            <a rsf:id="student_name" href="#">Ana Rute Cavalcanti Vaz Mendes Tenório Ribeiro</a>
-                        </td>
-                        <td>
-                            <a rsf:id="student_isblocked" href="#">Não. se desativado add class danger</a>
-                        </td>
-                        <td>
-                            <a rsf:id="student_blocks" href="#justificativas">4</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <h3>Módulos e Atividades do Curso</h3>
-                <ul class="table table-striped" rsf:id="riw_data:">
-                    <li rsf:id="riw_module:">
-                        <span rsf:id="riw_module_position">1</span>
-                        <ul class="default">
-                            <li rsf:id="riw_activity:">
-                                <span rsf:id="activity_title" href="#">How green</span>
-                                -
-                                <span rsf:id="activity_published">Sim</span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="/library/js/headscripts.js"></script>
-    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
-    <script type="text/css">
+            <!--                 <div class="col-xs-2"> -->
+            <!--                     <form rsf:id="form_class_state" class="form-inline  pull-right"> -->
+            <!--                         <button type="submit" class="btn btn-success" rsf:id="play_class"> -->
+            <!--                             <span class="glyphicon glyphicon-play"></span> -->
+            <!--                             Continuar turma -->
+            <!--                         </button> -->
+            <!--                         <button type="submit" class="btn btn-danger" rsf:id="pause_class"> -->
+            <!--                             <span class="glyphicon glyphicon-pause"></span> -->
+            <!--                             Pausar turma -->
+            <!--                         </button> -->
+            <!--                     </form> -->
+            <!--                 </div> -->
+         </div>
+         <div>
+            <table class="table table-striped" rsf:id="riw_students:">
+               <tr>
+                  <th>Nome</th>
+                  <th>Quantidade de bloqueios</th>
+               </tr>
+               <tr rsf:id="riw_student:" class="">
+                  <td><span rsf:id="student_name">Ana Rute Cavalcanti Vaz Mendes
+                        Tenório Ribeiro</span></td>
+<!--                   <td><span rsf:id="student_isblocked">Não. se desativado add -->
+<!--                         class danger</span></td> -->
+                  <td><span rsf:id="student_blocks" href="#justificativas">4</span></td>
+               </tr>
+            </table>
+         </div>
+         <div>
+            <h3>Módulos e Atividades do Curso</h3>
+            <ul class="table table-striped" rsf:id="riw_data:">
+               <li rsf:id="riw_module:"><span rsf:id="riw_module_position">1</span>
+                  <ul class="default">
+                     <li rsf:id="riw_activity:"><span rsf:id="activity_title" href="#">How
+                           green</span> - <span rsf:id="activity_published">Sim</span></li>
+                  </ul></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <script type="text/javascript" src="/library/js/headscripts.js"></script>
+   <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+   <script type="text/css">
             jQuery(document).ready(function(){console.log("alive");)})
         </script>
 </body>

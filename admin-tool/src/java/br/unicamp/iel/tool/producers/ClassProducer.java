@@ -11,10 +11,7 @@ import org.sakaiproject.site.api.Site;
 import org.sakaiproject.user.api.User;
 
 import uk.org.ponder.rsf.components.UIBranchContainer;
-import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
-import uk.org.ponder.rsf.components.UIELBinding;
-import uk.org.ponder.rsf.components.UIForm;
 import uk.org.ponder.rsf.components.UIOutput;
 import uk.org.ponder.rsf.components.decorators.UIStyleDecorator;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
@@ -27,6 +24,7 @@ import br.unicamp.iel.logic.ReadInWebClassManagementLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
 import br.unicamp.iel.model.Module;
+import br.unicamp.iel.tool.commons.ClassMenuComponent;
 import br.unicamp.iel.tool.commons.ManagerComponents;
 import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
 
@@ -60,9 +58,11 @@ public class ClassProducer implements ViewComponentProducer,
 		if (cvp.course == null) {
 			return;
 		}
+		// ManagerComponents.loadMenu(viewparams, tofill);
+		ClassMenuComponent menu = new ClassMenuComponent(cvp);
+		menu.make(UIBranchContainer.make(tofill, "class_menu_replace:"));
 
 		Course course = logic.getCourse(cvp.course);
-		ManagerComponents.loadMenu(viewparams, tofill);
 		UIOutput.make(tofill, "course_name", course.getTitle());
 
 		Site riwClass = null;
@@ -93,21 +93,21 @@ public class ClassProducer implements ViewComponentProducer,
 		UIBranchContainer studentsTable = UIBranchContainer.make(tofill,
 				"riw_students:");
 
-		UIForm classState = UIForm.make(tofill, "form_class_state");
-		Boolean state = logic.getReadInWebClassState(riwClass);
-
-		classState.parameters.add(new UIELBinding(
-				"#{ManageClassBean.riwClass}", riwClass.getId()));
-
-		classState.parameters.add(new UIELBinding(
-				"#{ManageClassBean.classState}", Boolean.toString(!state)));
-		if (state) { // render pause
-			UICommand.make(classState, "pause_class",
-					"#{ManageClassBean.changeClassState}");
-		} else { // render play
-			UICommand.make(classState, "play_class",
-					"#{ManageClassBean.changeClassState}");
-		}
+		// UIForm classState = UIForm.make(tofill, "form_class_state");
+		// Boolean state = logic.getReadInWebClassState(riwClass);
+		//
+		// classState.parameters.add(new UIELBinding(
+		// "#{ManageClassBean.riwClass}", riwClass.getId()));
+		//
+		// classState.parameters.add(new UIELBinding(
+		// "#{ManageClassBean.classState}", Boolean.toString(!state)));
+		// if (state) { // render pause
+		// UICommand.make(classState, "pause_class",
+		// "#{ManageClassBean.changeClassState}");
+		// } else { // render play
+		// UICommand.make(classState, "play_class",
+		// "#{ManageClassBean.changeClassState}");
+		// }
 
 		for (User u : riwStudents) {
 			UIBranchContainer studentRow = UIBranchContainer.make(
@@ -118,10 +118,10 @@ public class ClassProducer implements ViewComponentProducer,
 			}
 
 			UIOutput.make(studentRow, "student_name", u.getDisplayName());
-
-			// TODO add class danger on blocked user
-			UIOutput.make(studentRow, "student_isblocked",
-					logic.isUserBlocked(u, riwClass) ? "Sim" : "Não");
+			//
+			// // TODO add class danger on blocked user
+			// UIOutput.make(studentRow, "student_isblocked",
+			// logic.isUserBlocked(u, riwClass) ? "Sim" : "Não");
 
 			UIOutput.make(studentRow, "student_blocks",
 					Integer.toString(logic.getUserBlocks(u, riwClass.getId())));
