@@ -167,18 +167,20 @@ public class AdminExerciciosProducer implements ViewComponentProducer,
 				"#{AdminActivityBean.saveExercise}");
 
 		/** Send Data Form **/
-		UIForm form = UIForm.make(tofill, "uploadexercise");
-		form.parameters.add(new UIELBinding("#{UploaderBean.course}", course
-				.getId()));
+		if (exercise != null) {
+			UIForm form = UIForm.make(tofill, "uploadexercise");
+			form.parameters.add(new UIELBinding("#{UploaderBean.course}",
+					course.getId()));
 
-		form.parameters.add(new UIELBinding("#{UploaderBean.activity}",
-				activity.getId()));
+			form.parameters.add(new UIELBinding("#{UploaderBean.activity}",
+					activity.getId()));
 
-		form.parameters.add(new UIELBinding("#{UploaderBean.exercise}",
-				exercise.getId()));
+			form.parameters.add(new UIELBinding("#{UploaderBean.exercise}",
+					exercise.getId()));
 
-		UICommand.make(tofill, "send_exercise",
-				"#{UploaderBean.exerciseHandler}");
+			UICommand.make(tofill, "send_exercise",
+					"#{UploaderBean.exerciseHandler}");
+		}
 
 	}
 
