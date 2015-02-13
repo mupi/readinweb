@@ -254,6 +254,20 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
 	}
 
 	@Override
+	public Module getCourseFirstModule(Long course) {
+		Search search = new Search("course.id", course);
+		search.addOrder(new Order("id", true));
+		return dao.findOneBySearch(Module.class, search);
+	}
+
+	@Override
+	public Activity getCourseFirstByModuleActivity(Long module) {
+		Search search = new Search("module.id", module);
+		search.addOrder(new Order("id", true));
+		return dao.findOneBySearch(Activity.class, search);
+	}
+
+	@Override
 	public Activity getCourseFirstActivity(Long course) {
 		Search search = new Search("course.id", course);
 		search.addOrder(new Order("id", true));
