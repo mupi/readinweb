@@ -95,6 +95,7 @@
         <directory>src/main/resources</directory>
         <includes>
           <include>*.csv</include>
+          <include>**/*.*</include>
         </includes>
       </resource>
     </resources>

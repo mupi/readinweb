@@ -273,6 +273,9 @@ public class ReadInWebAdminLogicImpl implements ReadInWebAdminLogic {
 		search.addOrder(new Order("id", true));
 		Module m = dao.findOneBySearch(Module.class, search);
 
+		if (m == null) {
+			return null;
+		}
 		search = new Search("module.id", m.getId());
 		search.addOrder(new Order("id", true));
 		return dao.findOneBySearch(Activity.class, search);
