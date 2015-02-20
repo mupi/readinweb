@@ -588,7 +588,6 @@ public class SakaiProxyImpl implements SakaiProxy {
 						return;
 					}
 				}
-
 			}
 			if (page == null) {
 				log.info("No Read in Web Admin tool page, install one");
@@ -597,8 +596,10 @@ public class SakaiProxyImpl implements SakaiProxy {
 				siteService.save(site);
 			}
 		} catch (IdUnusedException e) {
+			log.error("Id não usado");
 			e.printStackTrace();
 		} catch (PermissionException e) {
+			log.error("Não tem permissão");
 			e.printStackTrace();
 		}
 	}
@@ -661,7 +662,7 @@ public class SakaiProxyImpl implements SakaiProxy {
 	}
 
 	@Override
-	public void adminSessionStart() {
+	public Session adminSessionStart() {
 		// set the user information into the current session
 		Session sakaiSession = sessionManager.getCurrentSession();
 		sakaiSession.setUserId("admin");
@@ -672,5 +673,19 @@ public class SakaiProxyImpl implements SakaiProxy {
 				.startSession("admin", "127.0.0.1", "Quartz_Session");
 		// update the user's externally provided realm definitions
 		authzGroupService.refreshUser("admin");
+
+		return sakaiSession;
+	}
+
+	@Override
+	public Boolean adminSessionStop(Session session) {
+		try {
+			session.clear();
+			session.invalidate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
