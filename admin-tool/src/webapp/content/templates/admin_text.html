@@ -52,7 +52,7 @@
             <div class="col-xs-6 col-md-8">
                <form class="form-horizontal" rsf:id="activity_form">
                   <button rsf:id="send_activity" type="submit" class="btn btn-success btn-sm">Salvar</button>
-                  <button rsf:id="delete_activity" type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                  <button rsf:id="delete_activity" type="submit" onclick="if(!confirm('Tem certeza que deseja excluir essa atividade?')) return false;" class="btn btn-danger btn-sm">Excluir</button>
                   <input name="id" type="hidden" rsf:id="activity_id" />
                   <!-- this div is used to creates the audio -->
                   <div id="sound_text" rsf:id="sound_text"></div>
