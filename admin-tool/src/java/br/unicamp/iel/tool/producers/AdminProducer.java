@@ -1,5 +1,6 @@
 package br.unicamp.iel.tool.producers;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.Setter;
@@ -20,6 +21,7 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import br.unicamp.iel.logic.ReadInWebAdminLogic;
 import br.unicamp.iel.model.Activity;
 import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.ReadInWebCourseData;
 import br.unicamp.iel.tool.commons.AdminMenuComponent;
 import br.unicamp.iel.tool.viewparameters.ClassViewParameters;
@@ -94,6 +96,18 @@ public class AdminProducer implements ViewComponentProducer, DefaultView {
 					AdminTextProducer.VIEW_ID);
 
 			Activity a = logic.getCourseFirstActivity(c.getId());
+
+			if (a == null) {
+				Module m = logic.getCourseFirstModule(c.getId());
+				if (m == null) {
+					m = new Module(c, 1, "");
+				}
+				logic.saveModule(m);
+				a = new Activity(m, 1, "", "", "", "", 0, "", new Date());
+				logic.saveActivity(a);
+			} else {
+				logger.info("All ok!");
+			}
 
 			coursevp.activity = a.getId();
 			coursevp.course = c.getId();

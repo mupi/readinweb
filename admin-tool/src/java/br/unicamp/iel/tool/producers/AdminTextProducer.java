@@ -66,7 +66,7 @@ public class AdminTextProducer implements ViewComponentProducer,
 		} else if (parameters.dataupdated) { // Nothing setted
 			activity = logic.getLastUpdatedActivity();
 		} else if (parameters.datadeleted) {
-			activity = logic.getCourseFirstActivity(logic.getCourseId());
+			activity = logic.getCourseFirstActivity(parameters.course);
 		} else if (parameters.activity != null) {
 			activity = logic.getActivity(parameters.activity);
 		} else { // Nothing setted =(
@@ -84,6 +84,7 @@ public class AdminTextProducer implements ViewComponentProducer,
 				this.getViewID());
 
 		UIForm updateActivityForm = UIForm.make(tofill, "activity_form");
+		updateActivityForm.addResultingViewBinding("course", course.getId());
 		updateActivityForm.parameters.add(new UIELBinding(
 				"#{AdminActivityBean.activityId}", activity.getId()));
 		updateActivityForm.parameters.add(new UIELBinding(
@@ -176,6 +177,8 @@ public class AdminTextProducer implements ViewComponentProducer,
 				"#{AdminActivityBean.saveQuestion}");
 
 		UIForm addActivityForm = UIForm.make(tofill, "add_activity_form");
+
+		addActivityForm.addResultingViewBinding("course", course.getId());
 
 		addActivityForm.parameters.add(new UIELBinding(
 				"#{AdminActivityBean.activityModule}", module.getId()));
