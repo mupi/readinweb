@@ -190,7 +190,11 @@ public class UploaderBean {
 	}
 
 	private String getIdiomName(String idiom) {
-		return StringUtils.lowerCase(StringUtils.strip(idiom, " çãê"));
+		String special = "çáâãêéíóôõú ";
+		String replacement = "caaaeeiooou";
+
+		return StringUtils.lowerCase(StringUtils.replaceChars(idiom, special,
+				replacement));
 	}
 
 	private String getMediaPath(String path, String contenType) {
