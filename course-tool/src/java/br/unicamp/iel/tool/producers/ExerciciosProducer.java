@@ -105,8 +105,9 @@ public class ExerciciosProducer implements ViewComponentProducer,
 		// String fileLocation = getExercicioFileLocation(module.getPosition(),
 		// activity.getPosition(), exercise.getPosition());
 
-		String fileLocation = exercise.getExercise_path() + File.separator
-				+ "index.html";
+		String fileLocation = System.getProperty("catalina.base") + "/webapps"
+				+ "/readinweb-uploads/english/exercises/"
+				+ exercise.getExercise_path() + File.separator + "index.html";
 		try {
 			System.out.println(fileLocation);
 			exerciseString = CourseComponents.readFile(fileLocation,

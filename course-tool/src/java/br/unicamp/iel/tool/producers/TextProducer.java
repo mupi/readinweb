@@ -99,6 +99,7 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 				new Object[] { activity_time, time_time,
 						"RegisterAccessAjaxBean.results" });
 
+		// TODO fix url building
 		String audioString = ""
 				+ "<audio "
 				// + "    src='/readinweb-course-tool/content/audio/m" +
@@ -118,9 +119,11 @@ public class TextProducer implements ViewComponentProducer, ViewParamsReporter {
 		// Activity image
 		if ((activity.getImage() != null)
 				&& (activity.getImage().compareToIgnoreCase("") != 0)) {
-			// FIXME Fix up image retrieve
-			UILink image = UILink.make(tofill, "picture_text", "../img/"
-					+ activity.getImage());
+			// FIXME Fix utl building
+			// UILink image = UILink.make(tofill, "picture_text", "../img/"
+			// + activity.getImage());
+			UILink.make(tofill, "picture_text",
+					"/readinweb-uploads/english/text/" + activity.getImage());
 		}
 
 		// Fills the text of the activity
