@@ -18,6 +18,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.tool.api.Session;
 
 import br.unicamp.iel.logic.ReadInWebCommonLogic;
@@ -30,6 +31,9 @@ import br.unicamp.iel.model.FunctionalWord;
 import br.unicamp.iel.model.Module;
 import br.unicamp.iel.model.Question;
 import br.unicamp.iel.model.Strategy;
+import br.unicamp.iel.model.sets.ActivitySets;
+import br.unicamp.iel.model.sets.CourseSets;
+import br.unicamp.iel.model.sets.ModuleSets;
 
 public class PreloadDataImpl {
 
@@ -46,14 +50,65 @@ public class PreloadDataImpl {
 	@Setter
 	private ReadInWebDao dao;
 
+	@Setter
+	ServerConfigurationService configuration;
+
 	public void init() {
 		log.info("Preloading Read in Web Data");
 		if (!common.idiomCourseExists("english"))
 			loadCSVData();
 
+		boolean setup = configuration.getBoolean("readinweb.upgradecourse",
+				false);
+		if (setup) {
+			upgradeEnglishCourse();
+		}
+
 		Session session = sakaiProxy.adminSessionStart();
 		common.addReadInWebAdmin();
 		sakaiProxy.adminSessionStop(session);
+	}
+
+	/**
+	 * This is a temporary method. It is useful to upgrade the content we
+	 * already have to new content format. Not to be used after first English
+	 * course packaging. The readinweb.upgradecourse variable is not to be used
+	 * anymore
+	 */
+	private void upgradeEnglishCourse() {
+		// save audio file name on each activity
+		Course c = common.getCourse(1L);
+		CourseSets cs = new CourseSets(c);
+		List<Module> modules = cs.getModules(dao);
+		for (Module m : modules) {
+			ModuleSets ms = new ModuleSets(m);
+			List<Activity> activities = ms.getActivities(dao);
+			for (Activity a : activities) {
+				// Setup audio
+				a.setAudiofile("m" + m.getPosition() + "a" + a.getPosition()
+						+ ".mp3");
+
+				// Setup images
+				if (m.getPosition() == 1 || m.getPosition() == 3
+						|| m.getPosition() == 4) {
+					if (a.getPosition() == 1 || a.getPosition() == 3
+							|| (m.getPosition() == 4 && a.getPosition() == 2)) {
+						a.setImage(m.getPosition() + "_" + a.getPosition()
+								+ ".gif");
+					}
+				}
+
+				// setup exercises
+				ActivitySets as = new ActivitySets(a);
+				List<Exercise> exercises = as.getExercises(dao);
+				for (Exercise e : exercises) {
+					e.setExercise_path("m" + m.getPosition() + "a"
+							+ a.getPosition() + "e" + e.getPosition());
+					common.saveExercise(e);
+				}
+				common.saveActivity(a);
+			}
+		}
 	}
 
 	private void loadCSVData() {
