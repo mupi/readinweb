@@ -5,11 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import br.unicamp.iel.logic.ReadInWebCourseLogic;
+import br.unicamp.iel.model.Activity;
+import br.unicamp.iel.model.Course;
+import br.unicamp.iel.model.Exercise;
+import br.unicamp.iel.model.Module;
+import br.unicamp.iel.model.types.AccessTypes;
+import br.unicamp.iel.tool.components.CourseComponents;
+import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 import lombok.Setter;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import uk.org.ponder.rsf.components.UIBoundString;
 import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UIContainer;
@@ -21,19 +27,11 @@ import uk.org.ponder.rsf.view.ComponentChecker;
 import uk.org.ponder.rsf.view.ViewComponentProducer;
 import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
-import br.unicamp.iel.logic.ReadInWebCourseLogic;
-import br.unicamp.iel.model.Activity;
-import br.unicamp.iel.model.Course;
-import br.unicamp.iel.model.Exercise;
-import br.unicamp.iel.model.Module;
-import br.unicamp.iel.model.types.AccessTypes;
-import br.unicamp.iel.tool.components.CourseComponents;
-import br.unicamp.iel.tool.viewparameters.ExerciseViewParameters;
 
 public class ExerciciosProducer implements ViewComponentProducer,
 		ViewParamsReporter {
 
-	private static Log logger = LogFactory.getLog(ExerciciosProducer.class);
+	private static final Logger log = Logger.getLogger(ExerciciosProducer.class);
 	@Setter
 	private ReadInWebCourseLogic logic;
 
@@ -49,22 +47,23 @@ public class ExerciciosProducer implements ViewComponentProducer,
 			ComponentChecker checker) {
 		String exerciseString;
 		ExerciseViewParameters parameters = (ExerciseViewParameters) viewparams;
+		Course course = null;
+		if (parameters.course != null) {
+			course = logic.getCourse(parameters.course);
+		}
 
-		Course course = logic.getCourse(parameters.course);
 		Activity activity;
 		Module module;
-		Exercise exercise;
+		Exercise exercise = null;
 
 		if (course == null) {
-			System.out.println("Course is null");
+			log.warn("Course is null");
 			return;
 		} else {
 			activity = logic.getActivity(parameters.activity);
 			module = logic.getModule(parameters.module);
 			if (parameters.exercise != null) {
 				exercise = logic.getExercise(parameters.exercise);
-			} else {
-				exercise = logic.getExercise(1L);
 			}
 		}
 
@@ -78,8 +77,14 @@ public class ExerciciosProducer implements ViewComponentProducer,
 
 		UIBranchContainer ui_bc = UIBranchContainer.make(tofill,
 				"ul-exercicios:");
+
 		List<Exercise> exercises = new ArrayList<Exercise>(
 				logic.getExercises(activity));
+
+		if (exercise == null) {
+			exercise = exercises.get(0);
+		}
+
 		for (Exercise e : exercises) {
 			UIBranchContainer rowMod = UIBranchContainer.make(ui_bc,
 					"li-linkExer:", Long.toString(e.getId()));
@@ -102,19 +107,16 @@ public class ExerciciosProducer implements ViewComponentProducer,
 		UIForm form_tst_m = UIForm.make(tofill, "input_form_tst_m");
 		UIVerbatim.make(tofill, "titulo_exercicio_div", "Exerc\u00edcio");
 
-		// String fileLocation = getExercicioFileLocation(module.getPosition(),
-		// activity.getPosition(), exercise.getPosition());
-
 		String fileLocation = System.getProperty("catalina.base") + "/webapps"
 				+ "/readinweb-uploads/english/exercises/"
 				+ exercise.getExercise_path() + File.separator + "index.html";
 		try {
-			System.out.println(fileLocation);
 			exerciseString = CourseComponents.readFile(fileLocation,
 					StandardCharsets.UTF_8);
 		} catch (Exception e) { // catch (IOException e) {
-			exerciseString = "Ocorreu um erro no momento da leitura do arquivo referente ao exerc\u00edcio.";
-			logger.warn(e.getMessage());
+			exerciseString = "Ocorreu um erro no momento da leitura do arquivo "
+					+ "referente ao exerc\u00edcio.";
+			log.warn(e.getMessage());
 		}
 
 		UIVerbatim.make(tofill, "html_exercicio_div", exerciseString);

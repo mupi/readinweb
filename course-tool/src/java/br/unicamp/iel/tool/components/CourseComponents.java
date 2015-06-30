@@ -37,7 +37,6 @@ public class CourseComponents {
     public static void loadMenu(ViewParameters viewparams, UIContainer tofill){
         CourseViewParameters cvpLink;
         ExerciseViewParameters evpLink;
-        Long exercise = 1L;
 
         // Checking view parameters
         if(viewparams instanceof CourseViewParameters){
@@ -47,7 +46,7 @@ public class CourseComponents {
             cvpLink = new CourseViewParameters(cvp.course,
                     cvp.module, cvp.activity);
             evpLink = new ExerciseViewParameters(cvp.course,
-                    cvp.module, cvp.activity, exercise);
+                    cvp.module, cvp.activity, null);
         } else if(viewparams instanceof ExerciseViewParameters){
             ExerciseViewParameters evp =
                     (ExerciseViewParameters) viewparams;
