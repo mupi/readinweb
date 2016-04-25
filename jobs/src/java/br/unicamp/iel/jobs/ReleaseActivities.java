@@ -5,8 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import lombok.Setter;
+import lombok.extern.java.Log;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -19,6 +21,7 @@ import br.unicamp.iel.logic.SakaiProxy;
 import br.unicamp.iel.model.Property;
 
 public class ReleaseActivities implements Job {
+	private static final Logger log = Logger.getLogger(ReleaseActivities.class.getName());
 
     @Setter
     private ReadInWebCommonLogic common;
@@ -30,6 +33,7 @@ public class ReleaseActivities implements Job {
         sakaiProxy.adminSessionStart();
 
         List<Site> classes = sakaiProxy.getReadInWebSites(1L);
+        log.info(String.format("Looking into %d classes", classes.size()));
 
         for(Site riwClass : classes){
             Long releaseDate;
@@ -49,33 +53,22 @@ public class ReleaseActivities implements Job {
                 }
             }
 
-            System.out.println("Today: " + today + ", last: " + releaseDate + ", Week size  " + week());
             if(today >= common.getStartDate(riwClass).getTime()){
                 if(today - releaseDate > week()){
                     // Release activities
-                    System.out.println("Release Activities! " + riwClass.getTitle());
+                    log.info("Release Activities: " + riwClass.getTitle());
                     common.releaseActivities(riwClass);
                     sakaiProxy.updateStringProperty(riwClass,
                             Property.COURSELASTRELEASEDATE.getName(),
                             df.format(new Date(today)));
                 } else {
-                    System.out.println("Do not release Activities! " + riwClass.getTitle());
-                    common.releaseActivities(riwClass);
-                    sakaiProxy.updateStringProperty(riwClass,
-                            Property.COURSELASTRELEASEDATE.getName(),
-                            df.format(new Date(today)));
+                    log.info("Do not release Activities! " + riwClass.getTitle());
                 }
-            } else {
-                common.releaseActivities(riwClass);
-                sakaiProxy.updateStringProperty(riwClass,
-                        Property.COURSELASTRELEASEDATE.getName(),
-                        df.format(new Date(today)));
             }
         }
     }
 
     private Long week(){
-        // return new Long(60*60*24*7*1000);
-        return new Long(60*5);
+        return new Long(60*60*24*7*1000);
     }
 }

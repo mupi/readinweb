@@ -550,7 +550,6 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 	public void releaseActivities(Site riwClass) {
 		CourseProperties courseProperties = new CourseProperties(
 				JsonObject.readFrom(getCoursePropertyString(riwClass)));
-		System.out.println(courseProperties.toString());
 		courseProperties.publishNextActivities();
 
 		sakaiProxy.updateStringProperty(riwClass,
