@@ -435,8 +435,8 @@ public class SakaiProxyImpl implements SakaiProxy {
 	@Override
 	public void updateStringProperty(Site site, String name, String value) {
 		try {
-			ResourceProperties rp = site.getPropertiesEdit();
-			rp.addProperty(name, value);
+			ResourcePropertiesEdit rpe = site.getPropertiesEdit();
+			rpe.addProperty(name, value);
 			siteService.save(site);
 		} catch (IdUnusedException e) {
 			e.printStackTrace();
