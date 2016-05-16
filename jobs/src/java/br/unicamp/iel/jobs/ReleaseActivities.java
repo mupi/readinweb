@@ -58,9 +58,9 @@ public class ReleaseActivities implements Job {
                     // Release activities
                     log.info("Release Activities: " + riwClass.getTitle());
                     common.releaseActivities(riwClass);
-                    sakaiProxy.updateStringProperty(riwClass,
-                            Property.COURSELASTRELEASEDATE.getName(),
-                            df.format(new Date(today)));
+//                    sakaiProxy.updateStringProperty(riwClass,
+//                            Property.COURSELASTRELEASEDATE.getName(),
+//                            df.format(new Date(today)));
                 } else {
                     log.info("Do not release Activities! " + riwClass.getTitle());
                 }

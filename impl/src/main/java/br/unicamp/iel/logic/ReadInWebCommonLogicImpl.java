@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -552,7 +553,13 @@ public class ReadInWebCommonLogicImpl implements ReadInWebCommonLogic {
 				JsonObject.readFrom(getCoursePropertyString(riwClass)));
 		courseProperties.publishNextActivities();
 
-		sakaiProxy.updateStringProperty(riwClass,
-				Property.COURSEDATA.getName(), courseProperties.toString());
+		HashMap<String, String> props = new HashMap<String, String>();
+		props.put(Property.COURSELASTRELEASEDATE.getName(),
+					(new SimpleDateFormat("MM/dd/yyyy"))
+					.format(new Date(System.currentTimeMillis())));
+
+		props.put(Property.COURSEDATA.getName(), courseProperties.toString());
+
+		sakaiProxy.updateStringProperties(riwClass, props);
 	}
 }

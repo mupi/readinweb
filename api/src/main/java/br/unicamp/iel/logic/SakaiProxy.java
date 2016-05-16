@@ -1,5 +1,6 @@
 package br.unicamp.iel.logic;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.sakaiproject.authz.api.Role;
@@ -113,6 +114,8 @@ public interface SakaiProxy {
 
 	public void updateStringProperty(Site site, String name, String value);
 
+	public void updateStringProperties(Site site, HashMap<String, String> properties);
+
 	public void updateBooleanProperty(Site site, String name, Boolean value);
 
 	public void setJoinable(Site site, Boolean joinable);
@@ -158,5 +161,6 @@ public interface SakaiProxy {
 	public Session adminSessionStart();
 
 	public Boolean adminSessionStop(Session session);
+
 
 }
