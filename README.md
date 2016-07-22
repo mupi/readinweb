@@ -25,50 +25,68 @@ Uma segunda forma de subir o LMS para ser acessado na porta 80 é subindo em um
 
 ### SVN - Subversion
 
-A instalação do Subversion pode ser feita tanto através das recomendações do próprio site h ttp://subversion.apache.org, quanto do próprio sistema operacional. Após a instalação, faça download do código:
-$svncohtps:/source.sakaiproject.org/svn/sakai/branches/sakai-2.9.x
+A instalação do Subversion pode ser feita tanto através das recomendações do próprio site http://subversion.apache.org, quanto do próprio sistema operacional. Após a instalação, faça download do código:
+`$ svn co https://source.sakaiproject.org/svn/sakai/branches/sakai-2.9.x`
 
 ### Java 6
 
 É recomendado instalar a versão do JDK da Oracle. Porém é possível instalar a OpenJDK ou afins de acordo com a distribuição. Pra instalar a Oracle JDK 6 ou 7 recomendamos os seguintes guias:
 
-- http://www.oracle.com/technetwork/java/javase/downloads/java­archive­downloads­jav ase6­419409.html
-- http://www.freebsd.org/java/install.html
+- http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html
+- http://www.freebsd.org/java
 
 #### Configuração
 
 Configure as opções do Java através da variável J AVA_OPTS, elas devem ter os seguintes valores, já considerando as configurações do servidor Tomcat:
 
-    $exportJAVA_OPTS="-server-Xmx1028m-X:MaxPermSize=320m\ -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false\ -Djava.awt.headles=true-Dcom.sun.management.jmxremote\ -Dsun.lang.ClasLoader.alowAraySyntax=true\ -Duser.language=pt-Duser.region=BR"
+    $ export JAVA_OPTS="-server -Xmx1028m -X:MaxPermSize=320m \ -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false \ 
+    -Djava.awt.headles=true-Dcom.sun.management.jmxremote \
+    -Dsun.lang.ClasLoader.alowAraySyntax=true \
+    -Duser.language=pt -Duser.region=BR"
 
-Esse comando pode ser adicionado ao arquivo de s tartup.sh dentro do diretório b in do Tomcat de forma a garantir que as opções sejam utilizadas. Outra forma é coloca­las, assim com as do Maven 2, no arquivo de . bash_profile. 
+Esse comando pode ser adicionado ao arquivo de s tartup.sh dentro do diretório b in do Tomcat de forma a garantir que as opções sejam utilizadas. Outra forma é col-ca­las, assim com as do Maven 2, no arquivo `.bash_profile`. 
 
 ### MySQL
 
-Utiliza­se o banco de dados MySQL para instalação do Sakai para esse caso. É possível utilizar outros SGBDs, porém o MySQL foi escolhido em tempo de projeto devido ao seu extenso uso. Uma instalação da própria distribuição é suficiente apra utilização no Sakai.  
+Utiliza-se o banco de dados MySQL para instalação do Sakai para esse caso. É possível utilizar outros SGBDs, porém o MySQL foi escolhido em tempo de projeto devido ao seu extenso uso. Uma instalação da própria distribuição é suficiente apra utilização no Sakai.  
 Após instalação, crie um banco de dados para o Sakai:
 
-    $mysql-urot-p
-    MySQL>createdatabasesakaidefaultcharactersetutf8; 
-    MySQL>grantalprivilegesonsakai.*to'sakai'@'localhost'->identifiedby'senha';
-    MySQL>flushprivileges; MySQL>quit
+    $ mysql -uroot -p
+    mysql> create database sakai default character set utf8; 
+    mysql> grant all privileges on sakai.* to 'sakai'@'localhost' identified by 'password';
+    mysql> flush privileges; 
+    mysql> quit
 
 ### Apache Tomcat 7
 
-Com o Java instalado, pode­se então instalar o Servidor Web. Recomenda­se a instalação de uma versão não empacotada do servidor que pode ser encontrada no site http://tomcat.apache.org/download­70.cgi, para versão 7
-Após fazer o download, você pode desempacotar o arquivo em seu diretório de preferência, por exemplo, / opt e fazer algumas configurações básicas
-`$cd/opt $tarxvpfapache-tomcat-7.0.42.tar.gz $ln-sapache-tomcat-7.0.42tomcat7 $cdtomcat7`
-Edite o arquivo c onf/server.xml a lterando a linha < Conectorport="8080"adicionando URIEncoding="UTF-8"para fixar o encoding utilizado globalmente para UTF­8, delete as aplicações padrão:
-`$rm-rfwebaps/*`
-E por fim altere o classloader padrão utilizado em c onf/catalina.properties. 
+Com o Java instalado, pode-se então instalar o Servidor Web. Recomenda­se a instalação de uma versão não empacotada do servidor que pode ser encontrada no site http://tomcat.apache.org/download-70.cgi, para versão 7.
+Após fazer o download, você pode desempacotar o arquivo em seu diretório de preferência, por exemplo, `/opt` e fazer algumas configurações básicas
+
+    $ cd /opt 
+    $ tar xvpf apache-tomcat-7.0.70.tar.gz 
+    $ ln -s apache-tomcat-7.0.70 tomcat7 
+    $ cd tomcat7`
+
+Edite o arquivo `conf/server.xml` alterando a linha que contém `< Connectorport="8080"` adicionando `URIEncoding="UTF-8"` para fixar o encoding utilizado globalmente para UTF-8, delete as aplicações padrão:
+`$ rm -rf webaps/*`
+
+E por fim altere o `classloader` padrão utilizado em `conf/catalina.properties`. 
+
 Adicione o seguinte à linha que começa com "common.loader=..."
 `,${catalina.base}/comon/clases/,${catalina.base}/comon/lib/*.jar`
+
 Adicione o seguinte a linha que começa com "shared.loader=..."
 `${catalina.base}/shared/clases/,${catalina.base}/shared/lib/*.jar`
+
 Adicione o seguinte a linha que começa com "server.loader=..."
-`${catalina.base}/server/clases/,${catalina.base}/server/lib/*.jar`
+
+    ${catalina.base}/server/clases/,
+    ${catalina.base}/server/lib/*.jar
+
 Crie alguns diretórios necessários para rodar a aplicação corretamente:
-`$mkdir-pshared/clasesshared/libcomon/clasescomon/libserver/clasesserver/lib $mkdirsakai`
+
+    $ mkdir -p shared/clasesshared/libcomon/clasescomon/libserver/clasesserver/lib 
+    $ mkdir sakai
 
 ### Configuração do Sakai no Tomcat
 
