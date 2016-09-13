@@ -2,6 +2,8 @@ package br.unicamp.iel.tool.producers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
+import java.util.Collections;
 
 import lombok.Setter;
 
@@ -38,14 +40,14 @@ import br.unicamp.iel.tool.viewparameters.StudentViewParameters;
  *
  */
 
-public class ClassProducer implements ViewComponentProducer, 
+public class ClassProducer implements ViewComponentProducer,
 	NavigationCaseReporter {
 
     private static Log logger = LogFactory.getLog(ClassProducer.class);
 
     @Setter
     private ReadInWebCourseLogic logic;
-    
+
     @Setter
     private ReadInWebClassManagementLogic classLogic;
 
@@ -59,18 +61,18 @@ public class ClassProducer implements ViewComponentProducer,
     @Override
     public void fillComponents(UIContainer tofill, ViewParameters viewparams,
             ComponentChecker checker) {
-    	
+
         Course course = logic.getCourse(logic.getCourseId());
 
-        
-        GatewayMenuComponent menu = new GatewayMenuComponent(viewparams, 
+
+        GatewayMenuComponent menu = new GatewayMenuComponent(viewparams,
         		logic.isUserTeacher());
         menu.make(UIBranchContainer.make(tofill, "gateway_menu_replace:"));
 
         UIOutput.make(tofill, "course_name", course.getTitle());
 
         Site riwClass = logic.getCurrentSite();
-        
+
         UIOutput.make(tofill, "riw_class_name", riwClass.getTitle());
 
         UIOutput.make(tofill, "riw_startdate",
@@ -84,6 +86,15 @@ public class ClassProducer implements ViewComponentProducer,
 
         ArrayList<User> riwStudents =
                 new ArrayList<User>(classLogic.getStudents(riwClass));
+
+				Collections.sort(riwStudents, new Comparator<User>() {
+						@Override
+						public int compare(User u1, User u2)
+						{
+								return  u1.getDisplayName().toUpperCase().compareTo(u2.getDisplayName().toUpperCase());
+						}
+				});
+
         UIBranchContainer studentsTable =
                 UIBranchContainer.make(tofill, "riw_students:");
 
@@ -114,19 +125,19 @@ public class ClassProducer implements ViewComponentProducer,
                 studentRow.decorate((new UIStyleDecorator("danger")));
             }
 
-            UIInternalLink.make(studentRow, "student_name", u.getDisplayName(), 
+            UIInternalLink.make(studentRow, "student_name", u.getDisplayName(),
             		new StudentViewParameters(u.getId()));
-            
+
             //UIOutput.make(studentRow, "student_name", u.getDisplayName());
 
             UIOutput.make(studentRow, "student_isblocked",
                     classLogic.isUserBlocked(u, riwClass) ? "Sim" : "Não");
 
             UIOutput.make(studentRow, "student_blocks",
-                    Integer.toString(classLogic.getUserBlocks(u, 
+                    Integer.toString(classLogic.getUserBlocks(u,
                     		riwClass.getId())));
-            
-            UIOutput.make(studentRow, "student_completed", 
+
+            UIOutput.make(studentRow, "student_completed",
             		Long.toString(classLogic.countActivities(u, riwClass)));
 
         }

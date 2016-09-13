@@ -2,6 +2,8 @@ package br.unicamp.iel.tool.producers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
+import java.util.Collections;
 
 import lombok.Setter;
 
@@ -90,6 +92,15 @@ public class ClassProducer implements ViewComponentProducer,
 
 		ArrayList<User> riwStudents = new ArrayList<User>(
 				logic.getStudents(riwClass));
+
+		Collections.sort(riwStudents, new Comparator<User>() {
+				@Override
+				public int compare(User u1, User u2)
+				{
+						return  u1.getDisplayName().toUpperCase().compareTo(u2.getDisplayName().toUpperCase());
+				}
+		});
+
 		UIBranchContainer studentsTable = UIBranchContainer.make(tofill,
 				"riw_students:");
 
@@ -110,6 +121,7 @@ public class ClassProducer implements ViewComponentProducer,
 		// }
 
 		for (User u : riwStudents) {
+			System.out.println(u.getDisplayName());
 			UIBranchContainer studentRow = UIBranchContainer.make(
 					studentsTable, "riw_student:");
 
