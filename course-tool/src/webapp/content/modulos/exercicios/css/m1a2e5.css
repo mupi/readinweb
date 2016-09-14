@@ -1,0 +1,32 @@
+#myAlternativeContentContainer{
+	margin-top: 30px;
+	text-align: center;
+}
+
+.legendaVideo{
+	display:block;
+	font-size:90%;
+	margin-bottom:20px;
+	text-align:center;
+}
+
+
+.question{
+	display:block;
+	margin-top:40px;
+}
+
+.answer{
+	display:block;
+	margin-top:10px;
+}
+
+.answerText{
+	background-color:#FEFEEE;
+	padding:10px;
+	display: none;
+}
+
+.buttonAnswer{
+	display: block;
+}

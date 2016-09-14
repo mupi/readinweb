@@ -1,0 +1,30 @@
+.image{
+	display: none;
+}
+
+#box{
+	height: 100%;
+}
+
+.line{
+	width: 100%;
+	height: 50px;
+	display: block;
+}
+
+.row1, .row2, .row3{
+	float: left;
+	margin-left: 5px;
+}
+
+.row1{
+	width: 5%;
+}
+
+.row2{
+	width: 80%;
+}
+
+.row3{
+	width: 5%;
+}

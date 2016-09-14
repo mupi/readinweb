@@ -1,0 +1,8 @@
+.img{
+	margin-bottom: -8px;
+}
+
+#txt_resp1, #txt_resp2{
+	display: none;
+	color: red;
+}

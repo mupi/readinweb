@@ -1,0 +1,37 @@
+label { cursor:text; }
+
+.palavra { 
+	cursor: pointer;
+}
+
+.rosa { background:pink; }
+
+.verde_claro { background:#00FF00; }
+
+.verde_escuro { background:#43CD80; }
+
+.azul_claro { background:#BFEFFF }
+
+.roxo { background:#E066FF; }
+
+.amarelo { background:yellow; }
+
+.vermelho { background:red; }
+
+.azul_escuro { background:#1E90FF; }
+
+.cinza { background:grey; }
+
+.glossario { border:1px solid black; background: white; position: absolute; width: 150px; height: auto; margin: 0; padding: 0; display:none; font-size:10pt;}
+
+.setinha { float: right;}
+
+.titulo_glossario { padding: 0; margin: 0; background: red;}
+
+/*height é de 13 px pois temos mais 2 pixels de borda*/
+.legenda { border: 1px solid black; width:20px; height: 13px; margin:0 0 0 10px; padding:0; float: left;  clear: both }
+
+#texto {
+	display: none;
+	line-height: 135%;
+}

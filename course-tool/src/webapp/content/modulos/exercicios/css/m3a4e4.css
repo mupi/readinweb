@@ -1,0 +1,6 @@
+
+  .titulo { font-weight:bold; }
+  #div_resposta { display: none; color: red;}
+  .tabela {width:600px; font-size:10pt; padding-bottom: 20px;}
+  .coluna {width:300px; float: left;}
+  p{clear: both;}

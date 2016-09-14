@@ -1,0 +1,26 @@
+label {
+	cursor:pointer;
+	line-height: 135%;
+}
+
+.titulo{
+	font-weight:bold;
+}
+
+#div_resposta{
+	display: none;
+	color: red;
+	padding-top:10px;
+}
+
+.clicked{
+	border-bottom: 2px solid black;
+}
+
+.blue{
+	background: #BFEFFF;
+}
+
+.red{
+	background: #FF5555;
+}

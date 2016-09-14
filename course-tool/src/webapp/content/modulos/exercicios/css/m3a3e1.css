@@ -1,0 +1,47 @@
+.resp{
+	display:none; 
+	color:red;
+}
+
+.box{
+	height: 100%;
+	width: 100%;
+	margin-top: 15px;
+}
+
+.line{
+	height: 50px;
+}
+
+.question{
+	dsplay: block;
+}
+
+.row1{
+	float: left;
+	width: 50%;
+}
+
+.row2{
+	float: right;
+	width: 50%;
+}
+
+.answer{
+	float: right;
+	width: 50%;
+	display: block;
+}
+
+
+.nivelador{/*limpa elementos com float no IE7 ou menor*/
+	zoom:1;
+}
+
+.nivelador:after{/*limpa todos os elementos com float*/
+	clear:both;
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+}

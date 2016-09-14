@@ -1,0 +1,44 @@
+.palavra {
+	cursor: pointer;
+	line-height: 135%
+}
+
+.rosa {
+	background:pink; 
+}
+
+.verde_claro {
+	background:#00FF00; 
+}
+
+.verde_escuro {
+	background:#43CD80; 
+}
+
+.azul_claro {
+	background:#BFEFFF; 
+}
+
+.roxo {
+	background:#E066FF; 
+}
+
+.amarelo {
+	background:yellow; 
+}
+
+.vermelho {
+	background:red;
+}
+
+.azul_escuro {
+	background:#1E90FF;
+}
+
+.cinza {
+	background:grey;
+}
+
+.grifado {
+	border-bottom: 2px solid black;
+}

@@ -1,0 +1,38 @@
+.img{
+	margin-bottom: -8px;
+}
+
+.titulo {
+	font-weight:bold; 
+}
+
+.reference{
+	left: 40px;
+}
+
+.question{
+	height: 30px;
+}
+
+.answer{
+	height: 70px;
+}
+
+.left{
+	float: left;
+	width: 150px;
+}
+
+.center{
+	float: left;
+	width: 500px;
+}
+
+.right{
+	float: left;
+	width: 50px;
+}
+
+.but{
+	float: left;
+}

@@ -1,0 +1,980 @@
+<?xml version="1.0"?>
+<!--
+ESTRUTURA:
+	<part> todas as peças do dominó </part>
+	  | - <leftword> palavra que fica na esquerda da peça </leftword>
+	  | - <rightword> Palavra que fica na direita da peça </rightword>
+	  | - <pos> palavras que podem seguir a peça </pos>
+		  | - <word> palavra </word>
+		  | - <phrase> frase formada pela palavra formada pela junção </phrase>
+-->
+
+<parts>
+	<!-- DE - FIRST -->
+	<part id="first">
+		<leftWord></leftWord>
+		<rightWord>over</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This student is a beginner, not an intermediate student. The placement test overclassified her.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>The broccoli is yellow and watery. She overcooked it again.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This teacher is overemphasizing the importance of homework.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>We tend to overevaluate how good we are, especially in our jobs.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>A place that is overpopulated has too many people living in it.</phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>She got an A+ again. As a student, she has always been an overachiever.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>It was a picnic!  She was ridiculously overdressed in that long dress.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>He is in love and completely blind.  He is overestimating her few qualities.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>He is not qualified for the job and he is overpaid. His salary should be cut in half.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say Maradona is the best player in the world is a tremendous overstatement.  Brazil's top players are better. </phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Sales this year look great! They will probably overtake last year's total.</phrase>
+		</pos>
+	</part>
+	
+	<!-- DIS -->
+	<part>
+		<leftWord>classified</leftWord>
+		<rightWord>dis</rightWord>
+		<pos>
+			<word>connected</word>
+			<phrase>You can't use the phone because it has been disconnected.</phrase>
+		</pos>
+		<pos>
+			<word>cover</word>
+			<phrase>Penicillin was discovered by Fleming.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The president was elected by a disinformed electorate.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>I think this government will not be re-elected. It will be replaced by its opposition in the next election.</phrase>
+		</pos>
+		<pos>
+			<word>service</word>
+			<phrase>You do a disservice to the community when you fail to practice recycling.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>The old bridge fell into disuse.</phrase>
+		</pos>
+	</part>
+
+	<!-- MIS -->
+	<part>
+		<leftWord>populated</leftWord>
+		<rightWord>mis</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This  test misclassified  two  students who should be in a lower level of French.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The senator has simply been misinformed.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>The unexpected defeat of the Partido dos Trabalhadores showed that they had misjudged the electorate’s wishes.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>In which shelf  is my dictionary?  I have misplaced it  again.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Thank you for the correction. I won't make the same mistake again!</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>There should be laws to prevent computer misuse.</phrase>
+		</pos>
+	</part>
+	
+	<!-- OVER -->
+	<part>
+		<leftWord>connected</leftWord>
+		<rightWord>over</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This student is a beginner, not an intermediate student. The placement test overclassified her.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>The broccoli is yellow and watery. She overcooked it again.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This teacher is overemphasizing the importance of homework.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>We tend to overevaluate how good we are, especially in our jobs.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>A place that is overpopulated has too many people living in it.</phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>She got an A+ again. As a student, she has always been an overachiever.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>It was a picnic!  She was ridiculously overdressed in that long dress.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>He is in love and completely blind.  He is overestimating her few qualities.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>He is not qualified for the job and he is overpaid. His salary should be cut in half.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say Maradona is the best player in the world is a tremendous overstatement.  Brazil's top players are better. </phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Sales this year look great! They will probably overtake last year's total.</phrase>
+		</pos>
+	</part>
+	
+	<!-- PRE -->
+	<part>
+		<leftWord>formed</leftWord>
+		<rightWord>pre</rightWord>
+		<pos>
+			<word>statement</word>
+			<phrase>The procedure called “Pre-statement of Benefits” is recommended, before you sign the actual contract.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>Cook the macaroni for no more than two minutes because it has been precooked.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>The preformed, pre-molded auto carpet comes complete with insulation padding.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>Don’t prejudge people before getting to know them.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Every time you use a ladder you should do a pre-use check to make sure that it is safe.</phrase>
+		</pos>
+		<pos>
+			<word>-evaluate</word>
+			<phrase>We recommend that you pre-evaluate each credit project.</phrase>
+		</pos>
+	</part>
+	
+	<!-- RE -->
+	<part>
+		<leftWord>informed</leftWord>
+		<rightWord>re</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>In his most recent book, the scientist reclassified the dinosaur as a kind of crocodile!!</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Our phone was reconnected after we paid three months' bills.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>I have to emphasize and  reemphasize the importance of recycling.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>The healthcare system must be radically reformed.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>When you repay a favor that someone did for you, you give them something in return.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>Who replaced you when you went on vacation?</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>After the hurricane, this part of the city was repopulated.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>A restatement is a repetition of what has already been said.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>I passed the test on the third retake.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>You should reevaluate your monthly expenses.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Recycling means the reuse of waste materials.</phrase>
+		</pos>
+	</part>
+	
+	<!-- SELF -->
+	<part>
+		<leftWord>classified</leftWord>
+		<rightWord>self</rightWord>
+		<pos>
+			<word>achiever</word>
+			<phrase>The self achiever has to be disciplined to study on his own.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>The answers to some of our problems require a profound national self estimate.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>Please self evaluate how much you have learned from doing this exercise.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>Around the World Tours works with self formed groups to organize its trips all over Europe.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The self informed student shows real  motivation.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>Examine yourself and self judge your motives.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>Both employees and self paid professionals can be included in the  private medical insurance.</phrase>
+		</pos>
+		<pos>
+			<word>service</word>
+			<phrase>In a  self-service restaurant the customers have to serve themselves.</phrase>
+		</pos>
+	</part>
+	
+	<!-- UN -->
+	<part>
+		<leftWord>service</leftWord>
+		<rightWord>un</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>Unclassified information is available to everyone whereas classified information is kept a secret by the government.</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Her question was not related to anything they had been discussing.  It was completely unconnected.</phrase>
+		</pos>
+		<pos>
+			<word>do</word>
+			<phrase>Could you undo the knot in this string?</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>I was still undressed when the police rang the doorbell in the morning.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>Voters are surprisingly uninformed about the candidates' positions on major issues.</phrase>
+		</pos>
+		<pos>
+			<word>cover</word>
+			<phrase>Auditors said they had uncovered evidence of fraud.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>His handwriting was hard to read as it was childish and unformed.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Yes, of course, I'm given you an unused toothbrush.</phrase>
+		</pos>
+	</part>
+
+	<!-- UNDER -->
+	<part>
+		<leftWord>use</leftWord>
+		<rightWord>under</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>These advanced students should not be in the Basic Level. The placement test under classified them.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>An underpopulated area has very few people living in it, especially in desert regions. </phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>An underachiever in school fails to do well.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>The bride complained that he was underdressed.  He was wearing jeans in his own wedding! </phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>She failed to give enough emphasis to the project.  She actually underemphasized its importance.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>We have seriously underestimated the cost of this trip. We might not have enough money to get home.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>An underpaid employee is paid less than what he or she deserves. </phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say that Garrincha was a good player is an understatement. It suggests that he was less than what he really was: the best player.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>The court will undertake a serious examination of the case.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Linux is an excellent and convenient but underused Operational System.</phrase>
+		</pos>
+	</part>
+	
+	<!-- DE -->
+	<part>
+		<leftWord>judge</leftWord>
+		<rightWord>de</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>The information was declassified by the government and released to the media.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>Drug use  may have caused deformed babies.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>The whole continent was depopulated by the war.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This year the university has deemphasize soccer games among students.</phrase>
+		</pos>
+	</part>
+	
+	<!-- DIS -->
+	<part>
+		<leftWord>take</leftWord>
+		<rightWord>dis</rightWord>
+		<pos>
+			<word>connected</word>
+			<phrase>You can't use the phone because it has been disconnected.</phrase>
+		</pos>
+		<pos>
+			<word>cover</word>
+			<phrase>Penicillin was discovered by Fleming.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The president was elected by a disinformed electorate.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>I think this government will not be re-elected. It will be replaced by its opposition in the next election.</phrase>
+		</pos>
+		<pos>
+			<word>service</word>
+			<phrase>You do a disservice to the community when you fail to practice recycling.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>The old bridge fell into disuse.</phrase>
+		</pos>
+	</part>
+
+	<!-- MIS -->
+	<part>
+		<leftWord>cook</leftWord>
+		<rightWord>mis</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This  test misclassified  two  students who should be in a lower level of French.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The senator has simply been misinformed.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>The unexpected defeat of the Partido dos Trabalhadores showed that they had misjudged the electorate’s wishes.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>In which shelf  is my dictionary?  I have misplaced it  again.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Thank you for the correction. I won't make the same mistake again!</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>There should be laws to prevent computer misuse.</phrase>
+		</pos>
+	</part>
+	
+	<!-- OVER -->
+	<part>
+		<leftWord>evaluate</leftWord>
+		<rightWord>over</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This student is a beginner, not an intermediate student. The placement test overclassified her.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>The broccoli is yellow and watery. She overcooked it again.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This teacher is overemphasizing the importance of homework.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>We tend to overevaluate how good we are, especially in our jobs.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>A place that is overpopulated has too many people living in it.</phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>She got an A+ again. As a student, she has always been an overachiever.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>It was a picnic!  She was ridiculously overdressed in that long dress.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>He is in love and completely blind.  He is overestimating her few qualities.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>He is not qualified for the job and he is overpaid. His salary should be cut in half.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say Maradona is the best player in the world is a tremendous overstatement.  Brazil's top players are better. </phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Sales this year look great! They will probably overtake last year's total.</phrase>
+		</pos>
+
+	</part>
+	
+	<!-- PRE -->
+	<part>
+		<leftWord>emphasize</leftWord>
+		<rightWord>pre</rightWord>
+		<pos>
+			<word>statement</word>
+			<phrase>The procedure called “Pre-statement of Benefits” is recommended, before you sign the actual contract.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>Cook the macaroni for no more than two minutes because it has been precooked.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>The preformed, pre-molded auto carpet comes complete with insulation padding.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>Don’t prejudge people before getting to know them.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Every time you use a ladder you should do a pre-use check to make sure that it is safe.</phrase>
+		</pos>
+	</part>
+	
+	<!-- RE -->
+	<part>
+		<leftWord>achiever</leftWord>
+		<rightWord>re</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>In his most recent book, the scientist reclassified the dinosaur as a kind of crocodile!!</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Our phone was reconnected after we paid three months' bills.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>I have to emphasize and  reemphasize the importance of recycling.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>The healthcare system must be radically reformed.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>When you repay a favor that someone did for you, you give them something in return.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>Who replaced you when you went on vacation?</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>After the hurricane, this part of the city was repopulated.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>A restatement is a repetition of what has already been said.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>I passed the test on the third retake.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>You should reevaluate your monthly expenses.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Recycling means the reuse of waste materials.</phrase>
+		</pos>
+	</part>
+	
+	<!-- SELF -->
+	<part>
+		<leftWord>cover</leftWord>
+		<rightWord>self</rightWord>
+		<pos>
+			<word>achiever</word>
+			<phrase>The self achiever has to be disciplined to study on his own.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>The answers to some of our problems require a profound national self estimate.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>Please self evaluate how much you have learned from doing this exercise.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>Around the World Tours works with self formed groups to organize its trips all over Europe.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The self informed student shows real  motivation.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>Examine yourself and self judge your motives.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>Both  employee or self paid professionals can be including in  the  private medical insurance.</phrase>
+		</pos>
+		<pos>
+			<word>service</word>
+			<phrase>In a  self-service restaurant the customers have to serve themselves.</phrase>
+		</pos>
+	</part>
+	
+	<!-- UN -->
+	<part>
+		<leftWord>paid</leftWord>
+		<rightWord>un</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>Unclassified information is available to everyone whereas classified information is kept a secret by the government.</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Her question was not related to anything they had been discussing.  It was completely unconnected.</phrase>
+		</pos>
+		<pos>
+			<word>do</word>
+			<phrase>Could you undo the knot in this string? </phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>I was still undressed when the police rang the doorbell in the morning.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>Voters are surprisingly uninformed about the candidates' positions on major issues.</phrase>
+		</pos>
+		<pos>
+			<word>cover</word>
+			<phrase>Auditors said they had uncovered evidence of fraud.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>His handwriting was hard to read as it was childish and unformed.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Yes, of course, I'm given you an unused toothbrush.</phrase>
+		</pos>
+	</part>
+
+	<!-- UNDER -->
+	<part>
+		<leftWord>placed</leftWord>
+		<rightWord>under</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>These advanced students should not be in the Basic Level. The placement test under classified them.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>An underpopulated area has very few people living in it, especially in desert regions. </phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>An underachiever in school fails to do well.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>The bride complained that he was underdressed.  He was wearing jeans in his own wedding! </phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>She failed to give enough emphasis to the project.  She actually underemphasized its importance.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>We have seriously underestimated the cost of this trip. We might not have enough money to get home.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>An underpaid employee is paid less than what he or she deserves. </phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say that Garrincha was a good player is an understatement. It suggests that he was less than what he really was: the best player.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>The court will undertake a serious examination of the case.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Linux is an excellent and convenient but underused Operational System.</phrase>
+		</pos>
+	</part>
+	
+	<!-- UNDER -->
+	<part>
+		<leftWord>do</leftWord>
+		<rightWord>under</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>These advanced students should not be in the Basic Level. The placement test under classified them.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>An underpopulated area has very few people living in it, especially in desert regions. </phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>An underachiever in school fails to do well.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>The bride complained that he was underdressed.  He was wearing jeans in his own wedding! </phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>She failed to give enough emphasis to the project.  She actually underemphasized its importance.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>We have seriously underestimated the cost of this trip. We might not have enough money to get home.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>An underpaid employee is paid less than what he or she deserves. </phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say that Garrincha was a good player is an understatement. It suggests that he was less than what he really was: the best player.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>The court will undertake a serious examination of the case.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Linux is an excellent and convenient but underused Operational System.</phrase>
+		</pos>
+	</part>
+	
+	<!-- SELF -->
+	<part>
+		<leftWord>statement</leftWord>
+		<rightWord>self</rightWord>
+		<pos>
+			<word>achiever</word>
+			<phrase>The self achiever has to be disciplined to study on his own.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>The answers to some of our problems require a profound national self estimate.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>Please self evaluate how much you have learned from doing this exercise.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>Around the World Tours works with self formed groups to organize its trips all over Europe.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The self informed student shows real  motivation.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>Examine yourself and self judge your motives.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>Both  employee or self paid professionals can be including in  the  private medical insurance.</phrase>
+		</pos>
+		<pos>
+			<word>service</word>
+			<phrase>In a  self-service restaurant the customers have to serve themselves.</phrase>
+		</pos>
+	</part>
+	
+	<!-- RE -->
+	<part>
+		<leftWord>estimate</leftWord>
+		<rightWord>re</rightWord>
+			<pos>
+			<word>classified</word>
+			<phrase>In his most recent book, the scientist reclassified the dinosaur as a kind of crocodile!!</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Our phone was reconnected after we paid three months' bills.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>I have to emphasize and  reemphasize the importance of recycling.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>The healthcare system must be radically reformed.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>When you repay a favor that someone did for you, you give them something in return.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>Who replaced you when you went on vacation?</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>After the hurricane, this part of the city was repopulated.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>A restatement is a repetition of what has already been said.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>I passed the test on the third retake.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>You should reevaluate your monthly expenses.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Recycling means the reuse of waste materials.</phrase>
+		</pos>
+	</part>
+	
+	<!-- OVER -->
+	<part>
+		<leftWord>formed</leftWord>
+		<rightWord>over</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This student is a beginner, not an intermediate student. The placement test overclassified her.</phrase>
+		</pos>
+		<pos>
+			<word>cook</word>
+			<phrase>The broccoli is yellow and watery. She overcooked it again.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This teacher is overemphasizing the importance of homework.</phrase>
+		</pos>
+		<pos>
+			<word>evaluate</word>
+			<phrase>We tend to overevaluate how good we are, especially in our jobs.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>A place that is overpopulated has too many people living in it.</phrase>
+		</pos>
+		<pos>
+			<word>achiever</word>
+			<phrase>She got an A+ again. As a student, she has always been an overachiever.</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>It was a picnic!  She was ridiculously overdressed in that long dress.</phrase>
+		</pos>
+		<pos>
+			<word>estimate</word>
+			<phrase>He is in love and completely blind.  He is overestimating her few qualities.</phrase>
+		</pos>
+		<pos>
+			<word>paid</word>
+			<phrase>He is not qualified for the job and he is overpaid. His salary should be cut in half.</phrase>
+		</pos>
+		<pos>
+			<word>statement</word>
+			<phrase>To say Maradona is the best player in the world is a tremendous overstatement.  Brazil's top players are better. </phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Sales this year look great! They will probably overtake last year's total.</phrase>
+		</pos>
+	</part>
+	
+	<!-- MIS -->
+	<part>
+		<leftWord>dressed</leftWord>
+		<rightWord>mis</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>This  test misclassified  two  students who should be in a lower level of French.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>The senator has simply been misinformed.</phrase>
+		</pos>
+		<pos>
+			<word>judge</word>
+			<phrase>The unexpected defeat of the Partido dos Trabalhadores showed that they had misjudged the electorate’s wishes.</phrase>
+		</pos>
+		<pos>
+			<word>placed</word>
+			<phrase>In which shelf  is my dictionary?  I have misplaced it  again.</phrase>
+		</pos>
+		<pos>
+			<word>take</word>
+			<phrase>Thank you for the correction. I won't make the same mistake again!</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>There should be laws to prevent computer misuse.</phrase>
+		</pos>
+	</part>
+	
+	<!-- DE -->
+	<part>
+		<leftWord>emphasize</leftWord>
+		<rightWord>de</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>The information was declassified by the government and released to the media.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>Drug use  may have caused deformed babies.</phrase>
+		</pos>
+		<pos>
+			<word>populated</word>
+			<phrase>The whole continent was depopulated by the war.</phrase>
+		</pos>
+		<pos>
+			<word>emphasize</word>
+			<phrase>This year the university has deemphasize soccer games among students.</phrase>
+		</pos>
+	</part>
+	
+	<!-- UN -->
+	<part>
+		<leftWord>populated</leftWord>
+		<rightWord>un</rightWord>
+		<pos>
+			<word>classified</word>
+			<phrase>Unclassified information is available to everyone whereas classified information is kept a secret by the government.</phrase>
+		</pos>
+		<pos>
+			<word>connected</word>
+			<phrase>Her question was not related to anything they had been discussing.  It was completely unconnected.</phrase>
+		</pos>
+		<pos>
+			<word>do</word>
+			<phrase>Could you undo the knot in this string?</phrase>
+		</pos>
+		<pos>
+			<word>dressed</word>
+			<phrase>I was still undressed when the police rang the doorbell in the morning.</phrase>
+		</pos>
+		<pos>
+			<word>informed</word>
+			<phrase>Voters are surprisingly uninformed about the candidates' positions on major issues.</phrase>
+		</pos>
+		<pos>
+			<word>cover</word>
+			<phrase>Auditors said they had uncovered evidence of fraud.</phrase>
+		</pos>
+		<pos>
+			<word>formed</word>
+			<phrase>His handwriting was hard to read as it was childish and unformed.</phrase>
+		</pos>
+		<pos>
+			<word>use</word>
+			<phrase>Yes, of course, I'm given you an unused toothbrush.</phrase>
+		</pos>
+	</part>
+	
+</parts>		

@@ -1,0 +1,30 @@
+.verbo {
+	float: left;
+	width: 40%;
+}
+
+.part{
+	margin-top: 30px;
+}
+
+.respos{
+	margin-top: 15px;
+}
+
+.resposta1, .resposta2{
+	position: absolute;
+	float: left;
+	display: none;
+}
+
+.resposta1{
+	margin-left: 0px;
+}
+
+.resposta2{
+	margin-left: 313px;
+}
+
+.imgResp{
+	margin-bottom: -8px;
+}
