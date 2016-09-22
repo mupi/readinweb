@@ -1,0 +1,45 @@
+.phrases{
+	margin: 10px 0px 40px 0px;
+	text-align: center;
+	display:block;
+}
+
+.right{
+	float:right;
+	line-height:2;
+	margin-top:-30px;
+	display: block;
+	width: 50%;
+	text-align:right;
+}
+
+.left{
+	float:left;
+	line-height:2;
+	margin-top:-30px;
+	display: block;
+	width: 50%;
+}
+
+hr{
+	background-color: blue;
+	border: none;
+	height: 5px;
+	margin: 0;
+	padding: 0;
+}
+
+.line{
+	width: 100%;
+	hight: 20px;
+}
+
+.row{
+	width: 20%;
+	float: left;
+}
+
+.answer{
+	color: red;
+	display: none;
+}

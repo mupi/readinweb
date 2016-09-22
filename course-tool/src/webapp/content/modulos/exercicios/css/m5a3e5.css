@@ -1,0 +1,8 @@
+.img{
+	margin-bottom: -8px;
+}
+
+.destaque {font-weight: bold;}
+.azul {color:blue;}
+.esquerda {float:left; width: 500px; height: 55px; margin-bottom:15px}
+.direita {float:left; width: 200px; height: 55px; margin-bottom:15px}

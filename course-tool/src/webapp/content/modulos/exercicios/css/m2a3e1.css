@@ -1,0 +1,48 @@
+.titulo{
+	font-weight:bold;
+}
+
+#div_resposta_A{
+	display: none;
+	color: blue;
+}
+
+#div_resposta_B{
+	display: none;
+	color: red;
+}
+
+#div_resposta_C{
+	display: none;
+	color: green;
+}
+
+#tabela{
+	width:700px;
+}
+
+.coluna{
+	float:left;
+	margin:10px;
+	width:200px;
+}
+
+p{
+	clear: both;
+}
+
+.azul{
+	color:blue;
+}
+
+.vermelhoo{
+	color:red;
+}
+
+.verde{
+	color:green;
+}
+
+.greyHighlight{
+	background-color: #eeeeff;
+}

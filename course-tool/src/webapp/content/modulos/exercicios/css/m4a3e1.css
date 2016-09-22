@@ -1,0 +1,44 @@
+.titulo {
+	font-weight:bold;
+}
+
+.image{
+	display: none;
+}
+
+.box{
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+
+.quest{
+	margin-top: 20px;
+	width: 100%;
+	display: table;
+}
+
+.phrases{
+	margin-bottom: 10px;
+	color: blue;
+	width: 100%;
+}
+
+.text{
+	width:100%;
+}
+
+.row1{
+	float: left;
+	width: 70%;
+}
+
+.row2{
+	float: left;
+	width: 10%;
+}
+
+.row3{
+ 	float: right;
+	width: 20%;
+}

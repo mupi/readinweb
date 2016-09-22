@@ -1,0 +1,10 @@
+.blue{
+	color: blue;
+}
+
+.underlined{
+	text-decoration: underline;
+}
+
+.titulo { font-weight:bold; }
+#div_resposta { display: none; color: red;}

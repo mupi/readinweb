@@ -1,0 +1,27 @@
+*{
+	line-height: 135%;
+}
+
+.titulo{
+	margin-bottom: 20px;
+}
+
+.selects{
+	margin-bottom:15px;
+}
+
+.grifado {
+	border-bottom: 2px solid black;
+}
+
+.azul_claro {
+	background:#BFEFFF;
+}
+
+.resp_errada {
+	background: #FF5555;
+}
+
+span{
+	cursor: pointer;
+}

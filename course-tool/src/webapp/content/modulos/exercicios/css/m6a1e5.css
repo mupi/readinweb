@@ -1,0 +1,24 @@
+.can,
+.may,
+.should,
+.could,
+.oughtto,
+.would,
+.must{
+	height: 30px;
+	width: 100px;
+}
+
+.can img,
+.may img,
+.should img,
+.could img,
+.oughtto img,
+.would img,
+.must img{
+	display: none;
+}
+
+#phrases{
+	margin: 10px 0px 15px 20px;
+}

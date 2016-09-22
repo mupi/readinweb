@@ -1,0 +1,29 @@
+
+label {
+	cursor:pointer;
+}
+
+.clicked{
+	border-bottom: 2px solid black;
+}
+
+.blue{
+	background: #BFEFFF;
+}
+
+.red{
+	background: #FF5555;
+}
+
+.titulo{
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
+.txt_underline {
+	text-decoration: underline;
+}
+
+.texto {
+	line-height: 132%;
+}

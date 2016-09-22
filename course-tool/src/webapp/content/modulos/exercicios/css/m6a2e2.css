@@ -1,0 +1,42 @@
+
+.translation{
+	color: blue;
+	display: none;
+}
+
+.comment{
+	margin-top: 20px;
+	color: red;
+	display: none;
+}
+
+.image{
+	display: none;
+	margin-bottom: -8px;
+}
+
+#box{
+	height: 100%;
+	width: 100%;
+}
+
+.line{
+	margin-top: 15px; 
+}
+
+.frstLine{
+}
+
+.row1{
+	float: left;
+	width: 60%;
+}
+
+.row2{
+	float: left;
+}
+
+.scndLine{
+	clear: both;
+	height: 15px;
+}

@@ -1,0 +1,19 @@
+.titulo { font-weight:bold; margin-bottom:15px;}
+#div_resposta { display: none; color: red;}
+
+#image_m3a2e1{
+	margin:15px;
+	float: left;
+}
+
+textarea{
+	color:#000000;
+	font-family:verdana,arial,helvetica,sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+}

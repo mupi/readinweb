@@ -1,0 +1,25 @@
+.img{
+	margin-bottom: -8px;
+}
+.destaque {font-weight: bold;}
+.azul {color:blue;}
+.coluna_menor {float:left; width: 140px; padding-top:5px;}
+.palavra {float:left; width: 225px;padding-top:5px;}
+
+.traducao {
+	color:blue;
+	display:none;
+	float:left;
+	padding-bottom:15px;
+	width:500px;
+}
+
+.button{
+	float:left;
+	padding-top:25px;
+	width: 280px;
+}
+
+.palavra text{
+	cursor: pointer;
+}

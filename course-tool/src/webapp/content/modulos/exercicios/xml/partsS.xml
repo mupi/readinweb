@@ -1,0 +1,445 @@
+<parts>
+	<!-- POWER - FIRST -->
+	<part id="first">
+		<leftWord>ship</leftWord>
+		<rightWord>Power</rightWord>
+		<pos>
+			<word>ful</word>
+			<phrase>The BMW is a powerful car.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The fire had spread in a way that the firefighters were completely powerless against it.</phrase>
+		</pos>
+		<pos>
+			<word>ed</word>
+			<phrase>The machine is powered by eletricity.</phrase>
+		</pos>
+	</part>
+	
+	<!-- BACK -->
+	<part>
+		<leftWord>able</leftWord>
+		<rightWord>Back</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>He backed his car out of the garage.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>We are trying to find a rich and generous backer for our football team.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>The parents are backing their children’s football team.</phrase>
+		</pos>
+		<pos>
+			<word>ward</word>
+			<phrase>In today’s world if you stop studying you are actually moving backward.</phrase>
+		</pos>
+	</part>
+		
+	<!-- CARE -->
+	<part>
+		<leftWord>ly</leftWord>
+		<rightWord>Care</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>He was so sick that he no longer cared if he lived or died.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>He is a careful and responsible driver.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The careless driver risks losing his life in an accident.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>She is a loving and caring mother.</phrase>
+		</pos>
+	</part>
+		
+	<!-- COLOR -->
+	<part>
+		<leftWord>ward</leftWord>
+		<rightWord>Color</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>The black-and-white photograph is more artistic than the colored one.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>In spite of its vivid coloring, the small frog can not be seen in the middle of green leaves.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>The Brazilian flag is very colorful.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The medicine was tasteless and colorless.</phrase>
+		</pos>
+	</part>
+
+	<!-- COUNT -->
+	<part>
+		<leftWord>like</leftWord>
+		<rightWord>Count</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>How many votes were counted against the new law?</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>A counter is a long narrow table or top in a shop.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>There were countless stars in the night sky</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>Counting sheep could be helpful for people who suffer from insomnia.</phrase>
+		</pos>
+		<pos>
+			<word>able</word>
+			<phrase>Uncountable nouns such as “water” can be measured by using countable nouns such as “cups”.</phrase>
+		</pos>
+		<pos>
+			<word>y</word>
+			<phrase>The county has its own local government.</phrase>
+		</pos>
+	</part>
+
+	<!-- DREAM -->
+	<part>
+		<leftWord>hood</leftWord>
+		<rightWord>Dream</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>I could never have dreamed I would win the lottery.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>He is an incurable optimistic dreamer who can not see reality</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>The boy was being attacked by the lion when he woke up and realized he had been dreaming.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>He fell into a peaceful and deep dreamless sleep.</phrase>
+		</pos>
+		<pos>
+			<word>y</word>
+			<phrase>After she saw him, she had a dreamy look on her face.</phrase>
+		</pos>
+		<pos>
+			<word>like</word>
+			<phrase>There was an unreal, dreamlike quality about the film.</phrase>
+		</pos>
+	</part>
+		
+	<!-- DRESS -->
+	<part>
+		<leftWord>less</leftWord>
+		<rightWord>Dress</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>A lady dressed in a white sweater approached us.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>There was an old wooden dresser in our bedroom where we kept our small treasures.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>I want no vinegar on my salad dressing.</phrase>
+		</pos>
+		<pos>
+			<word>y</word>
+			<phrase>The men wore black suits and the women dressy clothes for the wedding.</phrase>
+		</pos>
+	</part>
+	
+	<!-- EMPLOY -->
+	<part>
+		<leftWord>ful</leftWord>
+		<rightWord>Employ</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>She is employed as a private teacher.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>Most employers are reluctant to give a salary raise to employees.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>The new company is still employing skilled workers.</phrase>
+		</pos>
+		<pos>
+			<word>able</word>
+			<phrase>She could not get a job because she had no employable skills.</phrase>
+		</pos>
+		<pos>
+			<word>ment</word>
+			<phrase>Employment in Campinas is increasing.</phrase>
+		</pos>
+	</part>
+		
+	<!-- FEAR -->
+	<part>
+		<leftWord>er</leftWord>
+		<rightWord>Fear</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>Cancer is the most feared illness.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>The tired soldiers were fearful of another attack by the enemy.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The fearless soldier went into enemy camp.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>Fearing the worse, she walked into the kitchen from where she could hear a mouse.</phrase>
+		</pos>
+	</part>
+	
+	<!-- HAND -->
+	<part>
+		<leftWord>ment</leftWord>
+		<rightWord>Hand</rightWord>
+		<pos>
+			<word>ed</word>
+			<phrase>In 2005 he handed in the new edition of his book to the publishers.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>Eating a handful of nuts everyday is excellent for the health.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>Not handing in your papers on time means a lower grade.</phrase>
+		</pos>
+		<pos>
+			<word>y</word>
+			<phrase>Having a dictionary on your table is very handy for reference.</phrase>
+		</pos>
+	</part>
+
+	<!-- MOTHER -->
+	<part>
+		<leftWord>y</leftWord>
+		<rightWord>Mother</rightWord>		
+		<pos>
+			<word>ed</word>
+			<phrase>Francisco does not like being constantly mothered by his wife.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>Francisco’s wife keeps mothering him in front of the visitors much to his annoyance.</phrase>
+		</pos>
+		<pos>
+			<word>hood</word>
+			<phrase>Many families today have to deal with teenage motherhood.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>The older she was, the more motherly she became.</phrase>
+		</pos>
+		<pos>
+			<word>like</word>
+			<phrase>She was motherlike towards her little sisters after their mother’s death.</phrase>
+		</pos>
+	</part>
+
+	<!-- NARROW -->
+	<part>
+		<leftWord>able</leftWord>
+		<rightWord>Narrow</rightWord>		
+		<pos>
+			<word>ed</word>
+			<phrase>The river narrowed and curved to the left.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>The streets in the old part of town are a lot narrower than the ones more recently built.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>By narrowing his eyes, he showed his anger.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>Guga only narrowly defeated Melo.</phrase>
+		</pos>
+	</part>
+
+	<!-- NEED -->
+	<part>
+		<leftWord>ward</leftWord>
+		<rightWord>Need</rightWord>		
+		<pos>
+			<word>ed</word>
+			<phrase>Very little food is needed to keep a person alive.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>It was a tragedy because the authorities denied needing help for the sinking ship.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>The community is providing the food and shelter needful for the children´s wellbeing.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The new school policy, needless to say, will bring about changes.</phrase>
+		</pos>
+		<pos>
+			<word>y</word>
+			<phrase>The government has to provide shelter for the needy.</phrase>
+		</pos>
+	</part>
+	
+	<!-- PLAY -->
+	<part>
+		<leftWord>hood</leftWord>
+		<rightWord>Play</rightWord>		
+		<pos>
+			<word>ed</word>
+			<phrase>Pel\u00e9 played as no one else ever did before or after him.</phrase>
+		</pos>
+		<pos>
+			<word>er</word>
+			<phrase>Microsoft is one of the major players in the multimedia industry.</phrase>
+		</pos>
+		<pos>
+			<word>ful</word>
+			<phrase>She tried to sound playful not to show her nervousness.</phrase>
+		</pos>
+		<pos>
+			<word>ing</word>
+			<phrase>Ronaldinho is playing tonight.</phrase>
+		</pos>
+		<pos>
+			<word>able</word>
+			<phrase>This song is playable; it is not too difficult.</phrase>
+		</pos>
+	</part>
+		
+	<!-- STATE -->
+	<part>
+		<leftWord>ing</leftWord>
+		<rightWord>State</rightWord>		
+		<pos>
+			<word>ed</word>
+			<phrase>The net weight of a product has to be stated on it.</phrase>
+		</pos>
+		<pos>
+			<word>hood</word>
+			<phrase>The country achieved statehood after the war.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>The picture showed the duke and family in front of their impressive and stately mansion.</phrase>
+		</pos>
+		<pos>
+			<word>ment</word>
+			<phrase>The president’s statement caused a wave of resentment.</phrase>
+		</pos>
+	</part>
+	
+	<!-- HARD -->
+	<part>
+		<leftWord>ed</leftWord>
+		<rightWord>Hard</rightWord>		
+		<pos>
+			<word>er</word>
+			<phrase>The entrance exam at UNICAMP is harder than the ENEM.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>She was so exhausted that she could hardly speak.</phrase>
+		</pos>
+		<pos>
+			<word>ship</word>
+			<phrase>The war was a time of great economic hardship.</phrase>
+		</pos>
+	</part>
+
+	<!-- HOME -->
+	<part>
+		<leftWord>ship</leftWord>
+		<rightWord>Home</rightWord>	
+		<pos>
+			<word>ward</word>
+			<phrase>After a long hard day at school, he was waking homeward when he was attacked by a dog.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>It was a small, comfortable and homely apartment.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The government must do something about the homeless children living on the streets.</phrase>
+		</pos>
+	</part>
+	
+	<!-- BROTHER -->
+	<part>
+		<leftWord>able</leftWord>
+		<rightWord>Brother</rightWord>	
+		<pos>
+			<word>hood</word>
+			<phrase>Brotherhood, equality and peace among men is a noble ideal.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>Treat your younger brother nicely. Show him some brotherly love.</phrase>
+		</pos>
+	</part>
+
+	<!-- CHILD -->
+	<part>
+		<leftWord>y</leftWord>
+		<rightWord>Child</rightWord>	
+		<pos>
+			<word>hood</word>
+			<phrase>Even as an old man, he still has fond memories of his early childhood.</phrase>
+		</pos>
+		<pos>
+			<word>less</word>
+			<phrase>The childless couple doesn’t need a big house. They don’t have a dog either.</phrase>
+		</pos>
+		<pos>
+			<word>like</word>
+			<phrase>The young doctor had a small childlike figure.</phrase>
+		</pos>
+	</part>
+	
+	<!-- FRIEND -->
+	<part>
+		<leftWord>ful</leftWord>
+		<rightWord>Friend</rightWord>	
+		<pos>
+			<word>less</word>
+			<phrase>The friendless stranger lived alone in the big house.</phrase>
+		</pos>
+		<pos>
+			<word>ly</word>
+			<phrase>The friendly teacher smiled hello.</phrase>
+		</pos>
+		<pos>
+			<word>ship</word>
+			<phrase>Their friendship started when they were in the same class last year.</phrase>
+		</pos>
+	</part>
+</parts>
